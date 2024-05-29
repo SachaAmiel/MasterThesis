@@ -6,6 +6,7 @@
 \usepackage{graphicx} 
 \usepackage{bmpsize}
 \usepackage{tikz}
+\usepackage{braket}
 \usetikzlibrary{arrows,calc,patterns,decorations.markings,decorations.pathreplacing,plotmarks,shapes.arrows,decorations.pathmorphing,backgrounds}
 \tikzset{snake it/.style={decorate, decoration=snake}}
 \usepackage[all]{xy}
@@ -71,7 +72,7 @@ Student number: 23126576\\
 \section{Algebraic Quantum Fied Theory (AQFT)}
 \label{Sec:AQFT}
 \subsection{Very brief summary}
-This article \cite{AQFT_Intro} explains the main concepts of AQFT. It is very "basic", in the sense that it is only describing AQFT on $\mathbb{M}_4$ (Minkowski space in 1+3 dimentions) and and doesn't even mention things such as \emph{renormalization}, which are things that I will need for the project.
+This article \cite{AQFT_Intro} explains the main concepts of AQFT. It is very "basic", in the sense that it is only describing AQFT on $\mathbb{M}_4$ (Minkowski space in 1+3 dimentions) and doesn't even mention things such as \emph{renormalization}, which are things that I will need for the project.
 
 \subsection{Let's juggle with definitions}
 \begin{definition}[Quantum Mechanics - \emph{Dirac style}]$\quad$
@@ -99,9 +100,9 @@ Note that the definition can often extend all the sets $\mathcal{B}(\mathbb{H})$
 
 "States" are the set $\mathbb{C}\mathcal{P}_\mathbb{H}$, i.e. the projective space of the Hilbert space of the quantum mechanics. Recall that the projection of a vector space is the set of all equivalence classes $\{\lambda \Psi, \lambda\in\mathbb{C}\}$ for all vectors $\Psi$ in $\mathbb{H}$. In practice, one often confuses (non-zero) vectors of $\mathbb{H}$ with their projection and just calls them states, just keeping in mind that they are identical up to change of norm and phase.
 
-"Observables" are self hermitian operators of $\mathbb{H}$. Or a sub-algebra of it (depending on the context). The physically observable information of a quantum mechanics is the spectrum\footnote{\color{red}Should I explain how? Meaning, should I explain how to construct a probability distribution?\color{black}} of these operators. Thus, if two QM yield the same spectra up to an isomorphysim of QMs (understand by that an isomorphysm of Hilbert spaces AND of time evolution) we say that are descriptions of the same physical systems, i.e. the same.
+"Observables" are self hermitian operators of $\mathbb{H}$. Or a sub-algebra of it (depending on the context). The physically observable information of a quantum mechanics is the spectrum\footnote{\color{red}Should I explain how? Meaning, should I explain how to construct a probability distribution?\color{black}} of these operators. Thus, if two QM yield the same spectra up to an isomorphysim of QMs (understand by that an isomorphysm of Hilbert spaces AND of time evolution) we say that they are descriptions of the same physical systems, i.e. the same.
 
-As mentioned previously, QMs in the Schrodinger picture and the Heisenberg picture are physically the same when using the same $H$. More trivial cases of two quantum mechanics being the same are for instance when we keep the same time-evolution but replace the Hilbert Space by an isomorphic one (for instance, switching $S(\mathbb{R}^3)$ with itself using the Fourier Transform, which is called switching from "momentum representation" to "position representation" is a pretty stander example).    
+As mentioned previously, QMs in the Schrodinger picture and the Heisenberg picture are physically the same when using the same $H$. More trivial cases of two quantum mechanics being the same are for instance when we keep the same time-evolution but replace the Hilbert Space by an isomorphic one (for instance, switching $\mathcal{S}(\mathbb{R}^3)$ with itself using the Fourier Transform, which is called switching from "momentum representation" to "position representation" is a pretty stander example).    
 \end{definition}
 
 \begin{definition}[Quantum Field Theory] \emph{informal definition}
@@ -117,10 +118,11 @@ As mentioned previously, QMs in the Schrodinger picture and the Heisenberg pictu
         \item $\forall A\in\mathcal{A}\;\; ||A^*\cdot A||=||A^*||\cdot||A||=||A||^2$
         \item $\mathcal{A}$ is \emph{complete} in the $||\cdot||$-metric topology
     \end{itemize} 
-For simplicity, we will always assume that $||\mathds{1}||=1$... That's just the redefinition $||\cdot||\mapsto\frac{||\cdot||}{||\mathds{1}||}$, so nothing to overthink there...
+For simplicity, we will always assume that $||\mathds{1}||=1$... That's just the redefinition $||\cdot||\mapsto\frac{||\,\cdot\,||}{||\mathds{1}||}$, so nothing to overthink there...
 \end{definition}
 
 \begin{comment}
+\label{Com:C*&Bound}
 Notice that $\mathcal{B}(\mathbb{H})$ forms a C*-Algebra, using duality ($\dag$) as $*$-operator and opperator norm ($||A||:=\mathrm{Sup} \{\frac{||A\Psi||}{||\Psi||},\Psi \in \mathbb{H}\}$) as algebra norm.
 \end{comment}
 
@@ -131,15 +133,49 @@ Notice that $\mathcal{B}(\mathbb{H})$ forms a C*-Algebra, using duality ($\dag$)
         \item \textbf{Isotony}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1\subset O_2 \implies \mathcal{A}(O_1)\subset\mathcal{A}(O_2)$
         \item \textbf{Causality}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1 \; \mathrm{and}\; O_2\; \mathrm{causaly}\;\mathrm{disjoint}\; \implies \big[\mathcal{A}(O_1),\mathcal{A}(O_2)\big]=0$
         \item \textbf{Covariance}: there exists a functor $\alpha$ from the category of the (identity connected) Poincaré transformations of $\mathcal{O}(\mathbb{M}_4)$ to that of the sub-C*-Algebras of $\mathcal{A}(\mathbb{M}_4)$.
-        \item \textbf{Dynamics}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \;\mathrm{with} O_1 \subset O_2$, if $O_1$ contains a set met exactly once by every extensible timelike curve in $O_2$, then $mathcal{A}(O_1)=\mathcal{A}(O_2)$
+        \item \textbf{Dynamics}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \;\mathrm{with} \;O_1 \subset O_2$, if $O_1$ contains a set met exactly once by every extensible timelike curve in $O_2$, then $\mathcal{A}(O_1)=\mathcal{A}(O_2)$
     \end{enumerate}
 Note that the true definition of an AQFT actually doesn't use C*-Algebras but simply *-Algebras. But since dropping the C* requirement makes things a lot more complicated (it's basically like disregarding any topological concerns) when it simply doesn't make false many important results, most researchers in the field focus on C*-AQFT and we will simply ignore the other ones.
 \end{definition}
 
-\begin{definition}[Representation of a QFT]
-    \color{red}to write\color{black}
+\begin{definition}[States - Observables] \emph{vocabulary of QFT}
+
+"States" are elements $\omega: \mathcal{A}(\mathbb{M}_4)\to\mathbb{C}$ obeying the following properties:
+\begin{itemize}
+    \item $\forall \lambda\in\mathbb{C}, \forall(A,B)\in\mathcal{A}(\mathbb{M}_4)^2\quad \omega(\lambda A+B)=\lambda \omega(A)+\omega(B)$
+    \item $\forall A \in \mathcal{A}(\mathbb{M}_4)\quad \omega(A^*\, A)\in \mathbb{R}_+$
+    \item $\omega(\mathds{1})=1$
+\end{itemize}
+
+"Observables" are self adjoint elements of $\mathcal{A}(\mathbb{M}_4)$, i.e. the elements of: $\{A \in\mathcal{A}(\mathbb{M}_4):A=A^*\}$.
 \end{definition}
-% after that, thm: a rep of a QFT yeilds a QM; then comments about non-unitaryly equivalent reps and guage theory; and that'll be it I'll leave the more complicated stuff for later once I know if it is relevant or not to Q-En-Eq
+
+\begin{comment}
+\label{Com:SymDiracWeyl}
+    Recall that, from comment \ref{Com:C*&Bound}, given any Hilbert space $\mathbb{H}$, the bounded operators of it $\mathcal{B}(\mathbb{H})$ forms a C* Algebra.\\
+    Notice that, linear forms $\frac{\bra{\Psi}\,\cdot\,\ket{\Psi}}{\braket{\Psi|\Psi}}$ gives us a "State" in the QFT sense, and that for all $\ket{\lambda\Psi}$ corresponding to the same state, that associated linear form will be identicall.\\
+    All this, (associated to the fact that $\mathbb{M}_4$ can be foliated with respect to time) sort of hints us towards the idea that AQFT is indeed sort of what a QFT should be (i.e. a covariant QM).\\
+    Now, it turns out that, intrinsically, a QFT is not a QM, for some subdle reasons. It would be more rigorous to say that every QFT \emph{contains several QMs}... Let us build up to this more formally:
+\end{comment}
+
+\begin{definition}[Representation of a C*-Algebra]$\quad$
+
+    A representation of a C*-Algebra $\mathcal{A}$ is a triple $(\mathbb{H},\mathcal{D},\pi)$ where $\mathbb{H}$ is a Hilbert Space; $\mathcal{D}$ a dense subspace of it; and $\pi : \mathcal{A}\to\mathcal{B}(\mathcal{D})$ a morphism of C*-Algebra such that $\pi(\mathds{1}_{|\mathcal{A}})=\mathds{1}_{|\mathcal{D}}$\\
+    Unsurprisingly, it will be called a \emph{faithfull} representation when $\mathrm{Ker}(\pi)=\{0\}$ and irreducible if without any invariant subspaces...
+    \\ So from that, it becomes sort of obvious that any representation of the algrebra of a QFT, associated with a $\mathcal{T}$ to keep track of the time each subalgebra is from, does indeed lead to a proper QM.
+\end{definition}
+
+\begin{comment}
+    It turns out that, given a state (a pure state) $\omega$ one can always build a representation that works as broadly teased in comment \ref{Com:SymDiracWeyl} and yeilds a faithfull irreducible representation, with a vector $\ket{\Omega}$ such that $\omega\simeq\bra{\Omega}\cdot\ket{\Omega}$.\\
+    And that representation will be unique up to unitary equivalence (i.e. yeild exaclty the same QM). This is Theorem 10 in \cite{AQFT_Intro}. One can see this particular representation (called GNS representation) as a "canonical representation" of a QFT associated to a particular state.\\
+    \color{red} I'm only mentionning it very broadly because it "looks obvious" and also I'm guessing physicists won't care about it... But perhaps I should make it more formal, and also do the actual proof (only the pure state case, to go faster...) After all, in spite of its obviousness, this canonical prepresentation is used everywhere in the article... \color{black}
+\end{comment}
+
+\begin{comment}
+    In the case where any two such representations are unitarily equivalent, we see that the given QFT \emph{is} a quantum mechanics... But it turns out many QFTs do not have this property, in particular the algebra of operators of free feild theories do not have this property.\\
+    This is characterized by the author as the intrinsic presence of quantum fields in a theory. All purely QFT statements of the algebraic formulation are written in terms of this study of inequivalent representations. In particular, the structure of all inequavalent reps, formulated with "superselection sectors" yeilds sort of an algebraic gauge theory...\\
+    Of course, that part is a lot more handwayvy in the article, so I don't know about the details, a lot of outside theorems are quoted in it... I guess I'll learn it next...
+\end{comment}
 
 
 \newpage
