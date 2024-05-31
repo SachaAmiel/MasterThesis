@@ -150,6 +150,7 @@ Note that the true definition of an AQFT actually doesn't use C*-Algebras but si
 "Observables" are self adjoint elements of $\mathcal{A}(\mathbb{M}_4)$, i.e. the elements of: $\{A \in\mathcal{A}(\mathbb{M}_4):A=A^*\}$.
 \end{definition}
 
+\subsection{The link between QM and QFT as a representation matter}
 \begin{comment}
 \label{Com:SymDiracWeyl}
     Recall that, from comment \ref{Com:C*&Bound}, given any Hilbert space $\mathbb{H}$, the bounded operators of it $\mathcal{B}(\mathbb{H})$ forms a C* Algebra.\\
@@ -177,12 +178,39 @@ Note that the true definition of an AQFT actually doesn't use C*-Algebras but si
     Of course, that part is a lot more handwayvy in the article, so I don't know about the details, a lot of outside theorems are quoted in it... I guess I'll learn it next...
 \end{comment}
 
+\section{Energy Conditions by Sean Carrol}
+This section is based on chapter 4.6 of \cite{E_Cond}.
+
+\color{red} There is not much to say... He also talks about the physical interpretation in the case of a perfect fluid, but that's pretty trivial... He also gives some inclusions (not all of them super clearly, but still, I could talk about that) but they are also pretty trivial, simply by looking at the definitions of things. The example of the perfect fluid shows that all the case where inclusions don't look trivial, they are simply false... So yeah, I'm ignoring all that...\color{black}
+
+\begin{definition}[Energy Conditions]$\quad$
+
+    Let $T^{\mu\nu}$ be the energy-momentum tensor of a (classical) field theory over a Lorentzian manifold $\mathcal{M}$ with signature $(+,-,...,-)$ whose vectors are denoted by the set $\mathbb{M}(\mathcal{M})$ and whose (respectively) time-like; space-like and null vectors are denoted by  $\mathbb{M}(\mathcal{M})^{(\mathrm{T})}$; $\mathbb{M}(\mathcal{M})^{(\mathrm{S})}$ and $\mathbb{M}(\mathcal{M})^{(\mathrm{N})}$; i.e. with $g$ the metric of $\mathcal{M}$ we mean:
+    \begin{align*}
+        \mathbb{M}(\mathcal{M})^{(\mathrm{T})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu>0\right\}\\
+        \mathbb{M}(\mathcal{M})^{(\mathrm{S})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu<0\right\}\\
+        \mathbb{M}(\mathcal{M})^{(\mathrm{N})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu=0\right\}
+    \end{align*}
+We define the following acronyms (associated names in footnote\footnote{WEC - Weak Energy Condition\\NEC - Null Energy Condition\\DEC - Dominant Energy Condition\\NDEC - Null Dominant Energy Condition\\SEC - Strong Energy Condition}):
+\begin{align*}
+\textbf{WEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{T}} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
+\textbf{NEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{N}} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
+\textbf{DEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{T}} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
+\textbf{NDEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{N}} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
+\textbf{SEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{T}} && T_{\mu\nu}l^\mu l^\nu\geq \;& \frac{1}{2}T^\mu_\mu l^\nu l_\nu
+\end{align*}
+\end{definition}
+
 
 \newpage
 \begin{thebibliography}{99}
 
     \bibitem{AQFT_Intro}
-    \href{https://arxiv.org/abs/1904.04051}{Fewster, C; Rejzner, K; \textit{Algebraic Quantum Field Theory -- an introduction}. Ar$\chi$iv DOI:1904.04051 (2019)} 
+    Fewster, C; Rejzner, K; \textit{Algebraic Quantum Field Theory -- an introduction}. Ar$\chi$iv \href{https://arxiv.org/abs/1904.04051}{DOI:1904.04051} (2019)
+
+    \bibitem{E_Cond}
+    Carrol, S; \textit{SPACETIME AND GEOMETRY -- An Introduction to General Relativity} Cambridge University Press \href{https://www.cambridge.org/highereducation/books/spacetime-and-geometry/38EDABF9E2BADCE6FBCF2B22DC12BFFE#overview}{ISBN:978-1108488396} (2019)
+    
         
 \end{thebibliography}
 \end{document}
