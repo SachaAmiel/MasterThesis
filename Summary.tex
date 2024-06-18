@@ -72,7 +72,7 @@ Student number: 23126576\\
 \section{Algebraic Quantum Fied Theory (AQFT)}
 \label{Sec:AQFT}
 \subsection{Very brief summary}
-This article \cite{AQFT_Intro} explains the main concepts of AQFT. It is very "basic", in the sense that it is only describing AQFT on $\mathbb{M}_4$ (Minkowski space in 1+3 dimentions) and doesn't even mention things such as \emph{renormalization}, which are things that I will need for the project.
+This article \cite{AQFT_Intro} explains the main concepts of AQFT. It is very "basic", in the sense that it is only describing AQFT on $\mathbb{M}_4$ (Minkowski space in 1+3 dimentions) and doesn't even mention things such as \emph{renormalisation}, which are things that I will need for the project.
 
 \subsection{Let's juggle with definitions}
 \begin{definition}[Quantum Mechanics - \emph{Dirac style}]$\quad$
@@ -178,7 +178,7 @@ Note that the true definition of an AQFT actually doesn't use C*-Algebras but si
     Of course, that part is a lot more handwayvy in the article, so I don't know about the details, a lot of outside theorems are quoted in it... I guess I'll learn it next...
 \end{comment}
 
-\section{Energy Conditions by Sean Carrol}
+\section{Energy Conditions by Sean Carrol \& Primer on Energy Conditions by Erik Curiel}
 This section is based on chapter 4.6 of \cite{E_Cond}.
 
 \color{red} There is not much to say... He also talks about the physical interpretation in the case of a perfect fluid, but that's pretty trivial... He also gives some inclusions (not all of them super clearly, but still, I could talk about that) but they are also pretty trivial, simply by looking at the definitions of things. The example of the perfect fluid shows that all the case where inclusions don't look trivial, they are simply false... So yeah, I'm ignoring all that...\color{black}
@@ -193,14 +193,22 @@ This section is based on chapter 4.6 of \cite{E_Cond}.
     \end{align*}
 We define the following acronyms (associated names in footnote\footnote{WEC - Weak Energy Condition\\NEC - Null Energy Condition\\DEC - Dominant Energy Condition\\NDEC - Null Dominant Energy Condition\\SEC - Strong Energy Condition}):
 \begin{align*}
-\textbf{WEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{T}} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
-\textbf{NEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{N}} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
-\textbf{DEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{T}} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
-\textbf{NDEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{N}} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
-\textbf{SEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{\mathrm{T}} && T_{\mu\nu}l^\mu l^\nu\geq \;& \frac{1}{2}T^\mu_\mu l^\nu l_\nu
+\textbf{WEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
+\textbf{NEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{N})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
+\textbf{DEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
+\textbf{NDEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{N})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
+\textbf{SEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T}))} && T_{\mu\nu}l^\mu l^\nu\geq \;& \frac{1}{2}T^\mu_\mu l^\nu l_\nu
 \end{align*}
 \end{definition}
 
+In \cite{Primer}, the author gives a lot more energy conditions, and in particular, rather than having these inequalities hold at every point, they can (weaker) hold once integrated over a portion of a geodesic, or (even weaker) a full geodesic.
+There are also more whimsical energy conditions and a lot of interpretation on they philosophical meaning... But overall I don't think it's worth summarizing much...
+
+\section{Renormalisation in perturbative AQFT by Kasia Rejner}
+I will skip summarizing \cite{RejConf} as, at the moment, I have 12 pages of notes that are compressed to their fullest, so I prefer to wait and see what will be usefull once I have used it, rather than waist a lot of time typing it all in Late$\chi$...
+
+\section{Hadamard renormalisation}
+This section is based on \cite{HadRen}. But since they don't realy explain nor derive anything other than a bunch of formulas, I will just write the formulas I felt were important...
 
 \newpage
 \begin{thebibliography}{99}
@@ -209,8 +217,17 @@ We define the following acronyms (associated names in footnote\footnote{WEC - We
     Fewster, C; Rejzner, K; \textit{Algebraic Quantum Field Theory -- an introduction}. Ar$\chi$iv \href{https://arxiv.org/abs/1904.04051}{DOI:1904.04051} (2019)
 
     \bibitem{E_Cond}
-    Carrol, S; \textit{SPACETIME AND GEOMETRY -- An Introduction to General Relativity} Cambridge University Press \href{https://www.cambridge.org/highereducation/books/spacetime-and-geometry/38EDABF9E2BADCE6FBCF2B22DC12BFFE#overview}{ISBN:978-1108488396} (2019)
-    
+    Carrol, S; \textit{SPACETIME AND GEOMETRY -- An Introduction to General Relativity}. Cambridge University Press \href{https://www.cambridge.org/highereducation/books/spacetime-and-geometry/38EDABF9E2BADCE6FBCF2B22DC12BFFE#overview}{ISBN:978-1108488396} (2019)
+
+    \bibitem{Primer}
+    Curiel, E; \textit{A Primer on Energy Conditions}. Towards a Theory of Spacetime Theories. Einstein Studies, vol 13. Birkhäuser \href{https://arxiv.org/abs/1405.0403}{DOI:10.1007/978-1-4939-3210-8\_3} (2014)
+
+    \bibitem{RejConf}
+    Rejzner, K; \textit{Renormalization in Perturbative Algebraic Quantum Field Theory}. Masterclass and Workshop on "Higher Structures Emerging from Renormalisation"; \href{https://www.youtube.com/watch?v=3JVDJhFpuPY&ab_channel=ErwinSchr%C3%B6dingerInternationalInstituteforMathematicsandPhysics%28ESI%29}{4 talks at the \textit{Erwin Schrödinger International Institute for Mathematics and Physics} (ESI)} (2021)
+
+    \bibitem{HadRen}
+    Décanini, Y; Folacci, A; \textit{Hadamard Renormalization of the stress-energy tensor for a quantized scalar field in a general of arbitrary dimension}. Physical Review \href{https://arxiv.org/abs/gr-qc/0512118}{DOI:10.1103} (2008)
+     
         
 \end{thebibliography}
 \end{document}
