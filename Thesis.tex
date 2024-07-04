@@ -17,6 +17,7 @@
 \usepackage{titling}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{tikz-cd}
 
 \numberwithin{equation}{section}
 \theoremstyle{definition}
@@ -42,7 +43,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
 
-\title{Summary of the Articles I have red}
+\title{Quantum energy inequalities with curvature}
 \author{Author: Sacha AMIEL \\
 Student number: 23126576\\
 \\ Supervisor: Dr. Eleni-Alexandra Kontou \\ Module Code: 7CCMTP50}
@@ -65,16 +66,23 @@ Student number: 23126576\\
 \end{figure}
 
 \newpage
+\section*{Abstract}
+This \color{red} text \color{black} will be, as explicitely stated in the title, about quantum ernergy inequalities with curvature. It will consist in a formal introduction to an axiomatic approach to quantum field theory, followed by a formal introduction to energy inequalities and will finish with quantum energy inequalities in curved spacetimes and of the knowledge they bring.
 
-\tableofcontents
+Quantum Energy Inequalities are covariant lower bounds on the energy of a given physics. They do not tell us much about the physics itself, nor about the spacetime the physics unfolds; but from the restrictions they impose on energy, one can (if following general relativity) impose restrictions on that spacetime. This can bring crucially insight in the field of quantum field theory in curved spaces, and therefore, potentially quantum gravity.
 
+\section*{Informal introduction}
+It is commonly known in physics that "energy should be positive", although the more one thinks about it, the less one is sure about it. In the life of a physics student, many formal statements are learned, "energy is defined up to a constant", "energy needs to be bounded from below", "energy is mass so it cannot be negative", "energy is the curvature of spacetime"... And overall, with time, one gets very flexible with what one can accept as an energy.
+
+In this \color{red} text \color{black} we will take the approach of mathematical physics, striving to only work with rigorously well defined concept. This will lead to results that are less impressive but probably more meaningful. Indeed, the point of quantum energy inequalities is not to claim any result about quantum gravity, but simply to exclude some types of spacetime if one desires to build a physical model with both gravity and quantum field theory. 
 \newpage
-\section{Algebraic Quantum Fied Theory (AQFT)}
-\label{Sec:AQFT}
-\subsection{Very brief summary}
-This article \cite{AQFT_Intro} explains the main concepts of AQFT. It is very "basic", in the sense that it is only describing AQFT on $\mathbb{M}_4$ (Minkowski space in 1+3 dimentions) and doesn't even mention things such as \emph{renormalisation}, which are things that I will need for the project.
+\tableofcontents
+\newpage
+\section{Defining Quantum Field Theory in Curved Spacetimes}
+This section will make use (without defining them) of the notion of category theory. To see the formal definition \color{red} ref!!!!! \color{black}. We will use the symbol $\mathbb{M}_4$ to refer to Minkowski spacetime in 1+3 dimensions, and $\mathcal{M}$ will denote any spacetime with signature $\pm (-, +,+, ..., +)$.
 
-\subsection{Let's juggle with definitions}
+\subsection{Axiomatic approach to Algebraic Quantum Field Theory}
+\subsubsection{Formalizing the intuitive idea f a QFT}
 \begin{definition}[Quantum Mechanics - \emph{Dirac style}]$\quad$
 
 A quantum Mechanics is the data $(\mathbb{H},\mathcal{T})$ of a Hilbert space $\mathbb{H}$ and some \emph{Time evolution principle} $\mathcal{T}$. In pure theory $\mathcal{T}$ could be a labeling of \emph{everything} with respect to time, but in practice, it will usually be given by some time-evolution equation on either the vectors of $\mathbb{H}$, most operators of $\mathbb{H}$, or in some very specific cases, both...\\
@@ -126,6 +134,8 @@ For simplicity, we will always assume that $||\mathds{1}||=1$... That's just the
 Notice that $\mathcal{B}(\mathbb{H})$ forms a C*-Algebra, using duality ($\dag$) as $*$-operator and opperator norm ($||A||:=\mathrm{Sup} \{\frac{||A\Psi||}{||\Psi||},\Psi \in \mathbb{H}\}$) as algebra norm.
 \end{comment}
 
+\subsubsection{The axioms of AQFT}
+The few following definitions are taken from \cite{AQFT_Intro}. They can also be found in \cite{pAQFT}, but that last one goes a bit further, as we will see in a moment.
 \begin{definition}[AQFT]
     An AQFT is a tuple $\big(\mathcal{A}(\mathbb{M}_4), \mathcal{A}(\cdot)\big)$. Where $\mathcal{A}(\mathbb{M}_4)$ is an C*-Algebra and $\mathcal{A}(\cdot)$ is a functor from the category $\mathcal{O}(\mathbb{M}_4)$ of open causally convex subsets of $\mathbb{M}_4$ to that of sub-C*-Algebras of $\mathcal{A}(\mathbb{M}_4)$ obeying the following requirements:
     \begin{enumerate}
@@ -150,7 +160,7 @@ Note that the true definition of an AQFT actually doesn't use C*-Algebras but si
 "Observables" are self adjoint elements of $\mathcal{A}(\mathbb{M}_4)$, i.e. the elements of: $\{A \in\mathcal{A}(\mathbb{M}_4):A=A^*\}$.
 \end{definition}
 
-\subsection{The link between QM and QFT as a representation matter}
+\subsubsection{Relating AQFT to the intuitive ideas of QFT}
 \begin{comment}
 \label{Com:SymDiracWeyl}
     Recall that, from comment \ref{Com:C*&Bound}, given any Hilbert space $\mathbb{H}$, the bounded operators of it $\mathcal{B}(\mathbb{H})$ forms a C* Algebra.\\
@@ -177,6 +187,132 @@ Note that the true definition of an AQFT actually doesn't use C*-Algebras but si
     This is characterized by the author as the intrinsic presence of quantum fields in a theory. All purely QFT statements of the algebraic formulation are written in terms of this study of inequivalent representations. In particular, the structure of all inequavalent reps, formulated with "superselection sectors" yeilds sort of an algebraic gauge theory...\\
     Of course, that part is a lot more handwayvy in the article, so I don't know about the details, a lot of outside theorems are quoted in it... I guess I'll learn it next...
 \end{comment}
+
+
+    \subsection{Separating the notion of a physics and its spacetime}
+\subsubsection{An over-complicated definition of a Field}
+        Recall that $\mathfrak{A}$ can be seen as a covariant functor from the spacetime to the Algebra of observables. Let $\bold{Loc}$ be the category of hyperbolic oriented and time oriented spacetimes related by respective embedding. Let $\bold{Vec}$ be the categroy of topological vector spaces (with continuous linear functions as morphisms). And let $\bold{Obs}$ be the category of locally convex C*Algebras (or just unital *Algebras in the context of perturbation theory, or topological Poisson Algebras in the classical case) with corresponding algebra morphisms as morphisms.\\
+Let $\mathcal{D}$ be the functor from $\bold{Loc}$ to $\bold{Vec}$ that associates to every spacetime its comactly supported test functions.
+
+\begin{definition}[Quantum Field]
+    A Quantum Field is a natural transformation from the functor $\mathcal{D}$ to the functor $\mathfrak{A}$ of field theory composed with the forgetful functor from $\bold{Obs}$ to $\bold{Vec}$
+\end{definition}
+
+Although this is, in many way, an overkill definition, we see that this basically holds over any spacetime, this leads us to slightly weaken the axioms of AQFT (called pAQFT) as follows (see \cite{pAQFT} for more), it will, amongst other things, allows to include perturbation theory to the frame but also make it work on any spacetime:
+\begin{itemize}
+    \item A net to topological *-algebras with sequentially continuous product over a spacetime $\mathcal{M}$; $\mathcal{O}\mapsto\mathfrak{A}(\mathcal{O})$
+    \item (Locality) $\mathfrak{A}(\mathcal{M})=\lim_{\mathcal{O}\subset\mathcal{M}}\mathfrak{A}(\mathcal{O})$
+    \item all the section 2.3 (R's book) except the spectrum condition
+    \item (Time-slicing axiom) Algebra of the neighborhood of a Cauchy surface of a Region is the algebra of the whole region.
+    \item There is a covariant functor from the category of regions and their action under the groupof the space-time symettries and the algebra.
+    \item, the spectrum condition can no longer be used on curved surfaces, at "translations" are not everywhere well defined. Instead, this will be fixed by the use of Hadamard states (\color{red} see Sec 5 to get it\color{black}).
+\end{itemize}
+\color{red} this part has been rushed a bit, as I will invariably need to re-do it in the final doc, to make it a progression of the form:
+$$\mathrm{AQFT}_{\mathbb{M}_4}\to\mathrm{AQFT}_\mathcal{M}\to\mathrm{pAQFT}_\mathcal{M}$$
+That, or, 
+$$\mathrm{AQFT}_{\mathbb{M}_4}\to\mathrm{pAQFT}_{\mathbb{M}_4}\to\mathrm{pAQFT}_\mathcal{M}$$
+I haven't decided...\\ \\
+Also, I'm missin a subsubsection...\color{black}\\
+A core part of AQFT is the fact that, once properly defined in terms of category, one can see there is sort of two independent objects: the \emph{spacetime}, and the \emph{QFT}. And the two are only linked by Locality and Covariance, both which are not so much a active requirement, but more of a coherence requirement.\\
+This leads to the possibility to formalize this separation of the two notions as the two essential building blocks of an AQFT, and thus to the possibility of changing one without the other. This (purely mathematical fact) can be physically understood as follows one can consider a QFT regardless of the space-time it lives in, and formally swap that spacetime with another, thereby rigorously considering \emph{the same physics on a different spacetime}.\\
+This is why AQFT is so suited for our topic: it allows to do any physics on any space, and thus to ask formally the question: what physics can (or cannot) work properly on a given spacetime.
+\subsubsection{The understanding the abstract meaning of a Field and also its more down to earth meaning}
+        Notice that although the previous definition was stated quite abstractly and abruptly, it also contain a very practical definition of fields (hidden in the category language): given a spacetime they are dual to test functions and have their end inside the algebra: i.e. they are in practice non-commutative distributions. \color{red} add a ref to distribution theory and probably add distribution to the annex, also I might want to add at this point in the thesis something like "distributions contain functions, dirac and other things... So they are exaclty what physicists are used to deal with in computation"... But I'm not sure, it both sound like something usefull to say, to calm any reader that panicked after seeing functors everywhere for a whole page... But might also feel insulting to any reader that understood it without any issue"\color{black}.
+\subsection{From its axiomatization to its practical implementation}
+\subsubsection{Computation-oriented depiction of a Field}
+        % Axioms of Fields, and the smearing
+\subsubsection{A first glance at Hadamard states}
+\subsubsection{A first glance at Hadamard renormalization}
+\section{Energy Inequalities and their use in General Relativity}
+\subsection{Classical Energy Inequalities}
+\subsubsection{The Philosophy of Energy Conditions}
+\subsubsection{Zoology of Classical Energy Conditions}
+\subsubsection{The Breaking of Classical Energy Condition}
+\subsection{Quantum Energy Inequalites}
+\subsubsection{General Formalism of Q-E-Cond}
+\subsubsection{Down the Hadamard Rabbit Whole}
+\subsubsection{Double Energy Conditions}
+\section{Result stuff}
+
+
+\section{Conclusion}
+\newpage
+\section{Physics Appendix}
+    \subsection{Category, functor, natural transformation}
+    For proper definition, see the math appendix or \cite{AlgLang}.
+        \subsubsection{Category}
+    Category theory is the study of structures. Formally, a category is a collection of objects and the links between them (links which we call the \emph{morphisms} of the category).\\
+    Examples of famous categories are:
+    \begin{itemize}
+        \item Groups (known in physics as "symetries"), whose morphisms are group-preserving functions (i.e. $f(a.b)=f(a).f(b)$)
+        \item *Algebras (known in physics as "observables"), whose morphisms are *Algebras preserving functions (i.e. $f(\lambda.a.b+c)=\lambda.f(a).f(b)+f(c)$ and $f(a^\dag)=f(a)^\dag$)
+        \item Given a spacetime, the collection of all the charts on it forms a category whose morphism are all the switch to other nearby charts
+        \item The category of Feynman diagrams where the morphism are relations between them (like a diagram being a sub-diagram of the other in the non-1PI case, or the replacement of a particular vertex with a different one).
+    \end{itemize}
+    The power of category-formulated statements is that they are not mathematical objects per say, but are \emph{about} mathematical objects, so they allow to take a useful step back.
+    
+    In cathegory theory, one usually draws relations in diagrams as follows, and calls them \emph{commutative} whenever all paths are the same. For example, the following diagram defines the multiplication in a $\mathbb{K}$-algebra $A$ (with $\mu$ the algebra product, $\eta$ is the unit element of the algebra).\\
+    \begin{tikzcd}
+    & \arrow[ld, "\mu\otimes\mathrm{id}"] A\otimes A \otimes A  \arrow[rd, "\mathrm{id}\otimes\mu"]\\
+    A\otimes A \arrow[rd, "\mu"]& &\arrow[ld, "\mu"]A\otimes A& & A \otimes A \arrow[rd, "\mu"]& & A\otimes A \arrow[rd, "\mu"]\\
+    & A & & & \mathbb{K}\otimes A \arrow[u, "\eta\otimes\mathrm{id}"] \arrow[equal]{r}& A & \arrow[u, "\mathrm{id}\otimes\eta"] A\otimes\mathbb{K} \arrow[equal]{r} & A
+\end{tikzcd}
+    
+
+    \subsubsection{Functors}
+    A functor is an object that sends a category to another cathegory. They are the most important tool in cathegory theory, as they allow formal study of the interaction between two apparently different structures.\\
+    Here are examples of famous functors from physics.
+    \begin{itemize}
+        \item The functor from Lie Groups to Lie Algebras (it sends groups to their tangent planes, and group morphisms into lie Algebra morphisms)
+        \item  The "exponantial functor", which sends any Lie Algebra to the associated compact Lie Group (it is the \emph{dual} functor to the previous).
+        \item The Legrendre functor which sends the Euleur-Lagrange Picture of Classical Dynamics to the Hamilton-Jacobi Picture
+        \item The Fourrier Functor which sends Classical Quantum Mechanics from the Position Representation to the Momentum Representation
+        \item The Feynman rules functor that sends the category of feynman diagrams to their values and the relations between them into formulas.
+    \end{itemize}
+    Having a functor simply means being able to bring some of the interesting things of a structure into another. In our case, (QFT in curved spaces) a functor that we will see all the time is the Algebra Functor, which to any neighborhood of a spacetime associates all the observables accessible to an observer in that region, and therfore, we see that it is core in the \emph{covariance} requirement of QFT.
+
+    \subsubsection{Natural Transformations}
+    We do not use them much in this \color{red} text \color{black} but they are still quite important. A natural transformation is a \emph{morphism between functors} from a category to another. They allow to study functors themselves as a category (and thus, sort of "close" category into itself).\\
+    Famous physical natural transformations are:
+    \begin{itemize}
+        \item The change of overall phase in quantum mechanics, whatever the categories (Hilbert Space, Obsevables...) and whatever the functor, one can slightly tweak it by a unitary transformation, without changing the physics.
+        \item The affine re-parametrization of geodesics in space-time. Whatever functor one has in covariant physics that is based on a geodesic parameter, one can get a different one by re-parametrization of the geodesic parameter.
+        \item Renormalization group flow which tweaks Feynman rules based on the renormalization parameters
+    \end{itemize}
+    
+    
+\newpage
+\section{Mathematics Appendix}
+    \subsection{Category, functor, natural transformation}
+    The following definitions can be found in \cite{AlgLang}. For an understanding of their interpretation, see the Physics Appendix...
+    \subsubsection{Category}
+    A cathegory $\mathcal{C}$ is a tuple $(\mathrm{Obj},\mathrm{Hom},\circ)$ such that for all $A,B \in \mathrm{Obj}$ there is a class of entities called \emph{morphisms from} $A$ \emph{to} $B$ denoted $\mathrm{Hom}(A,B)$ following the following properties:
+    \begin{itemize}
+        \item $\forall A, B, C \in \mathrm{Obj}, \forall f\in \mathrm{Hom}(A,B), \forall g\in \mathrm{Hom}(B,C), \exists h \in \mathrm{Hom} (A,C) : h=f\circ g$
+        \item $\forall A,B \in \mathrm{Obj} \; \exists \mathrm{id}_A \in \mathrm{Hom}(A,A): \forall f \in \mathrm{Hom}(A,B) \; \mathrm{id}_A\circ f=f$
+        \item $\forall A,B \in \mathrm{Obj} \; \exists \mathrm{id}_B \in \mathrm{Hom}(B,B): \forall f \in \mathrm{Hom}(A,B) \; f\circ \mathrm{id}_B=f$
+    \end{itemize}
+    Equations in cathegory theory language are usually written in the form of a graph (called commutative diagram) where all possible composition paths are meant to be equal. For instance, bijectivity of a morphism is written as follows:\\
+    A morphism $f \in \mathrm{Hom}(A,B)$ is called an iso-morphism when there exists $g \in \mathrm{Hom}(B,A)$ such that the following diagram commutes:
+    $$\begin{tikzcd}[column sep=4em,row sep=4em,/tikz/column 2/.style={column sep=2em}]
+\arrow[loop left]{l}{\mathrm{id}_A} A \arrow[r,bend left,"f"]
+    & B \arrow[l,bend left,"g"] \arrow[loop right]{r}{\mathrm{id}_B}
+\end{tikzcd}$$
+
+\subsubsection{Functor}
+    Let $\mathcal{C}$ and $\mathcal{D}$ be two categories. A functor $\mathfrak{F}$ is something that, to all elements $A\in\mathrm{Obj}_\mathcal{C}$, associates an element $\mathfrak{F}(A)\in\mathrm{Obj}_\mathcal{D}$ and to all $f \in \mathrm{Hom}(A,B)$ associates $\mathfrak{F}(f)\in\mathrm{Hom}(\mathfrak{F}(A),\mathfrak{F}(B))$ such that the two following properties hold:
+    \begin{itemize}
+        \item $\forall A \in \mathrm{Obj}_\mathcal{C}\; \mathfrak{F}(\mathrm{id}_A)=\mathrm{id}_{\mathfrak{F}(A)}$
+        \item $\forall A,B,C \in \mathrm{Obj}_\mathcal{C}, \forall f \in \mathrm{Hom}(A,B), \forall g \in \mathrm{Hom}(B,C)\quad \mathfrak{F}(f)\circ_\mathcal{D}\mathfrak{F}(g)=\mathfrak{F}(f\circ_\mathcal{C}g)$
+    \end{itemize}
+\subsubsection{Natural Transformations}
+A natural transformation is an objects linking functors together so as to make functors joined with natural transformations a category of its own. Formal axiomatization on any single natural transformation follows from this requirement.
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%
+
 
 \section{Energy Conditions by Sean Carrol \& Primer on Energy Conditions by Erik Curiel}
 This section is based on chapter 4.6 of \cite{E_Cond}.
@@ -305,39 +441,7 @@ This is apparently, the main tool in proving the famous singularity theorems. li
 \end{theorem}
 Last probably usefull fact I found: null-geodesic conditions are not easily extended to the Quantum case, so that's a problem...
 
-\section{pAQFT}
-\subsection{Axiomatization}
-This section is summarizing interesting parts in \cite{pAQFT}.\\
-To allow for perturbative approaches to QFT, we modify the axioms to the folowing:
-\begin{itemize}
-    \item A net to topological *-algebras with sequentially continuous product over a spacetime $\mathcal{M}$; $\mathcal{O}\mapsto\mathfrak{A}(\mathcal{O})$
-    \item (Locality) $\mathfrak{A}(\mathcal{M})=\lim_{\mathcal{O}\subset\mathcal{M}}\mathfrak{A}(\mathcal{O})$
-    \item all the section 2.3 (R's book) except the spectrum condition
-    \item (Time-slicing axiom) Algebra of the neighborhood of a Cauchy surface of a Region is the algebra of the whole region.
-    \item There is a covariant functor from the category of regions and their action under the groupof the space-time symettries and the algebra.
-    \item, the spectrum condition can no longer be used on curved surfaces, at "translations" are not everywhere well defined. Instead, this will be fixed by the use of Hadamard states (\color{red} see Sec 5 to get it\color{black}).
-\end{itemize}
-\color{red} this part has been rushed a bit, as I will invariably need to re-do it in the final doc, to make it a progression of the form:
-$$\mathrm{AQFT}_{\mathbb{M}_4}\to\mathrm{AQFT}_\mathcal{M}\to\mathrm{pAQFT}_\mathcal{M}$$
-That, or, 
-$$\mathrm{AQFT}_{\mathbb{M}_4}\to\mathrm{pAQFT}_{\mathbb{M}_4}\to\mathrm{pAQFT}_\mathcal{M}$$
-I haven't decided...\color{black}\\
-A core part of AQFT is the fact that, once properly defined in terms of category, one can see there is sort of two independent objects: the \emph{spacetime}, and the \emph{QFT}. And the two are only linked by Locality and Covariance, both which are not so much a active requirement, but more of a coherence requirement.\\
-This leads to the possibility to formalize this separation of the two notions as the two essential building blocks of an AQFT, and thus to the possibility of changing one without the other. This (purely mathematical fact) can be physically understood as follows one can consider a QFT regardless of the space-time it lives in, and formally swap that spacetime with another, thereby rigorously considering \emph{the same physics on a different spacetime}.\\
-This is why AQFT is so suited for our topic: it allows to do any physics on any space, and thus to ask formally the question: what physics can (or cannot) work properly on a given spacetime.
 
-\subsection{How to go from $\mathbb{M}_4$ to any spacetime}
-Recall that $\mathfrak{A}$ can be seen as a covariant functor from the spacetime to the Algebra of observables. Let $\bold{Loc}$ be the category of hyperbolic oriented and time oriented spacetimes related by respective embedding. Let $\bold{Vec}$ be the categroy of topological vector spaces (with continuous linear functions as morphisms). And let $\bold{Obs}$ be the category of locally convex C*Algebras (or just unital *Algebras in the context of perturbation theory, or topological Poisson Algebras in the classical case) with corresponding algebra morphisms as morphisms.\\
-Let $\mathcal{D}$ be the functor from $\bold{Loc}$ to $\bold{Vec}$ that associates to every spacetime its comactly supported test functions.
-
-\begin{definition}[Quantum Field]
-    A Quantum Field is a natural transformation from the functor $\mathcal{D}$ to the functor $\mathfrak{A}$ of field theory composed with the forgetful functor from $\bold{Obs}$ to $\bold{Vec}$
-\end{definition}
-
-Although this is, in many way, an overkill definition, we see that this basically holds over any spacetime, thereby allowing to ask (in a quantum way) the (classical) common question in GR: which fields/physics when following Einstein's equation, lead to a particular type of spacetime.
-\color{red} add physical interpretation of each category and functor\color{black}
-\subsection{How to go from C* to field}
-Notice that although the previous definition was stated quite abstractly and abruptly, it also contain a very practical definition of fields (hidden in the category language): given a spacetime they are dual to test functions and have their end inside the algebra: i.e. they are in practice non-commutative distributions. \color{red} add a ref to distribution theory and probably add distribution to the annex, also I might want to add at this point in the thesis something like "distributions contain functions, dirac and other things... So they are exaclty what physicists are used to deal with in computation"... But I'm not sure, it both sound like something usefull to say, to calm any reader that panicked after seeing functors everywhere for a whole page... But might also feel insulting to any reader that understood it without any issue"\color{black}.
 
 \newpage 
 \begin{thebibliography}{99}

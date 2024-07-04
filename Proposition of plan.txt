@@ -1,0 +1,20 @@
+Section 1: Axiomatic approach to QFT
+    Details:
+    - Start with axioms,
+    - Go into how basic conepts of QFT are formalized (maybe not all of them thought... I guess this part's size will depend how much space is left in the thesis)
+    - Manage to transision from axioms to basic formulae (and start talking about Hadamard States)
+    (-) Finish on the notion of two identical physics on different spacetime and the possibility of excluding whizmical spacetimes
+
+Section 2: Energy Condition (classically)
+    Details:
+    - Folowing from transition, explain the idea of adding "physical" conditions to exclude whimzica spacetimes.
+    - Classical Energy conditions (the basis)
+    - Famous application: Penrose's Theorem
+
+Section 3: Quantum Energy conditions
+    Details:
+    - Show them (and explain how they are the Q equivalent of ECond)
+    - Emphasis on the state, back on the Hadamard state, (I'm thinking more about renormalization schemes of Had states... But that might also be a good spot to introduce non-state independant ECond... To see with Eleni)
+    - Maybe finish on my actual work... If I manage to do any in time.
+
+In the apendix (thanks to Fil Chernikov for the idea), have two identical apendix, except one is pure math, and the other is pure physics. That way, anyting in the apendix, I can just quote without fear of being miss-understood, and anyone that doesn't understand either the meaning or the structure can just go and read whatever they are having issues with.
