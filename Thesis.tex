@@ -18,6 +18,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{tikz-cd}
+\usepackage{cancel}
 
 \numberwithin{equation}{section}
 \theoremstyle{definition}
@@ -67,7 +68,7 @@ Student number: 23126576\\
 
 \newpage
 \section*{Abstract}
-This \color{red} text \color{black} will be, as explicitely stated in the title, about quantum ernergy inequalities with curvature. It will consist in a formal introduction to an axiomatic approach to quantum field theory, followed by a formal introduction to energy inequalities and will finish with quantum energy inequalities in curved spacetimes and of the knowledge they bring.
+This \color{red} text \color{black} will be, as explicitly stated in the title, about quantum energy inequalities with curvature. It will consist in a formal introduction to an axiomatic approach to quantum field theory, followed by a formal introduction to energy inequalities and will finish with quantum energy inequalities in curved spacetimes and of the knowledge they bring.
 
 Quantum Energy Inequalities are covariant lower bounds on the energy of a given physics. They do not tell us much about the physics itself, nor about the spacetime the physics unfolds; but from the restrictions they impose on energy, one can (if following general relativity) impose restrictions on that spacetime. This can bring crucially insight in the field of quantum field theory in curved spaces, and therefore, potentially quantum gravity.
 
@@ -79,48 +80,55 @@ In this \color{red} text \color{black} we will take the approach of mathematical
 \tableofcontents
 \newpage
 \section{Defining Quantum Field Theory in Curved Spacetimes}
-This section will make use (without defining them) of the notion of category theory. To see the formal definition \color{red} ref!!!!! \color{black}. We will use the symbol $\mathbb{M}_4$ to refer to Minkowski spacetime in 1+3 dimensions, and $\mathcal{M}$ will denote any spacetime with signature $\pm (-, +,+, ..., +)$.
+This section will make use (without defining them) of notions of \textbf{category theory}. If the reader feels the need for a mathematical definition of what a category is, it can be found on page \pageref{AnMaCat}, in the Mathematics appendices. If the reader feels the need for a physical understanding of what a category is, it can be found on page \pageref{AnPhCat}, in the Physics appendices.
+
+This section will make use (without defining them) of notions of \textbf{distribution theory}. If the reader feels the need for a mathematical definition of what a distribution is, it can be found on page \pageref{DistribMath}, in the Mathematics appendices. If the reader feels the need for a physical understanding of what a distribution is, it can be found on page \pageref{DistribPhy}, in the Physics appendices.
+
+In this section, we will use the symbol $\mathbb{M}_4$ to refer to Minkowski spacetime in 1+3 dimensions, and $\mathcal{M}$ will denote any spacetime with signature $(\mp, \pm,\pm, ..., \pm)$. Any other notations and concepts (other than standard undergrad ones) will be introduced before being used.
 
 \subsection{Axiomatic approach to Algebraic Quantum Field Theory}
-\subsubsection{Formalizing the intuitive idea f a QFT}
+\subsubsection{Formalizing the intuitive idea of a QFT}
 \begin{definition}[Quantum Mechanics - \emph{Dirac style}]$\quad$
 
-A quantum Mechanics is the data $(\mathbb{H},\mathcal{T})$ of a Hilbert space $\mathbb{H}$ and some \emph{Time evolution principle} $\mathcal{T}$. In pure theory $\mathcal{T}$ could be a labeling of \emph{everything} with respect to time, but in practice, it will usually be given by some time-evolution equation on either the vectors of $\mathbb{H}$, most operators of $\mathbb{H}$, or in some very specific cases, both...\\
+A quantum Mechanics is the data $(\mathbb{H},\mathcal{T})$ of a Hilbert space $\mathbb{H}$ and some \emph{Time evolution principle} $\mathcal{T}$. In pure theory $\mathcal{T}$ could be \emph{any} labeling of \emph{everything} with respect to time, but in practice, it will usually be given by some time-evolution equation on either the vectors of $\mathbb{H}$, the operators of $\mathbb{H}$, or in some very specific cases, both...\\
 An example of vector evolution would be, given a Hermitian operator $H\in\mathcal{B}(\mathbb{H})$, the well known Schrödinger-picture time-evolution:
 $$\boxed{\mathcal{T}_{H,\mathrm{Sch}}: \Bigg\{
 \begin{matrix}
 \mathbb{H} & \to & \mathcal{C}^\infty(\mathbb{R},\mathbb{H})\\
 \Psi & \mapsto & \Big(t\mapsto \e^{\mathfrak{i}\hbar H}\Psi\Big)
 \end{matrix}}$$
-An example of an operator time evolution would be the well known Heisenberg-picture time-evolution (which, if taken with the same $H$ is \emph{physically equivalent}):
+An example of an operator time evolution would be the well known Heisenberg-picture time-evolution (which, if taken with the same $H$ (Hamiltonian) is \emph{physically equivalent}):
 $$\boxed{\mathcal{T}_{H,\mathrm{Hei}}: \Bigg\{
 \begin{matrix}
 \mathcal{B}(\mathbb{H}) & \to & \mathcal{C}^\infty\big(\mathbb{R},\mathcal{B}(\mathbb{H})\big)\\
 X & \mapsto & \Big(t\mapsto \e^{-\mathfrak{i}\hbar H}X\e^{\mathfrak{i}\hbar H}\Big)
 \end{matrix}}$$
-But some more whimsical time-evolutions are used, for instance, in evolved methods of perturbation theory in molecular physics (drawing from a mixture of the previously mentioned ones)... In a way, once can consider the Dirac equation or the Klein-Gordon equations as being other time-evolutions, also defining a quantum mechanics (though in practice, we want to see them as part of a Quantum Field theory, which is something we will define next).
+But some more whimsical time-evolutions can be used, for instance, in several methods of perturbation theory in molecular physics (drawing from a mixture of the previously mentioned ones)... In a way, once can consider the Dirac equation or the Klein-Gordon equations as being another time-evolution, also defining a quantum mechanics (though in practice, we want to see Klein-Gordon as part of a Quantum Field theory, which is something we will define next).
 
-Note that the definition can often extend all the sets $\mathcal{B}(\mathbb{H})$ to $\mathcal{L}(\mathbb{H})$, i.e. disregard the requirement of boundedness. Although this makes things much harder to define mathematically (exponentials of operators suddenly require a lot more work in their definition), the idea remains exactly the same.
+Note that the definition can often extend all the sets $\mathcal{B}(\mathbb{H})$ to $\mathcal{L}(\mathbb{H})$, i.e. disregard the requirement of boundedness. Although this makes things much harder to define mathematically (exponential of operators suddenly require a bit more work in the definition), the idea remains exactly the same. In what follows we will keep track of this subtle difference, but unless it is of interest to the reader, we suggest not minding it.
 \end{definition}
 
 \begin{definition}[States - Observables - and Physically Identical QMs] \emph{vocabulary}
 
 
-"States" are the set $\mathbb{C}\mathcal{P}_\mathbb{H}$, i.e. the projective space of the Hilbert space of the quantum mechanics. Recall that the projection of a vector space is the set of all equivalence classes $\{\lambda \Psi, \lambda\in\mathbb{C}\}$ for all vectors $\Psi$ in $\mathbb{H}$. In practice, one often confuses (non-zero) vectors of $\mathbb{H}$ with their projection and just calls them states, just keeping in mind that they are identical up to change of norm and phase.
+"States" are the set $\mathbb{C}\mathcal{P}_\mathbb{H}$, i.e. the projectiv space of the Hilbert space of the quantum mechanics. Recall that the projection of a vector space is the set of all equivalence classes $\{\lambda \Psi, \lambda\in\mathbb{C}\}$ for all vectors $\Psi$ in $\mathbb{H}$. In practice, one often confuses (non-zero) vectors of $\mathbb{H}$ with their projection and just calls them states, while keeping in mind that they are identical up to change of norm and phase.
 
-"Observables" are self hermitian operators of $\mathbb{H}$. Or a sub-algebra of it (depending on the context). The physically observable information of a quantum mechanics is the spectrum\footnote{\color{red}Should I explain how? Meaning, should I explain how to construct a probability distribution?\color{black}} of these operators. Thus, if two QM yield the same spectra up to an isomorphysim of QMs (understand by that an isomorphysm of Hilbert spaces AND of time evolution) we say that they are descriptions of the same physical systems, i.e. the same.
+"Observables" are self hermitian operators of $\mathbb{H}$. Or a sub-algebra of it (depending on the context). The physically observable information of a quantum mechanics is the spectrum of these operators. Thus, if two QM yield the same spectra up to an isomorphysim of QMs (understand by that an isomorphysm of Hilbert spaces AND of time evolution) we say that they are descriptions of the same physical systems, i.e. the same. From a more formal point of view, this is like having a bijective functor on the category of QMs (where Hilbert Spaces are the objects, and time-evolutions are the morphisms).
 
-As mentioned previously, QMs in the Schrodinger picture and the Heisenberg picture are physically the same when using the same $H$. More trivial cases of two quantum mechanics being the same are for instance when we keep the same time-evolution but replace the Hilbert Space by an isomorphic one (for instance, switching $\mathcal{S}(\mathbb{R}^3)$ with itself using the Fourier Transform, which is called switching from "momentum representation" to "position representation" is a pretty stander example).    
+As mentioned previously, an example of this idea is QMs in the Schrodinger picture and in the Heisenberg picture, which are physically the same when using the same $H$. More trivial cases of two quantum mechanics being the same are for instance when we keep the same time-evolution but replace the Hilbert Space by an isomorphic one (for instance, switching $\mathcal{S}(\mathbb{R}^3)$ with itself using the Fourier Transform, which is called switching from "momentum representation" to "position representation" is a pretty standard example).    
 \end{definition}
 
 \begin{definition}[Quantum Field Theory] \emph{informal definition}
-    The broad idea of a quantum field theory (QFT) is that it is sort of a quantum mechanics, but that is is covariant and describes Fields...
-    To this day, there is not yet a clear consensus on any proper axiomatic definition; but next we define an \emph{Algebraic Quantum Field Theory} (AQFT), which does fit in this fuzzy category, and then we will just assume all QFTs to be AQFTs.
+
+    The broad idea of a quantum field theory (QFT) is that it is sort of a quantum mechanics, but that it is covariant and describes Fields...
+    To this day, there is not yet a clear consensus on any proper axiomatic definition; but next we define an \emph{Algebraic Quantum Field Theory} (AQFT), which does fit in this fuzzy idea, and then we will just assume all QFTs to be AQFTs from then on.
 \end{definition}
 \begin{definition}[C*-Algebra]
+    $\quad$
+    
     A C*-Algebra is a tuple $(\mathcal{A}, ||\cdot||)$ where:
     \begin{itemize}
-        \item $\mathcal{A}$ is a unital *-Algebra over $\mathbb{C}$;
+        \item $\mathcal{A}$ is a unital (i.e. has a unit) *-Algebra over $\mathbb{C}$;
         \item $||\cdot||$ is a norm over $\mathcal{A}$ as a complex vector space;
         \item $\forall (A,B)\in\mathcal{A}\;\; ||AB||\leq||A||\cdot||B||$
         \item $\forall A\in\mathcal{A}\;\; ||A^*\cdot A||=||A^*||\cdot||A||=||A||^2$
@@ -131,21 +139,22 @@ For simplicity, we will always assume that $||\mathds{1}||=1$... That's just the
 
 \begin{comment}
 \label{Com:C*&Bound}
-Notice that $\mathcal{B}(\mathbb{H})$ forms a C*-Algebra, using duality ($\dag$) as $*$-operator and opperator norm ($||A||:=\mathrm{Sup} \{\frac{||A\Psi||}{||\Psi||},\Psi \in \mathbb{H}\}$) as algebra norm.
+Notice that $\mathcal{B}(\mathbb{H})$ forms a C*-Algebra, using duality ($\dag$) as $*$-operator and opperator norm $\left(||A||:=\mathrm{Sup} \left\{\frac{||A\Psi||}{||\Psi||},\Psi \in \mathbb{H}\right\}\right)$ as algebra norm.
 \end{comment}
 
 \subsubsection{The axioms of AQFT}
 The few following definitions are taken from \cite{AQFT_Intro}. They can also be found in \cite{pAQFT}, but that last one goes a bit further, as we will see in a moment.
-\begin{definition}[AQFT]
+\begin{definition}[AQFT] \label{AQFT_M4-Ax}
     An AQFT is a tuple $\big(\mathcal{A}(\mathbb{M}_4), \mathcal{A}(\cdot)\big)$. Where $\mathcal{A}(\mathbb{M}_4)$ is an C*-Algebra and $\mathcal{A}(\cdot)$ is a functor from the category $\mathcal{O}(\mathbb{M}_4)$ of open causally convex subsets of $\mathbb{M}_4$ to that of sub-C*-Algebras of $\mathcal{A}(\mathbb{M}_4)$ obeying the following requirements:
     \begin{enumerate}
         \item \textbf{Locality}:  $\big\{\mathcal{A}(O), O \in \mathcal{O}(\mathbb{M}_4) \; \mathrm{with}\; O\; \mathrm{bounded}\big\}$ generates $\mathcal{A}(\mathbb{M}_4)$
         \item \textbf{Isotony}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1\subset O_2 \implies \mathcal{A}(O_1)\subset\mathcal{A}(O_2)$
         \item \textbf{Causality}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1 \; \mathrm{and}\; O_2\; \mathrm{causaly}\;\mathrm{disjoint}\; \implies \big[\mathcal{A}(O_1),\mathcal{A}(O_2)\big]=0$
         \item \textbf{Covariance}: there exists a functor $\alpha$ from the category of the (identity connected) Poincaré transformations of $\mathcal{O}(\mathbb{M}_4)$ to that of the sub-C*-Algebras of $\mathcal{A}(\mathbb{M}_4)$.
-        \item \textbf{Dynamics}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \;\mathrm{with} \;O_1 \subset O_2$, if $O_1$ contains a set met exactly once by every extensible timelike curve in $O_2$, then $\mathcal{A}(O_1)=\mathcal{A}(O_2)$
+        \item \textbf{Spectrum Condition}: We require the existence of a representation (see next definition) of the algebra where the translations are unitarily implemented (physically, this means we want translation-invariant physics).
+        \item \textbf{Dynamics}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \;\mathrm{with} \;O_1 \subset O_2$, if $O_1$ contains a set met exactly once by every extensible timelike curve (also known as a \emph{Cauchy Surface}) in $O_2$, then $\mathcal{A}(O_1)=\mathcal{A}(O_2)$
     \end{enumerate}
-Note that the true definition of an AQFT actually doesn't use C*-Algebras but simply *-Algebras. But since dropping the C* requirement makes things a lot more complicated (it's basically like disregarding any topological concerns) when it simply doesn't make false many important results, most researchers in the field focus on C*-AQFT and we will simply ignore the other ones.
+Note that the true definition of an AQFT actually doesn't always use C*-Algebras but sometimes simply *-Algebras (especially when doing perturbation theory). But since dropping the C* requirement makes things a lot more complicated (it's basically like disregarding any topological concerns) when it simply doesn't make false many important results, most researchers in the field focus on C*-AQFT and we will simply ignore the other ones.
 \end{definition}
 
 \begin{definition}[States - Observables] \emph{vocabulary of QFT}
@@ -164,16 +173,16 @@ Note that the true definition of an AQFT actually doesn't use C*-Algebras but si
 \begin{comment}
 \label{Com:SymDiracWeyl}
     Recall that, from comment \ref{Com:C*&Bound}, given any Hilbert space $\mathbb{H}$, the bounded operators of it $\mathcal{B}(\mathbb{H})$ forms a C* Algebra.\\
-    Notice that, linear forms $\frac{\bra{\Psi}\,\cdot\,\ket{\Psi}}{\braket{\Psi|\Psi}}$ gives us a "State" in the QFT sense, and that for all $\ket{\lambda\Psi}$ corresponding to the same state, that associated linear form will be identicall.\\
-    All this, (associated to the fact that $\mathbb{M}_4$ can be foliated with respect to time) sort of hints us towards the idea that AQFT is indeed sort of what a QFT should be (i.e. a covariant QM).\\
+    Notice that, linear forms $\frac{\bra{\Psi}\,\cdot\,\ket{\Psi}}{\braket{\Psi|\Psi}}$ gives us a "State" in the QFT sense, and that for all $\ket{\lambda\Psi}$ corresponding to the same state, the associated linear form will be identical.\\
+    All this, (associated to the fact that $\mathbb{M}_4$ can be folliated\footnote{\color{red} Talk about foliation in the appendix, especially if we end up using coordinate foliation to compute DSNEC\color{black}} with respect to time) sort of hints us towards the idea that AQFT is indeed sort of what a QFT should be (i.e. a covariant QM).\\
     Now, it turns out that, intrinsically, a QFT is not a QM, for some subdle reasons. It would be more rigorous to say that every QFT \emph{contains several QMs}... Let us build up to this more formally:
 \end{comment}
 
 \begin{definition}[Representation of a C*-Algebra]$\quad$
 
     A representation of a C*-Algebra $\mathcal{A}$ is a triple $(\mathbb{H},\mathcal{D},\pi)$ where $\mathbb{H}$ is a Hilbert Space; $\mathcal{D}$ a dense subspace of it; and $\pi : \mathcal{A}\to\mathcal{B}(\mathcal{D})$ a morphism of C*-Algebra such that $\pi(\mathds{1}_{|\mathcal{A}})=\mathds{1}_{|\mathcal{D}}$\\
-    Unsurprisingly, it will be called a \emph{faithfull} representation when $\mathrm{Ker}(\pi)=\{0\}$ and irreducible if without any invariant subspaces...
-    \\ So from that, it becomes sort of obvious that any representation of the algrebra of a QFT, associated with a $\mathcal{T}$ to keep track of the time each subalgebra is from, does indeed lead to a proper QM.
+    Unsurprisingly, it will be called a \emph{faithful} representation when $\mathrm{Ker}(\pi)=\{0\}$ and irreducible if without any invariant subspaces...
+    \\ So from that, it becomes sort of obvious that any representation of the algrebra of a QFT, associated with a $\mathcal{T}$ to keep track of the time each subalgebra is from (which is trivially extracted from the $\mathcal{A} functor$, does indeed lead to a proper QM.
 \end{definition}
 
 \begin{comment}
@@ -184,74 +193,341 @@ Note that the true definition of an AQFT actually doesn't use C*-Algebras but si
 
 \begin{comment}
     In the case where any two such representations are unitarily equivalent, we see that the given QFT \emph{is} a quantum mechanics... But it turns out many QFTs do not have this property, in particular the algebra of operators of free feild theories do not have this property.\\
-    This is characterized by the author as the intrinsic presence of quantum fields in a theory. All purely QFT statements of the algebraic formulation are written in terms of this study of inequivalent representations. In particular, the structure of all inequavalent reps, formulated with "superselection sectors" yeilds sort of an algebraic gauge theory...\\
-    Of course, that part is a lot more handwayvy in the article, so I don't know about the details, a lot of outside theorems are quoted in it... I guess I'll learn it next...
+    This is characterized by the author of \cite{AQFT_Intro} as the intrinsic presence of quantum fields in a theory. All purely QFT statements of the algebraic formulation are written in terms of this study of inequivalent representations. In particular, the structure of all inequavalent reps, formulated with "superselection sectors" yeilds what can be seen as algebraic gauge theory...\\
+    Gauge theory will not be part of our study, nor will any representation issues. They were only quoted as a way to justify our choice of axioms: all evidence sugests that the mathematical oject at hand \emph{is} quantum field theory on $\mathbb{M}_4$. One can now accept it in full confidence, to move into the next step toward quantum energy inequalities.
 \end{comment}
 
 
-    \subsection{Separating the notion of a physics and its spacetime}
-\subsubsection{An over-complicated definition of a Field}
-        Recall that $\mathfrak{A}$ can be seen as a covariant functor from the spacetime to the Algebra of observables. Let $\bold{Loc}$ be the category of hyperbolic oriented and time oriented spacetimes related by respective embedding. Let $\bold{Vec}$ be the categroy of topological vector spaces (with continuous linear functions as morphisms). And let $\bold{Obs}$ be the category of locally convex C*Algebras (or just unital *Algebras in the context of perturbation theory, or topological Poisson Algebras in the classical case) with corresponding algebra morphisms as morphisms.\\
-Let $\mathcal{D}$ be the functor from $\bold{Loc}$ to $\bold{Vec}$ that associates to every spacetime its comactly supported test functions.
+    
+\subsection{Fields in curved spacetimes}
 
-\begin{definition}[Quantum Field]
-    A Quantum Field is a natural transformation from the functor $\mathcal{D}$ to the functor $\mathfrak{A}$ of field theory composed with the forgetful functor from $\bold{Obs}$ to $\bold{Vec}$
+\subsubsection{Separating the notion of a Field from its spacetime}
+        Recall that $\mathcal{A}(\cdot)$ can be seen as a covariant functor from the spacetime to the Algebra of observables. Let $\bold{Loc}$ be the category of hyperbolic oriented and time oriented spacetimes related by respective embedding. Let $\bold{Vec}$ be the categroy of topological vector spaces (with continuous linear functions as morphisms). And let $\bold{Obs}$ be the category of locally convex C*Algebras (or just unital *Algebras in the context of perturbation theory, or topological Poisson Algebras in the classical case) with corresponding algebra morphisms as morphisms.\\
+Let $\mathcal{D}$ be the functor from $\bold{Loc}$ to $\bold{Vec}$ that associates to every spacetime its compactly supported test functions.
+
+\begin{definition}[Quantum Field]\label{QField}$\quad$
+
+    A Quantum Field is a natural transformation from the functor $\mathcal{D}$ to the functor $\mathcal{A}(\cdot)$ of field theory composed with the forgetful functor from $\bold{Obs}$ to $\bold{Vec}$.\\
+    We will detail the meaning of this definition in the next section, do not be frightened by how abstruse this definition looks.
 \end{definition}
 
-Although this is, in many way, an overkill definition, we see that this basically holds over any spacetime, this leads us to slightly weaken the axioms of AQFT (called pAQFT) as follows (see \cite{pAQFT} for more), it will, amongst other things, allows to include perturbation theory to the frame but also make it work on any spacetime:
+This definition is abstract enough to hold over any spacetime (as the categories used to not require anything reserved to $\mathbb{M}_4$), this leads us to slightly weaken the axioms of AQFT (called pAQFT) as follows (see \cite{pAQFT} for more), it will, among other things, allow to include perturbation theory to the frame but also make it work on any spacetime:\\
+A perturbative quantum field theory over any space-time is the data $(\mathcal{M},\mathcal{A}(\mathcal{M})$ such that:
 \begin{itemize}
-    \item A net to topological *-algebras with sequentially continuous product over a spacetime $\mathcal{M}$; $\mathcal{O}\mapsto\mathfrak{A}(\mathcal{O})$
-    \item (Locality) $\mathfrak{A}(\mathcal{M})=\lim_{\mathcal{O}\subset\mathcal{M}}\mathfrak{A}(\mathcal{O})$
-    \item all the section 2.3 (R's book) except the spectrum condition
-    \item (Time-slicing axiom) Algebra of the neighborhood of a Cauchy surface of a Region is the algebra of the whole region.
-    \item There is a covariant functor from the category of regions and their action under the groupof the space-time symettries and the algebra.
-    \item, the spectrum condition can no longer be used on curved surfaces, at "translations" are not everywhere well defined. Instead, this will be fixed by the use of Hadamard states (\color{red} see Sec 5 to get it\color{black}).
+    \item There is a net to topological *-algebras with sequentially continuous product over a spacetime $\mathcal{M}$; $\mathcal{O}\mapsto\mathcal{A}(\mathcal{O})$ (i.e. the observable functor is well defined)
+    \item \textbf{Locality}, \textbf{Isotony}, \textbf{Causality} and \textbf{Covariance} hold (see definition \ref{AQFT_M4-Ax} for formulae, just replace $\mathbb{M}_4$ with $\mathcal{M}$)
+    \item \textbf{Time-slicing axiom}: Algebra of the neighborhood of a Cauchy surface\footnote{\color{red} define a Cauchy surface with the foliation thing \color{black}} of a Region is the algebra of the whole region. (To get a time-evolution)
+    \item Notice, however, that the spectrum condition can no longer be used on curved surfaces, as "translations" are not everywhere well defined. To not loose this idea of "translation invariant physics", we will instead, make use of Hadamard states \label{FirstMentionHad}(see Section \ref{DefHad} for details).
 \end{itemize}
-\color{red} this part has been rushed a bit, as I will invariably need to re-do it in the final doc, to make it a progression of the form:
-$$\mathrm{AQFT}_{\mathbb{M}_4}\to\mathrm{AQFT}_\mathcal{M}\to\mathrm{pAQFT}_\mathcal{M}$$
-That, or, 
-$$\mathrm{AQFT}_{\mathbb{M}_4}\to\mathrm{pAQFT}_{\mathbb{M}_4}\to\mathrm{pAQFT}_\mathcal{M}$$
-I haven't decided...\\ \\
-Also, I'm missin a subsubsection...\color{black}\\
-A core part of AQFT is the fact that, once properly defined in terms of category, one can see there is sort of two independent objects: the \emph{spacetime}, and the \emph{QFT}. And the two are only linked by Locality and Covariance, both which are not so much a active requirement, but more of a coherence requirement.\\
-This leads to the possibility to formalize this separation of the two notions as the two essential building blocks of an AQFT, and thus to the possibility of changing one without the other. This (purely mathematical fact) can be physically understood as follows one can consider a QFT regardless of the space-time it lives in, and formally swap that spacetime with another, thereby rigorously considering \emph{the same physics on a different spacetime}.\\
-This is why AQFT is so suited for our topic: it allows to do any physics on any space, and thus to ask formally the question: what physics can (or cannot) work properly on a given spacetime.
-\subsubsection{The understanding the abstract meaning of a Field and also its more down to earth meaning}
-        Notice that although the previous definition was stated quite abstractly and abruptly, it also contain a very practical definition of fields (hidden in the category language): given a spacetime they are dual to test functions and have their end inside the algebra: i.e. they are in practice non-commutative distributions. \color{red} add a ref to distribution theory and probably add distribution to the annex, also I might want to add at this point in the thesis something like "distributions contain functions, dirac and other things... So they are exaclty what physicists are used to deal with in computation"... But I'm not sure, it both sound like something usefull to say, to calm any reader that panicked after seeing functors everywhere for a whole page... But might also feel insulting to any reader that understood it without any issue"\color{black}.
+
+
+\begin{comment} \label{QFT+GR}
+    Once this is our definition of QFT on curved spacetimes, we can look back at our definition of fields. It was formulated exclusively in terms of $\mathcal{A}$ and geometrical categories (\textbf{Loc}, \text{Obs}, ect...) and categories are only structural requirements. This means that \emph{for the same field} we can consider \emph{different spacetimes}. Doing this is too abstract to have some experimental meaning (which is to be expected, as we are still at the functor level), but having the freedom to change spacetime at will is the key ingredient of General relativity, hence, just like Einstein in his time, we can now ask formal questions about the spacetime \emph{given} a field.
+    This, of course, will not be quantum gravity, but we can get close enough to formally impose Einstein's equation on the spacetime, thereby doing what some call effective quantum gravity. Or, in more down to earth words, this is not quantum gravity, but the response of classical gravity to quantum field theory.\\
+\end{comment}
+
+We have now entered the final mathematical framework to study quantum energy conditions. It required a considerable amount of abstraction, to the point where, it is natural for one to be lost, especially if one is familiar with the way QFT is historically thought (i.e. not like that at all). Let us now go back to the definition of a field and get to a practical understanding of it.
+\subsubsection{Understanding the over-complicated definition of a Field}
+Recall definition \ref{QField}, and let us build to an understanding of it:
+\begin{center}
+    A Quantum Field is a natural transformation from the functor $\mathcal{D}$ to the functor $\mathcal{A}(\cdot)$ of field theory composed with the forgetful functor from $\bold{Obs}$ to $\bold{Vec}$.
+\end{center}
+\textbf{Obs} are physical observables (which are a *Algebra). \textbf{Vec} are vector spaces. As one knows, any algebra is a vector space (by their respective definitions). What we call the \emph{forgetful} functor is thus the fact of ignoring the product of an algebra. Thus "the forgetful functor from $\bold{Obs}$ to $\bold{Vec}$" means "disregarding the product of operators".\\
+
+$\mathcal{D}$ is the functor that associates to every area of spacetime a "test function". Mathematically, a test function is a compactly supported smooth function over a manifold... Physically, it is thus a smooth bunch of data that is localized in space. In a way, it can be seen as anything that probes the spacetime while staying physical (cannot go to infinity or have nonphysical acceleration), sort of the "nicest abstract physical fluid" one could think of, or (mathematically more accurate) looking at the field in a particular area, smoothly weighting differently different sub-areas of where one is looking.\\
+
+Now, a field is defined as a natural transformation from $\mathcal{D}$ to $\mathbb{A}$, so it takes in the test functions (and their spacetime structures) and sends it to the observable, although (in the output) we only get the vector information. So physically, a Field is a non-commutative (i.e. quantum object) that can be probed in spacetime, and whose values will be regular numbers.\\
+
+This does correspond to what is known in QFT as a quantum field.\\
+
+Here are some easy examples of fields:
+\begin{itemize}
+    \item The one that just reads the value at a point O of a test function (known as a Dirac $\delta$ distribution).
+    \item One can create a family of fields starting from a single one (called $a$) taking its dual ($a^\dag$) and making sure it commutes as such ($[a,a^\dag]=\delta$)... $a$ will then be called a ladder operator...
+\end{itemize}
+
+A more rigorous mathematical treatment of the definition of the field will lead to the properties of the next sections. (It will also, \emph{finally}, look like the fields physicists are familiar with.)
+
+\subsubsection{Computationnal properties of a Field}
+        \begin{theorem}[Linearity \& Hermicity]$\quad$
+        
+         For any field $\phi\in\mathcal{D}'(\mathcal{M})$ for any two test functions $f,g\in\mathcal{D}(\mathcal{M})$ and any scalar $\lambda\in\mathbb{C}$  the two following equalities hold:
+         \begin{align*}
+             \phi(\lambda f+ g) &= \lambda\phi(f)+ \phi(g)&
+             \phi(f)^\dag &= \phi(f^*)
+         \end{align*}
+        \end{theorem}
+        \begin{definition}[On shell fields]$\quad$
+
+        Our algebra of "physical" (or "on shell") fields is technically not $\mathcal{D}'(\mathcal{M})$ as we also impose field equations and commutation relations (usually obtained from canonical quantization of an action). This is us making a choice in the previously mentioned natural transformation. Formally, we are given a filed equation $\mathfrak{F}$ and canonical commutation relations $\mathfrak{C}$, and "on shell" is the algebra $\mathcal{D}'(\mathcal{M})/(\mathfrak{F}\wedge\mathfrak{C})$.
+
+        In practice though, since $\mathcal{D}'(\mathcal{M})/(\mathfrak{F}\wedge\mathfrak{C})$ is isomorphic to a sub algebra of $\mathcal{D}'(\mathcal{M})$ and since the latter is much nicer, we will simply work in $\mathcal{D}'(\mathcal{M})$ and impose that physical fields $\mathcal{D}'_\mathrm{shell}(\mathcal{M})\subset\mathcal{D}'(\mathcal{M})$ have the following extra properties:
+        \end{definition}
+        
+        \begin{theorem}[On shell & commutation properties]$\quad$
+        
+        Let $\mathcal{P}$ be our field equation operator and $\mathcal{E}(\cdot,\cdot)$ be our energy \color{red} get proper name\color{black} the following equations hold for any $f,g\in\mathcal{D}(\mathcal{M})$:
+        \begin{align*}
+            (\mathcal{P}\phi)(f):=&\phi(\mathcal{P}f)=0 &
+            [\phi(f),\phi(g)]=&i\mathcal{E}(f,g)\mathds{1}
+        \end{align*}            
+        \end{theorem}
+
+        In our case, we will work with the simple Physics derived from the Lagrangian \color{red} also I need the expression of $\mathcal{E}$\color{black}:
+        $$\mathcal{L}=\frac{\sqrt{|g|}}{2}\left(\nabla^\mu\phi\nabla_\mu\phi- (m^2+\xi R)\phi^2\right)$$
+        Leading to:
+        $$\mathcal{P}:=\square_g + m^2 + \xi R$$
+        Where $g$ is the spacetime's metric, $R$ its Ricci curvature, $m$ is a real scalar (mass of the field) $\xi$ a real scalar (gravitation coupling).
+
+        
 \subsection{From its axiomatization to its practical implementation}
-\subsubsection{Computation-oriented depiction of a Field}
-        % Axioms of Fields, and the smearing
-\subsubsection{A first glance at Hadamard states}
-\subsubsection{A first glance at Hadamard renormalization}
+\subsubsection{Computation-oriented depiction of Fields}
+        Now that all these mathematical prerequisites have been dealt with, we will define many useful objects of QFT. Readers familiar with physics will definitely find all the following expression to be identical to what is taught in basic courses, (the only difference being that we now know the internal mathematical works of them) and that is to be expected as our plan is definitely not to re-invent physics.
+
+        \begin{definition}[Basic Physical Objects in QFT]$\quad$
+        \begin{itemize}
+            \item \underline{The Action}: $S:= \int \mathcal{L}$ is sort of the cost function of each field configuration (thought that would be a \emph{classical interpretation}.
+            \item \underline{Energy Momentum Tensor}: $T_{\mu\nu}:=\frac{2}{\sqrt{|g|}}\frac{\delta}{\delta g^{\mu\nu}}S$
+            \item \underline{Feynman Propagator}: $G^\mathrm{F}(x,x'):=i\bra{\psi}T\Phi(x)\Phi(x')\ket{\psi}$ where $\ket{\psi}$ is a given state, and $T$ is the \emph{time ordering operator} which we will not go into right now. In our calculations, we will only work with $H:=-iG^\mathrm{F}$ which is the real bi-distribution instead.
+            \item \underline{Two Point Function}: $W(x,x'):=\bra{\psi}\Phi(x)\Phi(x')\ket{\psi}$
+            \item \color{red} can't find a proper definition of Hadamard parametrix\color{black}
+        \end{itemize}
+        \end{definition}
+        All these are the objects of QFT, but, on their own, they are a bit too general, which is why we restrict ourselves to previously mentioned powerful states called \emph{Hadamard states}. We shall delay a proper treatment of what they truly are until the last minute, a bit later when it is unavoidable as they lead to quite long and confusing formulae. But known that what follows only works on those types of states.
+\subsubsection{Renormalization}
+    As mentioned before, the following formulae only work for hadamard states, which we will trully present only later. We shall first focus on how to do renormalization in curved spacetimes. 
+
+    The idea behind renormalization is to isolate singularities in QFT. To be precise, (as we haven't encountered any singularity so far) singularities are not present in QFT per say, but they arise as we attempt doing computations at the limit of infinitely far away objects or infinitely close.
+
+    We define a few operators and other objects:\\
+    First the parallel propagator on the manifold, that implements parallel transport, $g_{\mu\nu'}(x,x')$ from spacetime point $x'$ to $x$ such that the vector $l^{\nu'}(x')$ is sent to:
+    $$l^{\mu}(x):=g^\mu_{\nu'}(x,x')l^{\nu'}(x')$$
+    naturally, as $x'$ goes to $x$ we recover no transport at all, i.e. just the metric:
+    $$\lim_{x\to x'} g_{\mu\nu'}(x,x')=g_{\mu\nu}(x')$$
+    we also have the \color{red}don't know where that is coming from\color{black} point-split stress-energy operator, which in our case is:
+    $$\mathbb{T}^\mathrm{split}_{\mu\nu}(x,x'):=\nabla^{(x)}_\mu\otimes\nabla^{(x')}_{\nu'}-\frac{1}{2}g_{\mu\nu'}(x,x')g^{\lambda\rho'}(x,x')\nabla_\lambda^{(x)}\otimes\nabla_{\rho'}^{(x')}+\frac{1}{2}m^2g_{\mu\nu'}(x,x')1\otimes 1$$
+    Using these operators, we define:
+    $$\braket{T^\mathrm{fin}_{\mu\nu}}_\psi(x):=\lim_{x'\to x} g_\nu^{\nu'}(x,x')\mathbb{T}^\mathrm{split}_{\mu\nu}\circ(W-H)(x,x')$$
+    Then, for Hadamard states, the \emph{renormalized} spectrum of the energy momentum tensor is obtained by removing two objects (see \cite{QCRenorm} for details), $Q(x)$ a scalar, that preserves conservation (i.e. physicalness) and $C_{\mu\nu}(x)$ a tensor solely dependent on the space-time curvature. We will not go into how to derive $Q$, as that is too complicated (and not needed here), ac for $C_{\mu\nu}$, we will leave it for later. Thus, we will take it for granted that:
+    $$\braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu}C_{\mu\nu}$$
+
+    This last object is what we consider to be the physical energy in a QFT. It is a function of spacetime, but also of a given state $\ket{\psi}$ and more importantly, of the spacetime metric $g$.
+
+    Our goal, from now on, is to derive lower bounds of some kind on this energy, so as to apply results from general relativity and exclude potential whimsical spacetimes from investigation, or simply predict the apparition of singularities in the QFT context.
+    
 \section{Energy Inequalities and their use in General Relativity}
 \subsection{Classical Energy Inequalities}
 \subsubsection{The Philosophy of Energy Conditions}
+In classical field theory, \emph{Energy conditions} are lower bounds of some kind, on the energy density of a physics. On their own, they are not particularly interesting, but paired with general relativity, they allow to deduce constraints on the spacetime manifold without actually having to compute the explicit metric. These are known as Penrose and Hawking singularity theorems \cite{SingTheo} and they can deduce, from an energy condition only, the presence of a singularity or an event horizon, at some point on the spacetime manifold. 
+
+Since we saw, in Comment \ref{QFT+GR} that we are now capable of doing QFT on any manifold, being able to do such inequalities in the QFT context will allow us to probe the (non-quantum-gravity) interaction between gravity and QFT. Of course, as always in physics, it will turn out that quantum energy conditions are more whimsical and harder to deal with. So let us first get familiar with \emph{classical energy conditions}.
 \subsubsection{Zoology of Classical Energy Conditions}
+\begin{definition}[Classical Energy Conditions]$\quad$
+
+    Let $T^{\mu\nu}$ be the energy-momentum tensor of a (classical) field theory over a Lorentzian manifold $\mathcal{M}$ with signature $(+,-,...,-)$ whose vectors are denoted by the set $\mathbb{M}(\mathcal{M})$ and whose (respectively) time-like; space-like and null vectors are denoted by  $\mathbb{M}(\mathcal{M})^{(\mathrm{T})}$; $\mathbb{M}(\mathcal{M})^{(\mathrm{S})}$ and $\mathbb{M}(\mathcal{M})^{(\mathrm{N})}$; i.e. with $g$ the metric of $\mathcal{M}$ we mean:
+    \begin{align*}
+        \mathbb{M}(\mathcal{M})^{(\mathrm{T})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu>0\right\}\\
+        \mathbb{M}(\mathcal{M})^{(\mathrm{S})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu<0\right\}\\
+        \mathbb{M}(\mathcal{M})^{(\mathrm{N})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu=0\right\}
+    \end{align*}
+On can find in the literature, the following acronyms (only a small subset of the complete zoology of energy inequalities):
+\begin{align*}
+\textbf{WEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
+\textbf{NEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{N})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
+\textbf{DEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
+\textbf{NDEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{N})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
+\textbf{SEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T}))} && T_{\mu\nu}l^\mu l^\nu\geq \;& \frac{1}{2}T^\mu_\mu l^\nu l_\nu
+\end{align*}
+\end{definition}
+\underline{Associated names}
+\begin{itemize}
+    \item \underline{WEC}: Weak Energy Condition
+    \item \underline{NEC}: Null Energy Condition
+    \item \underline{DEC}: Dominant Energy Condition
+    \item \underline{NDEC}: Null Dominant Energy Condition
+    \item \underline{SEC}: Strong Energy Condition
+\end{itemize}
+Note that the following definitions can sometimes be presented in different manners for instance, using $G_{\mu\nu}$ instead of $T_{\mu\nu}$, or, if the physics is given, by having an actual object defined as the energy density $\rho$ and used in the formulations. To see how each formulation can be equivalently used, see chapter 4.6 of \cite{E_Cond}.
+
+In \cite{Primer}, the author gives a lot more energy conditions, and in particular, rather than having these inequalities hold at every point, they can (weaker) hold once integrated over a portion of a geodesic, or (even weaker) a full geodesic. The author also goes on philosophical interpretations of each to clearly identify each one's intrinsic physical specificity, but we will do none of that here, as it is not the main focus. Let us only write one of the integrated conditions: the \emph{null energy condition}, over a portion of a null geodesic as it will be our main focus in the quantum case.
+
+\textbf{ANEC} (Averaged Null Energy Condition):\\
+for every $\gamma\in\Gamma(\mathcal{M})$ a null curve with affine parameter $\theta$ and tangent vector $l^\mu(\theta)$ at point $\gamma(\theta)$
+\begin{equation}
+    \int_\gamma T_{\mu\nu}l^\mu l^\nu\d\theta \geq 0
+\end{equation}
 \subsubsection{The Breaking of Classical Energy Condition}
-\subsection{Quantum Energy Inequalites}
+Historically, Energy conditions were seen as ``physical" assumptions of physics, following the commonly accepted idea (though not at all part of axiomatization of most physics) that "energy should be positive". But with time, it was shown that many very reasonable physics break many of them, which led to a wild zoology of different energy conditions, (the last paragraphs only scratched the surface by presenting the most commonly used in singularity theorems).
+
+All these breaking of seemingly reasonable energy conditions had to do with the specific complicated structure of general relativity, where "energy density" is not such a well defined object, as there are several ways to contract $T^{\mu\nu}$. But even given a simple physics, and an associated matching energy condition, due to the also complicated structure of QFT, there is no guaranty the condition also holds in the quantum case. For instance, due to how common negative energy is in QFT, most classical conditions mentioned before are commonly violated by QFTs.
+
+This idea, together with the fact that all QFT statements refer to given states, (so a state dependence must almost always be introduced when \emph{quantifying} something) lead to quantum energy inequalities having a more convoluted look.
+
+Also, for readability reason, unlike in most QFT text where distributions are used as their own objects, almost confused with regular functions, here, we will explicitly show the test function associated to fields and their operators, which also leads to a more alien look, although that's not as fundamental as the previously mentioned differences.
+\subsection{Quantum Energy Inequalities}
 \subsubsection{General Formalism of Q-E-Cond}
-\subsubsection{Down the Hadamard Rabbit Whole}
-\subsubsection{Double Energy Conditions}
-\section{Result stuff}
+The form of a quantum energy condition is:
+\begin{equation}
+\boxed{\braket{\rho(f)}_\omega \geq - \braket{\mathcal{Q}(f)}_\omega}
+\end{equation}
+where $\rho:=T^\mathrm{ren}_{\;\;ab}t^at^b$ is the energy density (in some sense given by a choice of the $t$ used, giving us, like in the classical case \emph{strong}, \emph{null}, \emph{weak} and a whole zoology of conditions). $f$ is a test function (\color{red} or a distribution for some reason\color{black}) $\mathcal{Q}$ is a possibly unbounded operator. As it stands, it is a pointwize one. Integrating the inequality's $t$ over a geodesic of some type gives an integrated energy condition (complete geodesic, or full, depending on what we want).
 
+Now, we call a condition trivial when:
+\begin{equation} \label{triv}
+    \exists c, c' \quad : \quad \braket{\rho(f)}_\omega \; \geq \; c + c'\cdot|\braket{\mathcal{Q}(f)}_\omega|
+\end{equation}
+Naturally, we call a condition non-trivial when $\lnot$(\ref{triv}) holds and of course, the here-above is the pointwize formulation if we at a $\forall t$ to the condition, and an integrated if $t$ is integrated over a geodesic.
 
+Note that here, we work in the case of scalar theory. Extensions to fermions and spin $>0$ bosons are non-trivial. For any more information on the quantification of energy conditions, we let the reader refer to \cite{EleRev}, where some of the here-above notations and expressions were taken from, and we now focus on discussing the computations of these.
+
+In theory, computing these condition effectively seems like a dantean problem, if not impossible: indeed, there are just too many conceivable states $\omega$ and too many reactions $\mathcal{Q}$ could have when acting on $\omega$... But as it turns out, we can restrict ourselves to a subset of all states to only consider much friendlier ones called \emph{Hadamard} states. We briefly mentioned them before on page \pageref{FirstMentionHad}, but it is now time to get more familiar with them.
+\subsubsection{Down the Hadamard Rabbit Whole} \label{DefHad}
+As shown in \cite{HadEquiv}, there are equivalent definitions of Hadamard states. The nicer looking one (where the physics is more readable) is the following:
+\begin{definition}[Wavefront Set]
+    Let $u \in \mathcal{D}'(\Omega)$ be a distribution. It's wavefront set, denoted $\mathrm{WF}(u)$ is the complement in $\Omega\times(\mathbb{R}^n\setminus\{0\})$ of the set of points $(x,k_0)$ such that there exists a test function $f \in \mathcal{D}(\Omega): f(x)=1$  such that, for some open conic neighborhood $C$ of $k_0$ $$\forall N \in \mathbb{N} \mathcal{FT}(\underset{k\in C}{\mathrm{sup}} (1+|k|)^N|\hat{f\cdot u})<\infty$$
+    where $\mathcal{FT}$ denotes the Fourrier transform, though its definition on a manifold is chart-dependent, its boundedness isn't.
+
+    One can, likewize, define a wavefront set for bi-distributions.
+\end{definition}
+The wavefront set can be seen as the spacetime $\times$ momentum places where the distribution has a well defined spectrum.
+\begin{definition}[Hadamard State]
+    Denoting by $\Bar{V}_{+,x}$ the closed future cone at spacetime point $x$, and by $(x,k)\sim(x',k')$ the equivalence relation "there exists a null geodesic strip containing the two pairs". One calls \emph{Hadamard} a state whose two-point-function $W$ has the following properties:
+    \begin{itemize}
+        \item $W$ is a bi-solution of the equations of motions
+        \item $W$ is positive definite
+        \item $\mathrm{WF}(W)=\{ ((x,k),(x',-k'))\in \mathrm{T}^*\mathcal{M}^2 : (x,k)\sim(x',k')\wedge k \in \Bar{V}_{+,x}$
+    \end{itemize}
+\end{definition}
+The physical interpretation of a Hadamard state is thus that not only is the state physical (equation of motion and positiveness) but so is its spectrum (which needs to be bonded by the causal structure of the spacetime, no more, no less).
+
+But if that was the "nicer" (more physical) definition, the following equivalent one is a lot more suited for computations:
+\begin{definition}[Hadamard State - equivalent definition]
+    A Hadamard state's two point function has the following decomposition, where $U,V,W$ are non-singular, $D$ is the spacetime dimension and $\Gamma$ is Euler's Gamma function.
+    \begin{equation*}
+G^\mathrm{F}\!(x,x')=\frac{\mathfrak{i}\cdot\!\Bigl(\Gamma\!\left(\!^D\!/_{\!2}-1\right)\Bigl)^{1-\delta_{2,D}}}{2\cdot(2\pi)^{\!^D\!/_{\!2}}}\!\left(\!\!\frac{(1-\delta_{2,D})\cdot U(x,x')}{\Bigl(\sigma(x,x')+i\epsilon\Bigl)^{\!\!^D\!/_{\!2}-1}}+\mathds{1}_{2\cdot \mathbb{N}}(D) \cdot V(x,x')\cdot\mathrm{ln}\Bigl(\!\sigma(x,x')+i\epsilon\!\Bigl)+W(x,x')\!\!\right)
+\end{equation*}
+Notice that $U,V,W$ can be tailor expanded in the geodesic distance $\sigma(x,x')$ and the series coefficients can, in turn be tailor expanded. All these computations can, in turn, be expressed into the stress energy tensor.
+
+Here are useful formulae:
+\begin{align*}
+    \exists (U_n, V_n, W_n) \in (?)^{D/2-1}\times(?)^\mathbb{N}\times(?)^\mathbb{N}:&\\
+    U&(x,x')=\sum_{n=0}^{^D\!/_{\!2}-2}U_n(x,x')\sigma^n(x,x')\\
+    V&(x,x')=\sum_{n\in\mathbb{N}}V_n(x,x')\sigma^n(x,x')\\
+    W&(x,x')=\sum_{n\in\mathbb{N}}W_n(x,x')\sigma^n(x,x')
+    \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
+\end{align*}
+\begin{equation}
+    U_n(x,x')=u_n(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}u_{n,p}(x,x')
+\end{equation}
+\begin{equation}
+    V_n(x,x')=v_n(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}v_{n,p}(x,x')
+\end{equation}
+\begin{equation}
+    W(x,x')=w(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}w_{p}(x,x')
+\end{equation}
+\begin{equation}
+    \bra{\psi}T_{\mu\nu}(x)\ket{\psi}^\mathrm{ren} = \frac{\Bigl(\Gamma\!\left(\!^D\!/_{\!2}-1\right)\Bigl)^{1-\delta_{2,D}}}{2\cdot(2\pi)^{\!^D\!/_{\!2}}}\left[\lim_{x'\to x}\mathcal{T}_{\mu\nu}(x,x')W(x,x')+\mathds{1}_{2\cdot \mathbb{N}}(D)\frac{D}{2}g_{\mu\nu}V_1\right]+\Theta_{\mu\nu}(x)
+\end{equation}
+\end{definition}
+This extreme rigidity of the structure of singularities in Hadamard states is an incredibly powerful computational tool. To illustrate its efficiency, let us see the construction of an inequality that is slightly weaker than general quantum energy inequalities.
+
+\subsubsection{Difference Energy Condition}
+In this thesis, we want to build up to a quantum null energy condition... But we can start by a weaker inequality where we do not bound the energy by something depending on the state, but by something depending on the difference between two states. This allows to completely ignore singularities issues as two Hadamard states have identical singularities, thus their difference has none. The one we are interested in, and a \emph{reference state} (like a vacuum state, for instance). This can be found in \cite{DSNEC}.
+Consider:
+\begin{equation}
+    A_{\mathcal{O}\mathcal{O}}:=\int_{\sum_p}\d^px\; g(x)^2\braket{:\mathcal{O}(x)^2}_\psi
+\end{equation}
+Where $\Sigma_p$ is a $p$ dimensional time-like sub-manifold. Taking its Fourier transform, we get:
+\begin{equation}
+    A_{\mathcal{O}\mathcal{O}}=\int_{\Tilde{\Sigma}_p}\frac{\d^p\xi}{(2\pi)^p}\int_{\Sigma_p^{\;2}}\d^px\d^px'\e^{i\xi\cdot(x-x')}g(x)g(x')\left(\braket{\mathcal{O}(x)\mathcal{O}(x')}_\psi-\braket{\mathcal{O}(x)\mathcal{O}(x')}_\Omega\right)
+\end{equation}
+where $:\mathcal{O}: \; := \mathcal{O}-\braket{\mathcal{O}}_\Omega$ ($\Omega$ standing for \emph{Vacuum State}) and $\Tilde{\Sigma}_p$ is the Fourier space of $\Sigma_p$. Note that the notion of a \emph{Vacuum State} is almost never defined outside of $\mathbb{M}_n$, curvature tends to cause creation of particles (Hawking effect). Thus the bound at hand here is not at all general. There would be ways to generalize it to any $\mathcal{M}$, but the point here is only to get progressively familiar with quantum energy inequalities step by step. The true general bound will be fully derived in the next chapter. So let us compute that Minkowski bound.
+
+Assuming $[\mathcal{O}(t,\vec{x}),\mathcal{O}(0,\vec{0})]\propto \mathds{1}$ we can use the symmetry $x\leftrightarrow x'$ to get a bound by integrating over a surface $D$ that covers half of $\Sigma_p$ (to only get positive sign)
+\begin{equation}\label{DifIne}
+    A_{\mathcal{O}\mathcal{O}}\geq -2 \int_D \frac{\d^p\xi}{(2\pi)^p}\int_{\Sigma_p}\d^px\d^px'\;g(x)g(x')e^{i\xi\cdot(x-x')}\braket{\mathcal{O}(x)\mathcal{O}(x')}_\Omega
+\end{equation}
+Assuming $\braket{\mathcal{FT}_\mathcal{O}(k)\mathcal{FT}_\mathcal{O}(k')}=(2\pi)^p\delta^p(k+k')G_{\mathcal{O}\mathcal{O}}(k')$ (i.e. assuming translation in variance)
+\begin{align*}
+    \braket{\mathcal{O}(x)\mathcal{O}(x')}&=: \int_{(\Tilde{\Sigma}_p)^2}\frac{\d^pk}{(2\pi)^p}\frac{\d^pk'}{(2\pi)^p}\braket{\mathcal{FT}_\mathcal{O}(k)\mathcal{FT}_\mathcal{O}(k')}\e^{-ix \cdot k}\e^{-ix' \cdot k'}\\
+    &= \int_{(\Tilde{\Sigma}_p)^2}\frac{\d^pk}{(2\pi)^p}\frac{\d^pk'}{(2\pi)^p}(2\pi)^p\delta^p(k+k')G_{\mathcal{O}\mathcal{O}}(k')\e^{-ix \cdot k}\e^{-ix' \cdot k'}\\
+    &= \int_{\Tilde{\Sigma}_p}\frac{\d^pk'}{(2\pi)^p}G_{\mathcal{O}\mathcal{O}}(k')\e^{ix \cdot k'}\e^{-ix' \cdot k'}\\
+    &= \int_{\Tilde{\Sigma}_p}\frac{\d^p\kappa}{(2\pi)^p}G_{\mathcal{O}\mathcal{O}}(\kappa)\e^{-i\kappa\cdot(x-x')}
+\end{align*}
+Thus:
+\begin{align*}
+     A_{\mathcal{O}\mathcal{O}} &\geq -2 \int_D \frac{\d^p\xi}{(2\pi)^p}\int_{\Sigma_p}\d^px\d^px' \int_{\Tilde{\Sigma}_p}g(x)g(x')\frac{\d^p\kappa}{(2\pi)^p}G_{\mathcal{O}\mathcal{O}}(\kappa)\e^{i(\xi-\kappa)\cdot(x-x')}\\
+     &=-2 \int_D \frac{\d^p\xi}{(2\pi)^p}\int_{\Sigma_p}\d^px\int_{\Sigma_p}\d^px' \int_{\Tilde{\Sigma}_p}\frac{\d^p\kappa}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\frac{\d^pk}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\frac{\d^pk'}{(2\pi)^p}\mathcal{FT}_g(k)\mathcal{FT}_g(k')\\&\quad \times \e^{-ikx}\e^{-ik'x'} G_{\mathcal{O}\mathcal{O}}(\kappa)\e^{i(\xi-\kappa)\cdot(x-x')}\\
+     &=-2 \int_D \frac{\d^p\xi}{(2\pi)^p}\int_{\Sigma_p}\d^px\int_{\Sigma_p}\d^px' \int_{\Tilde{\Sigma}_p}\frac{\d^p\kappa}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\frac{\d^pk}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\frac{\d^pk'}{(2\pi)^p}\mathcal{FT}_g(k)\mathcal{FT}_g(k')\\&\quad \times \e^{ix\cdot(\xi-\kappa-k)}\e^{-ix'\cdot(\xi-\kappa+k')} G_{\mathcal{O}\mathcal{O}}(\kappa)\\
+     &=-2 \int_D \frac{\d^p\xi}{(2\pi)^p} \int_{\Tilde{\Sigma}_p}\frac{\d^p\kappa}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\d^pk\int_{\Tilde{\Sigma}_p}\d^pk'\delta(\xi-\kappa-k)\delta(\xi-\kappa+k')\mathcal{FT}_g(k)\mathcal{FT}_g(k')\\&\quad \times G_{\mathcal{O}\mathcal{O}}(\kappa)\\
+     &=-2 \int_D \frac{\d^p\xi}{(2\pi)^p} \int_{\Tilde{\Sigma}_p}\frac{\d^p\kappa}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\d^pk\int_{\Tilde{\Sigma}_p}\d^pk'\delta(\xi-\kappa-k)\delta(k-k')\mathcal{FT}_g(k)\mathcal{FT}_g(k')\\&\quad \times G_{\mathcal{O}\mathcal{O}}(\kappa)\\
+     &=-2 \int_D \frac{\d^p\xi}{(2\pi)^p} \int_{\Tilde{\Sigma}_p}\frac{\d^p\kappa}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\d^pk\delta(\xi-\kappa-k)\mathcal{FT}_g(k)\mathcal{FT}_g(-k)G_{\mathcal{O}\mathcal{O}}(\kappa)\\
+     &=-2 \int_D \frac{\d^p\xi}{(2\pi)^p} \int_{\Tilde{\Sigma}_p}\frac{\d^pk}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\d^pk\mathcal{FT}_g(k)\mathcal{FT}_g(-k)G_{\mathcal{O}\mathcal{O}}(\xi-k)
+\end{align*}
+And since $g$ is real, $\mathcal{FT}_g(-k)=\mathcal{FT}_g(-k)^*$, thus:
+\begin{equation}
+    \boxed{A_{\mathcal{O}\mathcal{O}} \geq -2 \int_D \frac{\d^p\xi}{(2\pi)^p} \int_{\Tilde{\Sigma}_p}\frac{\d^pk}{(2\pi)^p}\int_{\Tilde{\Sigma}_p}\d^pk |\mathcal{FT}_g|^2(k)G_{\mathcal{O}\mathcal{O}}(\xi-k)}
+\end{equation}
+Imposing more physical constraints on $G_{\mathcal{O}\mathcal{O}}$ allows to compute the inequality. And if we restrict ourselves to surfaces $D=D_\eta:=\{\xi\in\Tilde{\Sigma}_p | \e^\eta\xi_++\e^{-\eta}\xi_-\geq0\}$ (where $\eta$ is any Lorentz boost and $\xi_\pm$ are positive and negative frequency parts of $\xi$) we can optimize the inequality to get a proper covariant bound (notice that, once again, this requires being in $\mathbb{M}_n$).
+
+But even if we were to generalize the inequality for any $\mathcal{M}$, this would not be satisfying enough yet. As it can be seen from equation \ref{DifIne}, the here-above inequality is obtained from a difference between a state at hand $\psi$ and a reference (here, vacuum) state. But in a general curved space, since there is no such thing as a vacuum state, the choice of the reference state is a bit arbitrary. 
+
+Thus let us now study a proper inequalities using a single state.
+
+\section{Result stuff \color{red} improve title section\color{black}}
+\subsection{Double Smeared Null Energy Conditions}
+We start by stating theorem 3.1 of \cite{FourBound} which allows to bound states by their Fourier transforms and some curvature aspects:
+
+Given a partial differential operator $\mathcal{D}$, any Hadamard state $H$ we have:
+\begin{equation}\label{3.1}
+    \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (\mathcal{D}\otimes\mathcal{D}(W-H_{(k)}))\geq -2\int_D\frac{\d^n\xi}{(2\pi)^n}((|h_\kappa|^{1/4}g_\kappa)^{\otimes 2}\vartheta_\kappa(\mathcal{D}^{\otimes2}\mathcal{FT}_{H_{(k)}})^{(-\xi,\xi)}
+\end{equation}
+where $H_(k)$ is the series expansion of $H$ truncated after order $(k)$ and $(\cdot)^{(\xi,\xi')}$ denotes double Fourier transform.
+
+We will use this formula to create a quantum null energy inequality (i.e. a lower bound on energy density when integrated in null directions)
+
+To do so, we simply look at the specific case of $\mathcal{D}=l^\mu\nabla_\mu$ where $l$ is a null vector, and $\nabla$ the spacetime's covariant derivative. In these conditions, and using the formulae mentioned in the Hadamard state section, the left hand side of inequality \ref{3.1} yields:
+\begin{align*}
+    L(x,x'):=& \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (\mathcal{D}\otimes\mathcal{D}(W-H_{(k)}))\\
+    =& \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (l^\mu\nabla_\mu\otimes l^{\nu'}\nabla_{\nu'}(W-H_{(k)}))\\
+    =& \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (l^\mu l^{\nu'}\mathbb{T}^\mathrm{split}_{\mu\nu'}(x,x')+\cancel{l^\mu l^{\nu'}\frac{1}{2}g_{\mu\nu'}(x,x')g^{\lambda\rho'}(x,x')\nabla_\lambda\otimes\nabla_{\rho'}}-\cancel{l^\mu l^{\nu'}\frac{1}{2}m^2g_{\mu\nu'}(x,x')})(W-H_{(k)})\\
+    =& \int_\Sigma \d_\mathrm{vol}(x) g^2(x) l^\mu l^{\nu'}\mathbb{T}^\mathrm{split}_{\mu\nu'}(x,x')(W-H_{(k)})
+\end{align*}
+where $g_{\mu,\nu'}(x,x')$ is the paralel transport operator, such that given a vector $l^\mu$ at point $x$, its parallel transported vector at $x'$ is $l^{\nu'}:=$ \color{red} go check to be sure\color{black}. Cancellations are all due to the fact that $l\mu l_\mu=0$.
+
+Now, taking the limit:
+\begin{align*}
+    \lim_{x'\to x}L(x,x') &= \int_\Sigma \d_\mathrm{vol}(x) g^2(x) l^\mu l^\nu\braket{T^\mathrm{fin}_{\mu\nu}}_\psi\\
+    &= \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (l^\mu l^{\nu'}\braket{T^\mathrm{ren}_{\mu\nu}}_\psi+\cancel{l\mu l^\nu Q(x)g_{\mu\nu}}-l^\mu l^\nu C_{\mu\nu})
+\end{align*}
+As for the right hand side, which almost entirely geometric, we get:
+\begin{align*}
+    \lim_{x'\to x} R(x,x') &= -2\lim_{x'\to x}\int_D\frac{\d^n\xi}{(2\pi)^n}((|h_\kappa|^{1/4}g_\kappa)^{\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{H_{(k)}})^{(-\xi,\xi)}\\
+    &=-2\int_D\frac{\d^n\xi}{(2\pi)^n}((|h_\kappa|^{1/4}g_\kappa)^{\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{H_{(2)}})^{(-\xi,\xi)}
+\end{align*}
+$k\to2$ as terms of order higher than 2 go to zero at the limit $x'\to x$. Overall, we have:
+\begin{equation}\label{eq82}
+    \boxed{\int_\Sigma \!\!\!\d_\mathrm{vol} g^2 \!\braket{l^\mu l^\nu T^\mathrm{ren}_{\mu\nu}}_{\!\psi} \!\!\geq\!\!\! \int_\Sigma \!\!\!\d_\mathrm{vol} g^2l^\mu l^\nu C_{\!\mu\nu}\!-\!2\!\!\!\int_D\!\!\frac{\d^n\xi}{(2\pi)^n}\!\left(\!\!(|h_\kappa|^{\!^1\!\!/_{\!4}}\!g_\kappa\!)^{\!\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\!\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{\!\!H_{(2)}}\!\!\right)^{(-\xi,\xi)}}
+\end{equation}
+Now, although equation \ref{eq82} is giving us a bound, i.e. a quantum null inequality, it is still not as explicit as one would want. Thus, we ought to compute it. This was done in \cite{DSNEC} in the special case of $\Sigma=\mathcal{M}=\mathbb{M}_4$. But we want to compute it explicitly for any manifold.
 \section{Conclusion}
 \newpage
+\appendix
 \section{Physics Appendix}
-    \subsection{Category, functor, natural transformation}
+    \subsection{Category, functor, natural transformation} \label{AnPhCat}
     For proper definition, see the math appendix or \cite{AlgLang}.
         \subsubsection{Category}
     Category theory is the study of structures. Formally, a category is a collection of objects and the links between them (links which we call the \emph{morphisms} of the category).\\
     Examples of famous categories are:
     \begin{itemize}
-        \item Groups (known in physics as "symetries"), whose morphisms are group-preserving functions (i.e. $f(a.b)=f(a).f(b)$)
+        \item Groups (known in physics as "symmetries"), whose morphisms are group-preserving functions (i.e. $f(a.b)=f(a).f(b)$)
         \item *Algebras (known in physics as "observables"), whose morphisms are *Algebras preserving functions (i.e. $f(\lambda.a.b+c)=\lambda.f(a).f(b)+f(c)$ and $f(a^\dag)=f(a)^\dag$)
         \item Given a spacetime, the collection of all the charts on it forms a category whose morphism are all the switch to other nearby charts
         \item The category of Feynman diagrams where the morphism are relations between them (like a diagram being a sub-diagram of the other in the non-1PI case, or the replacement of a particular vertex with a different one).
     \end{itemize}
     The power of category-formulated statements is that they are not mathematical objects per say, but are \emph{about} mathematical objects, so they allow to take a useful step back.
     
-    In cathegory theory, one usually draws relations in diagrams as follows, and calls them \emph{commutative} whenever all paths are the same. For example, the following diagram defines the multiplication in a $\mathbb{K}$-algebra $A$ (with $\mu$ the algebra product, $\eta$ is the unit element of the algebra).\\
+    In category theory, one usually draws relations in diagrams as follows, and calls them \emph{commutative} whenever all paths are the same. For example, the following diagram defines the multiplication in a $\mathbb{K}$-algebra $A$ (with $\mu$ the algebra product, $\eta$ is the unit element of the algebra).\\
     \begin{tikzcd}
     & \arrow[ld, "\mu\otimes\mathrm{id}"] A\otimes A \otimes A  \arrow[rd, "\mathrm{id}\otimes\mu"]\\
     A\otimes A \arrow[rd, "\mu"]& &\arrow[ld, "\mu"]A\otimes A& & A \otimes A \arrow[rd, "\mu"]& & A\otimes A \arrow[rd, "\mu"]\\
@@ -260,16 +536,16 @@ This is why AQFT is so suited for our topic: it allows to do any physics on any 
     
 
     \subsubsection{Functors}
-    A functor is an object that sends a category to another cathegory. They are the most important tool in cathegory theory, as they allow formal study of the interaction between two apparently different structures.\\
+    A functor is an object that sends a category to another cathegory. They are the most important tool in category theory, as they allow formal study of the interaction between two apparently different structures.\\
     Here are examples of famous functors from physics.
     \begin{itemize}
         \item The functor from Lie Groups to Lie Algebras (it sends groups to their tangent planes, and group morphisms into lie Algebra morphisms)
-        \item  The "exponantial functor", which sends any Lie Algebra to the associated compact Lie Group (it is the \emph{dual} functor to the previous).
-        \item The Legrendre functor which sends the Euleur-Lagrange Picture of Classical Dynamics to the Hamilton-Jacobi Picture
-        \item The Fourrier Functor which sends Classical Quantum Mechanics from the Position Representation to the Momentum Representation
-        \item The Feynman rules functor that sends the category of feynman diagrams to their values and the relations between them into formulas.
+        \item  The "exponential functor", which sends any Lie Algebra to the associated compact Lie Group (it is the \emph{dual} functor to the previous).
+        \item The Legendre functor which sends the Euler-Lagrange Picture of Classical Dynamics to the Hamilton-Jacobi Picture
+        \item The Fourier Functor which sends Classical Quantum Mechanics from the Position Representation to the Momentum Representation
+        \item The Feynman rules functor that sends the category of Feynman diagrams to their values and the relations between them into formulas.
     \end{itemize}
-    Having a functor simply means being able to bring some of the interesting things of a structure into another. In our case, (QFT in curved spaces) a functor that we will see all the time is the Algebra Functor, which to any neighborhood of a spacetime associates all the observables accessible to an observer in that region, and therfore, we see that it is core in the \emph{covariance} requirement of QFT.
+    Having a functor simply means being able to bring some of the interesting things of a structure into another. In our case, (QFT in curved spaces) a functor that we will see all the time is the Algebra Functor, which to any neighborhood of a spacetime associates all the observables accessible to an observer in that region, and therefore, we see that it is core in the \emph{covariance} requirement of QFT.
 
     \subsubsection{Natural Transformations}
     We do not use them much in this \color{red} text \color{black} but they are still quite important. A natural transformation is a \emph{morphism between functors} from a category to another. They allow to study functors themselves as a category (and thus, sort of "close" category into itself).\\
@@ -279,20 +555,38 @@ This is why AQFT is so suited for our topic: it allows to do any physics on any 
         \item The affine re-parametrization of geodesics in space-time. Whatever functor one has in covariant physics that is based on a geodesic parameter, one can get a different one by re-parametrization of the geodesic parameter.
         \item Renormalization group flow which tweaks Feynman rules based on the renormalization parameters
     \end{itemize}
+\subsection{Distributions}\label{DistribPhy}
+\subsubsection{Test functions}
+    It is common, in physics, to need for a probing of space.
     
+    Although, at first glance, one would model a spacetime probe as any indicator function $f:\mathbb{M}_4 \to \{0,1\}$, we can very naturally add extra physical constraints. First, it is unphysical to either flawlessly look (or not look) at some points ($f(x)=1$) and completely disregard every other point ($f(x)=0$). Physics is smooth, so should any probing be. So instead, we will look for our probes in $\mathcal{C}(\mathbb{M}_4,\mathbb{R})$.
+
+    Second constraint will be that one cannot look at an unbounded area of spacetime:
+    $$\mathcal{D}(\mathbb{M}_4,\mathbb{R}):=\left\{f\in \mathcal{C}(\mathbb{M}_4,\mathbb{R})\big| \exists b \in \mathbb{R}_+ :\forall x \in \mathbb{M}_4, ||x||_\mathrm{Euclid}>b \implies f(x)=0\right\}$$
+    These are what mathematicians call \emph{test functions}. They represent the physical concept of considering smoothly a portion of spacetime, and as we will see, they lead to a very powerful picture, especially as they allow us to build distributions.
+
+\subsubsection{Distributions}
+    We built test functions, which are spacetime probes, we now need to probe physical objects with them, and that will be distributions. Distributions are thus objects of $\mathcal{D}\to\mathbb{R}$ which we will denote by $\mathbb{D}'$. They are linear, and continuous (see the math appendix, for more details).
+
+    The most famous distribution probably is $\delta_x:= f \mapsto f(x)$ known as the Dirac delta  distribution. 
+    But the most powerful property from distributions is that they \emph{contain all functions}. For any $F\in (\mathbb{M}_4)^\mathbb{R}$ we can define the canonically associated distribution: $[F]:=f\mapsto\int_{\mathbb{M}_4} f\cdot F$. One can then define derivation on distributions to match in the function case, thereby extending the notion of derivation so that all functions can have derivatives (see math appendix for details).
+
+    In physics, we tend to literally confuse functions and distributions, so we assume the existence of a function $\delta(y-x)$ (Dirac's delta function) such that $\delta_x=[\delta(y-x)]=(f\mapsto \int_{\mathbb{M}_4}\delta(y-x)f(y)\d y:=f(x)$ and likewise for any other distribution; which makes expressions more familiar.
+
+    Finlay, know that $\mathbb{M}_4$ can be replaced by any spacetime manifold, and even products of manifolds $\mathcal{M}\times\mathcal{M}'$ leading to bi-distributions; and also that $\mathbb{R}$ can also be swapped with $\mathbb{C}$. There is a lot of mathematical agility required to deal with the topology of distributions, but as physicist we can always assume things to be well defined and convergent, mostly thanks to the restrictions previously imposed on test functions.
     
 \newpage
 \section{Mathematics Appendix}
-    \subsection{Category, functor, natural transformation}
+    \subsection{Category, functor, natural transformation} \label{AnMaCat}
     The following definitions can be found in \cite{AlgLang}. For an understanding of their interpretation, see the Physics Appendix...
     \subsubsection{Category}
-    A cathegory $\mathcal{C}$ is a tuple $(\mathrm{Obj},\mathrm{Hom},\circ)$ such that for all $A,B \in \mathrm{Obj}$ there is a class of entities called \emph{morphisms from} $A$ \emph{to} $B$ denoted $\mathrm{Hom}(A,B)$ following the following properties:
+    A category $\mathcal{C}$ is a tuple $(\mathrm{Obj},\mathrm{Hom},\circ)$ such that for all $A,B \in \mathrm{Obj}$ there is a class of entities called \emph{morphisms from} $A$ \emph{to} $B$ denoted $\mathrm{Hom}(A,B)$ following the following properties:
     \begin{itemize}
         \item $\forall A, B, C \in \mathrm{Obj}, \forall f\in \mathrm{Hom}(A,B), \forall g\in \mathrm{Hom}(B,C), \exists h \in \mathrm{Hom} (A,C) : h=f\circ g$
         \item $\forall A,B \in \mathrm{Obj} \; \exists \mathrm{id}_A \in \mathrm{Hom}(A,A): \forall f \in \mathrm{Hom}(A,B) \; \mathrm{id}_A\circ f=f$
         \item $\forall A,B \in \mathrm{Obj} \; \exists \mathrm{id}_B \in \mathrm{Hom}(B,B): \forall f \in \mathrm{Hom}(A,B) \; f\circ \mathrm{id}_B=f$
     \end{itemize}
-    Equations in cathegory theory language are usually written in the form of a graph (called commutative diagram) where all possible composition paths are meant to be equal. For instance, bijectivity of a morphism is written as follows:\\
+    Equations in category theory language are usually written in the form of a graph (called commutative diagram) where all possible composition paths are meant to be equal. For instance, bijectivity of a morphism is written as follows:\\
     A morphism $f \in \mathrm{Hom}(A,B)$ is called an iso-morphism when there exists $g \in \mathrm{Hom}(B,A)$ such that the following diagram commutes:
     $$\begin{tikzcd}[column sep=4em,row sep=4em,/tikz/column 2/.style={column sep=2em}]
 \arrow[loop left]{l}{\mathrm{id}_A} A \arrow[r,bend left,"f"]
@@ -310,140 +604,25 @@ A natural transformation is an objects linking functors together so as to make f
 
 
 
-\newpage
-%%%%%%%%%%%%%%%%
+\subsection{Distributions}\label{DistribMath}
+\subsubsection{Test functions}
+    Test function $\mathcal{D}(\mathcal{M},\mathbb{K})$ are all smooth compactly supported functions. There are interesting interpetation aspects reguarding them (which can be found in the physics appendix) but from a purely mathematical point of view, we will only care about their topological dual space.
+\subsubsection{Distributions}
+    Distributions $\mathcal{D}'(\mathcal{M},\mathbb{K})$ are the topological dual of $\mathcal{D}(\mathcal{M},\mathbb{K})$. By dual, we mean they are linear functional from $\mathcal{D}(\mathcal{M},\mathbb{K})$ to $\mathbb{K}$, and by topological, we mean they follow some continuity constraints: for any $F$ distribution, we require
+    \begin{itemize}
+        \item for any compact $K\subset\mathcal{M}$ there exists $C_K\in \mathbb{R}_+^*$ and $N_K\in\mathbb{N}$ such that \\ $\forall f \in \mathcal{D} |F(f)|\leq C_K \mathrm{sup}\{|\partial^nf(x)|:x\in\mathcal{M},|n|\leq N_K\}$
+        \item for every compact $K\subset\mathcal{M}$ and every sequence $(f_i)\in \mathcal{D}^\mathbb{N}$ if for every $n\in\mathbb{N}$ the sequence $\partial^nf_i$ uniformly goes to zero, then $F(f_i)$ goes to zero.
+    \end{itemize}
 
+    For any measurable function $F$ we define its canonically associated distribution by $[F]:=f\mapsto\int_\mathcal{M}f\cdot F$. Defining the derivative of distributions by $\partial F:= f\mapsto -\int_\mathcal{M}F\cdot\partial f$, we see, using Stokes' theorem that derivation on functions (that can be differentiated) and distributions match, i.e. $[\partial F]=\partial[F]$ so we can see distribution as a differential algebra extension. In particular, we can extend the notion of derivation over function so as to have any function differentiable $\partial F := \partial [F]$.
 
-\section{Energy Conditions by Sean Carrol \& Primer on Energy Conditions by Erik Curiel}
-This section is based on chapter 4.6 of \cite{E_Cond}.
+    Last but not least, knowing $x\mapsto \e^{ikx}$ is measurable, by defining convolutions of distributions (which we will not go over here, but is not particularly complicated) we can also extend Fourier transforms to all distributions, matching with canonical distributions of functions, thereby extending Fourier transforms to distributions (and in particular, just like for derivation, allowing to take the Fourier transform of any function).
 
-\color{red} There is not much to say... He also talks about the physical interpretation in the case of a perfect fluid, but that's pretty trivial... He also gives some inclusions (not all of them super clearly, but still, I could talk about that) but they are also pretty trivial, simply by looking at the definitions of things. The example of the perfect fluid shows that all the case where inclusions don't look trivial, they are simply false... So yeah, I'm ignoring all that...\color{black}
-
-\begin{definition}[Energy Conditions]$\quad$
-
-    Let $T^{\mu\nu}$ be the energy-momentum tensor of a (classical) field theory over a Lorentzian manifold $\mathcal{M}$ with signature $(+,-,...,-)$ whose vectors are denoted by the set $\mathbb{M}(\mathcal{M})$ and whose (respectively) time-like; space-like and null vectors are denoted by  $\mathbb{M}(\mathcal{M})^{(\mathrm{T})}$; $\mathbb{M}(\mathcal{M})^{(\mathrm{S})}$ and $\mathbb{M}(\mathcal{M})^{(\mathrm{N})}$; i.e. with $g$ the metric of $\mathcal{M}$ we mean:
-    \begin{align*}
-        \mathbb{M}(\mathcal{M})^{(\mathrm{T})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu>0\right\}\\
-        \mathbb{M}(\mathcal{M})^{(\mathrm{S})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu<0\right\}\\
-        \mathbb{M}(\mathcal{M})^{(\mathrm{N})}&:=\left\{l\in\mathbb{M}(\mathcal{M}):g_{\mu\nu}l^\mu l^\nu=0\right\}
-    \end{align*}
-We define the following acronyms (associated names in footnote\footnote{WEC - Weak Energy Condition\\NEC - Null Energy Condition\\DEC - Dominant Energy Condition\\NDEC - Null Dominant Energy Condition\\SEC - Strong Energy Condition}):
-\begin{align*}
-\textbf{WEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
-\textbf{NEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{N})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0\\
-\textbf{DEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
-\textbf{NDEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{N})} && T_{\mu\nu}l^\mu l^\nu\geq \;& 0 \quad \quad \wedge \quad \quad T^{\mu\nu}l_\mu \notin\mathbb{M}(\mathcal{M})^{\mathrm{S}}\\
-\textbf{SEC}: && \forall l \in \mathbb{M}(\mathcal{M})^{(\mathrm{T}))} && T_{\mu\nu}l^\mu l^\nu\geq \;& \frac{1}{2}T^\mu_\mu l^\nu l_\nu
-\end{align*}
-\end{definition}
-
-In \cite{Primer}, the author gives a lot more energy conditions, and in particular, rather than having these inequalities hold at every point, they can (weaker) hold once integrated over a portion of a geodesic, or (even weaker) a full geodesic.
-There are also more whimsical energy conditions and a lot of interpretation on they philosophical meaning... But overall I don't think it's worth summarizing much...
-
-\section{Renormalisation in perturbative AQFT by Kasia Rejner}
-I will skip summarizing \cite{RejConf} as, at the moment, I have 12 pages of notes that are compressed to their fullest, so I prefer to wait and see what will be usefull once I have used it, rather than waist a lot of time typing it all in Late$\chi$...
-
-\section{Hadamard renormalisation}
-This section is based on \cite{HadRen}. But since they don't realy explain nor derive anything other than a bunch of formulas, I will just write the formulas I felt were important...
-
-\begin{equation}
-    T_{\mu\nu}=\frac{2}{\sqrt{-g}}\frac{\delta}{\delta g^{\mu\nu}}S[\phi,g_{\mu\nu}]
-\end{equation}
-\begin{equation}
-    G^\mathrm{F}(x,x'):=\mathfrak{i}\bra{\psi}\mathcal{T}\phi(x)\phi(x')\ket{\psi}
-\end{equation}
-\begin{equation}
-    (\square_x-m^2-\xi R) G^\mathrm{F}(x,x')=-\delta^D(x,x') \implies \delta^D(x,x')=[-g(x)]^{-^{\!1}\!/_{\!2}}\delta^D(x-x')
-\end{equation}
-let $2\sigma$ be the square of the geodesic distance; noticing $2\sigma=\sigma^{;\mu}\sigma_{;\mu}$
-\begin{equation}
-    \Delta(x,x'):=-[-g(x)]^{-^{\!1}\!/_{\!2}} \mathrm{det}\Big(-\sigma_{;\mu\nu'}(x,x')\Big)[-g(x')]^{-^{\!1}\!/_{\!2}}
-\end{equation}
-\begin{equation}
-    \mathrm{notice}:\quad \square_x\sigma=D-2\Delta^{-^{\!1}\!/_{\!2}}\Delta^{^{1}\!/_{\!2}}\;_{;\mu}\sigma^{;\mu}\quad \mathrm{and}\quad \lim_{x'\to x}\Delta(x,x')=1
-\end{equation}
-The basis of Hadamard renormalization lies in objects being only generated by a few elements whose divergence one can simply control from there. \color{red} In spite of having red a lot about it, although I now know \emph{how} to do hadamard renormalization from these formulas, I have no clue where these formulas come from... So I still don't understand Hadamard renormalisation...\color{black}
-
-In this next part, I changed the notation a bit so as to not have to have a single formula regardless of the dimension.
-\begin{equation}
-G^\mathrm{F}\!(x,x')=\frac{\mathfrak{i}\cdot\!\Bigl(\Gamma\!\left(\!^D\!/_{\!2}-1\right)\Bigl)^{1-\delta_{2,D}}}{2\cdot(2\pi)^{\!^D\!/_{\!2}}}\!\left(\!\!\frac{(1-\delta_{2,D})\cdot U(x,x')}{\Bigl(\sigma(x,x')+i\epsilon\Bigl)^{\!\!^D\!/_{\!2}-1}}+\mathds{1}_{2\cdot \mathbb{N}}(D) \cdot V(x,x')\cdot\mathrm{ln}\Bigl(\!\sigma(x,x')+i\epsilon\!\Bigl)+W(x,x')\!\!\right)
-\end{equation}
-\begin{align*}
-    \exists (U_n, V_n, W_n) \in (?)^{D/2-1}\times(?)^\mathbb{N}\times(?)^\mathbb{N}:&\\
-    U&(x,x')=\sum_{n=0}^{^D\!/_{\!2}-2}U_n(x,x')\sigma^n(x,x')\\
-    V&(x,x')=\sum_{n\in\mathbb{N}}V_n(x,x')\sigma^n(x,x')\\
-    W&(x,x')=\sum_{n\in\mathbb{N}}W_n(x,x')\sigma^n(x,x')
-    \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
-\end{align*}
-i.e. one can tailor expand with respect to the square metric in the space of operators. But each operator can also be tailor expanded from one space variable.
-\begin{equation}
-    U_n(x,x')=u_n(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}u_{n,p}(x,x')
-\end{equation}
-\begin{equation}
-    V_n(x,x')=v_n(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}v_{n,p}(x,x')
-\end{equation}
-for some reason, $W$ is not tailor expanded through it's sub-operators, but straight... \color{red}no idea why...\color{black}
-\begin{equation}
-    W(x,x')=w(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}w_{p}(x,x')
-\end{equation}
-\begin{equation}
-    \bra{\psi}T_{\mu\nu}(x)\ket{\psi}^\mathrm{ren} = \lim_{x'\to x} \mathcal{T}_{\mu\nu}(x,x')\left[-\mathfrak{i}G^\mathrm{F}(x,x')\right]
-\end{equation}
-\begin{equation}
-    \bra{\psi}T_{\mu\nu}(x)\ket{\psi}^\mathrm{ren} = \frac{\Bigl(\Gamma\!\left(\!^D\!/_{\!2}-1\right)\Bigl)^{1-\delta_{2,D}}}{2\cdot(2\pi)^{\!^D\!/_{\!2}}}\left[\lim_{x'\to x}\mathcal{T}_{\mu\nu}(x,x')W(x,x')+\mathds{1}_{2\cdot \mathbb{N}}(D)\frac{D}{2}g_{\mu\nu}V_1\right]+\Theta_{\mu\nu}(x)
-\end{equation}
-There are also other formulas, but not sure how relevant they are...
-
-\section{Energy conditions with QFT}
-This one summarizes \cite{EleRev}, (or to be more precise, it summarizes the parts of \cite{EleRev} that cannot be found in other articles, as this review itself is very complete and reviews most of the points developed before... but also brings in a lot of new perspective, which is what I will try to focus on).
-
-The form of a quantum energy condition is:
-\begin{equation}
-\boxed{\braket{\rho(f)}_\omega \geq - \braket{\mathcal{Q}(f)}_\omega}
-\end{equation}
-where $\rho:=T^\mathrm{ren}_{\;\;ab}t^at^b$ is the energy density (in some sense given by a choice of the $t$ used. $f$ is a test function (\color{red} or a distribution for some reason\color{black}) $\mathcal{Q}$ is a possibly unbounded operator. As it stands, it is a point-wize one. Integrating the inequality's $t$ over a geodesic of some type gives an integrated energy condition (complete geodesic, or full, depending on what we want).
-
-Now, we call a condition trivial when:
-\begin{equation} \label{triv}
-    \exists c, c' \quad : \quad \braket{\rho(f)}_\omega \; \geq \; c + c'\cdot|\braket{\mathcal{Q}(f)}_\omega|
-\end{equation}
-Naturally, we call a condition non-trivial when $\lnot$(\ref{triv}) holds and of course, the here-above is the point-wize formulation if we at a $\forall t$ to the condition, and an integrated if $t$ is integrated over a geodesic.
-
-Note that here, we work in the case of scalar theory. Extensions to fermions and spin $>0$ bosons are apparently non-trivial. \\
-
-\underline{Example:}\\
-in $\mathbb{M}_4$, with $:\!\!\rho\!: \;\; := T^\mathrm{ren}_{\;\;00} - \braket{T^\mathrm{ren}_{\;\;00}}_{\omega_0}$ ($\omega_0$ being $\mathbb{M}_4$'s vacum state and $\omega$ any state) and $\gamma$ the world-line of an inertial observer; Q-WEC is:
-\begin{equation}
-    \braket{:\!\!\rho\!: \circ \gamma}_\omega(f^2) \geq \frac{-1}{16\pi^2} \int_{-\infty}^{+\infty}\mathrm{d}t (f''(t))^2
-\end{equation}\\
-
-Important remark: in the case of interacting theories, energy conditions cannot be state independent.\\
-
-One also sees some sort of a time-energy uncertainty relation pop out, using a self adjoint: $\sigma_a := \sqrt{\omega(a^2)-\omega(a)^2}$ the relation is:
-\begin{equation}
-    \sigma_H\sigma_a \; \geq \; \frac{1}{2} \bigg|\omega\Big([a,H]\Big)\bigg| \; = \; \frac{1}{2}\big|\partial_t \omega(a)\big|
-\end{equation}
-Also, to fix the negative energy problem, using $A$ for the area of the energy flux; $T$ for the time separation between events and with $\beta:=^{\;t_0}\!\!\!/_{\!T}$:
-\begin{align*}
-    \rho(t) := \frac{|\Delta E|}{A}\Big[-&\delta(t) + (1-\epsilon)\cdot\delta(1-T)\Big]\\
-    \implies& \quad \int_{-\infty}^{+\infty}\mathrm{d}t \; \rho(t) \cdot f^2_{t_0}(t) \geq \frac{-C}{t_0^{\;4}} \quad \wedge \quad |\Delta E| \cdot T^3 \leq \frac{C\cdot A}{\beta^3\Big(f(0)^3 - (1+\epsilon) \cdot f(\beta^2)\Big)}
-\end{align*}
-\color{red} I don't truly understand these formulae yet, but I think I understand the point, so I think that's good for now, plus I might not actualy need it...
-
-There also was a very interesting bit on a Feynman interpretations of paths applied to the problem of Energy conditions. I thought it would lead to a sort of Feynman "quantization" of the classical conditions to the quantum ones... But failed to see any "Feynman ideas" in the next section... Didn't mean I didn't understand the section, just not sure if it's more a philosophical idea of a factual method, anyway... The theorem in question is 4.1\color{black}\\
-
-\begin{definition}[Trapped Surface] $\quad$\\
- a space-like surface of co-dimension 2 which has 2 null normals with negative expansion\footnote{\color{red}no idea what an "expansion" is...\color{black}} is called a trapped surface. \color{red}To read more about this, I need to visit [148] in the review, so far, I haven't found it, but I found a much shorter \hyperlink{https://arxiv.org/pdf/1107.1344}{paper} by the same author and of the same name, so it's probably only a matter of finding the long version.\color{black}
-\end{definition}
-This is apparently, the main tool in proving the famous singularity theorems. like this one:
-\begin{theorem}
-    If $\exists$ a compact achronal smooth trapped surface; if condition (27) holds (27 from the original review) and if $\mathcal{M}$ is globally hyperbolic with non-compact Cauchy surface; then $\mathcal{M}$ is futur null geodesic incomplete.\\\color{red}See \href{https://www.cambridge.org/core/books/large-scale-structure-of-spacetime/1E6B961EC9878EDDBBD6AC0AF031CC93}{[32]} and \href{https://arxiv.org/pdf/1410.5226}{[148]} for rigorous proof. In particular, I must loo at O'Neil's proof, as it devellops tools particularily usefull in the quantum case that is \href{https://ia902501.us.archive.org/27/items/mathematics_202103/%28Pure%20and%20Applied%20Mathematics%2C%20Volume%20103%29%20Barrett%20O%27Neill-Semi-Riemannian%20Geometry%20With%20Applications%20to%20Relativity-Academic%20Press%20%281983%29.pdf}{[35]}\color{black}.
-\end{theorem}
-Last probably usefull fact I found: null-geodesic conditions are not easily extended to the Quantum case, so that's a problem...
-
+    It is in this very powerful differential calculus that physics has its objects. (Although, in QFT, we also have some non-commutativity which we have, here above, ignored, to avoid having this text be too long).
 
 
 \newpage 
+\section{REFS!!!}
 \begin{thebibliography}{99}
 
     \bibitem{AQFT_Intro}
@@ -472,5 +651,20 @@ Last probably usefull fact I found: null-geodesic conditions are not easily exte
 
     \bibitem{GRWald}
     Wald, R.; \textit{General Relativity} U-Chicago Press \href{https://press.uchicago.edu/ucp/books/book/chicago/G/bo5952261.html}{ISNB:978-0-226-870335} (1984) \color{red}also, not sure I will need that one, but might be useful to quote all the basic stuff\color{black}
+
+    \bibitem{DSNEC}
+    Fliss, J.; Freivogel, B.; Kontou, E.; \textit{The double smeared null energy condition} Ar$\chi$iv \href{https://arxiv.org/abs/2111.05772#}{DOI:2111.05772} (2021)
+
+    \bibitem{HadEquiv}
+    Radzikowski, M.; \textit{Micro-local approach to the Hadamard condition in quantum field theory on curved space-time} Communications in Mathematical Physics Vol.179 No.3 \href{https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-179/issue-3/Micro-local-approach-to-the-Hadamard-condition-in-quantum-field/cmp/1104287114.full}{DOI:529-553}(1996)
+
+    \bibitem{SingTheo}
+    Natario, J.; \textit{Relativity and Singularities - A short introduction for Mathematicians} Ar$\chi$iv \href{https://arxiv.org/abs/math/0603190}{DOI:0603190} (2015)
+
+    \bibitem{QCRenorm}
+    Wald, R.; \textit{Trace Anomaly of a Conformally Invariant Quantum Field in Curved Space-Time} Physics Review \href{https://journals.aps.org/prd/abstract/10.1103/PhysRevD.17.1477}{D17 1477-1484} (1978)
+
+    \bibitem{FourBound}
+    Fewster, C.; Smith, C.; \textit{Absolute quantum energy inequalities in curved spacetime} Annales Henri Poincare \href{https://arxiv.org/abs/gr-qc/0702056}{9 425-455} (2008)
 \end{thebibliography} 
 \end{document}
