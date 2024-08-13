@@ -309,7 +309,7 @@ A more rigorous mathematical treatment of the definition of the field will lead 
     Using these operators, we define:
     $$\braket{T^\mathrm{fin}_{\mu\nu}}_\psi(x):=\lim_{x'\to x} g_\nu^{\nu'}(x,x')\mathbb{T}^\mathrm{split}_{\mu\nu}\circ(W-H)(x,x')$$
     Then, for Hadamard states, the \emph{renormalized} spectrum of the energy momentum tensor is obtained by removing two objects (see \cite{QCRenorm} for details), $Q(x)$ a scalar, that preserves conservation (i.e. physicalness) and $C_{\mu\nu}(x)$ a tensor solely dependent on the space-time curvature. We will not go into how to derive $Q$, as that is too complicated (and not needed here), ac for $C_{\mu\nu}$, we will leave it for later. Thus, we will take it for granted that:
-    $$\braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu}C_{\mu\nu}$$
+    $$\braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu} + C_{\mu\nu}$$
 
     This last object is what we consider to be the physical energy in a QFT. It is a function of spacetime, but also of a given state $\ket{\psi}$ and more importantly, of the spacetime metric $g$.
 
@@ -474,7 +474,7 @@ But even if we were to generalize the inequality for any $\mathcal{M}$, this wou
 
 Thus let us now study a proper inequalities using a single state.
 
-\section{Result stuff \color{red} improve title section\color{black}}
+\section{Absolute Quantum Energy Inequality}
 \subsection{Double Smeared Null Energy Conditions}
 We start by stating theorem 3.1 of \cite{FourBound} which allows to bound states by their Fourier transforms and some curvature aspects:
 
@@ -511,6 +511,7 @@ $k\to2$ as terms of order higher than 2 go to zero at the limit $x'\to x$. Overa
 \end{equation}
 Now, although equation \ref{eq82} is giving us a bound, i.e. a quantum null inequality, it is still not as explicit as one would want. Thus, we ought to compute it. This was done in \cite{DSNEC} in the special case of $\Sigma=\mathcal{M}=\mathbb{M}_4$. But we want to compute it explicitly for any manifold.
 \section{Conclusion}
+\color{red} Explain the requirements od $D$ (small sampling domain), make equations part of sentences, $C_{\mu\nu}$, double null foliation, make, write how to use dynamics to compute $H$ (in the coordinates); also talk about lower bounding $R_\mu\nu$ \color{black}
 \newpage
 \appendix
 \section{Physics Appendix}
