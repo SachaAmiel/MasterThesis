@@ -27,21 +27,11 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{prop}{Proposition}
 \newtheorem{comment}{Comment}
-\newcommand{\dbyd}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\vsig}{{\bm{\sigma}}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\uone}{{u_1}}
-\newcommand{\utwo}{{u_2}}
-\newcommand{\chii}{\chi^{\vphantom{|}}}
-\newcommand{\Tr}{\mathrm{Tr}}
-\newcommand{\cH}{{\cal H}}
-\newcommand{\NS}{{{\scriptstyle N\!S}}}
-\newcommand{\tq}{{\tilde q}}
 \renewcommand{\d}{{\mathrm{d}}}
 \newcommand{\e}{{\mathrm{e}}}
+\newcommand{\R}{{\mathrm{Ric}}}
 
-
-\setlength{\parindent}{0pt}
+\setcounter{tocdepth}{2}
 \setlength{\parskip}{3pt}
 
 \title{Quantum energy inequalities with curvature}
@@ -68,7 +58,7 @@ Student number: 23126576\\
 
 \newpage
 \section*{Abstract}
-This \color{red} text \color{black} will be, as explicitly stated in the title, about quantum energy inequalities with curvature. It will consist in a formal introduction to an axiomatic approach to quantum field theory, followed by a formal introduction to energy inequalities and will finish with quantum energy inequalities in curved spacetimes and of the knowledge they bring.
+This \color{red} text \color{black} will be, as explicitly stated in the title, about quantum energy inequalities with curvature. It will consist in a formal introduction to an axiomatic approach to quantum field theory, followed by an introduction to energy inequalities and will finish with the begining of an explicit computation of one of them.
 
 Quantum Energy Inequalities are covariant lower bounds on the energy of a given physics. They do not tell us much about the physics itself, nor about the spacetime the physics unfolds; but from the restrictions they impose on energy, one can (if following general relativity) impose restrictions on that spacetime. This can bring crucially insight in the field of quantum field theory in curved spaces, and therefore, potentially quantum gravity.
 
@@ -309,8 +299,10 @@ A more rigorous mathematical treatment of the definition of the field will lead 
     Using these operators, we define:
     $$\braket{T^\mathrm{fin}_{\mu\nu}}_\psi(x):=\lim_{x'\to x} g_\nu^{\nu'}(x,x')\mathbb{T}^\mathrm{split}_{\mu\nu}\circ(W-H)(x,x')$$
     Then, for Hadamard states, the \emph{renormalized} spectrum of the energy momentum tensor is obtained by removing two objects (see \cite{QCRenorm} for details), $Q(x)$ a scalar, that preserves conservation (i.e. physicalness) and $C_{\mu\nu}(x)$ a tensor solely dependent on the space-time curvature. We will not go into how to derive $Q$, as that is too complicated (and not needed here), ac for $C_{\mu\nu}$, we will leave it for later. Thus, we will take it for granted that:
-    $$\braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu} + C_{\mu\nu}$$
-
+    \begin{equation}
+    \braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu} + C_{\mu\nu}
+    \end{equation}
+    
     This last object is what we consider to be the physical energy in a QFT. It is a function of spacetime, but also of a given state $\ket{\psi}$ and more importantly, of the spacetime metric $g$.
 
     Our goal, from now on, is to derive lower bounds of some kind on this energy, so as to apply results from general relativity and exclude potential whimsical spacetimes from investigation, or simply predict the apparition of singularities in the QFT context.
@@ -475,7 +467,34 @@ But even if we were to generalize the inequality for any $\mathcal{M}$, this wou
 Thus let us now study a proper inequalities using a single state.
 
 \section{Absolute Quantum Energy Inequality}
-\subsection{Double Smeared Null Energy Conditions}
+\subsection{Getting a general bound}
+\subsubsection{\color{red}$\Sigma$, D and stuff}
+Before we go into how the general integrated general bound works, we need to focus on what it is integrating over. We previously mentioned that it was over $\Sigma$, some time-like submanifold, but that was embedded into $\mathbb{M}_n$ which is not the general case. So how do we bring the properites we require from Minkowski into a general submanifold $\mathbb{M}$?
+
+\begin{definition}[Small Sampling Domain]
+    A submanifold $\Sigma \subset \mathbb{M}$ is called a \emph{Small Sampling Domain} when
+    \begin{itemize}
+        \item It is contained in a globally hyperbolic convex normal neighboorhood of $\mathcal{M}$
+        \item It can be covered by a single hyperbolic coordinate chart $\{x^\mu, \mu\in [\![0,k]\!]\}$
+        \item  $\partial_0$ is future pointing and timelike
+        \item $\exists c \in \mathbb{R}^* : \forall p \in \Sigma \forall u \in T_p\mathcal{M}^* g(u,u)\leq 0 \implies c^2|u_0|^2 \geq \sum_{i=\color{red}0???\color{black}}^{\color{red} n \; \mathrm{or} \; n-1\color{black}} |u_i|^2$
+    \end{itemize}
+\end{definition}
+\begin{comment}[Interpretation of the definition]
+    A convex (geodesically convex) neighboorhood is a neighboorhood where for any two points in $\mathcal{M}\cap\Sigma$ (i.e. points in the neigboorhood) all the points in-between them in the shortest\footnote{in the sense of proper length} geodesic going from one to the other are also in the neighboorhood. Meaning "there are no wholes" in $\Sigma$ in the sense of $\mathcal{M}$. Hyperbolic Manifolds are (in short) the ones that admit a Cauchy surface. The last property can be interpreted as the speed of light \emph{in the coordinate system} is bounded. So overall, an nice physicall interpretation would be that $\Sigma$ is sort of a "Minkowski" patch of $\mathcal{M}$ (but with curvature of course).
+\end{comment}
+
+Now, given a small sampling domain, and denoting by $\kappa : \Sigma \to \mathbb{R}^n$ the coordinate map of a coordinate system that makes it a small sampling domain, we define $\Sigma_\kappa:=\kappa(\Sigma)$ (i.e. $\Sigma$ but expressed in coordinates. Using $\iota : \Sigma \to \mathcal{M}$ for the embedding map, $\mathcal{N}^+$ for future pointing null covectors on $(\mathcal{M},g)$, and $D\subset\mathbb{R}^n$ for the set of real numbers $(u_i)$ such that $u_0>0$ and $c |u_0|^2\geq \sum_{i=0}^{n-1} |u_i|^2$ i.e. of potential coordinates that would work as a sampling domain we find, by construction that:
+$$\left(\iota\circ\kappa^{-1}\right)^*\mathcal{N}^+ \subset \Sigma_\kappa \times D$$
+
+\color{red} except I really don't see why that would be, as $\iota_\kappa: \Sigma_\kappa \to \mathcal{M}$ so its pullback $\iota_\kappa^*$ should be of $\mathcal{M}\to \Sigma_\kappa$ and thus applied to $\mathcal{N}^+ \subset T\mathcal{M}^*$ should not be defined. Now of course, we can do a natural extention of point coordinate to vector coordinates (resp. covectors), but I don't see how we can end up in $\mathbb{R}^{2n}$.
+
+Also, I was not able to find that "freedom in chosing $D$" from its definition... So I'm guessing I'm missing something. My original intuitive understanding of $D$ was that $\Sigma_\kappa$ is symetric by time inversion, so we take $D$ to be a subset of half of Sigma (i.e. rigorously we quotient  $\Sigma$ by that symetry, and then get back into coordinates) and the freedom of choice was in how we implement this time-symetry (as time is relativ) and also what coordinate to take (but that's not the interesting par). But that, of course, doesn't match the equations at all... \color{black}
+
+
+
+
+\subsubsection{Simplifying the general bound for the null case}
 We start by stating theorem 3.1 of \cite{FourBound} which allows to bound states by their Fourier transforms and some curvature aspects:
 
 Given a partial differential operator $\mathcal{D}$, any Hadamard state $H$ we have:
@@ -510,8 +529,212 @@ $k\to2$ as terms of order higher than 2 go to zero at the limit $x'\to x$. Overa
     \boxed{\int_\Sigma \!\!\!\d_\mathrm{vol} g^2 \!\braket{l^\mu l^\nu T^\mathrm{ren}_{\mu\nu}}_{\!\psi} \!\!\geq\!\!\! \int_\Sigma \!\!\!\d_\mathrm{vol} g^2l^\mu l^\nu C_{\!\mu\nu}\!-\!2\!\!\!\int_D\!\!\frac{\d^n\xi}{(2\pi)^n}\!\left(\!\!(|h_\kappa|^{\!^1\!\!/_{\!4}}\!g_\kappa\!)^{\!\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\!\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{\!\!H_{(2)}}\!\!\right)^{(-\xi,\xi)}}
 \end{equation}
 Now, although equation \ref{eq82} is giving us a bound, i.e. a quantum null inequality, it is still not as explicit as one would want. Thus, we ought to compute it. This was done in \cite{DSNEC} in the special case of $\Sigma=\mathcal{M}=\mathbb{M}_4$. But we want to compute it explicitly for any manifold.
+\subsubsection{Motivation for a special type of foliation}
+During our computation, we have assumed that, at all times $l^\mu l^\nu g_{\mu\nu}=0$, i.e. that $l^\mu$ was a null direction. But to be able to make use of this, to continue expliciting the bound in the null case, and for other more intricate mathematical and physical reason, we will require to make a \emph{foliation} of space-time with respect to such a direction\footnote{\color{red} Although we will go deeply into the details of the particular foliation we will use, if the reader wishes to be introduced to the general ideas of foliations, they are presented in the appendix}.
+
+Mathematically constructing this folliation assures the existence of this $l\mu$ direction at any point on $\Sigma$, which ensures the well posed-ness of the inequality. Also, it will help making the inequality even more explicit, and thereby more practical to use.
+
+Physically, this will allow use to integrate over a surface of light-like geodesics, and thus truly encompass the idea of an integrated null energy inequality. Indeed, the foliation will lead us to probing space along the trajectories of light starting from a specific neighborhood of space.
+
+
+
+\subsection{Double Null Foliation}
+\subsubsection{Step by step buildup of the foliation}
+This section and the folowing one are summarizing \cite{Chris} and \cite{Art} in which one can see the details of the contruction of the double null foliation. All pictures present in here also come from those sources, \color{red} although we added extra information using color \color{black}.
+
+We start with a co-dimention 2 surface. Although it is not required by \cite{Chris} and \cite{Art}, we will assume this surface to be compact, and space-like for simplicity (so, in $\mathbb{M}_4$, one can simply take a 2D ball in spacetime, and in $\mathbb{M}_3$, which is where our illustrations will be, it will be a circle). This surface, is denoted $S_0$.
+
+Because $S_0$ is space-like, (i.e. never tangent to the light-cone) the light cone on its 2D complementary plane is well define. This means that at every point, (because of the homology of the lightcone in 2D) their exists 2 different null directions. 
+\begin{center}
+    \includegraphics [width=0.75\linewidth] {Pictures/00_Start.png}
+\end{center}
+Those ligh derections spann 2 surfaces (respectively $C_0$ and $\underline{C}_0$).
+\begin{center}
+    \includegraphics [width=0.75\linewidth] {Pictures/01_Surface.png}
+\end{center}
+
+Let $\Omega: S_0 \to \mathbb{R}$ be a smooth function, and $L'$ a null vector field normal to $S_0$ and tangent to $C_0$ (i.e. a continuous choice of one of the null directions at every point). Let $\underline{L}'$ be the null vector vector field tangent to $\underline{C}_0$ normal to $S_0$ such that $g(L',\underline{L}')=-\Omega^{-2}$ (i.e. the other null direction, but whose norm is constrained by the two other objects).
+
+The steps that follow are going to be many successive extension of all the previously defined objects.\\
+We extend $L'$ and $\underline{L}'$ on $C_0$ and $\underline{C}_0$ through the geodesic equation $\nabla_{L'}L'=0=\nabla_{\underline{L}'}\underline{L}'$ with $\nabla$ the manifold's Levi-Civita connection, with respect to the spacetime metric $g$. Then extend $\Omega$ on $C_0\cup\underline{C}_0$ too. We define $L:=\Omega^2L'$ and $\underline{L} :=\Omega^2 \underline{L}'$ the normalized vector fields.
+
+We now define $\underline{u}$ on $C_0$ to be the vector field such that $L \underline{u}=1$ and $\underline{u}_{|S_0}=0$. (And likewise, $u$ on $\underline{C}_0$.)
+\begin{center}
+    \includegraphics [width=0.75\linewidth] {Pictures/02_VFields.png}
+\end{center}
+
+We now notice that there exists\footnote{the differential equations here are all expontantial equations, hence the implicit use of bijectivity everywhere here.} $S_\tau$ another embeded co-dimention 2 space-like surface defined by the sets of points on $C_0$ where $\underline{u}=\tau$. (and likewise $\underline{S}_\tau$). $\tau\mapsto S_\tau$ can be seen as a foliation of $C_0$...
+
+We now use these $S_\tau$ as was used $S_0$ to extend the vector field $L$ and $\underline{L}$ on the $C_0$ where they were not yet defined, such that now, all our objects (except for $u$ and $\underline{u}$ at the moment) are defined on $C_0\cup\underline{C}_0$.
+\begin{comment}
+    Before finishing the construction of the foliation, both \cite{Chris} and \cite{Art} emphasize the fact that $\nabla \underline{u}=-\underline{L}'$ and $\nabla u=-u'$. So we too mention it here, as it probably helps to see $u$ as a potential whose gradiant is light-like. This will, of course, also hold on the fully foliated manifold.
+\end{comment}
+
+To finish the foliation, we now span, from each $S_\tau$ a $C_\tau$ and a $\underline{C}_\tau$. This concludes the construction of the foliation. Note that this is a \emph{double} foliation, as we have both a foliation in terms of $C_\tau$ and $\underline{C}_\tau$.
+\begin{center}
+    \includegraphics [width=0.75\linewidth] {Pictures/03_Foliation.png}
+\end{center}
+
+\subsubsection{Playing arround with coordinates}
+For any point $p$ in the thereby foliated spacetime, there exists a null-path from $S_0$ to that path. In fact, there even exists a single path starting from a point $\theta^i$ of $S_0$ ($\theta^i$ being given with respect to some coordinate system of the co-dimention 2 manifold $S_0$) then folowing a the null ray from $\theta^i$ along $C_0$ up to the $\underline{u}$ value of $\underline{u}_0$ and then following the other null direction on $C_{\underline{u}_0}$ until $u_0$. This therefore allows us to have a coordinate system $p=(u_0, \underline{u}_0, \theta^i)$ on the manifold.
+\begin{center}
+    \includegraphics [width=0.75\linewidth] {Pictures/04_Coordinates.png}
+\end{center}
+
+Note however that there exists another path by going to $\underline{C}_0$ first and only $C_0$ after, and those two paths do not necessarily share the same values of $u$ and $\underline{u}$... 
+\begin{center}
+    \includegraphics [width=0.75\linewidth] {Pictures/05_Torsion.png}
+\end{center}
+
+This is because the two null fields do not commute (in the Lie derivative sense\footnote{Using the vector commutator $[X,Y]:=x^\mu \partial_\mu (y^\nu) e_\nu$ for two vector fields $X:=x^\mu e_\mu$ and $Y:=y^\mu e_\mu$}) unless our metric is somehow trivial. Thus, denoting by $e_i$ the cordinate system of the $C_{u_0}\cap\underline{C}_{\underline{u}_0}$ codimention 2 spacelike manifolds, the tuple $(e_i, L, \underline{L})$ is indeed a \emph{frame} but not a \emph{basis}.
+
+This does not pose any particularily deep problem when it comes to doing physics in a non-basis frame; but does require a lot of care as many of the formulae familiar to the physicists that are used to derive curvature tensors no longer apply. In particular, $\Gamma_{\mu\nu}^\rho\ne\Gamma_{\nu\mu}^\rho$ and $\Gamma_{\mu\nu}^\rho\ne g^{\rho\lambda}(g_{\lambda\mu,\nu}+g_{\lambda\nu,\mu}+g_{\mu\nu,\lambda})$. So basicaly, (instead of attempting to rederive different formulae) we will frequently go back to more formal math notations to ensure clarity.
+
+For our computations, from now on, we chose a normalized frame: $(e_i,e_+,e_-)$ where $(e_i)$ is the coordinate system of the $S$ surfaces, and $e_\pm$ are two null directions normalized to $g(e_+,e_-)=-1$. These can simply be obtained by $e_+:=\Omega\underline{L}'$ and $e_-:=\Omega L'$.
+
+We also inform the reader that in this convention (i.e. the one from \cite{Art}; \cite{Chris}'s only being different by a factor of 2) the metric will be of the following form (where $\cancel{g}$ denotes the metric of the sub-manifold $S$):
+\begin{equation}
+    g=-\d e_+\otimes \d e_- - \d e_-\otimes d\ e_+ + \cancel{g}
+\end{equation}
+(thus:
+$$g^{-1}=-e_+\otimes e_- - e_-\otimes e_+ + \cancel{g}^{-1} \quad ).$$
+
+\begin{comment}[\emph{Difference of notations in mathematics and physics}]
+    In differential geometry, (always using Einstein summation convention of course) there are many types of objects (the zoology of which we will not go into). But it turns out that all of them have (at least) a vector space structure. This leads to every\footnote{We only consider finite dimentionnal spaces, so no need to bring equivalence classes or choice axiom in the discussion} single object being expressible in a basis.
+    
+    The physicists take great use of this fact and basically only work with the coordinates in a given basis, almost (though not completely I am sure) forgeting the basis itself. This leads physicist to call $x^\mu$ a vector and $g_{\mu\nu}$ an order 2 tensor. This is very practicle to them, as it makes explicit computations much more easy.
+
+    The mathematicians, on the other hand, tend to have little care about the basis of their spaces, but a lot more about the type of objects they are manipulating. Thus, whenever they use a basis (say $(\partial_\mu)_{\mu \in [\![0,n]\!]}$ or $(\d x^\mu \otimes \d x^\nu)_{(\mu,\nu) \in [\![0,n]\!]^2}$) they really don't lose sight of the difference between coordinates and vectors. Thus, resuing the previous examples, they would call $x^\mu$ an $n$-tupple of scalars, $g_{\mu\nu}$ an $n^2$ one, $x^\mu \partial_\mu$ a vector and $g_\mu\nu \d x^\mu \otimes \d x^\nu$ an order 2 tensor.
+
+    Now, so far, this can seem as a very pointless difference, not worth so many paragraphs, and to be fair, it almost always it. But it turns out, as our reader will soon see, that we are going to do a lot of explicit computations (thus, will use the physicist's approch) but not in a true vector manifold basis (which will require the mathematician's notation). And although they both look very similar, we will be constantly playing arround with the connection, wich treats differently objects of different type. Hence, dear reader, we encourage that you keep in mind that what is what at all time.
+    
+    For instance, if $\nabla_\mu$ denotes $\nabla_{e_\mu}$ (i.e. the covariante derivative of the vector $e_\mu$) and $x^\mu e_\mu$ is a vector (with $(e_\mu)$ a basis) then $\nabla_\mu x^\nu=\partial_\mu x^\nu$ and $\nabla_\mu e_\nu = \Gamma_{\mu\nu}^\rho e_\rho$. But if $\nabla_\mu$ denotes the coordinate of the covariant derivative, then $\nabla_\mu x^\mu = \partial_\mu x^\nu +\Gamma_{\mu\lambda}^\nu x^\lambda$ and $\nabla_\mu e_\nu$ is of course an undefined expression.
+\end{comment}
+
+\subsubsection{Curvature in null coordinates}
+We will now compute the curvature tensor, from the connection. We will straight up reuse the result from \color{red}REF \color{black} that gives us all non-zero and identical components of the curvature, thus, these are the only things that a courageous reader would have to compute to apply our work to a given metric.
+
+It must be emphasized that we are resuing notations that are very common in the field (identical in every found article using this folliation method) but we will slightly twist it arround to fit our personnal needs. Indeed, as we (unlike the article we found) do a lot of explicit computations, we chose a slightly more convoluted notation to make use of the $\pm\mapsto\mp$ symetry in all equations. If you are comparing with \color{red}REF \color{black}, apply the following redefinitions:
+\begin{align*}
+    ``+":=3, && ``-":=4, && \underset{+}{\omega}:=\omega, && \underset{+}{\chi}:=\chi, && \underset{+}{\eta}:=\eta.
+\end{align*}
+Note however that we do keep, in all this subsubsection, the mathematician's notation $\nabla_\mu:=\nabla_{e_\mu}$ as do both \color{red} REF \color{black}, in order to make it easier for the reader to compare our results with them (who do similar computations but with the extra assumption of the metric being a solution to Einstein's vaccum equations). This will mean that $\nabla_\mu e_\nu = \Gamma_{\mu\nu}^\rho e_\rho$ and $\nabla_\mu e_\nu \ne \partial_\mu e_\nu - \Gamma_{\mu\nu}^\rho e_\rho$. We apologies for potentially caused confusion.
+
+Now that those subtleties about notation have been dealt with, let us steal from \color{red}REF \color{black} the list of all non-zero Christoffel symbols.
+\begin{align*}
+    \underset{\pm}{\chi}\,_{ij} :=&\Gamma_{ij}^\pm &\Gamma_{i\pm}^j&=\underset{\mp}{\chi}\,_{ik}\cancel{g}^{jk}\\
+    \underset{\pm}{\eta}\,_i :=&\Gamma_{\pm i}^\pm &\Gamma_{\pm\mp}^i&=\underset{\pm}{\eta}\,_kg^{ik}\\
+    \underset{\pm}{\omega}:=&\Gamma_{\mp\mp}^\mp &\Gamma_{\mp\pm}^\pm&=-\underset{\pm}{\omega}\\
+    \zeta_i :=& \Gamma_{i+}^+ &\Gamma_{i\pm}^\pm&=\pm\zeta_i \\
+    \Gamma_{\pm i}^j&\\
+    \Gamma_{ij}^k&
+\end{align*}
+Where the ones on the left are the only degrees of freedom (so the only ones a courageous reader would have to compute to apply our work to a given spacetime\footnote{The minimal number of calculations to get them all is obtained by only skipping $\nabla_\pm e_\mp$ among all conceivable $\nabla_\mu e_\nu$; which is very disappointing. But if one can compute $\Gamma_{\mu\nu}^\rho$ separately, than the left column is what will be the fastest.}). \color{red} I don't know what they mean by "we obtain [the two last ones] with respect to the induced metric $\cancel{g}$"...\color{black}
+
+Let us now compute commutators $[e_\mu,e_\nu]$ as they will be relevant later on. Although this might seem like something that would need to be computed back at the level of the foliation, we can make use of the fact that (although we do not have $\Gamma{\mu\nu}^\rho=\Gamma{\nu\mu}^\rho$) our connection is indeed the levi-cevita connection. It is defined as the (signle) connection with no torsion. Since torsion is formally the following tensor:
+\begin{equation}
+\forall (X,Y) \in T\mathcal{M}^2 \quad\quad  \mathrm{Tor}_\nabla(X,Y):= \nabla_XY-\nabla_YX-[X,Y]
+\end{equation}
+We can make use of the following equation, as in our case $\mathrm{Tor}_\nabla=0$.
+\begin{equation}
+    [e_\mu,e_\nu]=\Gamma_{\mu\nu}^\rho e_\rho-\Gamma_{\nu\mu}^\rho e_\rho
+\end{equation}
+Our computations yeild:
+\begin{align*}
+    [e_\pm,e_\mp]&=\Gamma_{\pm\mp}^\mu e_\mu - \Gamma_{\mp\pm}^\mu e_\mu\\
+    &=\Gamma_{\pm\mp}^i e_i - \Gamma_{\mp\pm}^i e_i + \Gamma_{\pm\mp}^\pm e_\pm - \Gamma_{\mp\pm}^\pm e_\pm + \Gamma_{\pm\mp}^\mp e_\mp - \Gamma_{\mp\pm}^\mp e_\mp\\
+    &=\underset{\pm}{\eta}\,_jg^{ij} e_i - \underset{\mp}{\eta}\,_jg^{ij} e_i + 0 + \underset{\pm}{\omega} e_\pm - \underset{\mp}{\omega} e_\mp - 0\\
+    &=(\underset{\pm}{\eta}-\underset{\mp}{\eta})\,_jg^{ij} e_i+ \underset{\pm}{\omega} e_\pm - \underset{\mp}{\omega} e_\mp
+\end{align*}
+\begin{align*}
+    [e_\pm,e_i]&=\Gamma_{\pm i}^\mu e_\mu - \Gamma_{i\pm}^\mu e_\mu\\
+    &=\Gamma_{\pm i}^k e_k - \Gamma_{i\pm}^k e_k + \Gamma_{\pm i}^\pm e_\pm - \Gamma_{i\pm}^\pm e_\pm + \Gamma_{\pm i}^\mp e_\mp - \Gamma_{i\pm}^\mp e_\mp\\
+    &=\Gamma_{\pm i}^k e_k - \underset{\mp}{\chi}\,_{ij}g^{jk} e_k + \underset{\pm}{\eta}\,_i e_\pm \mp \zeta_i e_\pm + 0 - 0\\
+    &=(\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk}) e_k + (\underset{\pm}{\eta}\,_i \mp \zeta_i) e_\pm\\
+\end{align*}
+And of course, since the $e_i$ vectors are proper space-like coordinates, 
+$$[e_i,e_j]=0$$
+We can now attempt computing the Rieman tensor. As for the Christofels, since we are not in a proper coordinate system, we must go back to the original formula:
+\begin{equation}
+    \forall (X,Y,Z)\in T\mathcal{M}^3 \quad \quad \mathrm{Riem}_\nabla (X,Y)Z:= \nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z
+\end{equation}
+Which we can, in turn, express in our frame (using the image of it) into:
+$$
+\mathrm{Riem}_\nabla (e_\mu,e_\nu)e_\sigma =: R^\rho_{\;\sigma\mu\nu} e_\rho
+$$
+Which gives us an expression (but is not as satisfying as in the coordinate case):
+\begin{equation}
+    R^\rho_{\;\sigma\mu\nu} e_\rho = \nabla_\mu\nabla_\nu e_\rho-\nabla_\nu\nabla_\mu e_\rho-\nabla_{[e_\mu,e_\nu]}e_\rho
+\end{equation}
+We notice that the famous property $R^\rho_{\;\sigma\mu\nu}=-R^\rho_{\;\sigma\nu\mu}$ trivially holds.\\
+Other symetries of the tensor require the lowering of $\rho$, so we will simply not use them. We do not detail here the derivation of the $R^\rho_{\;\sigma\mu\nu}$ as it is long, tedious, and frankly uninteresting. But one can find the detailed steps \color{red}in the appendix\color{black}.
+\subsection{Computation of the Inequality and future use}
+\subsubsection{Computing $C$}
+Recall our current state of the computation of our inequality \color{red}reuse the same number\color{black}:
+\begin{equation}
+    \boxed{\int_\Sigma \!\!\!\d_\mathrm{vol} g^2 \!\braket{l^\mu l^\nu T^\mathrm{ren}_{\mu\nu}}_{\!\psi} \!\!\geq\!\!\! \int_\Sigma \!\!\!\d_\mathrm{vol} g^2l^\mu l^\nu C_{\!\mu\nu}\!-\!2\!\!\!\int_D\!\!\frac{\d^n\xi}{(2\pi)^n}\!\left(\!\!(|h_\kappa|^{\!^1\!\!/_{\!4}}\!g_\kappa\!)^{\!\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\!\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{\!\!H_{(2)}}\!\!\right)^{(-\xi,\xi)}}
+\end{equation}
+We will focus on the term $C_{\mu\nu}$'s computation. We mentionned previously \color{red} when? \color{black} that :
+\begin{equation}
+    \braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu} + C_{\mu\nu}
+    \end{equation}
+Let us be more precise: in \cite{QFTCurv}, we find that the coeficient is:
+\begin{equation}
+    -Qg_{\mu\nu}+C_{\mu\nu}=\alpha^{(1)}\mathcal{H}_{\mu\nu}+\beta^{(2)}\mathcal{H}_{\mu\nu}+\gamma\mathcal{H}_{\mu\nu}
+\end{equation}
+Where:
+\begin{align}
+    ^{(1)}\mathcal{H}_{\mu\nu}:=& 2R_{;\mu;\nu}+ 2g_{\mu\nu}\square R - \frac{1}{2}g_{\mu\nu} R^2 + 2 R\cdot R_{\mu\nu}\\
+    ^{(2)}\mathcal{H}_{\mu\nu}:=& R_{;\mu;\nu} - \frac{1}{2}g_{\mu\nu}R-\square R_{\mu\nu} -\frac{1}{2} R^{\alpha\beta}R_{\alpha\beta}+2R^{\alpha\beta}R_{\alpha\beta\mu\nu}\\
+    \mathcal{H}_{\mu\nu}:=& 2R_{\mu\alpha\beta\gamma}R_\nu^{\;\alpha\beta\gamma}-4\square R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R^{\alpha\beta\gamma\delta}R_{\alpha\beta\gamma\delta} + 2 R_{;\mu;\nu} - 4 R_{\mu\alpha}R^{\alpha}_{\;\nu}+4R^{\alpha\beta}R_{\alpha\mu\beta\nu}
+\end{align}
+This yeilds:
+\begin{align*}
+    C_{\mu\nu} &= 2\alpha R_{;\mu;\nu} + \beta R_{;\mu;\nu} - \beta\square R_{\mu\nu} +4\gamma \square R_{\mu\nu} + 2\gamma R_{;\mu;\nu} + \mathcal{O}(R^2)\\
+    &= (2\alpha + \beta + 2\gamma) R_{;\mu;\nu} +(4\gamma- \beta)\square R_{\mu\nu} + \mathcal{O}(R^2)
+\end{align*}
+But as we saw in section \color{red}REF\color{black}, we need to remember that these expressions hold for coordinates in a \emph{basis}, whereas we wish to express them in our non-basis frame. To known exaclty how this will end up looking, we will simply express the tensor $C$ without any reference to the basis $e_\mu$ and then, get its coeficients in the frame $(e_i,e_+,e_-)$.
+
+Note that in this section, we will use the notation of $\nabla_\mu$ of the physicist, i.e. that of the coordinates. Thus $\nabla_\mu \ne \nabla_{e_\mu}$. This is because \color{red} REF\color{black} use this one, so whe we write $R_{;\mu;\nu}$ it means $\nabla_\mu \nabla_\nu R$ only in the physicist sence, and likewise for $\square:=\nabla_\rho \nabla^\rho$ in the physicist's way. We apologies for potentially caused confusion.
+
+Now, the here-above expression of $C_{\mu\nu}$ is in a proper basis, one where the coordinate fields commute. So, to be sure that we do not make any mistakes when changing to our non-commutative frame, we will compute the mathematical tensor:
+$$C : \Bigg\{\begin{matrix}
+    T\mathcal{M}^{\otimes2} & \to & \mathbb{R}\\
+    (x^\mu e_\mu, y^\nu e_\nu) & \mapsto & x^\mu y^\nu C_{\mu\nu}
+\end{matrix}$$
+In a form that doesn't use any coordinate representation, then we will be able to evaluate it back in our frame, without any worries of what having non-commutative coordinate fields could cause being slightly different.
+
+Then, we choose $l^\mu \partial_\mu$ to be along one of our null foliation coordinate $e_\pm$. Leading to $l^\mu \partial_\mu = x_\pm e_\pm$:
+\begin{equation}
+    \int_\Sigma \d_\mathrm{vol}g^2 l^\mu l^\nu C_{\mu\nu} = \int_\Sigma \d_\mathrm{vol}g^2 x_\pm x_\pm ' C_{\pm\pm}
+\end{equation}
+with $C_{\pm\pm}:= C(e_\pm,e_\pm)$ of course \color{red} check if this is a double integration or a single one, to be sure \color{black}. This also implies that $l^\mu \nabla_\mu$ will be $x_\pm \partial\pm$ when applied on to $\mathcal{FT}_{H_{(2)}}$.
+
+Now this computation is quite lengthy, and although the part where we get $C$ is interesting, computing $C_{\pm\pm}$ is painfully long and interesting. So we do not write it here, but we let the interested reader find it in the comutation appendix. (Moreover, as we shall see later, we do not need its expression, but rather only a lower bound for it.)
+
+
+\subsubsection{Computing $H$}
+\color{red} I have no idea how to do that. I'll get on it lastly, because, I know how to do everything else. \color{black}
+\subsubsection{Use}
+We will now impose a bound on the curvature. That is (in our frame):
+\begin{align}
+    |R_{\mu\nu}| &\leq R_\mathrm{max}&
+    |\partial_\rho R_{\mu\nu}| &\leq
+    R_\mathrm{max}'&
+    |\partial_\rho\partial_\sigma
+    R_{\mu\nu}| & \leq R_\mathrm{max}''&
+    \mathrm{ect}...
+\end{align}
+\color{red} Now, my expression on $C_{\pm\pm}$ being super ugly, I think what I need is a way to deduce a bound a connection coefficients from that very bound... Otherwise, $C$ will be to ugly to do anything interesting... And no idea what will happen to the $H$ part... 
+
+Your colleagues said we could use "Riccati comparison" which is using an equation of the form $\nabla_\pm \mathrm{tr}(\chi)^2 = f^o(R^o)$ that should be found in Aretakis... But I didn't find it (in fact, "Ctrl+F"-ing the name \emph{Riccati} doesn't  give any results in Aretakis. Likewise, there's a wikiepdia page for \emph{Riccati equation} and \emph{algebraic Riccati equation}, neither of which mention \emph{curvature}. \color{black}
+
 \section{Conclusion}
-\color{red} Explain the requirements od $D$ (small sampling domain), make equations part of sentences, $C_{\mu\nu}$, double null foliation, make, write how to use dynamics to compute $H$ (in the coordinates); also talk about lower bounding $R_\mu\nu$ \color{black}
+\color{red} Explain the requirements od $D$ (small sampling domain), make equations part of sentences, make, write how to use dynamics to compute $H$ (in the coordinates); Foliation in Appendix \color{black}
+
+Although time was too short to compute explicitly the Double Smeared Null Energy Condition, i.e. to express it purely in terms of known algebraic functions and lower bounds on the curvature and its derivatives, we have done a significant part of the work. It remains to \color{red} ??? \color{black} and then the inequality with be ready for future use.
+
+As we mentioned before such an inequality will certainly have applications in finding a singularity theorem associated to the corresponding QFT. This will contribute to the general knowledge of the effect of Quantum Field Theories on a curved spacetime following the General Relativity equations.
 \newpage
 \appendix
 \section{Physics Appendix}
@@ -575,6 +798,21 @@ Now, although equation \ref{eq82} is giving us a bound, i.e. a quantum null ineq
     In physics, we tend to literally confuse functions and distributions, so we assume the existence of a function $\delta(y-x)$ (Dirac's delta function) such that $\delta_x=[\delta(y-x)]=(f\mapsto \int_{\mathbb{M}_4}\delta(y-x)f(y)\d y:=f(x)$ and likewise for any other distribution; which makes expressions more familiar.
 
     Finlay, know that $\mathbb{M}_4$ can be replaced by any spacetime manifold, and even products of manifolds $\mathcal{M}\times\mathcal{M}'$ leading to bi-distributions; and also that $\mathbb{R}$ can also be swapped with $\mathbb{C}$. There is a lot of mathematical agility required to deal with the topology of distributions, but as physicist we can always assume things to be well defined and convergent, mostly thanks to the restrictions previously imposed on test functions.
+
+\subsection{Foliation}
+    \subsubsection{Generality on Foliation}
+    A foliation of a manifold is a splitting of the manifold into lower dimensionnal ones. Like spliting a volume into planes, or spacetime into volumes at every point in time.
+
+    All the parts that it is split into are called leaves and they must always form an equivalence relation, that is to say not intersect (hence the names leaves, like paper leaves foliating a book). There are a vast diversity of foliations, but usualy, we require that they keep structural properties similar to the ones of the original manifold. For example, for a manifold that is (everywhere) of dimention $n$ we ususaly want all leaves to be of dimension $n-1$. On smooth manifolds, that the leaves are smooth and that one can smoothly go from one to another. In dinamical systems, (when using Hamiltonian flow) that they propagate together to the same leaves (i.e. can be time-indexed). Requirements will always depends on what we need the foliation for.
+
+\subsubsection{Cauchy Surfaces and Foliation}
+    A Cauchy surface is a surface which is intersected once and only once by every single geodesic. They are essential in the axioms of Algebraic Quantum Field Theory.
+
+    An interesting theorem (which is easy to understand) is that if there exists a single Cauchy surface, by letting it propagate through the geodesic equation, we get a natural foliation of the manifold.
+
+    Thus, their existence is equivalent to having "well posed initial conditions" of a GR system, even if time is relative, and by indexing them along the cordinate of a particular geodesic we can a time evolution principle.
+    This also makes them very physical, as their existence also means that they allow any observer's time to be used to describe physics, which is something we want as although time is relative, any observer can "see"\footnote{Although, as one can see in the $\mathbb{M}_4$ case, by using the Cauchy surface $\{x^\mu : x^0= 0\}$ this surrounding would be space-like situated for an observer, so it cannot be "seen" in the "observed" sence, but only concepualized as \emph{also following the same laws of physics on their own}.} its surrounding evolve.
+    Lastly, from a purely mathematical point of view, they ensure differential equations have solutions given initial data, and that geodesics cannot be closed, so it makes the mathematics a lot more well defined.
     
 \newpage
 \section{Mathematics Appendix}
@@ -620,6 +858,1001 @@ A natural transformation is an objects linking functors together so as to make f
     Last but not least, knowing $x\mapsto \e^{ikx}$ is measurable, by defining convolutions of distributions (which we will not go over here, but is not particularly complicated) we can also extend Fourier transforms to all distributions, matching with canonical distributions of functions, thereby extending Fourier transforms to distributions (and in particular, just like for derivation, allowing to take the Fourier transform of any function).
 
     It is in this very powerful differential calculus that physics has its objects. (Although, in QFT, we also have some non-commutativity which we have, here above, ignored, to avoid having this text be too long).
+\subsection{Foliation}
+\subsubsection{Generality on Foliation}
+A foliation is an equivalence relation on a manifold. There are many types foliations based on what structural requirements one wishes to add to it. Usualy (for smoth manifolds) smothness and fixed dimension, but also a particular signature. Equivalence classes are called leaves.
+
+For instance, in $\mathbb{M}_4$ one can get a foliation with $\mathbb{M}_4/\{x^0\}$ (splitting into equal time system) thus getting a Riemanian manifolds for leaves $\mathbb{R}_3$, or $\mathbb{M}_4/\{x^3\}$ thus getting Lorenzian ones $\mathbb{M}_3$. And of course $\mathbb{M}_4/\{|x^0|+|x^1|+|x^2|+|x^3|\}$ is an example where smoothness is broken and $\mathbb{M}_4/\{|x^0|^2+|x^1|^2+|x^2|^2+|x^3|^2\}$ where smothness is kept but the leaves are niether Lorenzian nor Riemanian.
+
+\subsubsection{Cauchy surfaces and Foliation}
+A Cauchy surface is a surface intersecting once and only once with every single geodesic. Its existence implies a foliation of spacetime, indeed\footnote{This is not a proof, only a rough explanation of the idea behind this theorem.}:
+Considering all points $x_0$ on that Cauchy surface $C_0$, we can let them evolve along the geodesic equation $x(t)$ setting the affine parameter such that $x_0=x(t)=0$ since geodesics that intersect are equal, none of the $x(t)$ intersect. By continuity, for any $\tau$ the set $C_\tau := \{x_\tau := x(\tau)\}$ is canonically also a Cauchy surface. Thus $\{C_\tau\}$ are a foliation of the complete spacetime. \color{red} Maybe ref to the actual proof.\color{black}
+
+These imortant propeties are what motivate there use in physics. In particular, they allow to generalize Cauchy's intial value theorem, thus allowing to ensure the existence of solutions to most of the differential equations the physicists enconter.
+
+\newpage
+\section{Computation Appendix}
+\subsection{Computing $R^\rho_{\;\sigma\mu\nu}$ in the double null frame} 
+Recall from \color{red} REF \color{black} that:
+\begin{align*}
+    \underset{\pm}{\chi}\,_{ij} :=&\Gamma_{ij}^\pm &\Gamma_{i\pm}^j&=\underset{\mp}{\chi}\,_{ik}\cancel{g}^{jk}\\
+    \underset{\pm}{\eta}\,_i :=&\Gamma_{\pm i}^\pm &\Gamma_{\pm\mp}^i&=\underset{\pm}{\eta}\,_kg^{ik}\\
+    \underset{\pm}{\omega}:=&\Gamma_{\mp\mp}^\mp &\Gamma_{\mp\pm}^\pm&=-\underset{\pm}{\omega}\\
+    \zeta_i :=& \Gamma_{i+}^+ &\Gamma_{i\pm}^\pm&=\pm\zeta_i \\
+    \Gamma_{\pm i}^j&\\
+    \Gamma_{ij}^k&
+\end{align*}
+
+We previously computed that \color{red} perhaps get an equation number \color{black}:
+\begin{align*}
+    [e_\pm,e_\mp]
+    &=(\underset{\pm}{\eta}-\underset{\mp}{\eta})\,_jg^{ij} e_i+ \underset{\pm}{\omega} e_\pm - \underset{\mp}{\omega} e_\mp
+\end{align*}
+\begin{align*}
+    [e_\pm,e_i]&=(\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk}) e_k + (\underset{\pm}{\eta}\,_i \mp \zeta_i) e_\pm\\
+\end{align*}
+$$[e_i,e_j]=0$$
+We know 
+\begin{equation}
+    R^\rho_{\;\sigma\mu\nu} e_\rho = \nabla_\mu\nabla_\nu e_\rho-\nabla_\nu\nabla_\mu e_\rho-\nabla_{[e_\mu,e_\nu]}e_\rho
+\end{equation}
+We notice that the famous property $R^\rho_{\;\sigma\mu\nu}=-R^\rho_{\;\sigma\nu\mu}$ trivially holds.\\
+Other symetries of the tensor require the lowering of $\rho$, so we will simply not use them.\\
+Let us begin.
+
+\begin{align*}
+    R^\mu_{\;\pm\pm\mp} e_\mu &= \nabla_\pm\nabla_\mp e_\pm-\nabla_\mp\nabla_\pm e_\pm-\nabla_{[e_\pm,e_\mp]}e_\pm\\
+    &=\nabla_\pm \left(\Gamma_{\mp\pm}^\mu e_\mu \right) - \nabla_\mp \left(\Gamma_{\pm\mp}^\mu e_\mu \right)  - \nabla_{(\underset{\pm}{\eta}-\underset{\mp}{\eta})\,_jg^{ij} e_i+ \underset{\pm}{\omega} e_\pm - \underset{\mp}{\omega} e_\mp}e_\pm\\
+    &=\nabla_\pm \left(\Gamma_{\mp\pm}^i e_i \right)
+    + \nabla_\pm \left(\Gamma_{\mp\pm}^\pm e_\pm \right)
+    + \nabla_\pm \left(\Gamma_{\mp\pm}^\mp e_\mp \right)\\
+    &\quad - \nabla_\mp \left(\Gamma_{\pm\mp}^i e_i \right)
+    - \nabla_\mp \left(\Gamma_{\pm\mp}^\pm e_\pm \right)
+    - \nabla_\mp \left(\Gamma_{\pm\mp}^\mp e_\mp \right)\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\nabla_ie_\pm
+    - \underset{\pm}{\omega} \nabla_\pm e_\pm
+    + \underset{\mp}{\omega} \nabla_\mp e_\pm\\
+    &=g^{ij}\nabla_\pm (\underset{\mp}{\eta}\,_j e_i )
+    - \nabla_\pm (\underset{\pm}{\omega} e_\pm ) + 0\\
+    &\quad - g^{ij} \nabla_\mp (\underset{\pm}{\eta}\,_j e_i) - 0
+    + \nabla_\mp (\underset{\mp}{\omega} e_\mp )\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\Gamma_{i\pm}^\mu e_\mu
+    - \underset{\pm}{\omega} \Gamma_{\pm\pm}^\mu e_\mu
+    + \underset{\mp}{\omega} \Gamma_{\mp\pm}^\mu e_\mu\\
+    &=g^{ij}\partial_\pm \underset{\mp}{\eta}\,_j e_i
+    - \partial_\pm \underset{\pm}{\omega} e_\pm  - g^{ij} \partial_\mp \underset{\pm}{\eta}\,_j e_i
+    + \partial_\mp \underset{\mp}{\omega} e_\mp \\
+    &\quad + \underset{\mp}{\eta}\,_jg^{ij}\nabla_\pm e_i
+    - \underset{\pm}{\omega} \nabla_\pm e_\pm - \underset{\pm}{\eta}\,_jg^{ij} \nabla_\mp e_i
+    + \underset{\mp}{\omega} \nabla_\mp e_\mp\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\Gamma_{i\pm}^k e_k
+    - \underset{\pm}{\omega} \Gamma_{\pm\pm}^i e_i
+    + \underset{\mp}{\omega} \Gamma_{\mp\pm}^i e_i\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\Gamma_{i\pm}^\pm e_\pm
+    - \underset{\pm}{\omega} \Gamma_{\pm\pm}^\pm e_\pm
+    + \underset{\mp}{\omega} \Gamma_{\mp\pm}^\pm e_\pm\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\Gamma_{i\pm}^\mp e_\mp
+    - \underset{\pm}{\omega} \Gamma_{\pm\pm}^\mp e_\mp
+    + \underset{\mp}{\omega} \Gamma_{\mp\pm}^\mp e_\mp\\
+    &=\Big(g^{ij}\partial_\pm \underset{\mp}{\eta}\,_j - g^{ij} \partial_\mp \underset{\pm}{\eta}\,_j\Big)e_i
+    - \partial_\pm \underset{\pm}{\omega} e_\pm 
+    + \partial_\mp \underset{\mp}{\omega} e_\mp \\
+    &\quad + \underset{\mp}{\eta}\,_jg^{ij}\Gamma_{\pm i}^\mu e_\mu
+    - \underset{\pm}{\omega} \Gamma_{\pm\pm}^\mu e_\mu - \underset{\pm}{\eta}\,_jg^{ij} \Gamma_{\mp i}^\mu e_\mu
+    + \underset{\mp}{\omega} \Gamma_{\mp\mp}^\mu e_\mu\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij} \underset{\mp}{\chi}\,_{il}g^{kl} e_k - 0
+    + \underset{\mp}{\omega} \underset{\mp}{\eta}\,_jg^{ij} e_i\\
+    &\quad \pm (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\zeta_i e_\pm
+    - \underset{\pm}{\omega}\underset{\mp}{\omega}  e_\pm
+    - \underset{\mp}{\omega}\underset{\pm}{\omega} e_\pm + 0 - 0 - \underset{\mp}{\omega} \underset{\pm}{\omega} e_\mp\\
+    &=\Big(g^{ij}\partial_\pm \underset{\mp}{\eta}\,_j - g^{ij} \partial_\mp \underset{\pm}{\eta}\,_j + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk} \underset{\mp}{\chi}\,_{kl}g^{il} + \underset{\mp}{\omega} \underset{\mp}{\eta}\,_jg^{ij} \Big)e_i\\
+    &\quad + \Big(\pm (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\zeta_i - \underset{\pm}{\omega}\underset{\mp}{\omega} - \underset{\mp}{\omega}\underset{\pm}{\omega} - \partial_\pm \underset{\pm}{\omega} \Big)e_\pm 
+    + \Big(\partial_\mp \underset{\mp}{\omega} - \underset{\mp}{\omega} \underset{\pm}{\omega} \Big)e_\mp \\
+    &\quad + \underset{\mp}{\eta}\,_jg^{jk}\Gamma_{\pm k}^i e_i
+    - \underset{\pm}{\omega} \Gamma_{\pm\pm}^i e_i - \underset{\pm}{\eta}\,_jg^{jk} \Gamma_{\mp k}^i e_i
+    + \underset{\mp}{\omega} \Gamma_{\mp\mp}^i e_i\\
+    &\quad + \underset{\mp}{\eta}\,_jg^{ij}\Gamma_{\pm i}^\pm e_\pm
+    - \underset{\pm}{\omega} \Gamma_{\pm\pm}^\pm e_\pm - \underset{\pm}{\eta}\,_jg^{ij} \Gamma_{\mp i}^\pm e_\pm
+    + \underset{\mp}{\omega} \Gamma_{\mp\mp}^\pm e_\pm\\
+    &\quad + \underset{\mp}{\eta}\,_jg^{ij}\Gamma_{\pm i}^\mp e_\mp
+    - \underset{\pm}{\omega} \Gamma_{\pm\pm}^\mp e_\mp - \underset{\pm}{\eta}\,_jg^{ij} \Gamma_{\mp i}^\mp e_\mp
+    + \underset{\mp}{\omega} \Gamma_{\mp\mp}^\mp e_\mp\\
+    &=\Big(g^{ij}\partial_\pm \underset{\mp}{\eta}\,_j - g^{ij} \partial_\mp \underset{\pm}{\eta}\,_j + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk} \underset{\mp}{\chi}\,_{kl}g^{il} + \underset{\mp}{\omega} \underset{\mp}{\eta}\,_jg^{ij} \Big)e_i\\
+    &\quad + \Big(\pm (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\zeta_i - 2\underset{\pm}{\omega}\underset{\mp}{\omega}  - \partial_\pm \underset{\pm}{\omega} \Big)e_\pm 
+    + \Big(\partial_\mp \underset{\mp}{\omega} - \underset{\mp}{\omega} \underset{\pm}{\omega} \Big)e_\mp \\
+    &\quad + \underset{\mp}{\eta}\,_jg^{jk}\Gamma_{\pm k}^i e_i
+    - 0 - \underset{\pm}{\eta}\,_jg^{jk} \Gamma_{\mp k}^i e_i
+    + 0\\
+    &\quad + \underset{\mp}{\eta}\,_jg^{ij}\underset{\pm}{\eta}\,_i e_\pm
+    - \underset{\pm}{\omega} \underset{\mp}{\omega} e_\pm - 0
+    + 0 + 0 - 0 - \underset{\pm}{\eta}\,_jg^{ij} \underset{\mp}{\eta}\,_i e_\mp
+    + \underset{\mp}{\omega} \underset{\pm}{\omega} e_\mp\\
+    &=\Big(g^{ij}\partial_\pm \underset{\mp}{\eta}\,_j - g^{ij} \partial_\mp \underset{\pm}{\eta}\,_j + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk} \underset{\mp}{\chi}\,_{kl}g^{il} + \underset{\mp}{\omega} \underset{\mp}{\eta}\,_jg^{ij} + \underset{\mp}{\eta}\,_jg^{jk}\Gamma_{\pm k}^i - \underset{\pm}{\eta}\,_jg^{jk} \Gamma_{\mp k}^i \Big)e_i\\
+    &\quad + \Big(\underset{\mp}{\eta}\,_jg^{ij}\underset{\pm}{\eta}\,_i \pm (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\zeta_i - 3\underset{\pm}{\omega}\underset{\mp}{\omega}  - \partial_\pm \underset{\pm}{\omega}\Big)e_\pm 
+    + \Big(\partial_\mp \underset{\mp}{\omega} - \underset{\pm}{\eta}\,_jg^{ij} \underset{\mp}{\eta}\,_i \Big)e_\mp
+\end{align*}
+Thus, we have successfully computed the following tensor elements:
+\begin{equation}
+    \boxed{R^i_{\;\pm\pm\mp}  = g^{ij}\partial_\pm \underset{\mp}{\eta}\,_j - g^{ij} \partial_\mp \underset{\pm}{\eta}\,_j + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk} \underset{\mp}{\chi}\,_{kl}g^{il} + \underset{\mp}{\omega} \underset{\mp}{\eta}\,_jg^{ij} + \underset{\mp}{\eta}\,_jg^{jk}\Gamma_{\pm k}^i - \underset{\pm}{\eta}\,_jg^{jk} \Gamma_{\mp k}^i}
+\end{equation}
+\begin{equation}
+    \boxed{R^\pm_{\;\pm\pm\mp}  = \underset{\mp}{\eta}\,_jg^{ij}\underset{\pm}{\eta}\,_i \pm (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{ij}\zeta_i - 3\underset{\pm}{\omega}\underset{\mp}{\omega}  - \partial_\pm \underset{\pm}{\omega}}
+\end{equation}
+\begin{equation}
+    \boxed{R^\mp_{\;\pm\pm\mp}  = \partial_\mp \underset{\mp}{\omega} - \underset{\pm}{\eta}\,_jg^{ij} \underset{\mp}{\eta}\,_i }
+\end{equation}
+Then,
+\begin{align*}
+    R^\mu_{\;i\pm\mp}e_\mu &= \nabla_\pm\nabla_\mp e_i -\nabla_\mp\nabla_\pm e_i-\nabla_{[e_\pm,e_\mp]}e_i\\
+    &=\nabla_\pm(\Gamma_{\mp i}^je_j)+\underset{=0}{\cancel{\nabla_\pm(\Gamma_{\mp i}^\pm e_\pm)}}+\nabla_\pm(\Gamma_{\mp i}^\mp e_\mp) -\nabla_\mp(\Gamma_{\pm i}^je_j)-\nabla_\mp(\Gamma_{\pm i}^\pm e_\pm) - \underset{=0}{\cancel{\nabla_\mp(\Gamma_{\pm i}^\mp e_\mp)}} \\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk}\nabla_ke_i
+    - \underset{\pm}{\omega} \nabla_\pm e_i
+    + \underset{\mp}{\omega} \nabla_\mp e_i\\
+    &=\partial_\pm\Gamma_{\mp i}^je_j +\partial_\pm\underset{\mp}{\eta}\,_ie_\mp -\partial_\mp\Gamma_{\pm i}^je_j-\partial_\mp\underset{\pm}{\eta}\,_ie_\pm\\
+    &\quad + \Gamma_{\mp i}^j\Gamma_{\pm j}^\mu e_\mu +\underset{\mp}{\eta}\,_i\Gamma_{\pm \mp}^\mu e_\mu -\Gamma_{\pm i}^j\Gamma_{\mp j}^\mu e_\mu-\underset{\pm}{\eta}\,_i\Gamma_{\mp \pm}^\mu e_\mu\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk}\Gamma_{ki}^\mu e_\mu
+    - \underset{\pm}{\omega} \Gamma_{\pm i}^\mu e_\mu
+    + \underset{\mp}{\omega} \Gamma_{\mp i}^\mu e_\mu\\
+    &=\partial_\pm\Gamma_{\mp i}^je_j +\partial_\pm\underset{\mp}{\eta}\,_ie_\mp -\partial_\mp\Gamma_{\pm i}^je_j-\partial_\mp\underset{\pm}{\eta}\,_ie_\pm\\
+    &\quad + \Gamma_{\mp i}^k\Gamma_{\pm k}^j e_j +\underset{\mp}{\eta}\,_i\underset{\pm}{\eta}\,_kg^{jk} e_j -\Gamma_{\pm i}^k\Gamma_{\mp k}^j e_j-\underset{\pm}{\eta}\,_i\underset{\mp}{\eta}\,_kg^{jk} e_j\\
+    &\quad + \Gamma_{\mp i}^j\underset{\pm}{\eta}\,_j e_\pm +\underset{\mp}{\eta}\,_i\underset{=0}{\cancel{\Gamma_{\pm \mp}^\pm}} e_\pm -\Gamma_{\pm i}^j\underset{=0}{\cancel{\Gamma_{\mp j}^\pm}} e_\pm+\underset{\pm}{\eta}\,_i\underset{\pm}{\omega} e_\pm\\
+    &\quad + \Gamma_{\mp i}^j\underset{=0}{\cancel{\Gamma_{\pm j}^\mp}} e_\mp -\underset{\mp}{\eta}\,_i\underset{\mp}{\omega} e_\mp -\Gamma_{\pm i}^j\underset{\mp}{\eta}\,_j e_\mp-\underset{\pm}{\eta}\,_i\underset{=0}{\cancel{\Gamma_{\mp \pm}^\mp}} e_\mp\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_kg^{kl}\Gamma_{li}^j e_j
+    - \underset{\pm}{\omega} \Gamma_{\pm i}^j e_j
+    + \underset{\mp}{\omega} \Gamma_{\mp i}^j e_j\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk}\underset{\pm}{\chi}\,_{ki} e_\pm
+    - \underset{\pm}{\omega} \underset{\pm}{\eta}\,_i e_\pm
+    + \underset{\mp}{\omega} \underset{=0}{\cancel{\Gamma_{\mp i}^\pm}} e_\pm\\
+    &\quad + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk}\underset{\mp}{\chi}\,_{ki} e_\mp
+    - \underset{\pm}{\omega} \underset{=0}{\cancel{\Gamma_{\pm i}^\mp}} e_\mp
+    + \underset{\mp}{\omega} \underset{\mp}{\eta}\,_i e_\mp\\
+    &=\Big(\partial_\pm\Gamma_{\mp i}^j -\partial_\mp\Gamma_{\pm i}^j + \Gamma_{\mp i}^k\Gamma_{\pm k}^j +\underset{\mp}{\eta}\,_i\underset{\pm}{\eta}\,_kg^{jk} -\Gamma_{\pm i}^k\Gamma_{\mp k}^j -\underset{\pm}{\eta}\,_i\underset{\mp}{\eta}\,_kg^{jk} + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_kg^{kl}\Gamma_{li}^j
+    - \underset{\pm}{\omega} \Gamma_{\pm i}^j
+    + \underset{\mp}{\omega} \Gamma_{\mp i}^j \Big)e_j\\
+    &\quad +\Big(-\partial_\mp\underset{\pm}{\eta}\,_i + \Gamma_{\mp i}^j\underset{\pm}{\eta}\,_j +\underset{\pm}{\eta}\,_i\underset{\pm}{\omega} + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk}\underset{\pm}{\chi}\,_{ki}
+    - \underset{\pm}{\omega} \underset{\pm}{\eta}\,_i \Big)e_\pm\\
+    &\quad +\Big(\partial_\pm\underset{\mp}{\eta}\,_i -\underset{\mp}{\eta}\,_i\underset{\mp}{\omega} -\Gamma_{\pm i}^j\underset{\mp}{\eta}\,_j + (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk}\underset{\mp}{\chi}\,_{ki} + \underset{\mp}{\omega} \underset{\mp}{\eta}\,_i \Big)e_\mp
+\end{align*}
+Gives us:
+\begin{equation}
+    \boxed{R^j_{\;i\pm\mp}\!\!=\!
+    (\underset{\mp}{\eta}\!-\!\underset{\pm}{\eta})_kg^{kl}\Gamma_{li}^j
+    +\!\partial_\pm\Gamma_{\mp i}^j
+    \!-\!\partial_\mp\Gamma_{\pm i}^j
+    +\!\Gamma_{\mp i}^k\Gamma_{\pm k}^j
+    \!-\!\Gamma_{\pm i}^k\Gamma_{\mp k}^j
+    +\!\underset{\mp}{\eta}\,_i\underset{\pm}{\eta}\,_kg^{jk}
+    \!-\!\underset{\pm}{\eta}\,_i\underset{\mp}{\eta}\,_kg^{jk}
+    +\!\underset{\mp}{\omega} \Gamma_{\mp i}^j
+    \!-\!\underset{\pm}{\omega} \Gamma_{\pm i}^j }
+\end{equation}
+\begin{equation}
+    \boxed{R^\pm_{\;i\pm\mp} =
+    (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk}\underset{\pm}{\chi}\,_{ki}
+    +\underset{\pm}{\omega}\underset{\pm}{\eta}\,_i 
+    - \underset{\pm}{\omega} \underset{\pm}{\eta}\,_i
+    -\partial_\mp\underset{\pm}{\eta}\,_i
+    + \Gamma_{\mp i}^j\underset{\pm}{\eta}\,_j}
+\end{equation}
+\begin{equation}
+    \boxed{R^\mp_{\;i\pm\mp} =
+    (\underset{\mp}{\eta}-\underset{\pm}{\eta})\,_jg^{jk}\underset{\mp}{\chi}\,_{ki}
+    +  \underset{\mp}{\omega} \underset{\mp}{\eta}\,_i
+    -\underset{\mp}{\omega}\underset{\mp}{\eta}\,_i
+    +\partial_\pm\underset{\mp}{\eta}\,_i  -\Gamma_{\pm i}^j\underset{\mp}{\eta}\,_j}
+\end{equation}
+Next;
+\begin{align*}
+    R^\mu_{\;\pm ij} e_\mu &= \nabla_i \nabla_j e_\pm - \nabla_j \nabla_i e_\pm - \nabla_{[e_i,e_j]} e_\pm\\
+    &= \nabla_i (\Gamma_{j\pm}^k e_k) + \nabla_i (\Gamma_{j\pm}^\pm e_\pm) + \nabla_i (\Gamma_{j\pm}^\mp e_\mp) - \nabla_j(\Gamma_{i\pm}^k e_k) - \nabla_j(\Gamma_{i\pm}^\pm e_\pm) - \nabla_j(\Gamma_{i\pm}^\mp e_\mp) - \nabla_0 e_\pm\\
+    &= \nabla_i (\underset{\mp}{\chi}\,_{jl}g^{lk} e_k) \pm \nabla_i (\zeta_j e_\pm) + 0 - \nabla_j(\underset{\mp}{\chi}\,_{il}g^{lk} e_k) \mp \nabla_j(\zeta_i e_\pm) - 0 - 0\\
+    &= \Big(\partial_i (\underset{\mp}{\chi}\,_{jl}g^{lk}) - \partial_j(\underset{\mp}{\chi}\,_{il}g^{lk}) \Big)e_k \pm (\partial_i \zeta_j - \partial_j\zeta_i )e_\pm
+    + \underset{\mp}{\chi}\,_{jl} g^{lk} \nabla_i e_k
+    - \underset{\mp}{\chi}\,_{il} g^{lk} \nabla_j e_k
+    \pm \zeta_j\nabla_i e_\pm
+    \mp \zeta_i\nabla_j e_\pm\\
+    &= \Big(\partial_i (\underset{\mp}{\chi}\,_{jl}g^{lk}) - \partial_j(\underset{\mp}{\chi}\,_{il}g^{lk}) \Big)e_k \pm (\partial_i \zeta_j - \partial_j\zeta_i )e_\pm\\
+    &\quad + \underset{\mp}{\chi}\,_{jl}g^{lm} \Gamma_{im}^k e_k - \underset{\mp}{\chi}\,_{il}g^{lm}\Gamma_{jm}^k e_k + \underset{\mp}{\chi}\,_{jl}g^{lk} \Gamma_{ik}^\pm e_\pm - \underset{\mp}{\chi}\,_{il}g^{lk}\Gamma_{jk}^\pm e_\pm + \underset{\mp}{\chi}\,_{jl}g^{lk} \Gamma_{ik}^\mp e_\mp - \underset{\mp}{\chi}\,_{il}g^{lk}\Gamma_{jk}^\mp e_\mp\\
+    &\quad \pm \zeta_j\Gamma_{i\pm}^k e_k
+    \mp \zeta_i\Gamma_{j\pm}^k e_k \pm \zeta_j\Gamma_{i\pm}^\pm e_\pm \mp \zeta_i\Gamma_{j\pm}^\pm e_\pm \pm \zeta_j\Gamma_{i\pm}^\mp e_\mp \mp \zeta_i\Gamma_{j\pm}^\mp e_\mp\\
+    &= \Big(\partial_i (\underset{\mp}{\chi}\,_{jl}g^{lk}) - \partial_j(\underset{\mp}{\chi}\,_{il}g^{lk}) \Big)e_k \pm (\partial_i \zeta_j - \partial_j\zeta_i )e_\pm\\
+    &\quad + \underset{\mp}{\chi}\,_{jl}g^{lm} \Gamma_{im}^k e_k - \underset{\mp}{\chi}\,_{il}g^{lm}\Gamma_{jm}^k e_k + \underset{\mp}{\chi}\,_{jl}g^{lk} \underset{\pm}{\chi}\,_{ik} e_\pm - \underset{\mp}{\chi}\,_{il}g^{lk}\underset{\pm}{\chi}\,_{jk} e_\pm + \underset{\mp}{\chi}\,_{jl}g^{lk} \underset{\mp}{\chi}\,_{ik} e_\mp - \underset{\mp}{\chi}\,_{il}g^{lk}\underset{\mp}{\chi}\,_{jk} e_\mp\\
+    &\quad \pm \zeta_j\underset{\mp}{\chi}\,_{il}g^{kl} e_k
+    \mp \zeta_i\underset{\mp}{\chi}\,_{jl}g^{kl} e_k + \zeta_j\zeta_i e_\pm - \zeta_i\zeta_j e_\pm + 0 - 0\\
+    &= \Big(\partial_i (\underset{\mp}{\chi}\,_{jl}g^{lk}) - \partial_j(\underset{\mp}{\chi}\,_{il}g^{lk}) + \underset{\mp}{\chi}\,_{jl}g^{lm} \Gamma_{im}^k - \underset{\mp}{\chi}\,_{il}g^{lm}\Gamma_{jm}^k \pm \zeta_j\underset{\mp}{\chi}\,_{il}g^{kl} \mp \zeta_i\underset{\mp}{\chi}\,_{jl}g^{kl} \Big)e_k \\
+    &\quad  + \Big(\underset{\mp}{\chi}\,_{jl}g^{lk} \underset{\pm}{\chi}\,_{ik} - \underset{\mp}{\chi}\,_{il}g^{lk}\underset{\pm}{\chi}\,_{jk} \pm \partial_i \zeta_j \mp \partial_j\zeta_i \Big)e_\pm + \Big(\underset{\mp}{\chi}\,_{jl}g^{lk} \underset{\mp}{\chi}\,_{ik} - \underset{\mp}{\chi}\,_{il}g^{lk}\underset{\mp}{\chi}\,_{jk} \Big)e_\mp
+\end{align*}
+Thus,
+\begin{equation}
+    \boxed{R^k_{\;\pm ij} =\partial_i (\underset{\mp}{\chi}\,_{jl}g^{lk}) - \partial_j(\underset{\mp}{\chi}\,_{il}g^{lk}) + \underset{\mp}{\chi}\,_{jl}g^{lm} \Gamma_{im}^k - \underset{\mp}{\chi}\,_{il}g^{lm}\Gamma_{jm}^k \pm \zeta_j\underset{\mp}{\chi}\,_{il}g^{kl} \mp \zeta_i\underset{\mp}{\chi}\,_{jl}g^{kl}}
+\end{equation}
+\begin{equation}
+    \boxed{R^\pm_{\;\pm ij}=\underset{\mp}{\chi}\,_{jl}g^{lk} \underset{\pm}{\chi}\,_{ik} - \underset{\mp}{\chi}\,_{il}g^{lk}\underset{\pm}{\chi}\,_{jk} \pm \partial_i \zeta_j \mp \partial_j\zeta_i}
+\end{equation}
+\begin{equation}
+    \boxed{R^\mp_{\;\pm ij}=\underset{\mp}{\chi}\,_{jl}g^{lk} \underset{\mp}{\chi}\,_{ik} - \underset{\mp}{\chi}\,_{il}g^{lk}\underset{\mp}{\chi}\,_{jk}}
+\end{equation}
+\begin{align*}
+    R^\mu_{\;kij}e_\mu &= \nabla_i(\Gamma_{jk}^l e_l) - \nabla_j(\Gamma_{ik}^l e_l) + \nabla_i(\underset{\pm}{\chi}\,_{jk} e_\pm) - \nabla_j(\underset{\pm}{\chi}\,_{ik} e_\pm) + \nabla_i(\underset{\mp}{\chi}\,_{jk} e_\mp) -\nabla_j(\underset{\mp}{\chi}\,_{ik} e_\mp) - \nabla_{[e_i,e_j]}e_k\\
+    &= \partial_i\Gamma_{jk}^l e_l - \partial_j\Gamma_{ik}^l e_l + \partial_i\underset{\pm}{\chi}\,_{jk} e_\pm - \partial_j\underset{\pm}{\chi}\,_{ik} e_\pm + \partial_i\underset{\mp}{\chi}\,_{jk} e_\mp -\partial_j\underset{\mp}{\chi}\,_{ik} e_\mp\\
+    &\quad + \Gamma_{jk}^l\nabla_ie_l - \Gamma_{ik}^l\nabla_je_l + \underset{\pm}{\chi}\,_{jk}\nabla_ie_\pm - \underset{\pm}{\chi}\,_{ik}\nabla_je_\pm + \underset{\mp}{\chi}\,_{jk}\nabla_ie_\mp - \underset{\mp}{\chi}\,_{ik}\nabla_je_\mp - 0\\
+    &= \Big(\partial_i\Gamma_{jk}^l - \partial_j\Gamma_{ik}^l \Big) e_l + \Big( \partial_i\underset{\pm}{\chi}\,_{jk} - \partial_j\underset{\pm}{\chi}\,_{ik} \Big) e_\pm + \Big( \partial_i\underset{\mp}{\chi}\,_{jk} -\partial_j\underset{\mp}{\chi}\,_{ik} \Big) e_\mp\\
+    &\quad + \Gamma_{jk}^m\Gamma_{im}^l e_l - \Gamma_{ik}^m\Gamma_{jm}^l e_l + \underset{\pm}{\chi}\,_{jk}\Gamma_{i\pm}^l e_l - \underset{\pm}{\chi}\,_{ik}\Gamma_{j\pm}^l e_l + \underset{\mp}{\chi}\,_{jk}\Gamma_{i\mp}^l e_l - \underset{\mp}{\chi}\,_{ik}\Gamma_{j\mp}^l e_l\\
+    &\quad + \Gamma_{jk}^l\Gamma_{il}^\pm e_\pm - \Gamma_{ik}^l\Gamma_{jl}^\pm e_\pm + \underset{\pm}{\chi}\,_{jk}\Gamma_{i\pm}^\pm e_\pm - \underset{\pm}{\chi}\,_{ik}\Gamma_{j\pm}^\pm e_\pm + \underset{\mp}{\chi}\,_{jk}\underset{=0}{\Gamma_{i\mp}^\pm} e_\pm - \underset{\mp}{\chi}\,_{ik}\underset{=0}{\cancel{\Gamma_{j\mp}}}^\pm e_\pm\\
+    &\quad + \Gamma_{jk}^l\Gamma_{il}^\mp e_\mp - \Gamma_{ik}^l\Gamma_{jl}^\mp e_\mp + \underset{\pm}{\chi}\,_{jk}\underset{=0}{\cancel{\Gamma_{i\pm}^\mp}} e_\mp - \underset{\pm}{\chi}\,_{ik}\underset{=0}{\cancel{\Gamma_{j\pm}^\mp}} e_\mp + \underset{\mp}{\chi}\,_{jk}\Gamma_{i\mp}^\mp e_\mp - \underset{\mp}{\chi}\,_{ik}\Gamma_{j\mp}^\mp e_\mp\\
+    &= \Big(\partial_i\Gamma_{jk}^l - \partial_j\Gamma_{ik}^l \Big) e_l + \Big( \partial_i\underset{\pm}{\chi}\,_{jk} - \partial_j\underset{\pm}{\chi}\,_{ik} \Big) e_\pm + \Big( \partial_i\underset{\mp}{\chi}\,_{jk} -\partial_j\underset{\mp}{\chi}\,_{ik} \Big) e_\mp\\
+    &\quad + \Gamma_{jk}^m\Gamma_{im}^l e_l - \Gamma_{ik}^m\Gamma_{jm}^l e_l + \underset{\pm}{\chi}\,_{jk}\underset{\mp}{\chi}\,_{im}g^{lm} e_l - \underset{\pm}{\chi}\,_{ik}\underset{\mp}{\chi}\,_{jm}g^{lm} e_l + \underset{\mp}{\chi}\,_{jk}\underset{\pm}{\chi}\,_{im}g^{lm} e_l - \underset{\mp}{\chi}\,_{ik}\underset{\pm}{\chi}\,_{jm}g^{lm} e_l\\
+    &\quad + \Gamma_{jk}^l\underset{\pm}{\chi}\,_{il} e_\pm - \Gamma_{ik}^l\underset{\pm}{\chi}\,_{jl} e_\pm \pm \underset{\pm}{\chi}\,_{jk}\zeta_i e_\pm \mp \underset{\pm}{\chi}\,_{ik}\zeta_j e_\pm + \Gamma_{jk}^l\underset{\mp}{\chi}\,_{il} e_\mp - \Gamma_{ik}^l\underset{\mp}{\chi}\,_{jl} e_\mp \mp \underset{\mp}{\chi}\,_{jk}\zeta_i e_\mp \pm \underset{\mp}{\chi}\,_{ik}\zeta_j e_\mp\\
+    &= \Big(\partial_i\Gamma_{jk}^l - \partial_j\Gamma_{ik}^l + \Gamma_{jk}^m\Gamma_{im}^l - \Gamma_{ik}^m\Gamma_{jm}^l + \underset{\pm}{\chi}\,_{jk}\underset{\mp}{\chi}\,_{im}g^{lm} - \underset{\pm}{\chi}\,_{ik}\underset{\mp}{\chi}\,_{jm}g^{lm} + \underset{\mp}{\chi}\,_{jk}\underset{\pm}{\chi}\,_{im}g^{lm} - \underset{\mp}{\chi}\,_{ik}\underset{\pm}{\chi}\,_{jm}g^{lm} \Big) e_l\\
+    &+\!\!\Big(\!\partial_i\underset{\pm}{\chi}\,_{jk}\!-\!\partial_j\underset{\pm}{\chi}\,_{ik}\!+\!\Gamma_{jk}^l\underset{\pm}{\chi}\,_{il}\!-\!\!\Gamma_{ik}^l\underset{\pm}{\chi}\,_{jl}\!\pm\!\underset{\pm}{\chi}\,_{jk}\zeta_i\!\mp\!\underset{\pm}{\chi}\,_{ik}\zeta_j\!\Big)e_\pm\!\!+\!\!\Big(\!\!\partial_i\underset{\mp}{\chi}\,_{jk}\!\!-\!\partial_j\underset{\mp}{\chi}\,_{ik}\!\!+\!\Gamma_{jk}^l\underset{\mp}{\chi}\,_{il}\!-\!\Gamma_{ik}^l\underset{\mp}{\chi}\,_{jl}\!\mp\!\underset{\mp}{\chi}\,_{jk}\zeta_i\!\pm\!\underset{\mp}{\chi}\,_{ik}\zeta_j\!\Big) e_\mp
+\end{align*}
+\begin{equation}
+    \boxed{R^l_{\;kij}=\partial_i\Gamma_{jk}^l \!-\! \partial_j\Gamma_{ik}^l \!+\! \Gamma_{jk}^m\Gamma_{im}^l \!-\! \Gamma_{ik}^m\Gamma_{jm}^l \!+\! \underset{\pm}{\chi}\,_{jk}\underset{\mp}{\chi}\,_{im}g^{lm} \!-\! \underset{\pm}{\chi}\,_{ik}\underset{\mp}{\chi}\,_{jm}g^{lm} \!+\! \underset{\mp}{\chi}\,_{jk}\underset{\pm}{\chi}\,_{im}g^{lm} \!-\! \underset{\mp}{\chi}\,_{ik}\underset{\pm}{\chi}\,_{jm}g^{lm}}
+\end{equation}
+\begin{equation}
+    \boxed{R^\pm_{\;kij}=\partial_i\underset{\pm}{\chi}\,_{jk}-\partial_j\underset{\pm}{\chi}\,_{ik}+\Gamma_{jk}^l\underset{\pm}{\chi}\,_{il}-\Gamma_{ik}^l\underset{\pm}{\chi}\,_{jl}\pm\underset{\pm}{\chi}\,_{jk}\zeta_i\mp\underset{\pm}{\chi}\,_{ik}\zeta_j}
+\end{equation}
+\begin{align*}
+    R^\mu_{\;\pm i\pm} e_\mu &= \nabla_i(\Gamma_{\pm\pm}^\mu e_\mu) - \nabla_\pm( \Gamma_{i\pm}^\mu e_\mu) - \nabla_{[e_i,e_\pm]}e_\pm\\
+    &= \nabla_i(\underset{\mp}{\omega} e_\pm) - \nabla_\pm( \underset{\mp}{\chi}\,_{ik}g^{jk} e_j) \mp  \nabla_\pm( \zeta_i e_\pm) + \nabla_{[e_\pm,e_i]}e_\pm\\
+    &= \partial_i\underset{\mp}{\omega} e_\pm - \partial_\pm( \underset{\mp}{\chi}\,_{ik}g^{jk}) e_j \mp  \partial_\pm \zeta_i e_\pm\\
+    &\quad +\underset{\mp}{\omega}\Gamma_{i\pm}^\mu e_\mu - \underset{\mp}{\chi}\,_{ik}g^{jk}\Gamma_{\pm j}^\mu e_\mu \mp  \zeta_i \Gamma_{\pm\pm}^\mu e_\mu + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\Gamma_{k\pm}^\mu e_\mu+(\underset{\pm}{\eta}\,_i \mp \zeta_i)\Gamma_{\pm\pm}^\mu e_\mu\\
+    &= \partial_i\underset{\mp}{\omega} e_\pm - \partial_\pm( \underset{\mp}{\chi}\,_{ik}g^{jk}) e_j \mp  \partial_\pm \zeta_i e_\pm  +\underset{\mp}{\omega}\underset{\mp}{\chi}\,_{ik}g^{jk} e_j+\underset{\mp}{\omega}\Gamma_{i\pm}^\pm e_\pm \mp \underset{\mp}{\chi}\,_{il}g^{kl}\zeta_k e_\pm- \underset{\mp}{\chi}\,_{il}g^{kl}\Gamma_{\pm k}^j e_j \mp  \zeta_i \underset{\mp}{\omega} e_\pm \\
+    &\quad + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\underset{\mp}{\chi}\,_{kl}g^{lj} e_j \pm (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\zeta_k e_\pm+(\underset{\pm}{\eta}\,_i \mp \zeta_i)\underset{\mp}{\omega} e_\pm\\
+    &= \Big(\partial_i\underset{\mp}{\omega} \mp  \partial_\pm \zeta_i e_\pm +\underset{\mp}{\omega}\Gamma_{i\pm}^\pm \mp \underset{\mp}{\chi}\,_{il}g^{kl}\zeta_k \mp  \zeta_i \underset{\mp}{\omega} \pm (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\zeta_k +(\underset{\pm}{\eta}\,_i \mp \zeta_i)\underset{\mp}{\omega} \Big)e_\pm\\
+    &\quad +\Big(- \partial_\pm( \underset{\mp}{\chi}\,_{ik}g^{jk}) +\underset{\mp}{\omega}\underset{\mp}{\chi}\,_{ik}g^{jk}- \underset{\mp}{\chi}\,_{il}g^{kl}\Gamma_{\pm k}^j + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\underset{\mp}{\chi}\,_{kl}g^{lj} \Big)e_j
+\end{align*}
+Yielding:
+\begin{equation}
+    \boxed{R^\mu_{\;\pm i\pm} = \partial_i\underset{\mp}{\omega} \mp  \partial_\pm \zeta_i e_\pm \pm \Gamma_{\pm i}^k\zeta_k \mp 2 \underset{\mp}{\chi}\,_{ij}g^{jk}\zeta_k +(\underset{\pm}{\eta}\,_i \mp 2\zeta_i + \Gamma_{i\pm}^\pm)\underset{\mp}{\omega}}
+\end{equation}
+\begin{equation}
+    \boxed{R^j_{\;\pm i\pm} =
+    \underset{\mp}{\omega}\underset{\mp}{\chi}\,_{ik}g^{jk}- \partial_\pm( \underset{\mp}{\chi}\,_{ik}g^{jk}) + \underset{\mp}{\chi}\,_{kl}g^{lj}\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{il}g^{kl}\Gamma_{\pm k}^j - \underset{\mp}{\chi}\,_{il}\underset{\mp}{\chi}\,_{km}g^{kl}g^{mj}}
+\end{equation}
+\begin{equation}
+    \boxed{R^\mp_{\;\pm i\pm} = 0}
+\end{equation}
+\begin{align*}
+    R^\mu_{\;\mp i\pm} &= \nabla_i (\Gamma_{\pm\mp}^\mu e_\mu) - \nabla_\pm (\Gamma_{i\mp}^\mu e_\mu) - \nabla_{[e_i,e_\pm]} e_\mp\\
+    &=\nabla_i (\underset{\pm}{\eta}\,_lg^{kl} e_k)-\nabla_i (\underset{\mp}{\omega} e_\mp) - \nabla_\pm (\underset{\pm}{\chi}\,_{il}g^{kl} e_k)\pm \nabla_\pm (\zeta_i e_\mp) + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\Gamma_{k\mp}^\mu e_\mu+(\underset{\pm}{\eta}\,_i \mp \zeta_i)\Gamma_{\pm\mp}^\mu e_\mu\\
+    &=\Big(\partial_i (\underset{\pm}{\eta}\,_kg^{jk}) - \partial_\pm (\underset{\pm}{\chi}\,_{ik}g^{jk}) \Big)e_j + \Big(-\partial_i \underset{\mp}{\omega} \pm \partial_\pm \zeta_i \Big)e_\mp + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\Gamma_{k\mp}^\mu e_\mu+(\underset{\pm}{\eta}\,_i \mp \zeta_i)\Gamma_{\pm\mp}^\mu e_\mu\\
+    &\quad +\underset{\pm}{\eta}\,_lg^{kl} \Gamma_{i k}^\mu e_\mu-\underset{\mp}{\omega} \Gamma_{i \mp}^\mu e_\mu - \underset{\pm}{\chi}\,_{il}g^{kl}\Gamma_{\pm k}^\mu e_\mu \pm \zeta_i\Gamma_{\pm\mp}^\mu e_\mu\\
+    &=\Big(\partial_i (\underset{\pm}{\eta}\,_kg^{jk}) - \partial_\pm (\underset{\pm}{\chi}\,_{ik}g^{jk}) \Big)e_j + \Big(-\partial_i \underset{\mp}{\omega} \pm \partial_\pm \zeta_i \Big)e_\mp + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\Gamma_{k\mp}^j e_j+ (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\Gamma_{k\mp}^\mp e_\mp\\
+    &\quad +(\underset{\pm}{\eta}\,_i \mp \zeta_i)\Gamma_{\pm\mp}^j e_j +(\underset{\pm}{\eta}\,_i \mp \zeta_i)\Gamma_{\pm\mp}^\mp e_\mp +\underset{\pm}{\eta}\,_lg^{kl} \Gamma_{i k}^j e_j+\underset{\pm}{\eta}\,_lg^{kl} \Gamma_{i k}^\pm e_\pm+\underset{\pm}{\eta}\,_lg^{kl} \Gamma_{i k}^\mp e_\mp-\underset{\mp}{\omega} \Gamma_{i \mp}^j e_j-\underset{\mp}{\omega} \Gamma_{i \mp}^\mp e_\mp\\
+    &\quad - \underset{\pm}{\chi}\,_{il}g^{kl}\underset{\pm}{\eta}\,_k e_\pm \pm \zeta_i\underset{\pm}{\eta}\,_kg^{jk} e_j \mp \zeta_i\underset{\mp}{\omega} e_\mp\\
+    &=\Big(\partial_i (\underset{\pm}{\eta}\,_kg^{jk}) - \partial_\pm (\underset{\pm}{\chi}\,_{ik}g^{jk}) + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\underset{\pm}{\chi}\,_{kl}g^{jl} +(\underset{\pm}{\eta}\,_i \mp \cancel{\zeta_i})\underset{\pm}{\eta}\,_kg^{jk} +\underset{\pm}{\eta}\,_lg^{kl} \Gamma_{i k}^j -\underset{\mp}{\omega} \underset{\pm}{\chi}\,_{ik}g^{jk} \pm \cancel{\zeta_i\underset{\pm}{\eta}\,_kg^{jk}} \Big)e_j\\
+    &+\Big( \cancel{\underset{\pm}{\eta}\,_lg^{kl} \underset{\pm}{\chi}\,_{ik} - \underset{\pm}{\chi}\,_{il}g^{kl}\underset{\pm}{\eta}\,_k} \mp \zeta_i\underset{\mp}{\omega} \Big)e_\pm 
+    +\Big(\underset{\pm}{\eta}\,_lg^{kl} \underset{\mp}{\chi}\,_{i k}-\partial_i \underset{\mp}{\omega} \pm \partial_\pm \zeta_i \mp (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ij}g^{jk})\zeta_k-(\underset{\pm}{\eta}\,_i \mp \zeta_i)\underset{\mp}{\omega} \pm \underset{\mp}{\omega} \zeta_i \Big)e_\mp
+\end{align*}
+From which:
+\begin{equation}
+    \boxed{R^j_{\;\mp i\pm}=\partial_i (\underset{\pm}{\eta}\,_kg^{jk})
+    \!-\! \partial_\pm (\underset{\pm}{\chi}\,_{ik}g^{jk})
+    \!-\!\underset{\mp}{\omega} \underset{\pm}{\chi}\,_{ik}g^{jk}
+    \!+\!\underset{\pm}{\eta}\,_i \underset{\pm}{\eta}\,_kg^{jk}
+    \!\!-\! \underset{\mp}{\chi}\,_{il}\underset{\pm}{\chi}\,_{km}g^{kl}g^{jm}
+    \!+\!\underset{\pm}{\eta}\,_lg^{kl} \Gamma_{i k}^j
+    \!+\! \underset{\pm}{\chi}\,_{km}g^{jm}\Gamma_{\pm i}^k}
+\end{equation}
+\begin{equation}
+    \boxed{R^\pm_{\;\mp i\pm}= \mp \zeta_i\underset{\mp}{\omega}}
+\end{equation}
+\begin{equation}
+    \boxed{R^\mp_{\;\mp i\pm}=(\underset{\pm}{\eta}\,_k \pm \zeta_k )\underset{\mp}{\chi}\,_{i j}g^{jk}-\partial_i \underset{\mp}{\omega} \pm \partial_\pm \zeta_i -\underset{\mp}{\omega}(\underset{\pm}{\eta}\,_i \mp 2\zeta_i) \mp \zeta_k\Gamma_{\pm i}^k}
+\end{equation}
+\begin{align*}
+    R^\mu_{\;ji\pm} &= \nabla_i(\Gamma_{\pm j}^l e_l) - \nabla_\pm (\Gamma_{i j}^l e_l) + \nabla_i(\underset{\pm}{\eta}\,_j e_\pm) - \nabla_\pm (\underset{\pm}{\chi}\,_{ij} e_\pm) + \nabla_i(\underset{=0}{\cancel{\Gamma_{\pm j}^\mp}} e_\mp) - \nabla_\pm (\underset{\mp}{\chi}\,_{ij} e_\mp) - \nabla_{[e_i,e_\pm]}e_j\\
+    &= \partial_i\Gamma_{\pm j}^l e_l - \partial_\pm \Gamma_{i j}^l e_l + \partial_i\underset{\pm}{\eta}\,_j e_\pm - \partial_\pm \underset{\pm}{\chi}\,_{ij} e_\pm - \partial_\pm \underset{\mp}{\chi}\,_{ij} e_\mp\\ 
+    &\quad + \Gamma_{\pm j}^l\Gamma_{il}^\mu e_\mu - \Gamma_{i j}^l\Gamma_{\pm l}^\mu e_\mu + \underset{\pm}{\eta}\,_j\Gamma_{i\pm}^\mu e_\mu - \underset{\pm}{\chi}\,_{ij}\Gamma_{\pm \pm}^\mu e_\mu - \underset{\mp}{\chi}\,_{ij}\Gamma_{\pm\mp}^\mu e_\mu + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{il}g^{kl})\Gamma_{k j}^\mu e_\mu+(\underset{\pm}{\eta}\,_i \mp \zeta_i)\Gamma_{\pm j}^\mu e_\mu\\
+    &= \Big(\partial_i\Gamma_{\pm j}^l - \partial_\pm \Gamma_{i j}^l \Big) e_l + \Big(\partial_i\underset{\pm}{\eta}\,_j - \partial_\pm \underset{\pm}{\chi}\,_{ij} \Big)e_\pm - \partial_\pm \underset{\mp}{\chi}\,_{ij} e_\mp\\ 
+    &\quad + \Big(\Gamma_{\pm j}^l\Gamma_{il}^k - \Gamma_{i j}^l\Gamma_{\pm l}^k + \underset{\pm}{\eta}\,_j\underset{\mp}{\chi}\,_{il}g^{kl} - \underset{\pm}{\chi}\,_{ij}\underset{=0}{\cancel{\Gamma_{\pm \pm}^k}} - \underset{\mp}{\chi}\,_{ij}\underset{\pm}{\eta}\,_lg^{kl} + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{il}g^{lm})\Gamma_{m j}^k +(\underset{\pm}{\eta}\,_i \mp \zeta_i)\Gamma_{\pm j}^k \Big)e_k\\ 
+    &\quad + \Big(\Gamma_{\pm j}^k\underset{\pm}{\chi}\,_{ik} - \Gamma_{i j}^k\underset{\pm}{\eta}\,_k + \underset{\pm}{\eta}\,_j\Gamma_{i\pm}^\pm - \underset{\pm}{\chi}\,_{ij}\underset{\mp}{\omega} - \underset{\mp}{\chi}\,_{ij}\underset{=0}{\cancel{\Gamma_{\pm\mp}^\pm}} + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{il}g^{kl})\underset{\pm}{\chi}\,_{k j} +(\underset{\pm}{\eta}\,_i \mp \zeta_i)\underset{\pm}{\eta}\,_j \Big)e_\pm\\ 
+    &\quad + \Big(\Gamma_{\pm j}^k\underset{\mp}{\chi}\,_{ik} - \Gamma_{i j}^l\underset{=0}{\cancel{\Gamma_{\pm l}^\mp}} + \underset{\pm}{\eta}\,_j\underset{=0}{\cancel{\Gamma_{i\pm}^\mp}} - \underset{\pm}{\chi}\,_{ij}\underset{=0}{\cancel{\Gamma_{\pm \pm}^\mp}} + \underset{\mp}{\chi}\,_{ij}\underset{\mp}{\omega} + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ik}g^{kl})\underset{\mp}{\chi}\,_{l j} +(\underset{\pm}{\eta}\,_i \mp \zeta_i)\underset{=0}{\cancel{\Gamma_{\pm j}^\mp}} \Big)e_\mp
+\end{align*}
+Finishing with:
+\begin{equation}
+    \boxed{R^k_{\;ji\pm} \!=\! \partial_i\Gamma_{\pm j}^l
+    \!-\! \partial_\pm \Gamma_{i j}^l
+    \!+\! \Gamma_{\pm j}^l\Gamma_{il}^k
+    \!-\! \Gamma_{i j}^l\Gamma_{\pm l}^k
+    \!+\! \underset{\pm}{\eta}\,_j\underset{\mp}{\chi}\,_{il}g^{kl}
+    \!-\! \underset{\mp}{\chi}\,_{ij}\underset{\pm}{\eta}\,_lg^{kl}
+    \!+\! (\Gamma_{\pm i}^k
+    \!-\! \underset{\mp}{\chi}\,_{il}g^{lm}) \Gamma_{mj}^k
+    \!+\! (\underset{\pm}{\eta}\,_i \mp \zeta_i) \Gamma_{\pm j}^k }
+\end{equation}
+\begin{equation}
+    \boxed{R^\pm_{\;ji\pm} = \partial_i\underset{\pm}{\eta}\,_j - \partial_\pm \underset{\pm}{\chi}\,_{ij} + \Gamma_{\pm j}^k\underset{\pm}{\chi}\,_{ik} - \Gamma_{i j}^k\underset{\pm}{\eta}\,_k + \underset{\pm}{\eta}\,_j\Gamma_{i\pm}^\pm - \underset{\pm}{\chi}\,_{ij}\underset{\mp}{\omega} + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{il}g^{kl})\underset{\pm}{\chi}\,_{k j} +(\underset{\pm}{\eta}\,_i \mp \zeta_i)\underset{\pm}{\eta}\,_j}
+\end{equation}
+\begin{equation}
+    \boxed{R^\mp_{\;ji\pm} =  \Gamma_{\pm j}^k\underset{\mp}{\chi}\,_{ik} + \underset{\mp}{\chi}\,_{ij}\underset{\mp}{\omega} + (\Gamma_{\pm i}^k - \underset{\mp}{\chi}\,_{ik}g^{kl})\underset{\mp}{\chi}\,_{l j}}
+\end{equation}
+
+\subsection{Computing $C_{\pm\pm}$}
+
+\noindent So let us define (in a proper basis)
+\begin{align}
+    A_{\mu\nu} :=& \nabla_\mu\nabla_\nu R&
+    B_{\mu\nu} :=& \nabla_\rho\nabla^\rho R_{\mu\nu}.
+\end{align}
+And let us express their associated 2-tensors, using $X:=x^\mu e_\mu; Y:=y^\mu e_\mu;$ and $Z$ as dummy variables. We will use the notation $X\circ Y:= f \mapsto x^\mu \partial_\mu (y^\nu e_\nu f)$ for derivation along feilds.
+\begin{align*}
+    A(X,Y) :\!\!&= x^\mu y^\nu A_{\mu\nu}\\
+    :\!\!&= x^\mu y^\nu \nabla_\mu \nabla_\nu R\\
+    &= x^\mu y^\nu \nabla_\mu \partial_\nu R\\
+    &= x^\mu y^\nu \partial_\mu \partial_\nu R - x^\mu y^\nu \Gamma_{\mu\nu}^\lambda \partial_\lambda R\\
+    &= x^\mu \partial_\mu \left(y^\nu \partial_\nu R \right) - x^\mu \cdot(\partial_\mu y^\nu) \cdot (\partial_\nu R) - x^\mu y^\nu (\nabla_{e_\mu} \partial_\nu)R\\
+    &= x^\mu \partial_\mu \left(y^\nu \partial_\nu R \right) - \cancel{x^\mu \cdot(\partial_\mu y^\nu) \cdot (\partial_\nu R)} - x^\mu \big(\nabla_{e_\mu} (y^\nu \partial_\nu)\big)R + \cancel{x^\mu \cdot (\partial_\mu y^\nu) \cdot (\partial_\nu R)}\\
+    &= (X\circ Y - \nabla_X Y) R
+\end{align*}
+Thus:
+\begin{equation}
+    A : \Bigg\{\begin{matrix}
+        T\mathcal{M}^{\otimes 2} & \to & \mathbb{R}\\
+        (X,Y) & \mapsto & \frac{1}{2}\big(X\circ Y + Y\circ X - \nabla_X Y - \nabla_Y X\big) R
+    \end{matrix}
+\end{equation}
+Now, although this derivation was rather easy to find, the case of $B$ is a lot more hard to get blindly. We will thus need to go a bit more subtly.
+\\
+First, let us acknowledge the fact that $B(X,Y)=\mathrm{tr}_g(Z\mapsto z^\rho z^\sigma x^\mu y^\mu \nabla_\rho \nabla_\sigma R_{\mu\nu})$. Which is already a bit scary. Next, we compute the tensorial (physics notation) expression
+\begin{align*}
+    \nabla_\rho \nabla_\sigma R_{\mu\nu} &=
+    \partial_\rho \nabla_\sigma R_{\mu\nu}
+    - \Gamma_{\rho\sigma}^\lambda \nabla_\lambda R_{\mu\nu}
+    - \Gamma_{\rho\mu}^\lambda \nabla_\sigma R_{\lambda\nu}
+    - \Gamma_{\rho\nu}^\lambda \nabla_\sigma R_{\mu\lambda}\\
+    &=\partial_\rho \partial_\sigma R_{\mu\nu}
+    - \partial_\rho\big( \Gamma_{\sigma\mu}^\lambda R_{\lambda\nu} \big)
+    - \partial_\rho \big( \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda} \big)
+    - \Gamma_{\rho\sigma}^\lambda \partial_\lambda R_{\mu\nu}
+    + \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}
+    + \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}\\
+    &\quad- \Gamma_{\rho\mu}^\lambda \partial_\sigma R_{\lambda\nu}
+    + \Gamma_{\rho\mu}^\lambda \Gamma_{\sigma\lambda}^\delta R_{\delta\nu}
+    + \Gamma_{\rho\mu}^\lambda \Gamma_{\sigma\nu}^\delta R_{\lambda\delta}
+    - \Gamma_{\rho\nu}^\lambda \partial_\sigma R_{\mu\lambda}
+    + \Gamma_{\rho\nu}^\lambda \Gamma_{\sigma\mu}^\delta R_{\delta\lambda}
+    + \Gamma_{\rho\nu}^\lambda \Gamma_{\sigma\lambda}^\delta R_{\mu\delta}\\
+    &=\partial_\rho \partial_\sigma R_{\mu\nu}
+    + \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}
+    + \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}
+    + \Gamma_{\rho\mu}^\lambda \Gamma_{\sigma\lambda}^\delta R_{\delta\nu}
+    + \Gamma_{\rho\mu}^\lambda \Gamma_{\sigma\nu}^\delta R_{\lambda\delta}
+    + \Gamma_{\rho\nu}^\lambda \Gamma_{\sigma\mu}^\delta R_{\delta\lambda}
+    + \Gamma_{\rho\nu}^\lambda \Gamma_{\sigma\lambda}^\delta R_{\mu\delta}\\
+    &\quad - \partial_\rho \Gamma_{\sigma\mu}^\lambda R_{\lambda\nu}
+    - \partial_\rho \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda}
+    - \Gamma_{\sigma\mu}^\lambda \partial_\rho R_{\lambda\nu}
+    - \Gamma_{\sigma\nu}^\lambda \partial_\rho R_{\mu\lambda}
+    - \Gamma_{\rho\sigma}^\lambda \partial_\lambda R_{\mu\nu}
+    - \Gamma_{\rho\mu}^\lambda \partial_\sigma R_{\lambda\nu}
+    - \Gamma_{\rho\nu}^\lambda \partial_\sigma R_{\mu\lambda}
+\end{align*}
+From here, it seems still far too hard to factorize elements into nice mathematical expressions like we did for $A$, so instead, we shall first attempt educated guesses for $D(X,Y,Z,Z)=z^\rho z^\sigma x^\mu y^\mu \nabla_\rho \nabla_\sigma R_{\mu\nu}$.
+
+A candid reader would probably think of $D(X,Y,Z,Z)=\nabla_Z \nabla_Z \R(X,Y)$ by a simple symbol-to-symbol identification. Although this guess is incorrect, it puts us on the right path: \emph{it fails because it is not a tensor}.
+
+Indeed recal that a tensor $D(X,Y,Z,...)$ must be linear in all its parameters. Or (as these expressions will be used for computations steps) \emph{addition morphism} and \emph{scaling morphism}. Although the guess $D(X,Y,Z,Z)=\nabla_Z \nabla_Z \R(X,Y)$ is an addition morphism, one can easily check it is no scale morphism:
+\begin{align*}
+\nabla_Z \nabla_Z \R(\lambda X,Y)
+    &=\nabla_Z \nabla_Z\big( \lambda \R(X,Y) \big)\\
+    &= \nabla_Z \big(\lambda\nabla_Z \R(X,Y) \big)
+    + \nabla_Z \big( Z(\lambda) \cdot \R(X,Y) \big)\\
+    &= \lambda \nabla_Z \nabla_Z \R(X,Y)
+    + 2 \cdot Z(\lambda) \cdot \nabla_Z \R(X,Y)
+    + \nabla_Z \big( Z(\lambda)\big) \cdot \R(X,Y)\\
+    &\ne \lambda \nabla_Z \nabla_Z \R(X,Y)
+\end{align*}
+Also, note that $R(X,Y)$ is a scalar, thus $\nabla_Z\R(X,Y)=Z\big(\R(X,Y)\big)$.\\
+
+We will thus attempt to compensate for it with other terms, as we know our true result must be a tensor anyway. To do so, we list all the addition morphism terms that use the same elements in a similar fashion\footnote{Note that we will use awkward self-made notations in order to shorten the formulae, without any explanation for their use. This is because, not only are they (to our mind) quite intuitive, they are also useless to understand as all of their uses is followed by the same expression without their use. They just happen to be infinietely more compact and thus a bit more readable.}. Here is the list of all such terms:
+
+\begin{align*}
+    \langle\langle \quad:\quad&\quad
+    \R(\nabla_Z\nabla_Z X,\;Y)
+    &\rangle\rangle \quad:\quad&\quad
+    \R(X,\;\nabla_Z\nabla_ZY)\\
+    \textcircled{$\langle$}\!\!\! \quad:\quad&\quad
+    Z\big(\R(\nabla_Z X,\;Y)\big)
+    &\textcircled{$\rangle$}\! \quad:\quad&\quad
+    Z\big(\R( X,\;\nabla_ZY)\big)\\
+    \langle\rangle \!\!\!\quad:\quad&\quad
+    \R(\nabla_Z X, \nabla_Z Y)
+    & \textcircled{$\circ$}\! \quad:\quad&\quad
+    Z\big(Z\big(\R(X,Y)\big)\big)
+\end{align*}
+Before we start mixing them arround to get $X$ and $Y$ scaling, it is actually easier to add correcting terms to get the correct quadratic in $Z$ behavior as folows:
+\begin{align*}
+    \langle\langle \quad:\quad&\quad
+    \R\big((\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z}) X,\;Y\big)
+    &\rangle\rangle \quad:\quad&\quad
+    \R\big(X,\;(\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z})Y\big)\\
+    \textcircled{$\langle$}\!\!\! \quad:\quad&\quad
+    Z\big(\R(\nabla_Z X,\;Y)\big) - \R\big(\nabla_{\nabla_ZZ}X,Y\big)
+    &\textcircled{$\rangle$}\! \quad:\quad&\quad
+    Z\big(\R( X,\;\nabla_ZY)\big)- \R\big(X,\nabla_{\nabla_ZZ}Y\big)\\
+    \langle\rangle \!\!\!\quad:\quad&\quad
+    \R(\nabla_Z X, \nabla_Z Y)
+    & \textcircled{$\circ$}\! \quad:\quad&\quad
+    \big(\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z}\big)\R(X,Y)
+\end{align*}
+We let the courageous readers verify that for given $X$, $Y$ these expressions are all tensors in $Z$ and $Z$ and we go straight to seeing how they behave under scaling of $X$.
+\begin{align*}
+    \langle\langle \quad:&&
+    \R(\nabla_Z\nabla_Z \lambda X,\;Y)
+    &= \R\big(\nabla_Z(\lambda\nabla_Z  X),\;Y\big) + \R\big(\nabla_Z (Z(\lambda) X),\;Y\big)\\
+    &&&= \lambda\R(\nabla_Z\nabla_Z  X,\;Y) + 2 Z(\lambda)\R(\nabla_Z  X,\;Y) + Z^2(\lambda) \R(X,Y)\\
+    &&\R(\nabla_{\nabla_ZZ}\lambda X,Y)
+    &= \lambda \R(\nabla_{\nabla_ZZ}X,Y) + \nabla_{\nabla_ZZ}(\lambda)\R(X,Y)\\
+    &&\R\big((\nabla_Z\nabla_Z-\nabla_{\nabla_ZZ})\lambda X,Y\big)
+    &= \lambda \R\big((\nabla_Z\nabla_Z-\nabla_{\nabla_ZZ}) X,Y\big) + 2 Z(\lambda)\R(\nabla_Z  X,\;Y) 
+    \\&&&\quad + \big(Z^2(\lambda)- \nabla_{\nabla_ZZ}(\lambda)\big)\R(X,Y)\\
+    \rangle\rangle \;\;:&& 
+    \R\big((\lambda X,\;(\nabla_Z\nabla_Z-\nabla_{\nabla_ZZ})Y\big))
+    &= \lambda \R\big((X,\;(\nabla_Z\nabla_Z-\nabla_{\nabla_ZZ})Y\big))\\
+    \textcircled{$\langle$} \;\,:&&
+    Z\big(\R(\nabla_Z \lambda X,\;Y)\big) - \R(\nabla_{\nabla_ZZ}\lambda X,Y)
+    &= Z\big(\lambda\R(\nabla_Z X,\;Y)\big)
+    + Z\big(Z(\lambda) \cdot \R(X,\;Y)\big)\\
+    &&&\quad - \lambda \R(\nabla_{\nabla_ZZ}X,Y) - \nabla_{\nabla_ZZ}(\lambda)\R(X,Y)\\
+    &&&= \lambda \Big(Z\big(\R(\nabla_Z X,Y)\big)-
+    \R(\nabla_{\nabla_ZZ}X,Y) \Big)+ Z(\lambda) \R(\nabla_Z X, Y)\\
+    &&&\quad + Z(\lambda) Z\big(\R(X,Y)\big) + \big(Z^2(\lambda) - \nabla_{\nabla_ZZ}(\lambda)\big)\R(X,Y) \\
+    \textcircled{$\rangle$} \;\,:&&
+    Z\big(\R(\lambda X,\;\nabla_ZY)\big)- \R(\lambda X,\nabla_{\nabla_ZZ}Y)
+    &= \lambda \Big(Z\big(\R(X,\;\nabla_ZY)\big)- \R(X,\nabla_{\nabla_ZZ}Y)\Big)
+    + Z(\lambda)\R(X,\;\nabla_ZY)\\
+    \langle\rangle \;\;:&&
+    \R(\nabla_Z \lambda X, \; \nabla_Z Y)
+    &= \lambda \R(\nabla_Z X, \; \nabla_Z Y)
+    + Z(\lambda) \R(X,\; \nabla_Z Y)\\
+    \textcircled{$\circ$} \;\,:&&
+    Z^2\big(\R(\lambda X,\;Y)\big) &= \lambda Z^2\big(\R( X,\;Y)\big)
+    + 2 Z(\lambda) Z\big(\R(X,Y)\big)
+    + Z^2(\lambda) \R(X,Y)\\
+    &&\nabla_{\nabla_ZZ}\big(\R(\lambda X,Y)\big)
+    &=\lambda\nabla_{\nabla_ZZ}\big(\R( X,Y)\big)
+    + \nabla_{\nabla_ZZ}(\lambda)\R(X,Y)\\
+    && \big(\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z}\big)\R(\lambda X,Y)
+    &= \lambda \big(\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z}\big)\R(X,Y) + 2 Z(\lambda) Z\big(\R(X,Y)\big)\\
+    &&&\quad + \big(Z^2(\lambda)-\nabla_{\nabla_ZZ}(\lambda)\big) \R(X,Y)
+\end{align*}
+From these transformations, (or the diagram here-under) it is trivial to find all possible tensors.
+\begin{equation}
+\boxed{\quad \begin{matrix}
+    \quad\\
+    \langle\langle & \mapsto  &   \langle\langle & + & 2 \; \langle & + & \cdot \\
+    \rangle\rangle & \mapsto &   \rangle\rangle \\
+    \textcircled{$\langle$} & \mapsto &   \textcircled{$\langle$} & + & \langle & + & \circ & + & \cdot \\
+    \textcircled{$\rangle$} & \mapsto &   \textcircled{$\rangle$} & + & \rangle  \\
+    \langle\rangle & \mapsto &   \langle\rangle & + & \rangle \\
+    \textcircled{$\circ$} & \mapsto &   \textcircled{$\circ$} & + & 2 \; \circ & + & \cdot\\
+    \quad
+\end{matrix}\quad }
+\end{equation}
+One trivially finds (by starting from any of the guesses, compensating terms and keeping track of the symmetry of the tensor with respect to $X$ and $Y$) that the only possible linear combination that leads to a scale morphism is $\langle\langle \; + \;\rangle\rangle+\textcircled{$\circ$} + 2 \langle\rangle - 2 \textcircled{$\langle$}- 2 \textcircled{$\rangle$}$, or in proper words $D$ can only be, up to scale factors:
+\begin{align*}
+    D(X,Y,Z,Z) &= \R\big((\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z}) X,\;Y\big)
+    + \R\big( X,\;(\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z})Y\big)
+    + \big(\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z}\big)\R(X,Y)\\
+    & \quad -2 Z\big(\R(\nabla_Z X, Y)\big)
+    +2 \R(\nabla_{\nabla_ZZ} X,Y) 
+    -2 Z\big(\R(X, \nabla_Z Y)\big)
+    +2 \R( X,\nabla_{\nabla_ZZ}Y) \\
+    & \quad + 2 \R(\nabla_Z X, \nabla_Z Y)\\
+    &=\R(\nabla_Z\nabla_Z X,Y)
+    + \R( X,\nabla_Z\nabla_ZY)
+    + \R(\nabla_{\nabla_ZZ} X,Y)
+    + \R( X,\nabla_{\nabla_ZZ}Y)\\
+    & \quad + Z\big(Z\big(\R(X,Y)\big)\big)-(\nabla_Z Z)\R(X,Y)
+    -2 Z\big(\R(\nabla_Z X, Y)\big)
+    -2 Z\big(\R(X, \nabla_Z Y)\big) \\
+    & \quad + 2 \R(\nabla_Z X, \nabla_Z Y) 
+\end{align*}
+Let us compute each term seperately. Since we know the whole expression to be linear in $X$ and $Y$, and quadratic in $Z$ we can just evaluate them in $X=e_\mu,Y=e_\nu$, have one $Z$ be $e_\rho$ while the other is $e_\sigma$ and factorize the whole final expression with the scalar coordinate quantity $x^\mu y^\nu z^\rho z^\sigma$.
+\begin{align*}
+    \langle\langle \quad:\;
+    \R\big((\nabla_{e_\rho}\nabla_{e_\sigma} - \nabla_{\nabla_{e_\rho}e_\sigma})e_\mu,\;e_\nu\big)
+    &= \R\big(\nabla_{e_\rho}\Gamma_{\sigma\mu}^\lambda e_\lambda,e_\nu\big) - \Gamma_{\rho\sigma}^\lambda \R(\nabla_{e_\lambda}e_\mu,e_\nu)\\
+    &=\Gamma_{\sigma\mu}^\lambda\R\big(\nabla_{e_\rho} e_\lambda,e_\nu\big) + \partial_\rho\Gamma_{\sigma\mu}^\lambda\R\big( e_\lambda,e_\nu\big)- \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta\R(e_\delta,e_\nu)\\
+    &=\Gamma_{\sigma\mu}^\lambda\Gamma_{\rho\lambda}^\delta R_{\delta\nu} + \partial_\rho\Gamma_{\sigma\mu}^\lambda R_{\lambda\nu}- \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}\\
+    \rangle\rangle \;\;:\;
+    \R\big( e_\mu,\;(\nabla_{e_\rho}\nabla_{e_\sigma} - \nabla_{\nabla_{e_\rho}e_\sigma})e_\nu\big)
+    &= \Gamma_{\sigma\nu}^\lambda \Gamma_{\rho\lambda}^\delta R_{\mu\delta} + \partial_\rho  \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda}- \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}
+\end{align*}
+\begin{align*}
+    \textcircled{$\langle$}\;\;: \; e_\rho\big(\R(\nabla_{e_\sigma} e_\mu, e_\nu)\big) - \R(\nabla_{\nabla_{e_\rho}e_\sigma} e_\mu, e_\nu)
+    &= \partial_\rho (\Gamma_{\sigma\mu}^\lambda R_{\lambda\nu}) - \Gamma_{\rho\sigma}^\lambda \R(\nabla_{e_\lambda}e_\mu,e_\nu)\\
+    &= \partial_\rho \Gamma_{\sigma\mu}^\lambda R_{\lambda\nu} + \Gamma_{\sigma\mu}^\lambda \partial_\rho R_{\lambda\nu} - \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}\\
+    \textcircled{$\rangle$}\;\;: \; e_\rho\big(\R(e_\mu, \nabla_{e_\sigma} e_\nu)\big) - \R(e_\mu, \nabla_{\nabla_{e_\rho}e_\sigma} e_\nu)
+    &= \partial_\rho \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda} + \Gamma_{\sigma\nu}^\lambda \partial_\rho R_{\mu\lambda} - \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}
+\end{align*}
+\begin{align*}
+\langle\rangle \quad:\;
+    \R(\nabla_{e_\rho} e_\mu,\;\nabla_{e_\sigma} e_\nu)
+    = \Gamma_{\rho\mu}^\lambda\Gamma_{\sigma\nu}^\delta R_{\lambda\delta}
+\end{align*}
+\begin{align*}
+    \textcircled{$\circ$}\;\;: \; e_\rho\Big(e_\sigma\big(\R(e_\mu, e_\nu)\big)\Big) - (\nabla_{e_\rho}e_\sigma)\R(e_\mu,e_\nu)
+    = \partial_\rho\partial_\sigma R_{\mu\nu} - \Gamma_{\rho\sigma}^\lambda \partial_\lambda R_{\mu\nu}
+\end{align*}
+This allows us to compute $D$, using $D(X,Y,Z,Z)=x^\mu y^\nu z^\rho z^\sigma D(e_\mu, e_\nu, e_\rho, e_\sigma =: x^\mu y^\nu z^\rho z^\sigma D_{\mu\nu\rho\sigma}$
+\begin{align*}
+D_{\mu\nu\rho\sigma} &= \Gamma_{\sigma\mu}^\lambda\Gamma_{\rho\lambda}^\delta R_{\delta\nu}
+    + \partial_\rho\Gamma_{\sigma\mu}^\lambda R_{\lambda\nu}
+    - \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}
+    + \Gamma_{\sigma\nu}^\lambda \Gamma_{\rho\lambda}^\delta R_{\mu\delta}
+    + \partial_\rho  \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda}
+    - \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}
+    + 2 \Big(\Gamma_{\rho\mu}^\lambda\Gamma_{\sigma\nu}^\delta R_{\lambda\delta}\Big)\\
+    &\quad -2\Big( \partial_\rho \Gamma_{\sigma\mu}^\lambda R_{\lambda\nu} + \Gamma_{\sigma\mu}^\lambda \partial_\rho R_{\lambda\nu} - \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}\Big)
+    -2 \Big(\partial_\rho \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda}
+    + \Gamma_{\sigma\nu}^\lambda \partial_\rho R_{\mu\lambda}
+    - \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}\Big)\\
+    &\quad  + \partial_\rho\partial_\sigma R_{\mu\nu}
+    - \Gamma_{\rho\sigma}^\lambda \partial_\lambda R_{\mu\nu}\\
+    &= \Gamma_{\sigma\mu}^\lambda\Gamma_{\rho\lambda}^\delta R_{\delta\nu}
+    + \cancel{\partial_\rho\Gamma_{\sigma\mu}^\lambda R_{\lambda\nu}}
+    - \cancel{\Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}}
+    + \Gamma_{\sigma\nu}^\lambda \Gamma_{\rho\lambda}^\delta R_{\mu\delta}
+    + \cancel{\partial_\rho  \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda}}
+    - \cancel{\Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}}
+    + 2 \Gamma_{\rho\mu}^\lambda\Gamma_{\sigma\nu}^\delta R_{\lambda\delta}\\
+    &\quad -\cancel{2} \partial_\rho \Gamma_{\sigma\mu}^\lambda R_{\lambda\nu}
+    -2 \Gamma_{\sigma\mu}^\lambda \partial_\rho R_{\lambda\nu}
+    +\cancel{2} \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}
+    -\cancel{2} \partial_\rho \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda}
+    -2 \Gamma_{\sigma\nu}^\lambda \partial_\rho R_{\mu\lambda}
+    +\cancel{2} \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}\\
+    &\quad  + \partial_\rho\partial_\sigma R_{\mu\nu}
+    - \Gamma_{\rho\sigma}^\lambda \partial_\lambda R_{\mu\nu}\\
+    &= \partial_\rho\partial_\sigma R_{\mu\nu}
+    + \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\mu}^\delta R_{\delta\nu}
+    + \Gamma_{\rho\sigma}^\lambda \Gamma_{\lambda\nu}^\delta R_{\mu\delta}
+    + \Gamma_{\sigma\mu}^\lambda\Gamma_{\rho\lambda}^\delta R_{\delta\nu}
+    + \Gamma_{\rho\mu}^\lambda\Gamma_{\sigma\nu}^\delta R_{\lambda\delta}
+    + \Gamma_{\rho\mu}^\lambda\Gamma_{\sigma\nu}^\delta R_{\lambda\delta}
+    + \Gamma_{\sigma\nu}^\lambda \Gamma_{\rho\lambda}^\delta R_{\mu\delta}\\
+    &\quad - \partial_\rho \Gamma_{\sigma\mu}^\lambda R_{\lambda\nu}
+    - \partial_\rho \Gamma_{\sigma\nu}^\lambda R_{\mu\lambda}
+    - \Gamma_{\sigma\mu}^\lambda \partial_\rho R_{\lambda\nu}
+    - \Gamma_{\sigma\nu}^\lambda \partial_\rho R_{\mu\lambda}
+    - \Gamma_{\rho\sigma}^\lambda \partial_\lambda R_{\mu\nu}
+    - \Gamma_{\sigma\mu}^\lambda \partial_\rho R_{\lambda\nu}
+    - \Gamma_{\sigma\nu}^\lambda \partial_\rho R_{\mu\lambda}\\
+    &= \nabla_\rho \nabla_\sigma R_{\mu\nu}
+\end{align*}
+Thus:
+\begin{equation}
+    B:\bigg\{ \begin{matrix}
+        T\mathcal{M}^{\otimes 2} & \to & \mathbb{R}\\
+        (X,Y) & \mapsto & \mathrm{tr}_g \big(Z \mapsto D(X,Y,Z,Z)\big)
+    \end{matrix}
+\end{equation}
+
+However ugly this is; it gives a formulation of $C=(2\alpha + \beta + 2\gamma) A +(4\gamma- \beta) B + \mathcal{O}(R^2)$ in a purely tensorial formulation (without a basis representation) through its image.
+
+We can now split it back in our non-basis frame; and will, make extensive use of the properties we know about the connection to optimize our expressions as much as possible.
+
+Firstly, as we already know we will contract $C_{\mu\nu}$ with a single null direction $l^\mu$, we know we only need to compute $C_{\pm\pm}$ in our frame.
+This can be obtained by simply evaluating $C(X,Y)$ for $X=Y=\Sigma_i(0\cdot e_i) + 1 \cdot e_\pm + 0 \cdot e_\mp = e_\pm$ using bi-linearity of tensors. Indeed $C_{\pm\pm}:=C(e_\pm,e_\pm)$
+
+\begin{align*}
+    A_{\pm\pm} &= \partial_\pm \partial_\pm R - (\nabla_{e_\pm}e_\pm) R\\
+    &= \partial_\pm \partial_\pm R - \underset{=0}{\cancel{\Gamma_{\pm\pm}^i}} \partial_i R - \Gamma_{\pm\pm}^\pm \partial_\pm R - \underset{=0}{\cancel{\Gamma_{\pm\pm}^\mp}} \partial_\mp R
+\end{align*}
+\begin{equation}
+    \boxed{A_{\pm\pm} = \partial_\pm \partial_\pm R - \underset{\pm}{\omega}\partial_\pm R}
+\end{equation}
+\begin{align*}
+    B_{\pm\pm}&= g^{\rho\sigma} D(e_\pm,e_\pm, e_\rho, e_\sigma)
+\end{align*}
+Recall \color{red} REF \color{black} the expression of $g^{-1}$:
+$$g^{-1} = -(e_\pm \otimes e_\mp) - (e_\mp \otimes e_\pm) + g^{ij}e_i\otimes e_j $$
+From this, one derives that 
+$$B_{\pm\pm}=g^{ij}D(e_\pm,e_\pm, e_i, e_j) - D(e_\pm,e_\pm, e_\pm, e_\mp) - D(e_\pm,e_\pm, e_\mp, e_\pm) $$
+Now, this will require $D(X,Y,Z,Z')$ to be defined for $Z\ne Z'$, which it is not, at the moment. But one can check by hand that the following generalization works flawlessly (and any generalisation will eventualy work, no need to symetrize it, as $B$'s formula treats $Z$ and $Z'$ the same):
+\begin{align*}
+    D(X,Y,Z,Z') 
+    &=\R(\nabla_Z\nabla_{Z'} X ,Y )
+    + \R( X ,\nabla_Z\nabla_{Z'} Y )
+    + \R(\nabla_{\nabla_ZZ'} X , Y )
+    + \R( X ,\nabla_{\nabla_ZZ'}Y )\\
+    & \quad + Z\big(Z'\big(\R(X ,Y )\big)\big)-(\nabla_Z Z')\R(X ,Y )
+    -2 Z\big(\R(\nabla_{Z'} X , Y )\big)
+    -2 Z\big(\R(X , \nabla_{Z'} Y )\big) \\
+    & \quad + 2 \R(\nabla_Z X , \nabla_{Z'} Y ) 
+\end{align*} Thus \begin{align*}
+    D(e_\pm,e_\pm,Z,Z') 
+    &= 2 \R(\nabla_Z\nabla_{Z'} e_\pm ,e_\pm )
+    + 2 \R(\nabla_{\nabla_ZZ'} e_\pm ,e_\pm )
+    + Z\big(Z'\big(R_{\pm\pm}\big)\big)\\
+    & \quad
+    -(\nabla_Z Z') R_{\pm\pm}
+    -4 Z\big(\R(\nabla_{Z'} e_\pm , e_\pm )\big)
+    + 2 \R(\nabla_Z e_\pm , \nabla_{Z'} e_\pm )
+\end{align*}
+let us compute each term,
+\begin{align*}
+    D(e_\pm,e_\pm,e_i,e_j) 
+    &= 2 \R(\nabla_{e_i}\nabla_{e_j} e_\pm ,e_\pm )
+    + 2 \R(\nabla_{\nabla_{e_i}e_j} e_\pm ,e_\pm )
+    + \partial_i \partial_j R_{\pm\pm}\\
+    & \quad
+    -(\nabla_{e_i} e_j) R_{\pm\pm}
+    -4 \partial_i\big(\R(\nabla_{e_j} e_\pm , e_\pm )\big)
+    + 2 \R(\nabla_{e_i} e_\pm , \nabla_{e_j} e_\pm )\\
+    &= 2 \R\big(\nabla_{e_i}(\Gamma_{j\pm}^\mu e_\mu) ,e_\pm \big)
+    -4 \partial_i(\Gamma_{j\pm}^\mu R_{\mu\pm})
+    + 2 \Gamma_{j\pm}^\mu \R(\nabla_{e_i} e_\pm , e_\mu )\\
+    & \quad
+    + \partial_i \partial_j R_{\pm\pm}
+    -\Gamma_{ij}^\mu \partial_\mu R_{\pm\pm}
+    + 2 \Gamma_{ij}^\mu \R(\nabla_{e_\mu} e_\pm ,e_\pm )\\
+    &= 2 \R\big(\nabla_{e_i}(\underset{\mp}{\chi}\,_{jl}g^{kl} e_k ) ,e_\pm \big)
+    -4 \partial_i(\underset{\mp}{\chi}\,_{jl}g^{kl}  R_{k \pm})
+    + 2 \underset{\mp}{\chi}\,_{jl}g^{kl}  \R(\nabla_{e_i} e_\pm , e_k  )\\
+    &\quad
+    \pm 2 \R\big(\nabla_{e_i}(\zeta_j e_\pm) ,e_\pm \big)
+    \mp 4 \partial_i(\zeta_j R_{\pm\pm})
+    \pm 2 \zeta_j \R(\nabla_{e_i} e_\pm , e_\pm )\\
+    & \quad
+    + \partial_i \partial_j R_{\pm\pm}
+    -\Gamma_{ij}^k \partial_k R_{\pm\pm}
+    + 2 \Gamma_{ij}^k \R(\nabla_{e_k} e_\pm ,e_\pm )\\
+    & \quad
+    -\underset{\pm}{\chi}\,_{ij} \partial_\pm R_{\pm\pm}
+    -\underset{\mp}{\chi}\,_{ij} \partial_\mp R_{\pm\pm}
+    + 2 \underset{\pm}{\chi}\,_{ij} \R(\nabla_{e_\pm} e_\pm ,e_\pm )
+    + 2 \underset{\mp}{\chi}\,_{ij} \R(\nabla_{e_\mp} e_\pm ,e_\pm )\\
+    &= 2 \partial_i(\underset{\mp}{\chi}\,_{jl}g^{kl}) R_{k\pm}
+    + 2 \underset{\mp}{\chi}\,_{jl}g^{kl} \Gamma_{ik}^\mu R_{\mu\pm}
+    -4 \partial_i(\underset{\mp}{\chi}\,_{jl}g^{kl})  R_{k \pm}
+    -4 \underset{\mp}{\chi}\,_{jl}g^{kl}  \partial_i R_{k \pm}\\
+    &\quad
+    + 2 \underset{\mp}{\chi}\,_{jl}g^{kl} \Gamma_{i\pm}^\mu R_{\mu k}
+    \pm 2 \zeta_j \Gamma_{i\pm}^\mu R_{\mu\pm}
+    \pm 2 \partial_i \zeta_j R_{\pm\pm}
+    \mp 4 \partial_i\zeta_j R_{\pm\pm}
+    \mp 4 \zeta_j \partial_i R_{\pm\pm}\\
+    & \quad
+    \pm 2 \zeta_j \Gamma_{i\pm}^\mu R_{\mu\pm}
+    + \partial_i \partial_j R_{\pm\pm}
+    -\Gamma_{ij}^k \partial_k R_{\pm\pm}
+    + 2 \Gamma_{ij}^k \Gamma_{k\pm}^\mu R_{\mu\pm}
+    -\underset{\pm}{\chi}\,_{ij} \partial_\pm R_{\pm\pm}\\
+    & \quad
+    -\underset{\mp}{\chi}\,_{ij} \partial_\mp R_{\pm\pm}
+    + 2 \underset{\pm}{\chi}\,_{ij} \Gamma_{\pm\pm}^\mu R_{\mu\pm}
+    + 2 \underset{\mp}{\chi}\,_{ij} \Gamma_{\mp\pm}^\mu R_{\mu\pm}\\
+    &= 2 \partial_i(\underset{\mp}{\chi}\,_{jl}g^{kl}) R_{k\pm}
+    + 2 \underset{\mp}{\chi}\,_{jl}g^{lm} \Gamma_{im}^k R_{k\pm}
+    + 2 \underset{\mp}{\chi}\,_{jl}g^{kl} \underset{\pm}{\chi}\,_{ik} R_{\pm\pm}
+    + 2 \underset{\mp}{\chi}\,_{jl}g^{kl} \underset{\mp}{\chi}\,_{ik} R_{\mp\pm}\\
+    &\quad
+    - 4 \partial_i(\underset{\mp}{\chi}\,_{jl}g^{kl})  R_{k \pm}
+    - 4 \underset{\mp}{\chi}\,_{jl}g^{kl}  \partial_i R_{k \pm}
+    + 2 \underset{\mp}{\chi}\,_{jm}g^{km} \underset{\mp}{\chi}\,_{in}g^{nl} R_{kl}
+    \pm 2 \underset{\mp}{\chi}\,_{jl}g^{kl} \zeta_i R_{k\pm}\\
+    & \quad
+    \pm 2 \zeta_j \underset{\mp}{\chi}\,_{il}g^{kl} R_{k\pm}
+    + 2 \zeta_i \zeta_j R_{\pm\pm}
+    \pm 2 \partial_i \zeta_j R_{\pm\pm}
+    \mp 4 \partial_i\zeta_j R_{\pm\pm}
+    \mp 4 \zeta_j \partial_i R_{\pm\pm}
+    \pm 2 \zeta_j \underset{\mp}{\chi}\,_{il}g^{kl} R_{k\pm}\\
+    & \quad
+    + 2 \zeta_i \zeta_j R_{\pm\pm}
+    + \partial_i \partial_j R_{\pm\pm}
+    -\Gamma_{ij}^k \partial_k R_{\pm\pm}
+    + 2 \Gamma_{ij}^l \underset{\mp}{\chi}\,_{lm}g^{km} R_{k\pm}
+    \pm 2 \Gamma_{ij}^k \zeta_k R_{\pm\pm}\\
+    &\quad 
+    -\underset{\pm}{\chi}\,_{ij} \partial_\pm R_{\pm\pm}
+    -\underset{\mp}{\chi}\,_{ij} \partial_\mp R_{\pm\pm}
+    + 2 \underset{\pm}{\chi}\,_{ij} \underset{\mp}{\omega} R_{\pm\pm}
+    + 2 \underset{\mp}{\chi}\,_{ij} \underset{\mp}{\eta}\,_l g^{kl} R_{k\pm}
+    - 2 \underset{\mp}{\chi}\,_{ij} \underset{\pm}{\omega} R_{\pm\pm}\\
+    &= 
+    + 2 R_{\pm\pm} \Big( \underset{\pm}{\chi}\,_{ik} \underset{\mp}{\chi}\,_{jl}g^{kl}
+    + \underset{\mp}{\omega} \underset{\pm}{\chi}\,_{ij}
+    - \underset{\pm}{\omega} \underset{\mp}{\chi}\,_{ij}
+    + 2 \zeta_i \zeta_j
+    \pm \Gamma_{ij}^k \zeta_k 
+    \mp \partial_i\zeta_j\Big)
+    + 2 R_{kl} \underset{\mp}{\chi}\,_{in} \underset{\mp}{\chi}\,_{jm}g^{km}g^{nl}\\
+    &\quad 
+    + 2 R_{k\pm} \Big( \underset{\mp}{\chi}\,_{jl}g^{lm} \Gamma_{im}^k
+    - \partial_i(\underset{\mp}{\chi}\,_{jl}g^{kl})
+    + (\underset{\mp}{\chi}\,_{jl} \underset{\mp}{\chi}\,_{ik}
+    + \underset{\mp}{\chi}\,_{ij} \underset{\mp}{\eta}\,_l
+    \pm \zeta_i \underset{\mp}{\chi}\,_{jl}
+    \pm 2 \zeta_j \underset{\mp}{\chi}\,_{il}
+    + \Gamma_{ij}^m \underset{\mp}{\chi}\,_{ml} )g^{kl}\Big) \\
+    &\quad 
+    + 2 R_{\mp\pm} \underset{\mp}{\chi}\,_{jl} \underset{\mp}{\chi}\,_{ik} g^{kl}
+    - 4 \underset{\mp}{\chi}\,_{jl}g^{kl}  \partial_i R_{k \pm}
+    + \Big( \partial_i \partial_j
+    \mp 4 \zeta_j \partial_i
+    -\Gamma_{ij}^k \partial_k
+    -\underset{\pm}{\chi}\,_{ij} \partial_\pm
+    -\underset{\mp}{\chi}\,_{ij} \partial_\mp \Big) R_{\pm\pm}
+\end{align*}
+
+
+\begin{align*}
+    \!\!\!\!\!\!\!\!\!\!\!\!\!\!\!
+    D(e_\pm,e_\pm, e_\pm, e_\mp) 
+    &=2 \R(\nabla_{e_\pm}\nabla_{{e_\mp}} e_\pm ,e_\pm )
+    + 2 \R(\nabla_{\nabla_{e_\pm}{e_\mp}} e_\pm ,e_\pm )
+    + \partial_\pm\partial_\mp R_{\pm\pm}
+    -(\nabla_{e_\pm} {e_\mp})R_{\pm\pm}\\
+    & \quad
+    -4 \partial_\pm\big(\R(\nabla_{{e_\mp}} e_\pm , e_\pm )\big)
+    + 2 \R(\nabla_{e_\pm} e_\pm , \nabla_{{e_\mp}} e_\pm )\\
+    &=2 \R\big(\nabla_{e_\pm}(\Gamma_{\mp\pm}^\mu e_\mu) ,e_\pm \big)
+    + 2 \Gamma_{\pm\mp}^\mu\R(\nabla_{e_\mu} e_\pm ,e_\pm )\\
+    & \quad + \partial_\pm\partial_\mp R_{\pm\pm}
+    -\Gamma_{\pm\mp}^\mu \partial_\mu R_{\pm\pm}
+    -4 \partial_\pm\big(\Gamma_{\mp\pm}^\mu R_{\mu\pm}\big)
+     + 2 \Gamma_{\mp\pm}^\mu \R(\nabla_{e_\pm} e_\pm , e_\mu ) \\
+    &=2 \R\big(\nabla_{e_\pm}(\underset{\mp}{\eta}\,_j g^{ij} e_i) ,e_\pm \big)
+    + 2 \underset{\pm}{\eta}\,_j g^{ij} \R(\nabla_{e_i } e_\pm ,e_\pm )\\
+    & \quad + \partial_\pm\partial_\mp R_{\pm\pm}
+    -\underset{\pm}{\eta}\,_j g^{ij}  \partial_i  R_{\pm\pm}
+    -4 \partial_\pm\big(\underset{\mp}{\eta}\,_j g^{ij}  R_{i \pm}\big)
+     + 2 \underset{\mp}{\eta}\,_j g^{ij}  \R(\nabla_{e_\pm} e_\pm , e_i  ) \\
+    & \quad - 2 \R\big(\nabla_{e_\pm}(\underset{\mp}{\omega} e_\pm) ,e_\pm \big)
+    - 2 \underset{\pm}{\omega}\R(\nabla_{e_\mp} e_\pm ,e_\pm )\\
+    & \quad + \partial_\pm\partial_\mp R_{\pm\pm}
+    +\underset{\pm}{\omega} \partial_\mp R_{\pm\pm}
+    +4 \partial_\pm\big(\underset{\mp}{\omega} R_{\pm\pm}\big)
+     - 2 \underset{\mp}{\omega} \R(\nabla_{e_\pm} e_\pm , e_\pm ) \\
+    &=2 \underset{\mp}{\eta}\,_j g^{ij} \Gamma_{\pm i}^\mu R_{\mu\pm}
+    + 2 \partial_\pm(\underset{\mp}{\eta}\,_j g^{ij}) R_{i\pm}
+    + 2 \underset{\pm}{\eta}\,_j g^{ij} \Gamma_{i \pm}^\mu R_{\mu\pm}
+    + \partial_\pm\partial_\mp R_{\pm\pm} 
+    -\underset{\pm}{\eta}\,_j g^{ij}  \partial_i  R_{\pm\pm}
+    -\underset{\pm}{\eta}\,_j g^{ij}  \partial_i  R_{\pm\pm}\\
+    & \quad
+    -4 \partial_\pm\big(\underset{\mp}{\eta}\,_j g^{ij} \big) R_{i \pm}
+    -4 \underset{\mp}{\eta}\,_j g^{ij} \partial_\pm R_{i \pm}
+     + 2 \underset{\mp}{\eta}\,_j g^{ij} \Gamma_{\pm\pm}^\mu R_{\mu i}
+    - 2 \partial_\pm\underset{\mp}{\omega}  R_{\pm\pm}
+    - 2 \underset{\mp}{\omega} \Gamma_{\pm\pm}^\mu R_{\mu\pm}
+    - 2 \underset{\pm}{\omega}\Gamma_{\mp\pm}^\mu R_{\mu \pm}\\
+    & \quad
+    + \partial_\pm\partial_\mp R_{\pm\pm}
+    +\underset{\pm}{\omega} \partial_\mp R_{\pm\pm}
+    +4 \partial_\pm\big(\underset{\mp}{\omega} R_{\pm\pm}\big)
+    - 2 \underset{\mp}{\omega} \Gamma_{\pm\pm}^\mu R_{\mu\pm}\\
+    &=2 \underset{\mp}{\eta}\,_j g^{jk} \Gamma_{\pm k}^i R_{i\pm}
+    + 2 \underset{\mp}{\eta}\,_j g^{ij} \Gamma_{\pm i}^\pm R_{\pm\pm}
+    + 2 \partial_\pm(\underset{\mp}{\eta}\,_j g^{ij}) R_{i\pm}
+    + 2 \underset{\pm}{\eta}\,_j g^{jk} \underset{_\mp}{\chi}\,_{kl}g^{il} R_{i\pm}
+    \pm 2 \underset{\pm}{\eta}\,_j g^{ij} \zeta_i R_{\pm\pm}\\
+    & \quad
+    + \partial_\pm\partial_\mp R_{\pm\pm} 
+    -\underset{\pm}{\eta}\,_j g^{ij}  \partial_i  R_{\pm\pm}
+    -\underset{\pm}{\eta}\,_j g^{ij}  \partial_i  R_{\pm\pm}
+    -4 \partial_\pm\big(\underset{\mp}{\eta}\,_j g^{ij} \big) R_{i \pm}
+    -4 \underset{\mp}{\eta}\,_j g^{ij} \partial_\pm R_{i \pm}
+     + 2 \underset{\mp}{\eta}\,_j g^{ij} \underset{\mp}{\omega}R_{\pm i}\\
+    & \quad
+    - 2 \partial_\pm\underset{\mp}{\omega}  R_{\pm\pm}
+    - 2 \underset{\mp}{\omega} \underset{\mp}{\omega} R_{\pm\pm}
+    - 2 \underset{\pm}{\omega}\underset{\mp}{\eta}\,_jg^{ij} R_{i \pm}
+    + 2 \underset{\pm}{\omega}\underset{\pm}{\omega} R_{\pm \pm}
+    + \partial_\pm\partial_\mp R_{\pm\pm}
+    +\underset{\pm}{\omega} \partial_\mp R_{\pm\pm}
+    +4 \partial_\pm\underset{\mp}{\omega} R_{\pm\pm} \\
+    &\quad 
+    + 4 \underset{\mp}{\omega} \partial_\pm R_{\pm\pm}
+    - 2 \underset{\mp}{\omega}\underset{\mp}{\omega} R_{\pm\pm}\\
+    &=
+    2 R_{i \pm} \Big( \underset{\mp}{\eta}\,_j g^{jk} \Gamma_{\pm k}^i
+    +  \underset{\pm}{\eta}\,_j \underset{_\mp}{\chi}\,_{kl} g^{jk} g^{il} 
+    - \partial_\pm\big(\underset{\mp}{\eta}\,_j g^{ij} \big)
+    + \underset{\mp}{\omega} \underset{\mp}{\eta}\,_j g^{ij}
+    - \underset{\pm}{\omega} \underset{\mp}{\eta}\,_j g^{ij} \Big)
+    -4 \underset{\mp}{\eta}\,_j g^{ij} \partial_\pm R_{i \pm}\\
+    &\;\; 
+    + 2 R_{\pm\pm} \Big(
+    \underset{\pm}{\omega}\underset{\pm}{\omega}
+    - 2 \underset{\mp}{\omega}\underset{\mp}{\omega}
+    + \partial_\pm \underset{\mp}{\omega}
+    + (\underset{\mp}{\eta}\,_{\!j} \underset{\pm}{\eta}\,_{\!i}
+    \!\pm\! \underset{\pm}{\eta}\,_{\!j} \zeta_i )g^{ij} \!\Big)
+    \!+\! \Big(\!2 \partial_\pm\partial_\mp
+    +4 \underset{\mp}{\omega} \partial_\pm
+    +\underset{\pm}{\omega} \partial_\mp
+    -2\underset{\pm}{\eta}\,_{\!j}g^{ij}  \partial_i
+    \Big) R_{\pm\pm}
+\end{align*}
+
+\begin{align*}
+    D(e_\pm,e_\pm, e_\mp, e_\pm) 
+    &=2\R(\nabla_{e_\mp}\nabla_{{e_\pm}} e_\pm ,e_\pm )
+    + 2\R(\nabla_{\nabla_{e_\mp}{e_\pm}} e_\pm ,e_\pm )
+    + \partial_\mp \partial_\pm R_{\pm\pm}
+    -(\nabla_{e_\mp} {e_\pm})R_{\pm\pm}\\
+    &\quad 
+    -4 \partial_\mp\big(\R(\nabla_{{e_\pm}} e_\pm , e_\pm )\big)
+    + 2 \R(\nabla_{e_\mp} e_\pm , \nabla_{{e_\pm}} e_\pm ) \\
+    &=2\R\big(\nabla_{e_\mp}(\Gamma_{\pm\pm}^\pm e_\pm) ,e_\pm \big)
+    + 2\Gamma_{\mp\pm}^\mu \R(\nabla_{e_\mu} e_\pm ,e_\pm )
+    + \partial_\mp \partial_\pm R_{\pm\pm}
+    -\Gamma_{\mp\pm}^\mu \partial_\mu R_{\pm\pm}\\
+    &\quad 
+    -4 \partial_\mp(\Gamma_{\pm\pm}^\pm R_{\pm\pm})
+    + 2 \Gamma_{\pm\pm}^\pm \Gamma_{\mp\pm}^\mu R_{\mu\pm}\\
+    &=2\underset{\mp}{\omega} \Gamma_{\mp\pm}^\mu R_{\mu\pm}
+    + 2 \partial_\mp \underset{\mp}{\omega} R_{\pm\pm}
+    + 2\Gamma_{\mp\pm}^\mu \R(\nabla_{e_\mu} e_\pm ,e_\pm )
+    + \partial_\mp \partial_\pm R_{\pm\pm}
+    -\Gamma_{\mp\pm}^\mu \partial_\mu R_{\pm\pm}\\
+    &\quad 
+    -4 \partial_\mp\underset{\mp}{\omega} R_{\pm\pm}
+    -4 \underset{\mp}{\omega} \partial_\mp R_{\pm\pm}
+    + 2 \underset{\mp}{\omega} \Gamma_{\mp\pm}^\mu R_{\mu\pm}\\
+    &=2\underset{\mp}{\omega} \underset{\mp}{\eta}\,_j g^{ij} R_{i \pm}
+    + 2 \partial_\mp \underset{\mp}{\omega} R_{\pm\pm}
+    + 2\underset{\mp}{\eta}\,_k g^{jk} \underset{\mp}{\chi}\,_{jl}g^{il} R_{i\pm}
+    \pm 2\underset{\mp}{\eta}\,_j g^{ij} \zeta_i R_{\pm\pm}
+    + \partial_\mp \partial_\pm R_{\pm\pm}\\
+    &\quad 
+    -\underset{\mp}{\eta}\,_j g^{ij} \partial_i  R_{\pm\pm}
+    -4 \partial_\mp\underset{\mp}{\omega} R_{\pm\pm}
+    -4 \underset{\mp}{\omega} \partial_\mp R_{\pm\pm}
+    + 2 \underset{\mp}{\omega} \underset{\mp}{\eta}\,_j g^{ij} R_{i \pm}\\
+    &\quad - 2\underset{\mp}{\omega} \underset{\pm}{\omega} R_{\pm\pm}
+    + 2 \partial_\mp \underset{\mp}{\omega} R_{\pm\pm}
+    - 2\underset{\pm}{\omega} \underset{\pm}{\omega} R_{\pm\pm}
+    + \partial_\mp \partial_\pm R_{\pm\pm}
+    +\underset{\pm}{\omega} \partial_\pm R_{\pm\pm}\\
+    &\quad 
+    -4 \partial_\mp\underset{\mp}{\omega} R_{\pm\pm}
+    -4 \underset{\mp}{\omega} \partial_\mp R_{\pm\pm}
+    - 2 \underset{\mp}{\omega} \underset{\pm}{\omega} R_{\pm\pm}\\
+    &= - 2 R_{\pm\pm} \Big(
+    \mp \underset{\mp}{\eta}\,_j g^{ij} \zeta_i
+    + 2 \underset{\mp}{\omega} \underset{\pm}{\omega}
+    + \underset{\pm}{\omega} \underset{\pm}{\omega}
+    +2 \partial_\mp\underset{\mp}{\omega} \Big)
+    + 2 R_{i\pm} g^{ij} \Big(2 \underset{\mp}{\omega} \underset{\mp}{\eta}\,_j 
+    + \underset{\mp}{\eta}\,_l \underset{\mp}{\chi}\,_{kj} g^{kl} \Big)\\
+    &\quad
+    + \Big(2 \partial_\mp \partial_\pm
+    +\underset{\pm}{\omega} \partial_\pm
+    -8 \underset{\mp}{\omega} \partial_\mp
+    -\underset{\mp}{\eta}\,_j g^{ij} \partial_i  \Big) R_{\pm\pm}
+\end{align*}
+Summarizing, re-indexing and re-ordering...
+\begin{align*}
+    \!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!
+    g^{ij} D(e_\pm,e_\pm,e_i,e_j)
+    &= 
+    + 2 R_{\pm\pm} \Big( \underset{\pm}{\chi}\,_{ik} \underset{\mp}{\chi}\,_{jl}g^{kl}g^{ij}
+    + \underset{\mp}{\omega} \underset{\pm}{\chi}\,_{ij}g^{ij}
+    - \underset{\pm}{\omega} \underset{\mp}{\chi}\,_{ij}g^{ij}
+    + 2 \zeta_i \zeta_jg^{ij}
+    \pm \Gamma_{ij}^k \zeta_k g^{ij}
+    \mp g^{ij} \partial_i\zeta_j \Big)\\
+    &\quad 
+    + 2 R_{ij} \underset{\mp}{\chi}\,_{nm} \underset{\mp}{\chi}\,_{kl}g^{il}g^{jm}g^{kn} \\
+    &\quad 
+    + 2 R_{i\pm} \Big( \underset{\mp}{\chi}\,_{kl}\Gamma_{jm}^i g^{lm} g^{jk}
+    \!-\! g^{jk} \partial_j(\underset{\mp}{\chi}\,_{kl}g^{il})
+    \!+\! (\underset{\mp}{\chi}\,_{kl} \underset{\mp}{\chi}\,_{jk}
+    \!+\! \underset{\mp}{\chi}\,_{jk} \underset{\mp}{\eta}\,_l
+    \!\pm\! \zeta_j \underset{\mp}{\chi}\,_{kl}
+    \!\pm\! 2 \zeta_k \underset{\mp}{\chi}\,_{jl}
+    \!+\! \Gamma_{jk}^m \underset{\mp}{\chi}\,_{ml} )g^{il} g^{jk}\Big) \\
+    &\quad 
+    + 2 R_{\mp\pm} \underset{\mp}{\chi}\,_{jl} \underset{\mp}{\chi}\,_{ik} g^{kl} g^{ij}\\
+    &\quad 
+    - 4 \underset{\mp}{\chi}\,_{kl}g^{il}  g^{jk} \partial_j R_{i \pm}\\
+    &\quad 
+    +  \Big( g^{ij}\partial_i \partial_j
+    \mp 4 \zeta_j g^{ij}\partial_i
+    -\Gamma_{jk}^i g^{jk}\partial_i
+    -\underset{\pm}{\chi}\,_{ij} g^{ij} \partial_\pm
+    -\underset{\mp}{\chi}\,_{ij} g^{ij} \partial_\mp \Big) R_{\pm\pm}
+\end{align*}
+
+\begin{align*}
+    \!\!\!\!\!\!\!\!\!\!
+    - D_{\pm\pm\pm\mp} -D_{\pm\pm\mp\pm}
+    &=
+    + 2 R_{i \pm} \Big(
+    + \partial_\pm\big(\underset{\mp}{\eta}\,_j g^{ij} \big)
+    + \underset{\pm}{\omega} \underset{\mp}{\eta}\,_j g^{ij}
+    -3 \underset{\mp}{\omega} \underset{\mp}{\eta}\,_j g^{ij}
+    - \underset{\mp}{\eta}\,_j g^{jk} \Gamma_{\pm k}^i
+    -  (\underset{\pm}{\eta}\,_l + \underset{\mp}{\eta}\,_l)  \underset{_\mp}{\chi}\,_{kj} g^{kl} g^{ij}  \Big)\\
+    &\quad 
+    +4 \underset{\mp}{\eta}\,_j g^{ij} \partial_\pm R_{i \pm}\\
+    &\quad
+    + 2 R_{\pm\pm} \Big(
+    + 2 \underset{\mp}{\omega}\underset{\mp}{\omega}
+    + 2 \underset{\mp}{\omega} \underset{\pm}{\omega}
+    +2 \partial_\mp\underset{\mp}{\omega} 
+    - \partial_\pm \underset{\mp}{\omega}
+    - \underset{\pm}{\eta}\,_{i} \underset{\mp}{\eta}\,_{ j} g^{ij}  
+     \mp  \zeta_i(\underset{\pm}{\eta}\,_{ j}+\underset{\mp}{\eta}\,_j)  g^{ij}\Big)\\
+    &\quad 
+    +  \Big(
+    -2 \partial_\pm\partial_\mp
+    -\underset{\pm}{\omega} \partial_\mp
+    +8 \underset{\mp}{\omega} \partial_\mp
+    -2 \partial_\mp \partial_\pm
+    -4 \underset{\mp}{\omega} \partial_\pm
+    -\underset{\pm}{\omega} \partial_\pm
+    + (2\underset{\pm}{\eta}\,_{ j} + \underset{\mp}{\eta}\,_j) g^{ij}\partial_i
+    \Big) R_{\pm\pm}
+\end{align*}
+Leads to the final expression:
+\begin{align*}
+    B_{\pm\pm} &= 
+    + 2 R_{\pm\pm} \; \cdot \; \Big(
+    + 2 \underset{\mp}{\omega}\underset{\mp}{\omega}
+    + 2 \underset{\mp}{\omega} \underset{\pm}{\omega}
+    +2 \partial_\mp\underset{\mp}{\omega} 
+    - \partial_\pm \underset{\mp}{\omega}\\
+     &\quad \quad \quad \quad \quad \quad \; \;
+    + g^{ij} \big(2 \zeta_i \zeta_j
+    - \underset{\pm}{\eta}\,_{i} \underset{\mp}{\eta}\,_{ j}
+    \mp  \zeta_i(\underset{\pm}{\eta}\,_{ j}+\underset{\mp}{\eta}\,_j)
+    + \underset{\pm}{\chi}\,_{ik} \underset{\mp}{\chi}\,_{jl}g^{kl}
+    + \underset{\mp}{\omega} \underset{\pm}{\chi}\,_{ij}
+    - \underset{\pm}{\omega} \underset{\mp}{\chi}\,_{ij}
+    \pm \Gamma_{ij}^k \zeta_k 
+    \mp \partial_i\zeta_j \big)
+    \Big)\\
+    &\quad 
+    +  \Big(
+    + g^{ij}\partial_i \partial_j
+    -2 \partial_\pm\partial_\mp
+    -2 \partial_\mp \partial_\pm
+    -\Gamma_{jk}^i g^{jk}\partial_i
+    + (2\underset{\pm}{\eta}\,_{ j} + \underset{\mp}{\eta}\,_j \mp 4 \zeta_j) g^{ij}\partial_i\\
+    &\quad \quad \;\;\;
+    +\big(8 \underset{\mp}{\omega}
+    -\underset{\pm}{\omega} 
+    -\underset{\mp}{\chi}\,_{ij} g^{ij}\big)\partial_\mp
+    -\big(4 \underset{\mp}{\omega}
+    +\underset{\pm}{\omega}
+    +\underset{\pm}{\chi}\,_{ij} g^{ij} \big)\partial_\pm
+    \Big) R_{\pm\pm}\\
+    &\quad 
+    + 2 R_{ij} \; \cdot \; \underset{\mp}{\chi}\,_{nm} \underset{\mp}{\chi}\,_{kl}g^{il}g^{jm}g^{kn}  \\
+    &\quad 
+    + 2 R_{\mp\pm} \; \cdot \; \underset{\mp}{\chi}\,_{jl} \underset{\mp}{\chi}\,_{ik} g^{kl} g^{ij} \\
+    &\quad 
+    + 2 R_{i\pm}  \; \cdot \;  \Big( + g^{jk}\big( \underset{\mp}{\chi}\,_{kl}\Gamma_{jm}^i g^{lm}
+     -  \partial_j(\underset{\mp}{\chi}\,_{kl}g^{il})
+    -  \underset{\mp}{\eta}\,_j \Gamma_{\pm k}^i\big)
+    + \partial_\pm(\underset{\mp}{\eta}\,_j g^{ij})
+    + \big(\underset{\pm}{\omega} \underset{\mp}{\eta}\,_j 
+    -3 \underset{\mp}{\omega} \underset{\mp}{\eta}\,_j \big)g^{ij}\\
+    &\quad \quad \quad \quad \quad \quad \;
+     +  (\underset{\mp}{\chi}\,_{kl} \underset{\mp}{\chi}\,_{jk}
+     +  \underset{\mp}{\chi}\,_{jk} \underset{\mp}{\eta}\,_l
+     \pm  \zeta_j \underset{\mp}{\chi}\,_{kl}
+     \pm  2 \zeta_k \underset{\mp}{\chi}\,_{jl}
+     +  \Gamma_{jk}^m \underset{\mp}{\chi}\,_{ml}
+     -  \underset{\pm}{\eta}\,_j\underset{_\mp}{\chi}\,_{kl}
+     - \underset{\mp}{\eta}\,_j\underset{_\mp}{\chi}\,_{kl}
+     )g^{il} g^{jk}\Big)\\
+    &\quad 
+    +4 g^{ij} \big( \underset{\mp}{\eta}\,_j \partial_\pm - \underset{\mp}{\chi}\,_{kj} g^{kl} \partial_l \big) R_{i \pm}
+\end{align*}
+
+We apologies for not writing it explicitly, for it is far too big an expression, but from \color{red} previous equations \color{black} we conclude that:
+\begin{equation}
+    \boxed{C_{\pm\pm} = (2\alpha + \beta + 2\gamma) A_{\pm\pm} +(4\gamma- \beta)B_{\pm\pm} + \mathcal{O}(R^2)}
+\end{equation}
 
 
 \newpage 
@@ -667,5 +1900,14 @@ A natural transformation is an objects linking functors together so as to make f
 
     \bibitem{FourBound}
     Fewster, C.; Smith, C.; \textit{Absolute quantum energy inequalities in curved spacetime} Annales Henri Poincare \href{https://arxiv.org/abs/gr-qc/0702056}{9 425-455} (2008)
+
+    \bibitem{Art}
+    Aretakis, S.; \textit{Lecture Notes on General Relativity} Columbia University \href{https://web.math.princeton.edu/~aretakis/columbiaGR.pdf}{(Princeton University personal web-page)} (2013)
+
+    \bibitem{Chris}
+    Christodoulou, D.;\textit{The Formation of Black Holes in General Relativity} Ar$\chi$iv \href{http://arxiv.org/abs/0805.3880v1#}{DOI: 0805.3880} (2008)
+
+    \bibitem{QFTCurv}
+    Birrell, N. D.; Davies, P.C.; \textit{Quantum Fields in Curved Space} Cambridge University Press \href{https://www.cambridge.org/core/books/quantum-fields-in-curved-space/95376B0CAD78EE767FCD6205F8327F4C#}{ISBN: 9780511622632}
 \end{thebibliography} 
 \end{document}
