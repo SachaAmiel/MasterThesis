@@ -289,10 +289,8 @@ A more rigorous mathematical treatment of the definition of the field will lead 
         \begin{definition}[Basic Physical Objects in QFT]$\quad$
         \begin{itemize}
             \item \underline{The Action}: $S:= \int \mathcal{L}$ is sort of the cost function of each field configuration (thought that would be a \emph{classical interpretation}.
-            \item \underline{Energy Momentum Tensor}: $T_{\mu\nu}:=\frac{2}{\sqrt{|g|}}\frac{\delta}{\delta g^{\mu\nu}}S$
-            \item \underline{Feynman Propagator}: $G^\mathrm{F}(x,x'):=i\bra{\psi}T\Phi(x)\Phi(x')\ket{\psi}$ where $\ket{\psi}$ is a given state, and $T$ is the \emph{time ordering operator} which we will not go into right now. In our calculations, we will only work with $H:=-iG^\mathrm{F}$ which is the real bi-distribution instead.
-            \item \underline{Two Point Function}: $W(x,x'):=\bra{\psi}\Phi(x)\Phi(x')\ket{\psi}$
-            \item \color{red} can't find a proper definition of Hadamard parametrix\color{black}
+            \item \underline{Energy Momentum Tensor}: $T_{\mu\nu}:=\frac{2}{\sqrt{|g|}}\frac{\delta}{\delta g^{\mu\nu}}S.$
+            \item \underline{Feynman Propagator}: $G^\mathrm{F}(x,x'):=i\bra{\psi}T\Phi(x)\Phi(x')\ket{\psi}$ where $\ket{\psi}$ is a given state, and $T$ is the \emph{time ordering operator} which we will not go into right now. In our calculations, we will only work with $H:=-iG^\mathrm{F}$ which is the real bi-distribution instead (called Hadamard parametrix). 
         \end{itemize}
         \end{definition}
         All these are the objects of QFT, but, on their own, they are a bit too general, which is why we restrict ourselves to previously mentioned powerful states called \emph{Hadamard states}. We shall delay a proper treatment of what they truly are until the last minute, a bit later when it is unavoidable as they lead to quite long and confusing formulae. But known that what follows only works on those types of states.
@@ -560,7 +558,7 @@ $k\to2$ as terms of order higher than 2 go to zero at the limit $x'\to x$. Overa
 \end{equation}
 Now, although equation \ref{eq82} is giving us a bound, i.e. a quantum null inequality, it is still not as explicit as one would want. Thus, we ought to compute it. This was done in \cite{DSNEC} in the special case of $\Sigma=\mathcal{M}=\mathbb{M}_4$. But we want to compute it explicitly for any manifold.
 \subsubsection{Motivation for a special type of foliation}
-During our computation, we have assumed that, at all times $l^\mu l^\nu g_{\mu\nu}=0$, i.e. that $l^\mu$ was a null direction. But to be able to make use of this, to continue expliciting the bound in the null case, and for other more intricate mathematical and physical reason, we will require to make a \emph{foliation} of space-time with respect to such a direction\footnote{\color{red} Although we will go deeply into the details of the particular foliation we will use, if the reader wishes to be introduced to the general ideas of foliations, they are presented in the appendix}.
+During our computation, we have assumed that, at all times $l^\mu l^\nu g_{\mu\nu}=0$, i.e. that $l^\mu$ was a null direction. But to be able to make use of this, to continue expliciting the bound in the null case, and for other more intricate mathematical and physical reason, we will require to make a \emph{foliation} of space-time with respect to such a direction\footnote{Although we will go deeply into the details of the particular foliation we will use, if the reader wishes to be introduced to the general ideas of foliations, they are presented in the appendix. Rigoroulsy on page \pageref{MatFoli} and with physical interpretation on page \pageref{PhyFoli}.}.
 
 Mathematically constructing this folliation assures the existence of this $l\mu$ direction at any point on $\Sigma$, which ensures the well posed-ness of the inequality. Also, it will help making the inequality even more explicit, and thereby more practical to use.
 
@@ -570,7 +568,7 @@ Physically, this will allow use to integrate over a surface of light-like geodes
 
 \subsection{Double Null Foliation}
 \subsubsection{Step by step buildup of the foliation}
-This section and the folowing one are summarizing \cite{Chris} and \cite{Art} in which one can see the details of the contruction of the double null foliation. All pictures present in here also come from those sources, \color{red} although we added extra information using color \color{black}.
+This section and the folowing one are summarizing \cite{Chris} and \cite{Art} in which one can see the details of the contruction of the double null foliation. All pictures present in here also come from \cite{Art}, although we re-coloured them and tweaked some to, hopefully, convey even clearer information.
 
 We start with a co-dimention 2 surface. Although it is not required by \cite{Chris} and \cite{Art}, we will assume this surface to be compact, and space-like for simplicity (so, in $\mathbb{M}_4$, one can simply take a 2D ball in spacetime, and in $\mathbb{M}_3$, which is where our illustrations will be, it will be a circle). This surface, is denoted $S_0$.
 
@@ -642,26 +640,26 @@ $$g^{-1}=-e_+\otimes e_- - e_-\otimes e_+ + \cancel{g}^{-1} \quad ).$$
 \end{comment}
 
 \subsubsection{Curvature in null coordinates}
-We will now compute the curvature tensor, from the connection. We will straight up reuse the result from \color{red}REF \color{black} that gives us all non-zero and identical components of the curvature, thus, these are the only things that a courageous reader would have to compute to apply our work to a given metric.
+We will now compute the curvature tensor, from the connection. We will straight up reuse the result from \cite{Art} and \cite{Chris} that gives us all non-zero and identical components of the curvature, thus, these are the only things that a courageous reader would have to compute to apply our work to a given metric.
 
-It must be emphasized that we are resuing notations that are very common in the field (identical in every found article using this folliation method) but we will slightly twist it arround to fit our personnal needs. Indeed, as we (unlike the article we found) do a lot of explicit computations, we chose a slightly more convoluted notation to make use of the $\pm\mapsto\mp$ symetry in all equations. If you are comparing with \color{red}REF \color{black}, apply the following redefinitions:
+It must be emphasized that we are resuing notations that are very common in the field (identical in every found article using this folliation method) but we will slightly twist it arround to fit our personnal needs. Indeed, as we (unlike the article we found) do a lot of explicit computations, we chose a slightly more convoluted notation to make use of the $\pm\mapsto\mp$ symetry in all equations. If you are comparing with \cite{Art} and \cite{Chris}, apply the following redefinitions:
 \begin{align*}
     ``+":=3, && ``-":=4, && \underset{+}{\omega}:=\omega, && \underset{+}{\chi}:=\chi, && \underset{+}{\eta}:=\eta.
 \end{align*}
-Note however that we do keep, in all this subsubsection, the mathematician's notation $\nabla_\mu:=\nabla_{e_\mu}$ as do both \color{red} REF \color{black}, in order to make it easier for the reader to compare our results with them (who do similar computations but with the extra assumption of the metric being a solution to Einstein's vaccum equations). This will mean that $\nabla_\mu e_\nu = \Gamma_{\mu\nu}^\rho e_\rho$ and $\nabla_\mu e_\nu \ne \partial_\mu e_\nu - \Gamma_{\mu\nu}^\rho e_\rho$. We apologies for potentially caused confusion.
+Note however that we do keep, in all this subsubsection, the mathematician's notation $\nabla_\mu:=\nabla_{e_\mu}$ as do both \cite{Art} and \cite{Chris}, in order to make it easier for the reader to compare our results with them (who do similar computations but with the extra assumption of the metric being a solution to Einstein's vaccum equations). This will mean that $\nabla_\mu e_\nu = \Gamma_{\mu\nu}^\rho e_\rho$ and $\nabla_\mu e_\nu \ne \partial_\mu e_\nu - \Gamma_{\mu\nu}^\rho e_\rho$. We apologies for potentially caused confusion.
 
-Now that those subtleties about notation have been dealt with, let us steal from \color{red}REF \color{black} the list of all non-zero Christoffel symbols.
+Now that those subtleties about notation have been dealt with, let us steal from \cite{Art} and \cite{Chris} the list of all non-zero Christoffel symbols.
 \begin{align*}
-    \underset{\pm}{\chi}\,_{ij} :=&\Gamma_{ij}^\pm &\Gamma_{i\pm}^j&=\underset{\mp}{\chi}\,_{ik}\cancel{g}^{jk}\\
+    \underset{\pm}{\chi}\,_{ij} :=&\Gamma_{ij}^\pm &\Gamma_{i\pm}^j&=\underset{\mp}{\chi}\,_{ik}g^{jk}\\
     \underset{\pm}{\eta}\,_i :=&\Gamma_{\pm i}^\pm &\Gamma_{\pm\mp}^i&=\underset{\pm}{\eta}\,_kg^{ik}\\
     \underset{\pm}{\omega}:=&\Gamma_{\mp\mp}^\mp &\Gamma_{\mp\pm}^\pm&=-\underset{\pm}{\omega}\\
     \zeta_i :=& \Gamma_{i+}^+ &\Gamma_{i\pm}^\pm&=\pm\zeta_i \\
     \Gamma_{\pm i}^j&\\
     \Gamma_{ij}^k&
 \end{align*}
-Where the ones on the left are the only degrees of freedom (so the only ones a courageous reader would have to compute to apply our work to a given spacetime\footnote{The minimal number of calculations to get them all is obtained by only skipping $\nabla_\pm e_\mp$ among all conceivable $\nabla_\mu e_\nu$; which is very disappointing. But if one can compute $\Gamma_{\mu\nu}^\rho$ separately, than the left column is what will be the fastest.}). \color{red} I don't know what they mean by "we obtain [the two last ones] with respect to the induced metric $\cancel{g}$"...\color{black}
+Where the ones on the left are the only degrees of freedom (so the only ones a courageous reader would have to compute to apply our work to a given spacetime\footnote{The minimal number of calculations to get them all is obtained by only skipping $\nabla_\pm e_\mp$ among all conceivable $\nabla_\mu e_\nu$; which is very disappointing. But if one can compute $\Gamma_{\mu\nu}^\rho$ separately, than the left column is what will be the fastest.}).
 
-Let us now compute commutators $[e_\mu,e_\nu]$ as they will be relevant later on. Although this might seem like something that would need to be computed back at the level of the foliation, we can make use of the fact that (although we do not have $\Gamma{\mu\nu}^\rho=\Gamma{\nu\mu}^\rho$) our connection is indeed the levi-cevita connection. It is defined as the (signle) connection with no torsion. Since torsion is formally the following tensor:
+Let us now compute commutators $[e_\mu,e_\nu]$ as they will be relevant later on. Although this might seem like something that would need to be computed back at the level of the foliation, we can make use of the fact that (although we do not have $\Gamma_{\mu\nu}^\rho=\Gamma_{\nu\mu}^\rho$) our connection is indeed the levi-cevita connection. It is defined as the (signle) connection with no torsion. Since torsion is formally the following tensor:
 \begin{equation}
 \forall (X,Y) \in T\mathcal{M}^2 \quad\quad  \mathrm{Tor}_\nabla(X,Y):= \nabla_XY-\nabla_YX-[X,Y]
 \end{equation}
@@ -697,7 +695,7 @@ Which gives us an expression (but is not as satisfying as in the coordinate case
     R^\rho_{\;\sigma\mu\nu} e_\rho = \nabla_\mu\nabla_\nu e_\rho-\nabla_\nu\nabla_\mu e_\rho-\nabla_{[e_\mu,e_\nu]}e_\rho
 \end{equation}
 We notice that the famous property $R^\rho_{\;\sigma\mu\nu}=-R^\rho_{\;\sigma\nu\mu}$ trivially holds.\\
-Other symetries of the tensor require the lowering of $\rho$, so we will simply not use them. We do not detail here the derivation of the $R^\rho_{\;\sigma\mu\nu}$ as it is long, tedious, and frankly uninteresting. But one can find the detailed steps \color{red}in the appendix\color{black}.
+Other symetries of the tensor require the lowering of $\rho$, so we will simply not use them. We do not detail here the derivation of the $R^\rho_{\;\sigma\mu\nu}$ as it is long, tedious, and frankly uninteresting. But one can find the detailed steps in the appendix on page \ref{CompR}.
 \subsection{Computation of the Inequality and future use}
 \subsubsection{Computing $C$}
 Recall our current state of the computation of our inequality \color{red}reuse the same number\color{black}:
@@ -760,7 +758,12 @@ We will now impose a bound on the curvature. That is (in our frame):
 Your colleagues said we could use "Riccati comparison" which is using an equation of the form $\nabla_\pm \mathrm{tr}(\chi)^2 = f^o(R^o)$ that should be found in Aretakis... But I didn't find it (in fact, "Ctrl+F"-ing the name \emph{Riccati} doesn't  give any results in Aretakis. Likewise, there's a wikiepdia page for \emph{Riccati equation} and \emph{algebraic Riccati equation}, neither of which mention \emph{curvature}. \color{black}
 
 \section{Conclusion}
-\color{red} Explain the requirements od $D$ (small sampling domain), make equations part of sentences, make, write how to use dynamics to compute $H$ (in the coordinates); Foliation in Appendix \color{black}
+\color{red} make equations part of sentences;
+write how to use dynamics to compute $H$ (in the coordinates);
+Move WF to theo part (1);
+Also add choice of D in the future use;
+Bound $C_\pm\pm$;
+Formula by wiser (47 in her time-like paper)\color{black}
 
 Although time was too short to compute explicitly the Double Smeared Null Energy Condition, i.e. to express it purely in terms of known algebraic functions and lower bounds on the curvature and its derivatives, we have done a significant part of the work. It remains to \color{red} ??? \color{black} and then the inequality with be ready for future use.
 
@@ -799,7 +802,7 @@ As we mentioned before such an inequality will certainly have applications in fi
         \item The Fourier Functor which sends Classical Quantum Mechanics from the Position Representation to the Momentum Representation
         \item The Feynman rules functor that sends the category of Feynman diagrams to their values and the relations between them into formulas.
     \end{itemize}
-    Having a functor simply means being able to bring some of the interesting things of a structure into another. In our case, (QFT in curved spaces) a functor that we will see all the time is the Algebra Functor, which to any neighborhood of a spacetime associates all the observables accessible to an observer in that region, and therefore, we see that it is core in the \emph{covariance} requirement of QFT.
+    Having a functor simply means being able to bring some of the interesting things of a structure into another. In our case, (QFT in curved spaces) a functor that we will see all the time is the Algebra Functor, which to any neighbourhood of a spacetime associates all the observables accessible to an observer in that region, and therefore, we see that it is core in the \emph{covariance} requirement of QFT.
 
     \subsubsection{Natural Transformations}
     We do not use them much in this \color{red} text \color{black} but they are still quite important. A natural transformation is a \emph{morphism between functors} from a category to another. They allow to study functors themselves as a category (and thus, sort of "close" category into itself).\\
@@ -902,7 +905,7 @@ These imortant propeties are what motivate there use in physics. In particular, 
 
 \newpage
 \section{Computation Appendix}
-\subsection{Computing $R^\rho_{\;\sigma\mu\nu}$ in the double null frame} 
+\subsection{Computing $R^\rho_{\;\sigma\mu\nu}$ in the double null frame} \label{CompR}
 Recall from \color{red} REF \color{black} that:
 \begin{align*}
     \underset{\pm}{\chi}\,_{ij} :=&\Gamma_{ij}^\pm &\Gamma_{i\pm}^j&=\underset{\mp}{\chi}\,_{ik}\cancel{g}^{jk}\\
