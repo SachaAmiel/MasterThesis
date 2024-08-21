@@ -74,7 +74,7 @@ This section will make use (without defining them) of notions of \textbf{categor
 
 This section will make use (without defining them) of notions of \textbf{distribution theory}. If the reader feels the need for a mathematical definition of what a distribution is, it can be found on page \pageref{DistribMath}, in the Mathematics appendices. If the reader feels the need for a physical understanding of what a distribution is, it can be found on page \pageref{DistribPhy}, in the Physics appendices.
 
-In this section, we will use the symbol $\mathbb{M}_4$ to refer to Minkowski spacetime in 1+3 dimensions, and $\mathcal{M}$ will denote any spacetime with signature $(\mp, \pm,\pm, ..., \pm)$. Any other notations and concepts (other than standard undergrad ones) will be introduced before being used.
+In this section, we will use the symbol $\mathbb{M}_4$ to refer to Minkowski spacetime in 1+3 dimensions, and $\mathcal{M}$ will denote any spacetime with signature $(\mp, \pm,\pm, ..., \pm)$. Any other\footnote{Other than standard undergrad ones (which we assume the reader is familiar with), and concepts related to the notion of foliation, (of which an introduction can also be found in the appendix, both in terms of physical interpretation on page \pageref{PhyFoli} or mathematically rigorous notions on page \pageref{MatFoli}).} notations and concepts will be introduced before being used.
 
 \subsection{Axiomatic approach to Algebraic Quantum Field Theory}
 \subsubsection{Formalizing the intuitive idea of a QFT}
@@ -86,14 +86,16 @@ $$\boxed{\mathcal{T}_{H,\mathrm{Sch}}: \Bigg\{
 \begin{matrix}
 \mathbb{H} & \to & \mathcal{C}^\infty(\mathbb{R},\mathbb{H})\\
 \Psi & \mapsto & \Big(t\mapsto \e^{\mathfrak{i}\hbar H}\Psi\Big)
-\end{matrix}}$$
+\end{matrix}}\;.$$
+
 An example of an operator time evolution would be the well known Heisenberg-picture time-evolution (which, if taken with the same $H$ (Hamiltonian) is \emph{physically equivalent}):
 $$\boxed{\mathcal{T}_{H,\mathrm{Hei}}: \Bigg\{
 \begin{matrix}
 \mathcal{B}(\mathbb{H}) & \to & \mathcal{C}^\infty\big(\mathbb{R},\mathcal{B}(\mathbb{H})\big)\\
 X & \mapsto & \Big(t\mapsto \e^{-\mathfrak{i}\hbar H}X\e^{\mathfrak{i}\hbar H}\Big)
-\end{matrix}}$$
-But some more whimsical time-evolutions can be used, for instance, in several methods of perturbation theory in molecular physics (drawing from a mixture of the previously mentioned ones)... In a way, once can consider the Dirac equation or the Klein-Gordon equations as being another time-evolution, also defining a quantum mechanics (though in practice, we want to see Klein-Gordon as part of a Quantum Field theory, which is something we will define next).
+\end{matrix}}\;.$$
+
+But some more whimsical time-evolutions can be used, for instance, in several methods of perturbation theory in molecular physics (drawing from a mixture of the previously mentioned ones). In a way, once can also consider the Dirac equation or the Klein-Gordon equations as being other time-evolutions also defining quantum mechanics (though in practice, we want to see them as part of a Quantum Field theory, which is something we will define next).
 
 Note that the definition can often extend all the sets $\mathcal{B}(\mathbb{H})$ to $\mathcal{L}(\mathbb{H})$, i.e. disregard the requirement of boundedness. Although this makes things much harder to define mathematically (exponential of operators suddenly require a bit more work in the definition), the idea remains exactly the same. In what follows we will keep track of this subtle difference, but unless it is of interest to the reader, we suggest not minding it.
 \end{definition}
@@ -101,7 +103,7 @@ Note that the definition can often extend all the sets $\mathcal{B}(\mathbb{H})$
 \begin{definition}[States - Observables - and Physically Identical QMs] \emph{vocabulary}
 
 
-"States" are the set $\mathbb{C}\mathcal{P}_\mathbb{H}$, i.e. the projectiv space of the Hilbert space of the quantum mechanics. Recall that the projection of a vector space is the set of all equivalence classes $\{\lambda \Psi, \lambda\in\mathbb{C}\}$ for all vectors $\Psi$ in $\mathbb{H}$. In practice, one often confuses (non-zero) vectors of $\mathbb{H}$ with their projection and just calls them states, while keeping in mind that they are identical up to change of norm and phase.
+``States" are the set $\mathbb{C}\mathcal{P}_\mathbb{H}$, i.e. the projectiv space of the Hilbert space of the quantum mechanics. Recall that the projection of a vector space is the set of all equivalence classes $\{\lambda \Psi, \lambda\in\mathbb{C}\}$ for all vectors $\Psi$ in $\mathbb{H}$. In practice, one often confuses (non-zero) vectors of $\mathbb{H}$ with their projection and just calls them states, while keeping in mind that they are identical up to change of norm and phase.
 
 "Observables" are self hermitian operators of $\mathbb{H}$. Or a sub-algebra of it (depending on the context). The physically observable information of a quantum mechanics is the spectrum of these operators. Thus, if two QM yield the same spectra up to an isomorphysim of QMs (understand by that an isomorphysm of Hilbert spaces AND of time evolution) we say that they are descriptions of the same physical systems, i.e. the same. From a more formal point of view, this is like having a bijective functor on the category of QMs (where Hilbert Spaces are the objects, and time-evolutions are the morphisms).
 
@@ -122,8 +124,9 @@ As mentioned previously, an example of this idea is QMs in the Schrodinger pictu
         \item $||\cdot||$ is a norm over $\mathcal{A}$ as a complex vector space;
         \item $\forall (A,B)\in\mathcal{A}\;\; ||AB||\leq||A||\cdot||B||$
         \item $\forall A\in\mathcal{A}\;\; ||A^*\cdot A||=||A^*||\cdot||A||=||A||^2$
-        \item $\mathcal{A}$ is \emph{complete} in the $||\cdot||$-metric topology
+        \item $\mathcal{A}$ is \emph{complete} in the $||\cdot||$-metric topology.
     \end{itemize} 
+    
 For simplicity, we will always assume that $||\mathds{1}||=1$... That's just the redefinition $||\cdot||\mapsto\frac{||\,\cdot\,||}{||\mathds{1}||}$, so nothing to overthink there...
 \end{definition}
 
@@ -137,13 +140,14 @@ The few following definitions are taken from \cite{AQFT_Intro}. They can also be
 \begin{definition}[AQFT] \label{AQFT_M4-Ax}
     An AQFT is a tuple $\big(\mathcal{A}(\mathbb{M}_4), \mathcal{A}(\cdot)\big)$. Where $\mathcal{A}(\mathbb{M}_4)$ is an C*-Algebra and $\mathcal{A}(\cdot)$ is a functor from the category $\mathcal{O}(\mathbb{M}_4)$ of open causally convex subsets of $\mathbb{M}_4$ to that of sub-C*-Algebras of $\mathcal{A}(\mathbb{M}_4)$ obeying the following requirements:
     \begin{enumerate}
-        \item \textbf{Locality}:  $\big\{\mathcal{A}(O), O \in \mathcal{O}(\mathbb{M}_4) \; \mathrm{with}\; O\; \mathrm{bounded}\big\}$ generates $\mathcal{A}(\mathbb{M}_4)$
-        \item \textbf{Isotony}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1\subset O_2 \implies \mathcal{A}(O_1)\subset\mathcal{A}(O_2)$
-        \item \textbf{Causality}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1 \; \mathrm{and}\; O_2\; \mathrm{causaly}\;\mathrm{disjoint}\; \implies \big[\mathcal{A}(O_1),\mathcal{A}(O_2)\big]=0$
-        \item \textbf{Covariance}: there exists a functor $\alpha$ from the category of the (identity connected) Poincaré transformations of $\mathcal{O}(\mathbb{M}_4)$ to that of the sub-C*-Algebras of $\mathcal{A}(\mathbb{M}_4)$.
-        \item \textbf{Spectrum Condition}: We require the existence of a representation (see next definition) of the algebra where the translations are unitarily implemented (physically, this means we want translation-invariant physics).
-        \item \textbf{Dynamics}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \;\mathrm{with} \;O_1 \subset O_2$, if $O_1$ contains a set met exactly once by every extensible timelike curve (also known as a \emph{Cauchy Surface}) in $O_2$, then $\mathcal{A}(O_1)=\mathcal{A}(O_2)$
+        \item \textbf{Locality}:  $\big\{\mathcal{A}(O), O \in \mathcal{O}(\mathbb{M}_4) \; \mathrm{with}\; O\; \mathrm{bounded}\big\}$ generates $\mathcal{A}(\mathbb{M}_4)$;
+        \item \textbf{Isotony}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1\subset O_2 \implies \mathcal{A}(O_1)\subset\mathcal{A}(O_2)$;
+        \item \textbf{Causality}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1 \; \mathrm{and}\; O_2\; \mathrm{causaly}\;\mathrm{disjoint}\; \implies \big[\mathcal{A}(O_1),\mathcal{A}(O_2)\big]=0$;
+        \item \textbf{Covariance}: there exists a functor $\alpha$ from the category of the (identity connected) Poincaré transformations of $\mathcal{O}(\mathbb{M}_4)$ to that of the sub-C*-Algebras of $\mathcal{A}(\mathbb{M}_4)$;
+        \item \textbf{Spectrum Condition}: We require the existence of a representation (see next definition) of the algebra where the translations are unitarily implemented (physically, this means we want translation-invariant physics);
+        \item \textbf{Dynamics}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \;\;;\mathrm{with} \;\;O_1 \subset O_2$, if $O_1$ contains a set met exactly once by every extensible timelike curve (also known as a \emph{Cauchy Surface}) in $O_2$, then $\mathcal{A}(O_1)=\mathcal{A}(O_2)$.
     \end{enumerate}
+    
 Note that the true definition of an AQFT actually doesn't always use C*-Algebras but sometimes simply *-Algebras (especially when doing perturbation theory). But since dropping the C* requirement makes things a lot more complicated (it's basically like disregarding any topological concerns) when it simply doesn't make false many important results, most researchers in the field focus on C*-AQFT and we will simply ignore the other ones.
 \end{definition}
 
@@ -151,39 +155,46 @@ Note that the true definition of an AQFT actually doesn't always use C*-Algebras
 
 "States" are elements $\omega: \mathcal{A}(\mathbb{M}_4)\to\mathbb{C}$ obeying the following properties:
 \begin{itemize}
-    \item $\forall \lambda\in\mathbb{C}, \forall(A,B)\in\mathcal{A}(\mathbb{M}_4)^2\quad \omega(\lambda A+B)=\lambda \omega(A)+\omega(B)$
-    \item $\forall A \in \mathcal{A}(\mathbb{M}_4)\quad \omega(A^*\, A)\in \mathbb{R}_+$
-    \item $\omega(\mathds{1})=1$
+    \item $\forall \lambda\in\mathbb{C}, \forall(A,B)\in\mathcal{A}(\mathbb{M}_4)^2\quad \omega(\lambda A+B)=\lambda \omega(A)+\omega(B)$;
+    \item $\forall A \in \mathcal{A}(\mathbb{M}_4)\quad \omega(A^*\, A)\in \mathbb{R}_+$;
+    \item $\omega(\mathds{1})=1$.
 \end{itemize}
-
 "Observables" are self adjoint elements of $\mathcal{A}(\mathbb{M}_4)$, i.e. the elements of: $\{A \in\mathcal{A}(\mathbb{M}_4):A=A^*\}$.
 \end{definition}
 
 \subsubsection{Relating AQFT to the intuitive ideas of QFT}
 \begin{comment}
 \label{Com:SymDiracWeyl}
-    Recall that, from comment \ref{Com:C*&Bound}, given any Hilbert space $\mathbb{H}$, the bounded operators of it $\mathcal{B}(\mathbb{H})$ forms a C* Algebra.\\
-    Notice that, linear forms $\frac{\bra{\Psi}\,\cdot\,\ket{\Psi}}{\braket{\Psi|\Psi}}$ gives us a "State" in the QFT sense, and that for all $\ket{\lambda\Psi}$ corresponding to the same state, the associated linear form will be identical.\\
-    All this, (associated to the fact that $\mathbb{M}_4$ can be folliated\footnote{\color{red} Talk about foliation in the appendix, especially if we end up using coordinate foliation to compute DSNEC\color{black}} with respect to time) sort of hints us towards the idea that AQFT is indeed sort of what a QFT should be (i.e. a covariant QM).\\
-    Now, it turns out that, intrinsically, a QFT is not a QM, for some subdle reasons. It would be more rigorous to say that every QFT \emph{contains several QMs}... Let us build up to this more formally:
+    Recall, from comment \ref{Com:C*&Bound}, that given any Hilbert space $\mathbb{H}$, the bounded operators of it $\mathcal{B}(\mathbb{H})$ forms a C* Algebra.
+    
+    Notice that, linear forms $\frac{\bra{\Psi}\,\cdot\,\ket{\Psi}}{\braket{\Psi|\Psi}}$ gives us a "State" in the QFT sense, and that for all $\ket{\lambda\Psi}$ corresponding to the same state, the associated linear form will be identical.
+    
+    All this, (associated to the fact that $\mathbb{M}_4$ can be folliated\footnote{If the reader is unfamiliar with the notion of foliation, it is introduced in the appendix. On page \pageref{MatFoli} of the Mathematics appendix is a formal introduction, and a physical interpretation can be found on page \pageref{PhyFoli} of the Physics Appendix.} with respect to time) sort of hints us towards the idea that AQFT is indeed sort of what a QFT should be (i.e. a covariant QM).
+    
+    Now, it turns out that, intrinsically, a QFT is not a QM, for some subdle reasons. It would be more rigorous to say that every QFT \emph{contains several QMs}... Let us build up to this more formally.
 \end{comment}
 
 \begin{definition}[Representation of a C*-Algebra]$\quad$
 
-    A representation of a C*-Algebra $\mathcal{A}$ is a triple $(\mathbb{H},\mathcal{D},\pi)$ where $\mathbb{H}$ is a Hilbert Space; $\mathcal{D}$ a dense subspace of it; and $\pi : \mathcal{A}\to\mathcal{B}(\mathcal{D})$ a morphism of C*-Algebra such that $\pi(\mathds{1}_{|\mathcal{A}})=\mathds{1}_{|\mathcal{D}}$\\
+    A representation of a C*-Algebra $\mathcal{A}$ is a triple $(\mathbb{H},\mathcal{D},\pi)$ where $\mathbb{H}$ is a Hilbert Space; $\mathcal{D}$ a dense subspace of it; and $\pi : \mathcal{A}\to\mathcal{B}(\mathcal{D})$ a morphism of C*-Algebra such that $\pi(\mathds{1}_{|\mathcal{A}})=\mathds{1}_{|\mathcal{D}}$
+
+    
     Unsurprisingly, it will be called a \emph{faithful} representation when $\mathrm{Ker}(\pi)=\{0\}$ and irreducible if without any invariant subspaces...
-    \\ So from that, it becomes sort of obvious that any representation of the algrebra of a QFT, associated with a $\mathcal{T}$ to keep track of the time each subalgebra is from (which is trivially extracted from the $\mathcal{A} functor$, does indeed lead to a proper QM.
+    
+    So from that, it becomes sort of obvious that any representation of the algrebra of a QFT, associated with a $\mathcal{T}$ to keep track of the time each subalgebra is from (which is trivially extracted from the $\mathcal{A}$ functor, does indeed lead to a proper QM.
 \end{definition}
 
 \begin{comment}
-    It turns out that, given a state (a pure state) $\omega$ one can always build a representation that works as broadly teased in comment \ref{Com:SymDiracWeyl} and yeilds a faithfull irreducible representation, with a vector $\ket{\Omega}$ such that $\omega\simeq\bra{\Omega}\cdot\ket{\Omega}$.\\
-    And that representation will be unique up to unitary equivalence (i.e. yeild exaclty the same QM). This is Theorem 10 in \cite{AQFT_Intro}. One can see this particular representation (called GNS representation) as a "canonical representation" of a QFT associated to a particular state.\\
-    \color{red} I'm only mentionning it very broadly because it "looks obvious" and also I'm guessing physicists won't care about it... But perhaps I should make it more formal, and also do the actual proof (only the pure state case, to go faster...) After all, in spite of its obviousness, this canonical prepresentation is used everywhere in the article... \color{black}
+    It turns out that, given a state (a pure state) $\omega$ one can always build a representation that works as broadly teased in comment \ref{Com:SymDiracWeyl} and yeilds a faithfull irreducible representation, with a vector $\ket{\Omega}$ such that $\omega\simeq\bra{\Omega}\cdot\ket{\Omega}$.
+    
+    And that representation will be unique up to unitary equivalence (i.e. yeild exaclty the same QM). This is Theorem 10 in \cite{AQFT_Intro}. One can see this particular representation (called GNS representation) as a "canonical representation" of a QFT associated to a particular state.
 \end{comment}
 
 \begin{comment}
-    In the case where any two such representations are unitarily equivalent, we see that the given QFT \emph{is} a quantum mechanics... But it turns out many QFTs do not have this property, in particular the algebra of operators of free feild theories do not have this property.\\
-    This is characterized by the author of \cite{AQFT_Intro} as the intrinsic presence of quantum fields in a theory. All purely QFT statements of the algebraic formulation are written in terms of this study of inequivalent representations. In particular, the structure of all inequavalent reps, formulated with "superselection sectors" yeilds what can be seen as algebraic gauge theory...\\
+    In the case where any two such representations are unitarily equivalent, we see that the given QFT \emph{is} a quantum mechanics... But it turns out many QFTs do not have this property, in particular the algebra of operators of free feild theories do not have this property.
+    
+    This is characterized by the author of \cite{AQFT_Intro} as the intrinsic presence of quantum fields in a theory. All purely QFT statements of the algebraic formulation are written in terms of this study of inequivalent representations. In particular, the structure of all inequavalent reps, formulated with "superselection sectors" yeilds what can be seen as algebraic gauge theory...
+    
     Gauge theory will not be part of our study, nor will any representation issues. They were only quoted as a way to justify our choice of axioms: all evidence sugests that the mathematical oject at hand \emph{is} quantum field theory on $\mathbb{M}_4$. One can now accept it in full confidence, to move into the next step toward quantum energy inequalities.
 \end{comment}
 
@@ -192,7 +203,9 @@ Note that the true definition of an AQFT actually doesn't always use C*-Algebras
 \subsection{Fields in curved spacetimes}
 
 \subsubsection{Separating the notion of a Field from its spacetime}
-        Recall that $\mathcal{A}(\cdot)$ can be seen as a covariant functor from the spacetime to the Algebra of observables. Let $\bold{Loc}$ be the category of hyperbolic oriented and time oriented spacetimes related by respective embedding. Let $\bold{Vec}$ be the categroy of topological vector spaces (with continuous linear functions as morphisms). And let $\bold{Obs}$ be the category of locally convex C*Algebras (or just unital *Algebras in the context of perturbation theory, or topological Poisson Algebras in the classical case) with corresponding algebra morphisms as morphisms.\\
+Recall that $\mathcal{A}(\cdot)$ can be seen as a covariant functor from the spacetime to the Algebra of observables.
+        
+Let $\bold{Loc}$ be the category of hyperbolic oriented and time oriented spacetimes related by respective embedding. Let $\bold{Vec}$ be the categroy of topological vector spaces (with continuous linear functions as morphisms). And let $\bold{Obs}$ be the category of locally convex C*Algebras (or just unital *Algebras in the context of perturbation theory, or topological Poisson Algebras in the classical case) with corresponding algebra morphisms as morphisms. 
 Let $\mathcal{D}$ be the functor from $\bold{Loc}$ to $\bold{Vec}$ that associates to every spacetime its compactly supported test functions.
 
 \begin{definition}[Quantum Field]\label{QField}$\quad$
@@ -201,12 +214,12 @@ Let $\mathcal{D}$ be the functor from $\bold{Loc}$ to $\bold{Vec}$ that associat
     We will detail the meaning of this definition in the next section, do not be frightened by how abstruse this definition looks.
 \end{definition}
 
-This definition is abstract enough to hold over any spacetime (as the categories used to not require anything reserved to $\mathbb{M}_4$), this leads us to slightly weaken the axioms of AQFT (called pAQFT) as follows (see \cite{pAQFT} for more), it will, among other things, allow to include perturbation theory to the frame but also make it work on any spacetime:\\
+This definition is abstract enough to hold over any spacetime (as the categories used to not require anything reserved to $\mathbb{M}_4$), this leads us to slightly weaken the axioms of AQFT (called pAQFT) as follows (see \cite{pAQFT} for more), it will, among other things, allow to include perturbation theory to the frame but also make it work on any spacetime.\\
 A perturbative quantum field theory over any space-time is the data $(\mathcal{M},\mathcal{A}(\mathcal{M})$ such that:
 \begin{itemize}
-    \item There is a net to topological *-algebras with sequentially continuous product over a spacetime $\mathcal{M}$; $\mathcal{O}\mapsto\mathcal{A}(\mathcal{O})$ (i.e. the observable functor is well defined)
-    \item \textbf{Locality}, \textbf{Isotony}, \textbf{Causality} and \textbf{Covariance} hold (see definition \ref{AQFT_M4-Ax} for formulae, just replace $\mathbb{M}_4$ with $\mathcal{M}$)
-    \item \textbf{Time-slicing axiom}: Algebra of the neighborhood of a Cauchy surface\footnote{\color{red} define a Cauchy surface with the foliation thing \color{black}} of a Region is the algebra of the whole region. (To get a time-evolution)
+    \item There is a net to topological *-algebras with sequentially continuous product over a spacetime $\mathcal{M}$; $\mathcal{O}\mapsto\mathcal{A}(\mathcal{O})$ (i.e. the observable functor is well defined);
+    \item \textbf{Locality}, \textbf{Isotony}, \textbf{Causality} and \textbf{Covariance} hold (see definition \ref{AQFT_M4-Ax} for formulae, just replace $\mathbb{M}_4$ with $\mathcal{M}$);
+    \item \textbf{Time-slicing axiom}: Algebra of the neighborhood of a Cauchy surface\footnote{In short a Cauchy surface is a surface met once by all geodesics. However, since this is a vary important object of AQFT in curved spaces, and since it is also realted to foliations wichi we already mentionned and will extensively use in the last section, we recommend any reader unfamiliar with Cauchy surfaces to check out how they are rigourously defined on page \pageref{CauchyMat} of the Mathematics appendix or at least their physical interpretation on page \pageref{CauchyPhy} of the Physics appendix.} of a Region is the algebra of the whole region. (To get a time-evolution);
     \item Notice, however, that the spectrum condition can no longer be used on curved surfaces, as "translations" are not everywhere well defined. To not loose this idea of "translation invariant physics", we will instead, make use of Hadamard states \label{FirstMentionHad}(see Section \ref{DefHad} for details).
 \end{itemize}
 
@@ -226,11 +239,10 @@ Recall definition \ref{QField}, and let us build to an understanding of it:
 
 $\mathcal{D}$ is the functor that associates to every area of spacetime a "test function". Mathematically, a test function is a compactly supported smooth function over a manifold... Physically, it is thus a smooth bunch of data that is localized in space. In a way, it can be seen as anything that probes the spacetime while staying physical (cannot go to infinity or have nonphysical acceleration), sort of the "nicest abstract physical fluid" one could think of, or (mathematically more accurate) looking at the field in a particular area, smoothly weighting differently different sub-areas of where one is looking.\\
 
-Now, a field is defined as a natural transformation from $\mathcal{D}$ to $\mathbb{A}$, so it takes in the test functions (and their spacetime structures) and sends it to the observable, although (in the output) we only get the vector information. So physically, a Field is a non-commutative (i.e. quantum object) that can be probed in spacetime, and whose values will be regular numbers.\\
-
+Now, a field is defined as a natural transformation from $\mathcal{D}$ to $\mathbb{A}$, so it takes in the test functions (and their spacetime structures) and sends it to the observable, although (in the output) we only get the vector information. So physically, a Field is a non-commutative (i.e. quantum object) that can be probed in spacetime, and whose values will be regular numbers.\\ \\
 This does correspond to what is known in QFT as a quantum field.\\
 
-Here are some easy examples of fields:
+\noindent Here are some easy examples of fields:
 \begin{itemize}
     \item The one that just reads the value at a point O of a test function (known as a Dirac $\delta$ distribution).
     \item One can create a family of fields starting from a single one (called $a$) taking its dual ($a^\dag$) and making sure it commutes as such ($[a,a^\dag]=\delta$)... $a$ will then be called a ladder operator...
@@ -243,31 +255,31 @@ A more rigorous mathematical treatment of the definition of the field will lead 
         
          For any field $\phi\in\mathcal{D}'(\mathcal{M})$ for any two test functions $f,g\in\mathcal{D}(\mathcal{M})$ and any scalar $\lambda\in\mathbb{C}$  the two following equalities hold:
          \begin{align*}
-             \phi(\lambda f+ g) &= \lambda\phi(f)+ \phi(g)&
-             \phi(f)^\dag &= \phi(f^*)
+             \phi(\lambda f+ g) &= \lambda\phi(f)+ \phi(g),&
+             \phi(f)^\dag &= \phi(f^*).
          \end{align*}
         \end{theorem}
         \begin{definition}[On shell fields]$\quad$
 
         Our algebra of "physical" (or "on shell") fields is technically not $\mathcal{D}'(\mathcal{M})$ as we also impose field equations and commutation relations (usually obtained from canonical quantization of an action). This is us making a choice in the previously mentioned natural transformation. Formally, we are given a filed equation $\mathfrak{F}$ and canonical commutation relations $\mathfrak{C}$, and "on shell" is the algebra $\mathcal{D}'(\mathcal{M})/(\mathfrak{F}\wedge\mathfrak{C})$.
 
-        In practice though, since $\mathcal{D}'(\mathcal{M})/(\mathfrak{F}\wedge\mathfrak{C})$ is isomorphic to a sub algebra of $\mathcal{D}'(\mathcal{M})$ and since the latter is much nicer, we will simply work in $\mathcal{D}'(\mathcal{M})$ and impose that physical fields $\mathcal{D}'_\mathrm{shell}(\mathcal{M})\subset\mathcal{D}'(\mathcal{M})$ have the following extra properties:
+        In practice though, since $\mathcal{D}'(\mathcal{M})/(\mathfrak{F}\wedge\mathfrak{C})$ is isomorphic to a sub algebra of $\mathcal{D}'(\mathcal{M})$ and since the latter is much nicer, we will simply work in $\mathcal{D}'(\mathcal{M})$ and impose that physical fields $\mathcal{D}'_\mathrm{shell}(\mathcal{M})\subset\mathcal{D}'(\mathcal{M})$ have the following extra properties.
         \end{definition}
         
-        \begin{theorem}[On shell & commutation properties]$\quad$
+        \begin{theorem}[On shell \& commutation properties]$\quad$
         
         Let $\mathcal{P}$ be our field equation operator and $\mathcal{E}(\cdot,\cdot)$ be our energy \color{red} get proper name\color{black} the following equations hold for any $f,g\in\mathcal{D}(\mathcal{M})$:
         \begin{align*}
-            (\mathcal{P}\phi)(f):=&\phi(\mathcal{P}f)=0 &
-            [\phi(f),\phi(g)]=&i\mathcal{E}(f,g)\mathds{1}
+            (\mathcal{P}\phi)(f):=&\phi(\mathcal{P}f)=0, &
+            [\phi(f),\phi(g)]=&i\mathcal{E}(f,g)\mathds{1}.
         \end{align*}            
         \end{theorem}
 
         In our case, we will work with the simple Physics derived from the Lagrangian \color{red} also I need the expression of $\mathcal{E}$\color{black}:
-        $$\mathcal{L}=\frac{\sqrt{|g|}}{2}\left(\nabla^\mu\phi\nabla_\mu\phi- (m^2+\xi R)\phi^2\right)$$
-        Leading to:
-        $$\mathcal{P}:=\square_g + m^2 + \xi R$$
-        Where $g$ is the spacetime's metric, $R$ its Ricci curvature, $m$ is a real scalar (mass of the field) $\xi$ a real scalar (gravitation coupling).
+        $$\mathcal{L}=\frac{\sqrt{|g|}}{2}\left(\nabla^\mu\phi\nabla_\mu\phi- (m^2+\xi R)\phi^2\right);$$
+        leading to:
+        $$\mathcal{P}:=\square_g + m^2 + \xi R,$$
+        where $g$ is the spacetime's metric, $R$ its Ricci curvature, $m$ is a real scalar (mass of the field) $\xi$ a real scalar (gravitation coupling).
 
         
 \subsection{From its axiomatization to its practical implementation}
@@ -294,7 +306,7 @@ A more rigorous mathematical treatment of the definition of the field will lead 
     $$l^{\mu}(x):=g^\mu_{\nu'}(x,x')l^{\nu'}(x')$$
     naturally, as $x'$ goes to $x$ we recover no transport at all, i.e. just the metric:
     $$\lim_{x\to x'} g_{\mu\nu'}(x,x')=g_{\mu\nu}(x')$$
-    we also have the \color{red}don't know where that is coming from\color{black} point-split stress-energy operator, which in our case is:
+    we also have the point-split stress-energy operator (or canonical quantization of the energy momentum tensor), which in our case is:
     $$\mathbb{T}^\mathrm{split}_{\mu\nu}(x,x'):=\nabla^{(x)}_\mu\otimes\nabla^{(x')}_{\nu'}-\frac{1}{2}g_{\mu\nu'}(x,x')g^{\lambda\rho'}(x,x')\nabla_\lambda^{(x)}\otimes\nabla_{\rho'}^{(x')}+\frac{1}{2}m^2g_{\mu\nu'}(x,x')1\otimes 1$$
     Using these operators, we define:
     $$\braket{T^\mathrm{fin}_{\mu\nu}}_\psi(x):=\lim_{x'\to x} g_\nu^{\nu'}(x,x')\mathbb{T}^\mathrm{split}_{\mu\nu}\circ(W-H)(x,x')$$
@@ -362,7 +374,7 @@ The form of a quantum energy condition is:
 \begin{equation}
 \boxed{\braket{\rho(f)}_\omega \geq - \braket{\mathcal{Q}(f)}_\omega}
 \end{equation}
-where $\rho:=T^\mathrm{ren}_{\;\;ab}t^at^b$ is the energy density (in some sense given by a choice of the $t$ used, giving us, like in the classical case \emph{strong}, \emph{null}, \emph{weak} and a whole zoology of conditions). $f$ is a test function (\color{red} or a distribution for some reason\color{black}) $\mathcal{Q}$ is a possibly unbounded operator. As it stands, it is a pointwize one. Integrating the inequality's $t$ over a geodesic of some type gives an integrated energy condition (complete geodesic, or full, depending on what we want).
+where $\rho:=T^\mathrm{ren}_{\;\;ab}t^at^b$ is the energy density (in some sense given by a choice of the $t$ used, giving us, like in the classical case \emph{strong}, \emph{null}, \emph{weak} and a whole zoology of conditions). $f$ is a test function (or a distribution in some cases, for purely computational reasons). $\mathcal{Q}$ is a possibly unbounded operator. As it stands, it is a pointwize one. Integrating the inequality's $t$ over a geodesic of some type gives an integrated energy condition (complete geodesic, or full, depending on what we want).
 
 Now, we call a condition trivial when:
 \begin{equation} \label{triv}
@@ -799,13 +811,13 @@ As we mentioned before such an inequality will certainly have applications in fi
 
     Finlay, know that $\mathbb{M}_4$ can be replaced by any spacetime manifold, and even products of manifolds $\mathcal{M}\times\mathcal{M}'$ leading to bi-distributions; and also that $\mathbb{R}$ can also be swapped with $\mathbb{C}$. There is a lot of mathematical agility required to deal with the topology of distributions, but as physicist we can always assume things to be well defined and convergent, mostly thanks to the restrictions previously imposed on test functions.
 
-\subsection{Foliation}
+\subsection{Foliation}\label{PhyFoli}
     \subsubsection{Generality on Foliation}
     A foliation of a manifold is a splitting of the manifold into lower dimensionnal ones. Like spliting a volume into planes, or spacetime into volumes at every point in time.
 
     All the parts that it is split into are called leaves and they must always form an equivalence relation, that is to say not intersect (hence the names leaves, like paper leaves foliating a book). There are a vast diversity of foliations, but usualy, we require that they keep structural properties similar to the ones of the original manifold. For example, for a manifold that is (everywhere) of dimention $n$ we ususaly want all leaves to be of dimension $n-1$. On smooth manifolds, that the leaves are smooth and that one can smoothly go from one to another. In dinamical systems, (when using Hamiltonian flow) that they propagate together to the same leaves (i.e. can be time-indexed). Requirements will always depends on what we need the foliation for.
 
-\subsubsection{Cauchy Surfaces and Foliation}
+\subsubsection{Cauchy Surfaces and Foliation}\label{CauchyPhy}
     A Cauchy surface is a surface which is intersected once and only once by every single geodesic. They are essential in the axioms of Algebraic Quantum Field Theory.
 
     An interesting theorem (which is easy to understand) is that if there exists a single Cauchy surface, by letting it propagate through the geodesic equation, we get a natural foliation of the manifold.
@@ -858,13 +870,13 @@ A natural transformation is an objects linking functors together so as to make f
     Last but not least, knowing $x\mapsto \e^{ikx}$ is measurable, by defining convolutions of distributions (which we will not go over here, but is not particularly complicated) we can also extend Fourier transforms to all distributions, matching with canonical distributions of functions, thereby extending Fourier transforms to distributions (and in particular, just like for derivation, allowing to take the Fourier transform of any function).
 
     It is in this very powerful differential calculus that physics has its objects. (Although, in QFT, we also have some non-commutativity which we have, here above, ignored, to avoid having this text be too long).
-\subsection{Foliation}
+\subsection{Foliation}\label{MatFoli}
 \subsubsection{Generality on Foliation}
 A foliation is an equivalence relation on a manifold. There are many types foliations based on what structural requirements one wishes to add to it. Usualy (for smoth manifolds) smothness and fixed dimension, but also a particular signature. Equivalence classes are called leaves.
 
 For instance, in $\mathbb{M}_4$ one can get a foliation with $\mathbb{M}_4/\{x^0\}$ (splitting into equal time system) thus getting a Riemanian manifolds for leaves $\mathbb{R}_3$, or $\mathbb{M}_4/\{x^3\}$ thus getting Lorenzian ones $\mathbb{M}_3$. And of course $\mathbb{M}_4/\{|x^0|+|x^1|+|x^2|+|x^3|\}$ is an example where smoothness is broken and $\mathbb{M}_4/\{|x^0|^2+|x^1|^2+|x^2|^2+|x^3|^2\}$ where smothness is kept but the leaves are niether Lorenzian nor Riemanian.
 
-\subsubsection{Cauchy surfaces and Foliation}
+\subsubsection{Cauchy surfaces and Foliation}\label{CauchyMat}
 A Cauchy surface is a surface intersecting once and only once with every single geodesic. Its existence implies a foliation of spacetime, indeed\footnote{This is not a proof, only a rough explanation of the idea behind this theorem.}:
 Considering all points $x_0$ on that Cauchy surface $C_0$, we can let them evolve along the geodesic equation $x(t)$ setting the affine parameter such that $x_0=x(t)=0$ since geodesics that intersect are equal, none of the $x(t)$ intersect. By continuity, for any $\tau$ the set $C_\tau := \{x_\tau := x(\tau)\}$ is canonically also a Cauchy surface. Thus $\{C_\tau\}$ are a foliation of the complete spacetime. \color{red} Maybe ref to the actual proof.\color{black}
 
