@@ -480,28 +480,46 @@ Thus let us now study a proper inequalities using a single state.
 
 \section{Absolute Quantum Energy Inequality}
 \subsection{Getting a general bound}
-\subsubsection{\color{red}$\Sigma$, D and stuff}
+\subsubsection{The domains of integration $\Sigma$ and $D$ in a general curved space}
 Before we go into how the general integrated general bound works, we need to focus on what it is integrating over. We previously mentioned that it was over $\Sigma$, some time-like submanifold, but that was embedded into $\mathbb{M}_n$ which is not the general case. So how do we bring the properites we require from Minkowski into a general submanifold $\mathbb{M}$?
 
 \begin{definition}[Small Sampling Domain]
-    A submanifold $\Sigma \subset \mathbb{M}$ is called a \emph{Small Sampling Domain} when
+    A submanifold $\Sigma \subset \mathbb{M}$ is called a \emph{Small Sampling Domain} when:
     \begin{itemize}
-        \item It is contained in a globally hyperbolic convex normal neighboorhood of $\mathcal{M}$
-        \item It can be covered by a single hyperbolic coordinate chart $\{x^\mu, \mu\in [\![0,k]\!]\}$
-        \item  $\partial_0$ is future pointing and timelike
-        \item $\exists c \in \mathbb{R}^* : \forall p \in \Sigma \forall u \in T_p\mathcal{M}^* g(u,u)\leq 0 \implies c^2|u_0|^2 \geq \sum_{i=\color{red}0???\color{black}}^{\color{red} n \; \mathrm{or} \; n-1\color{black}} |u_i|^2$
+        \item It is contained in a globally hyperbolic convex normal neighboorhood of $\mathcal{M}$:
+        \item It can be covered by a single hyperbolic coordinate chart $\{x^\mu, \mu\in [\![0,k]\!]\}$;
+        \item  $\partial_0$ is future pointing and timelike;
+        \item $\exists c \in \mathbb{R}^* : \forall p \in \Sigma \quad \forall u \in T_p\mathcal{M}^* \quad g(u,u)\leq 0 \implies c^2|u_0|^2 \geq \sum_{i=0}^{n-1} |u_i|^2$.
     \end{itemize}
 \end{definition}
 \begin{comment}[Interpretation of the definition]
     A convex (geodesically convex) neighboorhood is a neighboorhood where for any two points in $\mathcal{M}\cap\Sigma$ (i.e. points in the neigboorhood) all the points in-between them in the shortest\footnote{in the sense of proper length} geodesic going from one to the other are also in the neighboorhood. Meaning "there are no wholes" in $\Sigma$ in the sense of $\mathcal{M}$. Hyperbolic Manifolds are (in short) the ones that admit a Cauchy surface. The last property can be interpreted as the speed of light \emph{in the coordinate system} is bounded. So overall, an nice physicall interpretation would be that $\Sigma$ is sort of a "Minkowski" patch of $\mathcal{M}$ (but with curvature of course).
 \end{comment}
 
-Now, given a small sampling domain, and denoting by $\kappa : \Sigma \to \mathbb{R}^n$ the coordinate map of a coordinate system that makes it a small sampling domain, we define $\Sigma_\kappa:=\kappa(\Sigma)$ (i.e. $\Sigma$ but expressed in coordinates. Using $\iota : \Sigma \to \mathcal{M}$ for the embedding map, $\mathcal{N}^+$ for future pointing null covectors on $(\mathcal{M},g)$, and $D\subset\mathbb{R}^n$ for the set of real numbers $(u_i)$ such that $u_0>0$ and $c |u_0|^2\geq \sum_{i=0}^{n-1} |u_i|^2$ i.e. of potential coordinates that would work as a sampling domain we find, by construction that:
-$$\left(\iota\circ\kappa^{-1}\right)^*\mathcal{N}^+ \subset \Sigma_\kappa \times D$$
+Now, given a small sampling domain, let us name the following objects:
+\begin{itemize}
+	\item $\kappa : \Sigma \to \mathbb{R}^n$ a coordinate map of a coordinate system that makes it a small sampling domain;
+	\item $\Sigma_\kappa:=\kappa(\Sigma)$,  i.e. $\Sigma$ but expressed in coordinates;
+	\item $\iota : \Sigma \to \mathcal{M}$ for the embedding map; 
+	\item $\mathcal{N}^+$ for future pointing null covectors on $(\mathcal{M},g)$.
+\end{itemize}
 
-\color{red} except I really don't see why that would be, as $\iota_\kappa: \Sigma_\kappa \to \mathcal{M}$ so its pullback $\iota_\kappa^*$ should be of $\mathcal{M}\to \Sigma_\kappa$ and thus applied to $\mathcal{N}^+ \subset T\mathcal{M}^*$ should not be defined. Now of course, we can do a natural extention of point coordinate to vector coordinates (resp. covectors), but I don't see how we can end up in $\mathbb{R}^{2n}$.
+Now, from those tools, let us define the generalisation to curved space of the other set over which we also previously integrated: $D$. Consider this map:
+$$\iota \circ \kappa^{-1}: \Sigma_\kappa \to \mathcal{M}.$$ 
+This is the map that associates to every coordinate (in $\Sigma$) its space-time position on the spacetime manifold $\mathbb{M}$. We want to consider its pull-back, extended to covectors on $\Sigma$.
+$$(\iota \circ \kappa^{-1})^*: T\mathcal{M}^* \to \Sigma_\kappa \times \mathbb{R}^n.$$
+where one must recall that $T\mathcal{M}^* := \underset{p\in \Sigma}{ \biguplus} T_p\mathcal{M}$.
 
-Also, I was not able to find that "freedom in chosing $D$" from its definition... So I'm guessing I'm missing something. My original intuitive understanding of $D$ was that $\Sigma_\kappa$ is symetric by time inversion, so we take $D$ to be a subset of half of Sigma (i.e. rigorously we quotient  $\Sigma$ by that symetry, and then get back into coordinates) and the freedom of choice was in how we implement this time-symetry (as time is relativ) and also what coordinate to take (but that's not the interesting par). But that, of course, doesn't match the equations at all... \color{black}
+Now, it turns out that there are infinitely many ways to define such a pullback. We will only consider the (still numerous) ones such its action on $\mathcal{N}^+$ can be factorized (in the sence that all the vectors have identical coordinates regardless of what point they are taken at) which mathematically means that:
+$$\exists ! D \subset \mathbb{R}^n : \quad (\iota \circ \kappa^{-1})^*\mathcal{N}^+ =  \Sigma_\kappa \times D.$$
+
+This concludes the formal definition of the two surfaces we will integrate over in our general quantum energy inequalities: $\Sigma$, $D$. One can check that, in the flat case, they do indeed correspond to what was previously mentioned.
+
+Note, however, that $D$ still contains some arbitrariness in the way it is defined, through how the pull-back is done: there is an arbitrary choice in what coordinates one uses for future pointing null covectors. This was even the case in $\mathbb{M}_4$ previously (with the $D_0$ and $D_\eta$ sets). One can always choose arbitrarily something like :
+$D:= \left\{u_i \in \mathbb{R}^n : u_0 >0 \wedge c^2 |u_0|^2 \leq \sum_i |u_i|^2 \right\}$
+where $c$ is the one in the definition of $\Sigma$. But there is a much wilder range of choices (for instance, in $\mathbb{M}_4$, any Lorzentz transform of that set) that work equally well; yet will produce slightly different inequalities (some of which might brake covariance). We chose to see this as a degree of freedom in our inequality, wich we will generally want to optimize covariently\footnote{Of course, from the way they are defined, just using a supremum of the integral over all possible $D$ naturally restores the covariance and optimizes the inequality... But in practice, one may simply not be capable of writing explicitely this extrema. Hence in practice, one doesn't reach it, and only find a particular good bound and \emph{this} bound may be the one braking invariance... So we will usually restrict ourselves to a subset of all possible $D$ that also ensures covariance, and where optimisation if easier to compute. This is what was done in $\mathbb{M_4}$ with $D_0$ and all the $D_\eta$. Such a subset is however neither optimal either, nor necessarily trivial.}.
+
+
 
 
 
@@ -513,7 +531,7 @@ Given a partial differential operator $\mathcal{D}$, any Hadamard state $H$ we h
 \begin{equation}\label{3.1}
     \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (\mathcal{D}\otimes\mathcal{D}(W-H_{(k)}))\geq -2\int_D\frac{\d^n\xi}{(2\pi)^n}((|h_\kappa|^{1/4}g_\kappa)^{\otimes 2}\vartheta_\kappa(\mathcal{D}^{\otimes2}\mathcal{FT}_{H_{(k)}})^{(-\xi,\xi)}
 \end{equation}
-where $H_(k)$ is the series expansion of $H$ truncated after order $(k)$ and $(\cdot)^{(\xi,\xi')}$ denotes double Fourier transform.
+where $H_{(k)}$ is the series expansion of $H$ truncated after order $(k)$ and $(\cdot)^{(\xi,\xi')}$ denotes double Fourier transform.
 
 We will use this formula to create a quantum null energy inequality (i.e. a lower bound on energy density when integrated in null directions)
 
