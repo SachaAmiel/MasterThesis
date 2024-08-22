@@ -223,6 +223,25 @@ A perturbative quantum field theory over any space-time is the data $(\mathcal{M
     \item Notice, however, that the spectrum condition can no longer be used on curved surfaces, as "translations" are not everywhere well defined. To not loose this idea of "translation invariant physics", we will instead, make use of Hadamard states \label{FirstMentionHad}(see Section \ref{DefHad} for details).
 \end{itemize}
 
+Although we will not use this definition, but rather an equivalent one, let us, for the sake of rigor, define Hadamard states right now.
+\begin{definition}[Wavefront Set]
+    Let $u \in \mathcal{D}'(\Omega)$ be a distribution. It's wavefront set, denoted $\mathrm{WF}(u)$ is the complement in $\Omega\times(\mathbb{R}^n\setminus\{0\})$ of the set of points $(x,k_0)$ such that there exists a test function $f \in \mathcal{D}(\Omega): f(x)=1$  such that, for some open conic neighborhood $C$ of $k_0$
+    \begin{equation}
+    \forall N \in \mathbb{N} \quad \underset{k\in C}{\mathrm{sup}} \Big((1+|k|)^N \left|\mathcal{FT} \big(f\cdot u(k)\big)\right|\Big) <\infty
+    \end{equation}
+    where $\mathcal{FT}$ denotes the Fourrier transform, though its definition on a manifold is chart-dependent, its boundedness isn't.
+    One can, likewize, define a wavefront set for bi-distributions.
+\end{definition}
+The wavefront set can be seen as the spacetime $\times$ momentum places where the distribution has a well defined spectrum.
+\begin{definition}[Hadamard State]\label{HadDef}
+    Denoting by $\Bar{V}_{+,x}$ the closed future cone at spacetime point $x$, and by $(x,k)\sim(x',k')$ the equivalence relation "there exists a null geodesic strip containing the two pairs". One calls \emph{Hadamard} a state whose two-point-function $W$ has the following properties:
+    \begin{itemize}
+        \item $W$ is a bi-solution of the equations of motions
+        \item $W$ is positive definite
+        \item $\mathrm{WF}(W)=\{ ((x,k),(x',-k'))\in \mathrm{T}^*\mathcal{M}^2 : (x,k)\sim(x',k')\wedge k \in \Bar{V}_{+,x}$
+    \end{itemize}
+\end{definition}
+The physical interpretation of a Hadamard state is thus that not only is the state physical (equation of motion and positiveness) but so is its spectrum (which needs to be bonded by the causal structure of the spacetime, no more, no less).
 
 \begin{comment} \label{QFT+GR}
     Once this is our definition of QFT on curved spacetimes, we can look back at our definition of fields. It was formulated exclusively in terms of $\mathcal{A}$ and geometrical categories (\textbf{Loc}, \text{Obs}, ect...) and categories are only structural requirements. This means that \emph{for the same field} we can consider \emph{different spacetimes}. Doing this is too abstract to have some experimental meaning (which is to be expected, as we are still at the functor level), but having the freedom to change spacetime at will is the key ingredient of General relativity, hence, just like Einstein in his time, we can now ask formal questions about the spacetime \emph{given} a field.
@@ -268,14 +287,14 @@ A more rigorous mathematical treatment of the definition of the field will lead 
         
         \begin{theorem}[On shell \& commutation properties]$\quad$
         
-        Let $\mathcal{P}$ be our field equation operator and $\mathcal{E}(\cdot,\cdot)$ be our energy \color{red} get proper name\color{black} the following equations hold for any $f,g\in\mathcal{D}(\mathcal{M})$:
+        Let $\mathcal{P}$ be our field equation operator and $\mathcal{E}(\cdot,\cdot)$ be our energy\footnote{In fact, to be rigorous, this is the anti-symmetric part of our Hadamard State...} the following equations hold for any $f,g\in\mathcal{D}(\mathcal{M})$:
         \begin{align}
             (\mathcal{P}\phi)(f):=&\phi(\mathcal{P}f)=0, &
             [\phi(f),\phi(g)]=&i\mathcal{E}(f,g)\mathds{1}.
         \end{align}            
         \end{theorem}
 
-        In our case, we will work with the simple Physics derived from the Lagrangian \color{red} also I need the expression of $\mathcal{E}$\color{black}:
+\noindent In our case, we will work with the simple Physics derived from the Lagrangian :
         \begin{equation}
         \mathcal{L}=\frac{\sqrt{|g|}}{2}\left(\nabla^\mu\phi\nabla_\mu\phi- (m^2+\xi R)\phi^2\right);
         \end{equation}
@@ -396,26 +415,15 @@ Note that here, we work in the case of scalar theory. Extensions to fermions and
 
 In theory, computing these condition effectively seems like a dantean problem, if not impossible: indeed, there are just too many conceivable states $\omega$ and too many reactions $\mathcal{Q}$ could have when acting on $\omega$... But as it turns out, we can restrict ourselves to a subset of all states to only consider much friendlier ones called \emph{Hadamard} states. We briefly mentioned them before on page \pageref{FirstMentionHad}, but it is now time to get more familiar with them.
 \subsubsection{Down the Hadamard Rabbit Whole} \label{DefHad}
-As shown in \cite{HadEquiv}, there are equivalent definitions of Hadamard states. The nicer looking one (where the physics is more readable) is the following:
-\begin{definition}[Wavefront Set]
-    Let $u \in \mathcal{D}'(\Omega)$ be a distribution. It's wavefront set, denoted $\mathrm{WF}(u)$ is the complement in $\Omega\times(\mathbb{R}^n\setminus\{0\})$ of the set of points $(x,k_0)$ such that there exists a test function $f \in \mathcal{D}(\Omega): f(x)=1$  such that, for some open conic neighborhood $C$ of $k_0$
-    \begin{equation}
-    \forall N \in \mathbb{N} \mathcal{FT}(\underset{k\in C}{\mathrm{sup}} (1+|k|)^N|\hat{f\cdot u})<\infty
-    \end{equation}
-    where $\mathcal{FT}$ denotes the Fourrier transform, though its definition on a manifold is chart-dependent, its boundedness isn't \color{red} The hat is not spreading also that bit has to go earlier\color{black}.
+As shown in \cite{HadEquiv}, there are equivalent definitions of Hadamard states. Recall the nicer looking one (where the physics is more readable) is the following:
 
-    One can, likewize, define a wavefront set for bi-distributions.
-\end{definition}
-The wavefront set can be seen as the spacetime $\times$ momentum places where the distribution has a well defined spectrum.
-\begin{definition}[Hadamard State]
+\noindent \textbf{Definition \ref{HadDef}} (Hadamard State).
     Denoting by $\Bar{V}_{+,x}$ the closed future cone at spacetime point $x$, and by $(x,k)\sim(x',k')$ the equivalence relation "there exists a null geodesic strip containing the two pairs". One calls \emph{Hadamard} a state whose two-point-function $W$ has the following properties:
     \begin{itemize}
         \item $W$ is a bi-solution of the equations of motions
         \item $W$ is positive definite
         \item $\mathrm{WF}(W)=\{ ((x,k),(x',-k'))\in \mathrm{T}^*\mathcal{M}^2 : (x,k)\sim(x',k')\wedge k \in \Bar{V}_{+,x}$
     \end{itemize}
-\end{definition}
-The physical interpretation of a Hadamard state is thus that not only is the state physical (equation of motion and positiveness) but so is its spectrum (which needs to be bonded by the causal structure of the spacetime, no more, no less).
 
 But if that was the "nicer" (more physical) definition, the following equivalent one is a lot more suited for computations:
 \begin{definition}[Hadamard State - equivalent definition]
@@ -427,13 +435,13 @@ Notice that $U,V,W$ can be tailor expanded in the geodesic distance $\sigma(x,x'
 
 Here are useful formulae:
 \begin{align}
-    \exists (U_n, V_n, W_n) \in (?)^{D/2-1}\times(?)^\mathbb{N}\times(?)^\mathbb{N}:&\notag\\
+    \exists (U_n, V_n, W_n) \in \left(\mathcal{D}'(\mathbb{R}^2)\right)^{D/2-1}\times & \left(\mathcal{D}'(\mathbb{R}^2)\right)^\mathbb{N}\times\left(\mathcal{D}'(\mathbb{R}^2)\right)^\mathbb{N}:\notag\\
     U&(x,x')=\sum_{n=0}^{^D\!/_{\!2}-2}U_n(x,x')\sigma^n(x,x')\notag\\
     V&(x,x')=\sum_{n\in\mathbb{N}}V_n(x,x')\sigma^n(x,x')\notag\\
     W&(x,x')=\sum_{n\in\mathbb{N}}W_n(x,x')\sigma^n(x,x')\notag\\
     U_n&(x,x')=u_n(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}u_{n,p}(x,x')\\
     V_n&(x,x')=v_n(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}v_{n,p}(x,x')
-    \notag\quad\quad\quad\quad\quad\quad\quad\quad\\
+    \notag\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\\
     W&(x,x')=w(x)+\sum_{p\in\mathbb{N}^*}\frac{(-1)^p}{p!}w_{p}(x,x')\notag
     \end{align}
     $$\bra{\psi}T_{\mu\nu}(x)\ket{\psi}^\mathrm{ren} = \frac{\Bigl(\Gamma\!\left(\!^D\!/_{\!2}-1\right)\Bigl)^{1-\delta_{2,D}}}{2\cdot(2\pi)^{\!^D\!/_{\!2}}}\left[\lim_{x'\to x}\mathcal{T}_{\mu\nu}(x,x')W(x,x')+\mathds{1}_{2\cdot \mathbb{N}}(D)\frac{D}{2}g_{\mu\nu}V_1\right]+\Theta_{\mu\nu}(x)$$
@@ -556,7 +564,7 @@ To do so, we simply look at the specific case of $\mathcal{D}=l^\mu\nabla_\mu$ w
     &\quad - \cancel{l^\mu l^{\nu'}\frac{1}{2}m^2g_{\mu\nu'}(x,x')}\Big)(W-H_{(k)})\notag\\
     =& \int_\Sigma \d_\mathrm{vol}(x) g^2(x) l^\mu l^{\nu'}\mathbb{T}^\mathrm{split}_{\mu\nu'}(x,x')(W-H_{(k)})
 \end{align}
-where $g_{\mu,\nu'}(x,x')$ is the paralel transport operator, such that given a vector $l^\mu$ at point $x$, its parallel transported vector at $x'$ is $l^{\nu'}:=$ \color{red} go check to be sure\color{black}. Cancellations are all due to the fact that $l\mu l_\mu=0$.
+where $g_{\mu\nu'}(x,x')$ is the paralel transport operator, such that given a vector $l^\mu$ at point $x$, its parallel transported vector at $x'$ is $l^{\nu'}:=g^{\mu'\nu'}g_{\nu\mu'}(x,x') l^\nu $. Cancellations are all due to the fact that $l^\mu l_\mu=0$.
 \\
 Now, taking the limit:
 \begin{align}
@@ -716,7 +724,7 @@ We notice that the famous property $R^\rho_{\;\sigma\mu\nu}=-R^\rho_{\;\sigma\nu
 Other symetries of the tensor require the lowering of $\rho$, so we will simply not use them. We do not detail here the derivation of the $R^\rho_{\;\sigma\mu\nu}$ as it is long, tedious, and frankly uninteresting. But one can find the detailed steps in the appendix on page \pageref{CompR}.
 \subsection{Computation of the Inequality and future use}
 \subsubsection{Computing $C$}
-Recall our current state of the computation of our inequality \color{red}reuse the same number\color{black}:
+Recall our current state of the computation of our inequality:
 \begin{equation}\tag{\ref{eq82}}
     \boxed{\int_\Sigma \!\!\!\d_\mathrm{vol} g^2 \!\braket{l^\mu l^\nu T^\mathrm{ren}_{\mu\nu}}_{\!\psi} \!\!\geq\!\!\! \int_\Sigma \!\!\!\d_\mathrm{vol} g^2l^\mu l^\nu C_{\!\mu\nu}\!-\!2\!\!\!\int_D\!\!\frac{\d^n\xi}{(2\pi)^n}\!\left(\!\!(|h_\kappa|^{\!^1\!\!/_{\!4}}\!g_\kappa\!)^{\!\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\!\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{\!\!H_{(2)}}\!\!\right)^{(-\xi,\xi)}}
 \end{equation}
@@ -756,9 +764,9 @@ in a form that doesn't use any coordinate representation, then we will be able t
 Then, we choose $l^\mu \partial_\mu$ to be along one of our null foliation coordinate $e_\pm$. \\
 Leading to $l^\mu \partial_\mu = x_\pm e_\pm$ and the following integral:
 \begin{equation}
-    \int_\Sigma \d_\mathrm{vol}g^2 l^\mu l^\nu C_{\mu\nu} = \int_\Sigma \d_\mathrm{vol}g^2 x_\pm x_\pm ' C_{\pm\pm}
+    \int_\Sigma \d_\mathrm{vol}g^2 l^\mu l^\nu C_{\mu\nu} = \int_{\mathbb{R}\times \mathbb{R}\times S} \!\!\!\!\!\!\!\!\!\!\!\!\!\!\! \d_\mathrm{vol} \cancel{g}^2 \d x_\mp \d x_\mp' \d x_\pm \d x_\pm ' \;\cdot \; x_\pm x_\pm ' C_{\pm\pm}(x_i,x_\pm, x_\mp)
 \end{equation}
-with $C_{\pm\pm}:= C(e_\pm,e_\pm)$ of course \color{red} check if this is a double integration or a single one, to be sure \color{black}. This also implies that $l^\mu \nabla_\mu$ will be $x_\pm \partial\pm$ when applied on to $\mathcal{FT}_{H_{(2)}}$.
+with $C_{\pm\pm}:= C(e_\pm,e_\pm)$ of course. Proof of the measure's decomposition $\d_\mathrm{vol}g = \d x_\pm \d x_\mp \d_\mathrm{vol} \cancel{g}$ can be found in \cite{Art}. This also implies that $l^\mu \nabla_\mu$ will be $x_\pm \partial\pm$ when applied on to $\mathcal{FT}_{H_{(2)}}$.
 
 Now this computation is quite lengthy, and although the part where we get $C$ is interesting, computing $C_{\pm\pm}$ is painfully long and interesting. So we do not write it here, but we let the interested reader find it in the comutation appendix. (Moreover, as we shall see later, we do not need its expression, but rather only a lower bound for it.)
 
