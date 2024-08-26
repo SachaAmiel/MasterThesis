@@ -463,7 +463,7 @@ Here are useful formulae:
 \end{definition}
 This extreme rigidity of the structure of singularities in Hadamard states is an incredibly powerful computational tool. To illustrate its efficiency, let us see the construction of an inequality that is slightly weaker than general quantum energy inequalities.
 
-\subsubsection{Difference Energy Condition}
+\subsubsection{Difference Energy Condition} \label{FlatCase}
 In this project, we want to build up to a quantum null energy condition... But we can start by a weaker inequality where we do not bound the energy by something depending on the state, but by something depending on the difference between two states. This allows to completely ignore singularities issues as two Hadamard states have identical singularities, thus their difference has none. The one we are interested in, and a \emph{reference state} (like a vacuum state, for instance). This can be found in \cite{DSNEC}.
 Consider:
 \begin{equation}
@@ -696,7 +696,7 @@ Now that those subtleties about notation have been dealt with, let us steal from
     \underset{\pm}{\chi}\,_{ij} :=&\Gamma_{ij}^\pm, &\Gamma_{i\pm}^j&=\underset{\mp}{\chi}\,_{ik}g^{jk}\notag,\\
     \underset{\pm}{\eta}\,_i :=&\Gamma_{\pm i}^\pm, &\Gamma_{\pm\mp}^i&=\underset{\pm}{\eta}\,_kg^{ik}\notag,\\
     \underset{\pm}{\omega}:=&\Gamma_{\mp\mp}^\mp, &\Gamma_{\mp\pm}^\pm&=-\underset{\pm}{\omega}\label{Christoffel},\\
-    \zeta_i :=& \Gamma_{i+}^+ &\Gamma_{i\pm}^\pm,&=\pm\zeta_i \notag\\
+    \zeta_i :=& \Gamma_{i+}^+ &\Gamma_{i\pm}^\pm&=\pm\zeta_i \notag,\\
     \Gamma_{\pm i}^j&\notag,\\
     \Gamma_{ij}^k&\notag,
 \end{align}
@@ -789,7 +789,42 @@ Now this computation is quite lengthy, and although the part where we get $C$ is
 
 
 \subsubsection{Computing $H$}
-\color{red} I have no idea how to do that. I'll get on it lastly, because, I know how to do everything else. \color{black}
+In this section, each time we quote a formula, unless it is one we already saw before, it comes from \cite{HadRen}, where all computational details about Hadamard states can be found.
+
+We sadly didn't get to compute the $H$ part of the inequality in time. So this part is more of a guideline of what we will attempt to do next, in order to compute things. Computation steps are reasonably easy to understand, but like in the case of $C_{\pm\pm}$ or the curvature, the actual expressions get lengthy quite fast, which is why, in practice, it is easier said then done.
+
+We recall from section \ref{DefHad} that the Hadamard parametrix (i.e. the two point function, but made real), and thus its 3 component $U$, $V$, and $W$,  can be tailor expanded in the geodesic distance $\sigma$. Then, making that parametrix on shell (i.e. imposing the equations of motions) we get the following equations:\\
+$\forall n \in \mathbb{N}^*$
+\begin{equation}
+    (2n+2-D) \left( n - \Delta^{-^1\!/_2} \Delta^{\!^1\!/_2}_{\;\;\; ;\mu} \sigma^{;\mu} + \sigma^{;\mu}\partial_\mu \right) U_n + \left(\Box_x -m^2 - \xi R\right) U_{n-1} = 0;
+\end{equation}
+\begin{equation}
+    U_0=\Delta^{\!^1\!/_2};
+\end{equation}
+\begin{equation}
+    n \left(D + 2 \sigma^{;\mu}\partial_\mu -  2 \Delta^{-^1\!/_2} \Delta^{\!^1\!/_2}_{\;\;\; ;\mu} \sigma^{;\mu}\right) V_n + \left( \Box_x - m^2 - \xi R\right)=0;
+\end{equation}
+\begin{equation}
+    \left( D-2 + 2 \sigma^{;\mu} \partial_\mu - 2 \Delta^{-^1\!/_2} \Delta^{\!^1\!/_2}_{\;\;\; ;\mu}\sigma^{;\mu} \right) + \left( \Box_x - m^2 - \xi R\right) U_{D/2 - 2} = 0;
+\end{equation}
+\begin{align}
+     n \Big(2n -2 + D + 2 \sigma^{;\mu} \partial_\mu - 2 \Delta^{-^1\!/_2} \Delta^{\!^1\!/_2}_{\;\;\; ;\mu}\sigma^{;\mu}\Big) \;&\; W_n\notag\\
++ \Big((4 n -2 + D) + 2 \sigma^{;\mu} \partial_\mu - 2 \Delta^{-^1\!/_2} \Delta^{\!^1\!/_2}_{\;\;\; ;\mu}\sigma^{;\mu} \Big) \;&\; V_n \\ + \left( \Box_x -m^2 - \xi R\right) \;&\; W_{n-1} = 0 \notag ;
+\end{align}
+where:
+\begin{equation}
+    \boxed{\Delta(x,x') := - \big(\mathrm{det}|g|\big)^{-^1\!/\!_2}(x) \mathrm{det}|\sigma_{;\mu ;\nu'}|(x,x')\big(\mathrm{det}|g|\big)^{-^1\!/\!_2}(x')}\;.
+\end{equation}
+Now, two things need to be noticed.
+
+The first one is that, all indices-related objects are either of the form $f_{;\mu}$ where $f$ is a scalar field; or $\Box_x f$ where $f$ is also a scalar field. So in the first case, no need to involve our complicated connection, everything works our fine, and for the box, it's a bit more non-trivial, but works like for the computation of the $A_{\pm\pm}$ coefficient in the computation of $C_{\pm\pm}$ so nothing we cannot handle in our frame.
+
+The second is that we do not need to compute all the $(U_n, V_n, W_n)$ terms, \color{red} as we only go up to $H_{(k)}$\color{black}. So we will just try to express everything using minimal amount of terms (to basically get everything in terms of ``initial conditions", i.e. properties of the states as local as can be).
+
+The result of that computation of \color{red}$H_{(k)}$\color{black} will be a scalar field itself. So the the integral, the $l^\mu \nabla_\mu$ will simply give us an $x_\pm \partial_\pm$.
+As for the Fourier transorm's computation, there is no problems with it, we need not worry about any curved space aspect, as $D\subset \mathbb{R}^n$ and, the power of distributions is that we can also ignore $D\ne \mathbb{R}$ by restricting the support of the test function and integrating over all $\mathbb{R}^n$.
+
+So, overall, although those are long and painful computations and we had too little time to perform them ourselves, their is no intrinsic difficulty in them. For an example of those calculations in a different case (time-like inequality) see \cite{TimeLikeCompute}.
 \subsubsection{Use}
 We will now impose a bound on the curvature. That is (in our frame):
 \begin{align}
@@ -800,14 +835,18 @@ We will now impose a bound on the curvature. That is (in our frame):
     R_{\mu\nu}| & \leq R_\mathrm{max}''&
     \mathrm{ect}...
 \end{align}
-\color{red} Now, my expression on $C_{\pm\pm}$ being super ugly, I think what I need is a way to deduce a bound a connection coefficients from that very bound... Otherwise, $C$ will be to ugly to do anything interesting... And no idea what will happen to the $H$ part... 
+We know these bounds to be in $\mathcal{O}(R)$ and we only work at first order in $R$.
 
-Your colleagues said we could use "Riccati comparison" which is using an equation of the form $\nabla_\pm \mathrm{tr}(\chi)^2 = f^o(R^o)$ that should be found in Aretakis... But I didn't find it (in fact, "Ctrl+F"-ing the name \emph{Riccati} doesn't  give any results in Aretakis. Likewise, there's a wikiepdia page for \emph{Riccati equation} and \emph{algebraic Riccati equation}, neither of which mention \emph{curvature}. \color{black}
+From these bound one can \color{red} although I have not managed to, yet \color{black} extract a bound on every single component of the connection. This allows, in turn, to confine $C_{\pm\pm}$ only with these bounds and $\alpha$, $\beta$ and $\gamma$, the renormalisation freedom. It also allows to confine and $\Delta$ only with the curvature bounds and from that, to also confine the $H$ part of the inequality in terms of those curvature bounds and the specificity of the state. \color{red} Provided I can get rid of the metric coefficients too. \color{black}
+
+Now, we must (if we are to begin computations) make $D$ explicit in some way. We must be careful for most choices of $D$ brake covariance. Thus, it is more likely we will try to look for a set $D$ that, altogether, ensure covariance, and then manually optimize the resulting bound; in the spirit of what was done in the flat case, in section \ref{FlatCase}, using boosts to have covariance and optimizing on them.
+
+Once all this is explicitly written and computed, we are left with a lower bound on the QFT's energy density exclusively dependent on the curvature's extremas and the specificities of a given state. It is from that very bound that the making of singularity theorems can be started.
+
+Although we do not go into the realm of singularity theorems in the present work, we can roughly explain the intuition from here: one can assume a particular topology or causal structure, integrate the inequality along it following Einstein's equations of motion, and get a contradiction; thereby formally excluding some spacetimes.
 
 \section{Conclusion}
-\color{red} make equations part of sentences;
-write how to use dynamics to compute $H$ (in the coordinates);
-Move WF to theo part (1);
+\color{red}
 Also add choice of D in the future use;
 Bound $C_\pm\pm$;
 Formula by wiser (47 in her time-like paper)\color{black}
@@ -1988,5 +2027,8 @@ We apologies for not writing it explicitly, for it is far too big an expression,
 
     \bibitem{QFTCurv}
     Birrell, N. D.; Davies, P.C.; \textit{Quantum Fields in Curved Space} Cambridge University Press \href{https://www.cambridge.org/core/books/quantum-fields-in-curved-space/95376B0CAD78EE767FCD6205F8327F4C#}{ISBN: 9780511622632}
+
+    \bibitem{TimeLikeCompute}
+    Kontou, E; Olum, K; \textit{Quantum Inequality in Spacetimes with Small Curvature} Physics Review \href{https://journals.aps.org/prd/abstract/10.1103/PhysRevD.91.104005}{D 91,  104005}(2015)
 \end{thebibliography} 
 \end{document}
