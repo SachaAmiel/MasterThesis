@@ -58,30 +58,30 @@ Student number: 23126576\\
 
 \newpage
 \section*{Abstract}
-This project will be, as explicitly stated in the title, about quantum energy inequalities with curvature. It will consist in a formal introduction to an axiomatic approach to quantum field theory, followed by an introduction to energy inequalities and will finish with the begining of an explicit computation of one of them.
+This project will be, as explicitly stated in the title, about quantum energy inequalities with curvature. It will consist in a formal introduction to an axiomatic approach to quantum field theory, followed by an introduction to energy inequalities and will finish with the beginning of an explicit computation of one of them.
 
 Quantum Energy Inequalities are covariant lower bounds on the energy of a given physics. They do not tell us much about the physics itself, nor about the spacetime the physics unfolds; but from the restrictions they impose on energy, one can (if following general relativity) impose restrictions on that spacetime. This can bring crucial insight in the field of quantum field theory in curved spaces, and therefore, potentially quantum gravity.
 
 \section*{Informal introduction}
 It is commonly known in physics that ``energy should be positive", although the more one thinks about it, the less one is sure about it. In the life of a physics student, many formal statements are learned, ``energy is defined up to a constant", ``energy needs to be bounded from below", ``energy is mass so it cannot be negative", ``energy is the curvature of spacetime"... And overall, with time, one gets very flexible with what one can accept as an energy.
 
-In this project we will take the approach of mathematical physics, striving to only work with rigorously well defined concept. This will lead to results that are less impressive but probably more meaningful. Indeed, the point of quantum energy inequalities is not to claim any result about quantum gravity, but simply to exclude some types of spacetime if one desires to build a physical model with both gravity and quantum field theory. 
+In this project we will take the approach of mathematical physics, striving to only work with rigorously well-defined concept. This will lead to results that are less impressive but probably more meaningful. Indeed, the point of quantum energy inequalities is not to claim any result about quantum gravity, but simply to exclude some types of spacetime if one desires to build a physical model with both gravity and quantum field theory. 
 
 \addtocounter{section}{-1}
 \section{Introduction}
-One of the current ``à la mode" questions in theoretical physics is to find quantum gravity, that is to say, a quantum-field-theory-compatible theory of gravitation that matches all current factual knowledge of our universe and produces observable new predictions.
+One of the current ``à la mode" questions in theoretical physics is to find quantum gravity, which is to say, a quantum-field-theory-compatible theory of gravitation that matches all current factual knowledge of our universe and produces observable new predictions.
 Let us say it before anything else, the present work will not, in any way, get even remotely close to this extremely complicated task. Several attempts have already been made by many by many people, some which have failed, others which people are still working on, but all of which we will not even mention here. 
 We will, on the contrary, take the opposite direction of theoretical physics: that of mathematical physics.
 
-Theoretical physics, by definition, is the art of attempting to guess what new modification one could do to our current understanding of nature in order to improve that very understanding. Mathematical physics, on the other hand, takes for granted (as axioms) the knowledge acquired by theoretical physics (i.e. accepted \emph{theories} of physics) and tries to expand our knowledge of those very same theories without changing them in the slightest. Famous examples of works in theoretical physics could be: Newton's \textit{Law of Motion}; the theory of the \textit{Propagation of Heat}; the theory of \textit{Classical Quantum Mechanics}. Corresponding mathematical physics work could thus be \textit{Lagrangian} mechanics, \textit{Hamiltonian} mechanics and \textit{Dynamical Systems}; the theory of \textit{Fourier} transforms or other systems of wave propagation; the theory of \textit{Hilbert Spaces}.
+Theoretical physics, by definition, is the art of attempting to guess what new modification one could do to our current understanding of nature in order to improve that very understanding. Mathematical physics, on the other hand, takes for granted (as axioms) the knowledge acquired by theoretical physics (i.e. accepted \emph{theories} of physics) and tries to expand our knowledge of those very same theories without changing them in the slightest. Famous examples of works in theoretical physics could be: Newton's \textit{Law of Motion}; theory of the \textit{Propagation of Heat}; theory of \textit{Classical Quantum Mechanics}. Corresponding mathematical physics work could thus be \textit{Lagrangian} mechanics, \textit{Hamiltonian} mechanics and \textit{Dynamical Systems}; theory of \textit{Fourier} transforms or other systems of wave propagation; theory of \textit{Hilbert Spaces}.
 
-Now, back to the subject at hand, what are the theories of physics we will take as our axioms? Those will be the theory of \textit{General Relativity} (or ``GR") and that of \textit{Quantum Field Theory} (or ``QFT"). But already, two issues show up. The first one is that the latter of those two theories doesn't have a rigorous mathematically axiomatized construction accepted by all. That is easily solved though, we will simply choose a particular axiomatization which, to our knowledge, works well, and then, stick to it\footnote{This axiomatization is called \textit{Algebraic Quantum Field Theory}. More on that later.}. The second, and most problematic, is that QFT and GR are two significantly different theories, thus, one cannot candidly ``consider" the two all at once. We will thus be very cautious, when joining them to make the following distinction: we will study a QFT on spacetime first, and then possibly have that spacetime follow the laws of general relativity. How to do so will, of course, be presented to the reader before anything else.
+Now, back to the subject at hand, what are theories of physics we will take as our axioms? Those will be theory of \textit{General Relativity} (or ``GR") and that of \textit{Quantum Field Theory} (or ``QFT"). But already, two issues show up. The first one is that the latter of those two theories does not have a rigorous mathematically axiomatized construction accepted by all. That is easily solved though, we will simply choose a particular axiomatization which, to our knowledge, works well, and then, stick to it\footnote{This axiomatization is called \textit{Algebraic Quantum Field Theory}. More on that later.}. The second, and most problematic, is that QFT and GR are two significantly different theories, thus, one cannot candidly ``consider" the two all at once. We will thus be very cautious, when joining them to make the following distinction: we will study a QFT on spacetime first, and then possibly have that spacetime follow the laws of general relativity. How to do so will, of course, be presented to the reader before anything else.
 
 All this being said, now that we know that we do mathematical physics, by accepting particular theories, and extracting new knowledge only from them, comes the question of what new knowledge we seek. As QFT is reasonably well understood on its own, and so is GR, but not quantum gravity itself, we will aim at getting information that restraint how gravity can react to quantum effects, regardless of what \textit{true} quantum gravity can be, rather than trying to actually get a proper GR result. This approach of \textit{restraining} the outputs GR can yield have already been used by R. Penrose in classical GR, using singularity theorems. 
 
-Singularity theorems, given a particular bound on the energy distribution of a manifold, tell us that there exists singularities or event horizons on that manifold. In a way, they allow to ensure the existence of black holes without having to find them. If we were to have such energy bounds for a QFT, we would, consequently be doing the same it the quantum case. This is what \textit{quantum energy inequalities with curvatures} are. This is the title of this project. We will be explaining generally what they are in detail, and also work on a particular example, called the \textit{Double Smeared Null Energy Inequality}. Although we have not succeeded in fully computing that inequality in time, we have done quite a significant amount of work (and will give the details of what remains to be done to finish that computation, and also how to use this inequality in the future to hopefully get a corresponding singularity theorem).
+Singularity theorems, given a particular bound on the energy distribution of a manifold, tell us that there exists singularities or event horizons on that manifold. In a way, they allow to ensure the existence of black holes without having to find them. If we were to have such energy bounds for a QFT, we would, consequently, be doing the same it the quantum case. This is what \textit{quantum energy inequalities with curvatures} are. This is the title of this project. We will be explaining generally what they are in detail, and also work on a particular example, called the \textit{Double Smeared Null Energy Inequality}. Although we have not succeeded in fully computing that inequality in time, we have done quite a significant amount of work (and will give the details of what remains to be done to finish that computation, and also how to use this inequality in the future to hopefully get a corresponding singularity theorem).
 
-Being a mathematical physics project, we will heavily rely on some non-trivial mathematical concepts, some of which (like foliation, category theory, or distribution theory) may not be familiar to some. If one wishes to find a rigorous mathematical presentation of what they are (to follow all the details of this project) they are introduced in the \textit{mathematics appendix} on page \pageref{AnMaCat}. But if one solely want to understand their \textit{physical interpretation} in order to have an intuitive understanding of what they are, that is done separately in the \textit{physics appendix} on page \pageref{AnPhCat}. Either way, whenever new vocabulary from one of these fields is first used, a footenote will indicate where to find it in the appendix, so as to allow as smooth a reading as possible to any reader, regardless of conceptual prerequisites.
+Being a mathematical physics project, we will heavily rely on some non-trivial mathematical concepts, some of which (like foliation, category theory, or distribution theory) may not be familiar to some. If one wishes to find a rigorous mathematical presentation of what they are (to follow all the details of this project) they are introduced in the \textit{mathematics appendix} on page \pageref{AnMaCat}. But if one solely wants to understand their \textit{physical interpretation} in order to have an intuitive understanding of what they are, that is done separately in the \textit{physics appendix} on page \pageref{AnPhCat}. Either way, whenever new vocabulary from one of these fields is first used, a footnote will indicate where to find it in the appendix, so as to allow as smooth a reading as possible to any reader, regardless of conceptual prerequisites.
 
 
 \newpage
@@ -98,15 +98,15 @@ In this section, we will use the symbol $\mathbb{M}_4$ to refer to Minkowski spa
 \subsubsection{Formalizing the intuitive idea of a QFT}
 \begin{definition}[Quantum Mechanics - \emph{Dirac style}]$\quad$
 
-A quantum Mechanics is the data $(\mathbb{H},\mathcal{T})$ of a Hilbert space $\mathbb{H}$ and some \emph{Time evolution principle} $\mathcal{T}$. In pure theory $\mathcal{T}$ could be \emph{any} labeling of \emph{everything} with respect to time, but in practice, it will usually be given by some time-evolution equation on either the vectors of $\mathbb{H}$, the operators of $\mathbb{H}$, or in some very specific cases, both...\\
-An example of vector evolution would be, given a Hermitian operator $H\in\mathcal{B}(\mathbb{H})$, the well known Schrödinger-picture time-evolution:
+A quantum Mechanics is the data $(\mathbb{H},\mathcal{T})$ of a Hilbert space $\mathbb{H}$ and some \emph{Time evolution principle} $\mathcal{T}$. In pure theory $\mathcal{T}$ could be \emph{any} labelling of \emph{everything} with respect to time, but in practice, it will usually be given by some time-evolution equation on either the vectors of $\mathbb{H}$, the operators of $\mathbb{H}$, or in some very specific cases, both...\\
+An example of vector evolution would be, given a Hermitian operator $H\in\mathcal{B}(\mathbb{H})$, the well-known Schrödinger-picture time-evolution:
 $$\boxed{\mathcal{T}_{H,\mathrm{Sch}}: \Bigg\{
 \begin{matrix}
 \mathbb{H} & \to & \mathcal{C}^\infty(\mathbb{R},\mathbb{H})\\
 \Psi & \mapsto & \Big(t\mapsto \e^{\mathfrak{i}\hbar H}\Psi\Big)
 \end{matrix}}\;.$$
 
-An example of an operator time evolution would be the well known Heisenberg-picture time-evolution (which, if taken with the same $H$ (Hamiltonian) is \emph{physically equivalent}):
+An example of an operator time evolution would be the well-known Heisenberg-picture time-evolution (which, if taken with the same $H$ (Hamiltonian) is \emph{physically equivalent}):
 $$\boxed{\mathcal{T}_{H,\mathrm{Hei}}: \Bigg\{
 \begin{matrix}
 \mathcal{B}(\mathbb{H}) & \to & \mathcal{C}^\infty\big(\mathbb{R},\mathcal{B}(\mathbb{H})\big)\\
@@ -121,9 +121,9 @@ Note that the definition can often extend all the sets $\mathcal{B}(\mathbb{H})$
 \begin{definition}[States - Observables - and Physically Identical QMs] \emph{vocabulary}
 
 
-``States" are the set $\mathbb{C}\mathcal{P}_\mathbb{H}$, i.e. the projectiv space of the Hilbert space of the quantum mechanics. Recall that the projection of a vector space is the set of all equivalence classes $\{\lambda \Psi, \lambda\in\mathbb{C}\}$ for all vectors $\Psi$ in $\mathbb{H}$. In practice, one often confuses (non-zero) vectors of $\mathbb{H}$ with their projection and just calls them states, while keeping in mind that they are identical up to change of norm and phase.
+``States" are the set $\mathbb{C}\mathcal{P}_\mathbb{H}$, i.e. the projective space of the Hilbert space of the quantum mechanics. Recall that the projection of a vector space is the set of all equivalence classes $\{\lambda \Psi, \lambda\in\mathbb{C}\}$ for all vectors $\Psi$ in $\mathbb{H}$. In practice, one often confuses (non-zero) vectors of $\mathbb{H}$ with their projection and just calls them states, while keeping in mind that they are identical up to change of norm and phase.
 
-``Observables" are self hermitian operators of $\mathbb{H}$. Or a sub-algebra of it (depending on the context). The physically observable information of a quantum mechanics is the spectrum of these operators. Thus, if two QM yield the same spectra up to an isomorphysim of QMs (understand by that an isomorphysm of Hilbert spaces AND of time evolution) we say that they are descriptions of the same physical systems, i.e. the same. From a more formal point of view, this is like having a bijective functor on the category of QMs (where Hilbert Spaces are the objects, and time-evolutions are the morphisms).
+``Observables" are self hermitian operators of $\mathbb{H}$. Or a sub-algebra of it (depending on the context). The physically observable information of a quantum mechanics is the spectrum of these operators. Thus, if two QM yield the same spectra up to an isomorphism of QMs (understand by that an isomorphism of Hilbert spaces AND of time evolution) we say that they are descriptions of the same physical systems, i.e. the same. From a more formal point of view, this is like having a bijective functor on the category of QMs (where Hilbert Spaces are the objects, and time-evolutions are the morphisms).
 
 As mentioned previously, an example of this idea is QMs in the Schrodinger picture and in the Heisenberg picture, which are physically the same when using the same $H$. More trivial cases of two quantum mechanics being the same are for instance when we keep the same time-evolution but replace the Hilbert Space by an isomorphic one (for instance, switching $\mathcal{S}(\mathbb{R}^3)$ with itself using the Fourier Transform, which is called switching from ``momentum representation" to ``position representation" is quite a standard example).    
 \end{definition}
@@ -150,7 +150,7 @@ For simplicity, we will always assume that $||\mathds{1}||=1$... That's just the
 
 \begin{comment}
 \label{Com:C*&Bound}
-Notice that $\mathcal{B}(\mathbb{H})$ forms a C*-Algebra, using duality ($\dag$) as $*$-operator and opperator norm $\left(||A||:=\mathrm{Sup} \left\{\frac{||A\Psi||}{||\Psi||},\Psi \in \mathbb{H}\right\}\right)$ as algebra norm.
+Notice that $\mathcal{B}(\mathbb{H})$ forms a C*-Algebra, using duality ($\dag$) as $*$-operator and operator norm $\left(||A||:=\mathrm{Sup} \left\{\frac{||A\Psi||}{||\Psi||},\Psi \in \mathbb{H}\right\}\right)$ as algebra norm.
 \end{comment}
 
 \subsubsection{The axioms of AQFT}
@@ -160,10 +160,10 @@ The few following definitions are taken from \cite{AQFT_Intro}. They can also be
     \begin{enumerate}
         \item \textbf{Locality}:  $\big\{\mathcal{A}(O), O \in \mathcal{O}(\mathbb{M}_4) \; \mathrm{with}\; O\; \mathrm{bounded}\big\}$ generates $\mathcal{A}(\mathbb{M}_4)$;
         \item \textbf{Isotony}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1\subset O_2 \implies \mathcal{A}(O_1)\subset\mathcal{A}(O_2)$;
-        \item \textbf{Causality}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1 \; \mathrm{and}\; O_2\; \mathrm{causaly}\;\mathrm{disjoint}\; \implies \big[\mathcal{A}(O_1),\mathcal{A}(O_2)\big]=0$;
+        \item \textbf{Causality}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \quad O_1 \; \mathrm{and}\; O_2\; \mathrm{causally}\;\mathrm{disjoint}\; \implies \big[\mathcal{A}(O_1),\mathcal{A}(O_2)\big]=0$;
         \item \textbf{Covariance}: there exists a functor $\alpha$ from the category of the (identity connected) Poincaré transformations of $\mathcal{O}(\mathbb{M}_4)$ to that of the sub-C*-Algebras of $\mathcal{A}(\mathbb{M}_4)$;
         \item \textbf{Spectrum Condition}: We require the existence of a representation (see next definition) of the algebra where the translations are unitarily implemented (physically, this means we want translation-invariant physics);
-        \item \textbf{Dynamics}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \;\;;\mathrm{with} \;\;O_1 \subset O_2$, if $O_1$ contains a \emph{Cauchy Surface}\footnote{In short a Cauchy surface is a surface met once by all geodesics. However, since this is a vary important object of AQFT in curved spaces, and since it is also realted to foliations wichi we already mentionned and will extensively use in the last section, we recommend any reader unfamiliar with Cauchy surfaces to check out how they are rigourously defined on page \pageref{CauchyMat} of the Mathematics appendix or at least their physical interpretation on page \pageref{CauchyPhy} of the Physics appendix.} in $O_2$, then $\mathcal{A}(O_1)=\mathcal{A}(O_2)$.
+        \item \textbf{Dynamics}: $\forall (O_1, O_2) \in \mathcal{O}(\mathbb{M}_4)^2 \;\;;\mathrm{with} \;\;O_1 \subset O_2$, if $O_1$ contains a \emph{Cauchy Surface}\footnote{In short a Cauchy surface is a surface met once by all geodesics. However, since this is a very important object of AQFT in curved spaces, and since it is also related to foliations which we already mentioned and will extensively use in the last section, we recommend any reader unfamiliar with Cauchy surfaces to check out how they are rigorously defined on page \pageref{CauchyMat} of the Mathematics appendix or at least their physical interpretation on page \pageref{CauchyPhy} of the Physics appendix.} in $O_2$, then $\mathcal{A}(O_1)=\mathcal{A}(O_2)$.
     \end{enumerate}
     
 Note that the true definition of an AQFT actually doesn't always use C*-Algebras but sometimes simply *-Algebras (especially when doing perturbation theory). But since dropping the C* requirement makes things a lot more complicated (it's basically like disregarding any topological concerns) when it simply doesn't make false many important results, most researchers in the field focus on C*-AQFT and we will simply ignore the other ones.
@@ -177,7 +177,7 @@ Note that the true definition of an AQFT actually doesn't always use C*-Algebras
     \item $\forall A \in \mathcal{A}(\mathbb{M}_4)\quad \omega(A^*\, A)\in \mathbb{R}_+$;
     \item $\omega(\mathds{1})=1$.
 \end{itemize}
-"Observables" are self adjoint elements of $\mathcal{A}(\mathbb{M}_4)$, i.e. the elements of: $\{A \in\mathcal{A}(\mathbb{M}_4):A=A^*\}$.
+"Observables" are self-adjoint elements of $\mathcal{A}(\mathbb{M}_4)$, i.e. the elements of: $\{A \in\mathcal{A}(\mathbb{M}_4):A=A^*\}$.
 \end{definition}
 
 \subsubsection{Relating AQFT to the intuitive ideas of QFT}
@@ -187,9 +187,9 @@ Note that the true definition of an AQFT actually doesn't always use C*-Algebras
     
     Notice that, a linear form $\frac{\bra{\Psi}\,\cdot\,\ket{\Psi}}{\braket{\Psi|\Psi}}$ gives us a ``State" in the QFT sense, and that is so for all $\lambda\ket{\Psi}$ corresponding to the same state, the associated linear form will be identical.
     
-    All this, (associated to the fact that $\mathbb{M}_4$ can be folliated\footnote{If the reader is unfamiliar with the notion of foliation, it is introduced in the appendix. On page \pageref{MatFoli} of the Mathematics appendix is a formal introduction, and a physical interpretation can be found on page \pageref{PhyFoli} of the Physics Appendix.} with respect to time) sort of hints us towards the idea that AQFT is indeed sort of what a QFT should be (i.e. a covariant QM).
+    All this, (associated to the fact that $\mathbb{M}_4$ can be foliated\footnote{If the reader is unfamiliar with the notion of foliation, it is introduced in the appendix. On page \pageref{MatFoli} of the Mathematics appendix is a formal introduction, and a physical interpretation can be found on page \pageref{PhyFoli} of the Physics Appendix.} with respect to time) sort of hints us towards the idea that AQFT is indeed sort of what a QFT should be (i.e. a covariant QM).
     
-    Now, it turns out that, intrinsically, a QFT is not a QM, for some subdle reasons. It would be more rigorous to say that every QFT \emph{contains several QMs}... Let us build up to this more formally.
+    Now, it turns out that, intrinsically, a QFT is not a QM, for some subtle reasons. It would be more rigorous to say that every QFT \emph{contains several QMs}... Let us build up to this more formally.
 \end{comment}
 
 \begin{definition}[Representation of a C*-Algebra]$\quad$
@@ -203,13 +203,13 @@ Note that the true definition of an AQFT actually doesn't always use C*-Algebras
 \begin{comment}
     It turns out that, given a state (a pure state) $\omega$ one can always build a representation that works as broadly teased in comment \ref{Com:SymDiracWeyl} and yields a faithful irreducible representation, with a vector $\ket{\Omega}$ such that $\omega\simeq\bra{\Omega}\cdot\ket{\Omega}$.
     
-    And that representation will be unique up to unitary equivalence (i.e. yeild exaclty the same QM). This is Theorem 10 in \cite{AQFT_Intro}. One can see this particular representation (called GNS representation) as a ``canonical representation" of a QFT associated to a particular state.
+    And that representation will be unique up to unitary equivalence (i.e. yield exactly the same QM). This is Theorem 10 in \cite{AQFT_Intro}. One can see this particular representation (called GNS representation) as a ``canonical representation" of a QFT associated to a particular state.
 \end{comment}
 
 \begin{comment}
     In the case where any two such representations are unitarily equivalent, we see that the given QFT \textbf{\textit{is}} a quantum mechanics... But it turns out many QFTs do not have this property, in particular the algebra of operators of free field theories do not have this property.
     
-    This is characterized by the author of \cite{AQFT_Intro} as the intrinsic presence of quantum fields in a theory. All purely QFT statements of the algebraic formulation are written in terms of this study of inequivalent representations. In particular, the structure of all inequivalent reps, formulated with ``superselection sectors" yields what can be seen as algebraic gauge theory...
+    This is characterized by the author of \cite{AQFT_Intro} as the intrinsic presense of quantum fields in a theory. All purely QFT statements of the algebraic formulation are written in terms of this study of inequivalent representations. In particular, the structure of all inequivalent reps, formulated with ``superselection sectors" yields what can be seen as algebraic gauge theory...
     
     Gauge theory will not be part of our study, nor will any representation issues. They were only quoted as a way to justify our choice of axioms: all evidence suggests that the mathematical object at hand \emph{is} quantum field theory on $\mathbb{M}_4$. One can now accept it in full confidence, to move into the next step toward quantum energy inequalities.
 \end{comment}
@@ -221,7 +221,7 @@ Note that the true definition of an AQFT actually doesn't always use C*-Algebras
 \subsubsection{Separating the notion of a Field from its spacetime}
 Recall that $\mathcal{A}(\cdot)$ can be seen as a covariant functor from the spacetime to the Algebra of observables.
         
-Let $\bold{Loc}$ be the category of hyperbolic oriented and time oriented spacetimes related by respective embedding. Let $\bold{Vec}$ be the categroy of topological vector spaces (with continuous linear functions as morphisms). And let $\bold{Obs}$ be the category of locally convex C*Algebras (or just unital *Algebras in the context of perturbation theory, or topological Poisson Algebras in the classical case) with corresponding algebra morphisms as morphisms. 
+Let $\bold{Loc}$ be the category of hyperbolic oriented and time oriented spacetimes related by respective embedding. Let $\bold{Vec}$ be the category of topological vector spaces (with continuous linear functions as morphisms). And let $\bold{Obs}$ be the category of locally convex C*Algebras (or just unital *Algebras in the context of perturbation theory, or topological Poisson Algebras in the classical case) with corresponding algebra morphisms as morphisms. 
 Let $\mathcal{D}$ be the functor from $\bold{Loc}$ to $\bold{Vec}$ that associates to every spacetime its compactly supported test functions.
 
 \begin{definition}[Quantum Field]\label{QField}$\quad$
@@ -233,10 +233,10 @@ Let $\mathcal{D}$ be the functor from $\bold{Loc}$ to $\bold{Vec}$ that associat
 This definition is abstract enough to hold over any spacetime (as the categories used to not require anything reserved to $\mathbb{M}_4$), this leads us to slightly weaken the axioms of AQFT (called pAQFT) as follows (see \cite{pAQFT} for more), it will, among other things, allow to include perturbation theory to the frame but also make it work on any spacetime.\\
 A perturbative quantum field theory over any spacetime is the data $\big(\mathcal{M},\mathcal{A}(\mathcal{M})\big)$ such that:
 \begin{itemize}
-    \item There is a net to topological *-algebras with sequentially continuous product over a spacetime $\mathcal{M}$; $\mathcal{O}\mapsto\mathcal{A}(\mathcal{O})$ (i.e. the observable functor is well defined);
+    \item There is a net to topological *-algebras with sequentially continuous product over a spacetime $\mathcal{M}$; $\mathcal{O}\mapsto\mathcal{A}(\mathcal{O})$ (i.e. the observable functor is well-defined);
     \item \textbf{Locality}, \textbf{Isotony}, \textbf{Causality} and \textbf{Covariance} hold (see definition \ref{AQFT_M4-Ax} for formulae, just replace $\mathbb{M}_4$ with $\mathcal{M}$);
     \item \textbf{Time-slicing axiom}: Algebra of the neighbourhood of a Cauchy surface\footnote{In short a Cauchy surface is a surface met once by all geodesics. However, since this is a vary important object of AQFT in curved spaces, and since it is also related to foliations which we already mentioned and will extensively use in the last section, we recommend any reader unfamiliar with Cauchy surfaces to check out how they are rigorously defined on page \pageref{CauchyMat} of the Mathematics appendix or at least their physical interpretation on page \pageref{CauchyPhy} of the Physics appendix.} of a Region is the algebra of the whole region. (To get a time-evolution);
-    \item Notice, however, that the spectrum condition can no longer be used on curved surfaces, as ``translations" are not everywhere well defined. To not loose this idea of ``translation invariant physics", we will instead, make use of Hadamard states \label{FirstMentionHad}(see Section \ref{DefHad} for details).
+    \item Notice, however, that the spectrum condition can no longer be used on curved surfaces, as ``translations" are not everywhere well-defined. To not lose this idea of ``translation invariant physics", we will instead, make use of Hadamard states \label{FirstMentionHad}(see Section \ref{DefHad} for details).
 \end{itemize}
 
 Although we will not use this definition, but rather an equivalent one, let us, for the sake of rigour, define Hadamard states right now.
@@ -248,7 +248,7 @@ Although we will not use this definition, but rather an equivalent one, let us, 
     where $\mathcal{FT}$ denotes the Fourier transform, though its definition on a manifold is chart-dependent, its boundedness isn't.
     One can, likewise, define a wavefront set for bi-distributions.
 \end{definition}
-The wavefront set can be seen as the spacetime $\times$ momentum places where the distribution has a well defined spectrum.
+The wavefront set can be seen as the spacetime $\times$ momentum places where the distribution has a well-defined spectrum.
 \begin{definition}[Hadamard State]\label{HadDef}
     Denoting by $\Bar{V}_{+,x}$ the closed future cone at spacetime point $x$, and by $(x,k)\sim(x',k')$ the equivalence relation ``there exists a null geodesic strip containing the two pairs". One calls \emph{Hadamard} a state whose two-point-function $W$ has the following properties:
     \begin{itemize}
@@ -283,7 +283,7 @@ This does correspond to what is known in QFT as a quantum field.\\
 
 A more rigorous mathematical treatment of the definition of the field will lead to the properties of the next sections. (It will also, \emph{finally}, look like the fields physicists are familiar with.)
 
-\subsubsection{Computationnal properties of a Field}
+\subsubsection{Computational properties of a Field}
         \begin{theorem}[Linearity \& Hermicity]$\quad$
         
          For any field $\phi\in\mathcal{D}'(\mathcal{M})$ for any two test functions $f,g\in\mathcal{D}(\mathcal{M})$ and any scalar $\lambda\in\mathbb{C}$  the two following equalities hold:
@@ -321,18 +321,18 @@ A more rigorous mathematical treatment of the definition of the field will lead 
         
 \subsection{From its axiomatization to its practical implementation}
 \subsubsection{Computation-oriented depiction of Fields}
-        Now that all these mathematical prerequisites have been dealt with, we will define many useful objects of QFT. Readers familiar with physics will definitely find all the following expression to be identical to what is taught in basic courses, (the only difference being that we now know their mathematical inner-working) and that is to be expected as our plan is definitely not to re-invent physics.
+        Now that all these mathematical prerequisites have been dealt with, we will define many useful objects of QFT. Readers familiar with physics will definitely find all the following expression to be identical to what is taught in basic courses, (the only difference being that we now know their mathematical inner working) and that is to be expected as our plan is definitely not to re-invent physics.
 
         \begin{definition}[Basic Physical Objects in QFT]$\quad$
         \begin{itemize}
             \item \underline{The Action}: $S:= \int \mathcal{L}$ is sort of the cost function of each field configuration (thought that would be a \emph{classical interpretation}).
             \item \underline{Energy Momentum Tensor}: $T_{\mu\nu}:=\frac{2}{\sqrt{|g|}}\frac{\delta}{\delta g^{\mu\nu}}S.$
-            \item \underline{Feynman Propagator}: $G^\mathrm{F}(x,x'):=i\bra{\psi}T\Phi(x)\Phi(x')\ket{\psi}$ where $\ket{\psi}$ is a given state, and $T$ is the \emph{time ordering operator} which we will not go into right now. In our calculations, we will only work with $H:=-iG^\mathrm{F}$ which is the real bi-distribution instead (called Hadamard parametrix). 
+            \item \underline{Feynman Propagator}: $G^\mathrm{F}(x,x'):=i\bra{\psi}T\Phi(x)\Phi(x')\ket{\psi}$ where $\ket{\psi}$ is a given state, and $T$ is the \emph{time ordering operator} which we will not go into right now. In our calculations, we will only work with $H:=-iG^\mathrm{F}$ which is the real bi-distribution instead (called Hadamard parametric). 
         \end{itemize}
         \end{definition}
         All these are the objects of QFT, but, on their own, they are a bit too general, which is why we restrict ourselves to previously mentioned powerful states called \emph{Hadamard states}.
 \subsubsection{Renormalization}
-    As mentioned before, the following formulae only work for hadamard states, we will not state it each time, nor trully explain why as we do not discuss any other types of states. We shall first focus on how to do renormalization in curved spacetimes. 
+    As mentioned before, the following formulae only work for Hadamard states, we will not state it each time, nor truly explain why as we do not discuss any other types of states. We shall first focus on how to do renormalization in curved spacetimes. 
 
     The idea behind renormalization is to isolate singularities in QFT. To be precise, (as we haven't encountered any singularity so far) singularities are not present in QFT per say, but they arise as we attempt doing computations at the limit of infinitely far away objects or infinitely close.
 
@@ -353,7 +353,7 @@ A more rigorous mathematical treatment of the definition of the field will lead 
     \begin{equation}
     \braket{T^\mathrm{fin}_{\mu\nu}}_\psi(x):=\lim_{x'\to x} g_\nu^{\nu'}(x,x')\mathbb{T}^\mathrm{split}_{\mu\nu}\circ(W-H)(x,x')
     \end{equation}
-    Then, for Hadamard states, the \emph{renormalized} spectrum of the energy momentum tensor is obtained by removing two objects (see \cite{QCRenorm} for details), $Q(x)$ a scalar, that preserves conservation (i.e. physicalness) and $C_{\mu\nu}(x)$ a tensor solely dependent on the space-time curvature. We will not go into how to derive $Q$, as that is too complicated (and not needed here), as for $C_{\mu\nu}$, we will leave it for later. Thus, we will take it for granted that:
+    Then, for Hadamard states, the \emph{renormalised} spectrum of the energy momentum tensor is obtained by removing two objects (see \cite{QCRenorm} for details), $Q(x)$ a scalar, which preserves conservation (i.e. physicalness) and $C_{\mu\nu}(x)$ a tensor solely dependent on the space-time curvature. We will not go into how to derive $Q$, as that is too complicated (and not needed here), as for $C_{\mu\nu}$, we will leave it for later. Thus, we will take it for granted that:
     \begin{equation}\label{T_ren}
     \braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu} + C_{\mu\nu}
     \end{equation}
@@ -365,7 +365,7 @@ A more rigorous mathematical treatment of the definition of the field will lead 
 \section{Energy Inequalities and their use in General Relativity}
 \subsection{Classical Energy Inequalities}
 \subsubsection{The Philosophy of Energy Conditions}
-In classical field theory, \emph{Energy conditions}\footnote{Note that although the use of the word \textit{condition} is the historically correct one, because in the early days, people where looking for extra physical requirement to add to general relativity, we now have realized that each physics violates and verifies some energy conditions. Thus the modern use is \textit{inequality} instead to rather emphasize the lack of extra physical assumption in their use, especially in the fuzzy world of QFT, where pretending to know beforehand what is and isn't physical would be dreadfully presumptuous.} are lower bounds of some kind, on the energy density of a physics. On their own, they are not particularly interesting, but paired with general relativity, they allow to deduce constraints on the spacetime manifold without actually having to compute the explicit metric. These are known as Penrose and Hawking singularity theorems \cite{SingTheo} and they can deduce, from an energy condition only, the presence of a singularity or an event horizon, at some point on the spacetime manifold. 
+In classical field theory, \emph{Energy conditions}\footnote{Note that although the use of the word \textit{condition} is the historically correct one, because in the early days, people were looking for extra physical requirement to add to general relativity, we now have realized that each physics violates and verifies some energy conditions. Thus the modern use is \textit{inequality} instead to rather emphasize the lack of extra physical assumption in their use, especially in the fuzzy world of QFT, where pretending to know beforehand what is and isn't physical would be dreadfully presumptuous.} are lower bounds of some kind, on the energy density of a physics. On their own, they are not particularly interesting, but paired with general relativity, they allow to deduce constraints on the spacetime manifold without actually having to compute the explicit metric. These are known as Penrose and Hawking singularity theorems \cite{SingTheo} and they can deduce, from an energy condition only, the presense of a singularity or an event horizon, at some point on the spacetime manifold. 
 
 Since we saw, in Comment \ref{QFT+GR} that we are now capable of doing QFT on any manifold, being able to do such inequalities in the QFT context will allow us to probe the (non-quantum-gravity) interaction between gravity and QFT. Of course, as always in physics, it will turn out that quantum energy conditions are more whimsical and harder to deal with. So let us first get familiar with \emph{classical energy conditions}.
 \subsubsection{Zoology of Classical Energy Conditions}
@@ -404,9 +404,9 @@ for every $\gamma\in\Gamma(\mathcal{M})$ a null curve with affine parameter $\th
     \int_\gamma T_{\mu\nu}l^\mu l^\nu\d\theta \geq 0
 \end{equation}
 \subsubsection{The Breaking of Classical Energy Condition}
-Historically, Energy conditions were seen as ``physical" assumptions of physics, following the commonly accepted idea (though not at all part of axiomatization of most physics) that "energy should be positive". But with time, it was shown that many very reasonable physics break many of them, which led to a wild zoology of different energy conditions, (the last paragraphs only scratched the surface by presenting the most commonly used in singularity theorems).
+Historically, Energy conditions were seen as ``physical" assumptions of physics, following the commonly accepted idea (though not at all part of axiomatization of most physics) that "energy should be positive". But with time, it was shown that many very reasonable physics break many of them, which led to a wide zoology of different energy conditions, (the last paragraphs only scratched the surface by presenting the most commonly used in singularity theorems).
 
-All these breaking of seemingly reasonable energy conditions had to do with the specific complicated structure of general relativity, where ``energy density" is not such a well defined object, as there are several ways to contract $T^{\mu\nu}$. But even given a simple physics, and an associated matching energy condition, due to the also complicated structure of QFT, there is no guaranty the condition also holds in the quantum case. For instance, due to how common negative energy is in QFT, most classical conditions mentioned before are commonly violated by QFTs.
+All these breaking of seemingly reasonable energy conditions had to do with the specific complicated structure of general relativity, where ``energy density" is not such a well-defined object, as there are several ways to contract $T^{\mu\nu}$. But even given a simple physics, and an associated matching energy condition, due to the also complicated structure of QFT, there is no guaranty the condition also holds in the quantum case. For instance, due to how common negative energy is in QFT, most classical conditions mentioned before are commonly violated by QFTs.
 
 This idea, together with the fact that all QFT statements refer to given states, (so a state dependence must almost always be introduced when \emph{quantifying} something) lead to quantum energy inequalities having a more convoluted look.
 
@@ -417,17 +417,17 @@ The form of a quantum energy condition is:
 \begin{equation}
 \boxed{\braket{\rho(f)}_\omega \geq - \braket{\mathcal{Q}(f)}_\omega}
 \end{equation}
-where $\rho:=T^\mathrm{ren}_{\;\;ab}t^at^b$ is the energy density (in some sense given by a choice of the $t$ used, giving us, like in the classical case \emph{strong}, \emph{null}, \emph{weak} and a whole zoology of conditions). $f$ is a test function (or a distribution in some cases, for purely computational reasons). $\mathcal{Q}$ is a possibly unbounded operator. As it stands, it is a pointwize one. Integrating the inequality's $t$ over a geodesic of some type gives an integrated energy condition (complete geodesic, or full, depending on what we want).
+where $\rho:=T^\mathrm{ren}_{\;\;ab}t^at^b$ is the energy density (in some sense given by a choice of the $t$ used, giving us, like in the classical case \emph{strong}, \emph{null}, \emph{weak} and a whole zoology of conditions). $f$ is a test function (or a distribution in some cases, for purely computational reasons). $\mathcal{Q}$ is a possibly unbounded operator. As it stands, it is a pointwise one. Integrating the inequality's $t$ over a geodesic of some type gives an integrated energy condition (complete geodesic, or full, depending on what we want).
 
 \noindent Now, we call a condition trivial when:
 \begin{equation} \label{triv}
     \exists c, c' \quad : \quad \braket{\rho(f)}_\omega \; \geq \; c + c'\cdot|\braket{\mathcal{Q}(f)}_\omega|
 \end{equation}
-Naturally, we call a condition non-trivial when $\lnot$(\ref{triv}) holds and of course. The here-above is the \textit{point-wize} formulation if we add a ``$\forall t$" to the condition, and the \textit{integrated} if $t$ is integrated over a geodesic.
+Naturally, we call a condition non-trivial when $\lnot$(\ref{triv}) holds and of course. The here-above is the \textit{pointwise} formulation if we add a ``$\forall t$" to the condition, and the \textit{integrated} if $t$ is integrated over a geodesic.
 
 Note that here, we work in the case of scalar theory. Extensions to fermions and non-zero-spin bosons are non-trivial. For any more information on the quantification of energy conditions, we let the reader refer to \cite{EleRev}, where some of the here-above notations and expressions were taken from, and we now focus on discussing the computations of these.
 
-In theory, computing these condition effectively seems like a dantean problem, if not impossible: indeed, there are just too many conceivable states $\omega$ and too many reactions $\mathcal{Q}$ could have when acting on $\omega$... But as it turns out, we can restrict ourselves to a subset of all states to only consider much friendlier ones called \emph{Hadamard} states. We briefly mentioned them before on page \pageref{FirstMentionHad}, but it is now time to get more familiar with them.
+In theory, computing these conditions effectively seems like a Dantean problem, if not impossible: indeed, there are just too many conceivable states $\omega$ and too many reactions $\mathcal{Q}$ could have when acting on $\omega$... But as it turns out, we can restrict ourselves to a subset of all states to only consider much friendlier ones called \emph{Hadamard} states. We briefly mentioned them before on page \pageref{FirstMentionHad}, but it is now time to get more familiar with them.
 \subsubsection{Down the Hadamard Rabbit Whole} \label{DefHad}
 As shown in \cite{HadEquiv}, there are equivalent definitions of Hadamard states. Recall the nicer looking one (where the physics is more readable) is the following:
 
@@ -441,7 +441,7 @@ As shown in \cite{HadEquiv}, there are equivalent definitions of Hadamard states
 
 But if that was the ``nicer" (more physical) definition, the following equivalent one is a lot more suited for computations:
 \begin{definition}[Hadamard State - equivalent definition]
-    A Hadamard state's two point function has the following decomposition, where $U,V,W$ are non-singular, $D$ is the spacetime dimension and $\Gamma$ is Euler's Gamma function.
+    A Hadamard state's two-point function has the following decomposition, where $U,V,W$ are non-singular, $D$ is the spacetime dimension and $\Gamma$ is Euler's Gamma function.
     \begin{equation*}
 G^\mathrm{F}\!(x,x')=\frac{\mathfrak{i}\cdot\!\Bigl(\Gamma\!\left(\!^D\!/_{\!2}-1\right)\Bigl)^{1-\delta_{2,D}}}{2\cdot(2\pi)^{\!^D\!/_{\!2}}}\!\left(\!\!\frac{(1-\delta_{2,D})\cdot U(x,x')}{\Bigl(\sigma(x,x')+i\epsilon\Bigl)^{\!\!^D\!/_{\!2}-1}}+\mathds{1}_{2\cdot \mathbb{N}}(D) \cdot V(x,x')\cdot\mathrm{ln}\Bigl(\!\sigma(x,x')+i\epsilon\!\Bigl)+W(x,x')\!\!\right)
 \end{equation*}
@@ -511,7 +511,7 @@ But even if we were to generalize the inequality for any $\mathcal{M}$, this wou
 \section{Absolute Quantum Energy Inequality}
 \subsection{Getting a general bound}
 \subsubsection{The domains of integration $\Sigma$ and $D$ in a general curved space}
-Before we go into how the general integrated general bound works, we need to focus on what it is integrating over. We previously mentioned that it was over $\Sigma$, some time-like submanifold, but that was embedded into $\mathbb{M}_n$ which is not the general case. So how do we bring the properites we require from Minkowski into a general manifold $\mathcal{M}$?
+Before we go into how the general integrated general bound works, we need to focus on what it is integrating over. We previously mentioned that it was over $\Sigma$, some time-like submanifold, but that was embedded into $\mathbb{M}_n$ which is not the general case. So how do we bring the properties we require from Minkowski into a general manifold $\mathcal{M}$?
 
 \begin{definition}[Small Sampling Domain]
     A submanifold $\Sigma \subset \mathbb{M}$ is called a \emph{Small Sampling Domain} when:
@@ -523,7 +523,7 @@ Before we go into how the general integrated general bound works, we need to foc
     \end{itemize}
 \end{definition}
 \begin{comment}[Interpretation of the definition]
-    A convex (geodesically convex) neighbourhood is a neighbourhood where for any two points in $\mathcal{M}\cap\Sigma$ (i.e. points in the neighbourhood) all the points in-between them in the shortest\footnote{in the sense of proper length} geodesic going from one to the other are also in the neighbourhood. Meaning ``there are no wholes nor cavities" in $\Sigma$ in the sense of $\mathcal{M}$. Hyperbolic Manifolds are (in short) the ones that admit a Cauchy surface. The last property can be interpreted as the speed of light \emph{in the coordinate system} is bounded. So overall, an nice physical interpretation would be that $\Sigma$ is sort of a ``Minkowski" patch of $\mathcal{M}$ (but with curvature of course).
+    A convex (geodesically convex) neighbourhood is a neighbourhood where for any two points in $\mathcal{M}\cap\Sigma$ (i.e. points in the neighbourhood) all the points in-between them in the shortest\footnote{in the sense of proper length} geodesic going from one to the other are also in the neighbourhood. Meaning ``there are no wholes nor cavities" in $\Sigma$ in the sense of $\mathcal{M}$. Hyperbolic Manifolds are (in short) the ones that admit a Cauchy surface. The last property can be interpreted as the speed of light \emph{in the coordinate system} is bounded. So overall, a nice physical interpretation would be that $\Sigma$ is sort of a ``Minkowski" patch of $\mathcal{M}$ (but with curvature of course).
 \end{comment}
 
 \noindent Now, given a small sampling domain, let us name the following objects:
@@ -554,7 +554,7 @@ This concludes the formal definition of the two surfaces we will integrate over 
 
 Note, however, that $D$ still contains some arbitrariness in the way it is defined, through how the pull-back is done: there is an arbitrary choice in what coordinates one uses for future pointing null covectors. This was even the case in $\mathbb{M}_4$ previously (with the $D_0$ and $D_\eta$ sets). One can always choose, arbitrarily, something like:
 $D:= \left\{u_i \in \mathbb{R}^n : u_0 >0 \wedge c^2 |u_0|^2 \leq \sum_i |u_i|^2 \right\}$
-where $c$ is the one in the definition of $\Sigma$. But there is a much wilder range of choices (for instance, in $\mathbb{M}_4$, any Lorzentz transform of that set) that work equally well; yet will produce slightly different inequalities (some of which might brake covariance). We chose to see this as a degree of freedom in our inequality, wich we will generally want to optimize covariently\footnote{Of course, from the way they are defined, just using a supremum of the integral over all possible $D$ naturally restores the covariance and optimizes the inequality... But in practice, one may simply not be capable of writing explicitely this extrema. Hence in practice, one doesn't reach it, and only find a particular good bound and \emph{this} bound may be the one braking invariance... So we will usually restrict ourselves to a subset of all possible $D$ that also ensures covariance, and where optimisation is easier to compute. This is what was done in $\mathbb{M}_4$ with $D_0$ and all the $D_\eta$. Such a subset is however neither optimal either, nor necessarily trivial.}.
+where $c$ is the one in the definition of $\Sigma$. But there is a much wider range of choices (for instance, in $\mathbb{M}_4$, any Lorentz transform of that set) that work equally well; yet will produce slightly different inequalities (some of which might brake covariance). We chose to see this as a degree of freedom in our inequality, which we will generally want to optimize covariently\footnote{Of course, from the way they are defined, just using a supremum of the integral over all possible $D$ naturally restores the covariance and optimizes the inequality... But in practice, one may simply not be capable of writing explicitly this extremum. Hence in practice, one doesn't reach it, and only find a particular good bound and \emph{this} bound may be the one braking invariance... So we will usually restrict ourselves to a subset of all possible $D$ that also ensures covariance, and where optimisation is easier to compute. This is what was done in $\mathbb{M}_4$ with $D_0$ and all the $D_\eta$. Such a subset is however neither optimal either, nor necessarily trivial.}.
 
 
 
@@ -571,7 +571,7 @@ where $H_{(k)}:=\sum_{i=0}^k H_i$ is the series expansion of $H$ truncated after
 
 We will use this formula to create a quantum null energy inequality (i.e. a lower bound on energy density when integrated in null directions)
 
-To do so, we simply look at the specific case of $\mathcal{D}=l^\mu\nabla_\mu$ where $l$ is a null vector, and $\nabla$ the spacetime's covariant derivative. In these conditions, and using the formulae mentioned in the Hadamard state section, the left hand side of inequality \ref{3.1} yields:
+To do so, we simply look at the specific case of $\mathcal{D}=l^\mu\nabla_\mu$ where $l$ is a null vector, and $\nabla$ the spacetime's covariant derivative. In these conditions, and using the formulae mentioned in the Hadamard state section, the left-hand side of inequality \ref{3.1} yields:
 \begin{align}
     L(x,x'):=& \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (\mathcal{D}\otimes\mathcal{D}(W-H_{(k)}))\notag\\
     =& \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (l^\mu\nabla_\mu\otimes l^{\nu'}\nabla_{\nu'}(W-H_{(k)}))\notag\\
@@ -579,14 +579,14 @@ To do so, we simply look at the specific case of $\mathcal{D}=l^\mu\nabla_\mu$ w
     &\quad - \cancel{l^\mu l^{\nu'}\frac{1}{2}m^2g_{\mu\nu'}(x,x')}\Big)(W-H_{(k)})\notag\\
     =& \int_\Sigma \d_\mathrm{vol}(x) g^2(x) l^\mu l^{\nu'}\mathbb{T}^\mathrm{split}_{\mu\nu'}(x,x')(W-H_{(k)})
 \end{align}
-where $g_{\mu\nu'}(x,x')$ is the paralel transport operator, such that given a vector $l^\mu$ at point $x$, its parallel transported vector at $x'$ is $l^{\nu'}:=g^{\mu'\nu'}g_{\nu\mu'}(x,x') l^\nu $. Cancellations are all due to the fact that $l^\mu l_\mu=0$.
+where $g_{\mu\nu'}(x,x')$ is the parallel transport operator, such that given a vector $l^\mu$ at point $x$, its parallel transported vector at $x'$ is $l^{\nu'}:=g^{\mu'\nu'}g_{\nu\mu'}(x,x') l^\nu $. Cancellations are all due to the fact that $l^\mu l_\mu=0$.
 \\
 Now, taking the limit:
 \begin{align}
     \lim_{x'\to x}L(x,x') &= \int_\Sigma \d_\mathrm{vol}(x) g^2(x) l^\mu l^\nu\braket{T^\mathrm{fin}_{\mu\nu}}_\psi\notag\\
     &= \int_\Sigma \d_\mathrm{vol}(x) g^2(x) (l^\mu l^{\nu'}\braket{T^\mathrm{ren}_{\mu\nu}}_\psi+\cancel{l^\mu l^\nu Q(x)g_{\mu\nu}}-l^\mu l^\nu C_{\mu\nu})
 \end{align}
-As for the right hand side, which is almost entirely geometric, we get:
+As for the right-hand side, which is almost entirely geometric, we get:
 \begin{align}
     \lim_{x'\to x} R(x,x') &= -2\lim_{x'\to x}\int_D\frac{\d^n\xi}{(2\pi)^n}((|h_\kappa|^{1/4}g_\kappa)^{\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{H_{(k)}})^{(-\xi,\xi)}\notag\\
     &=-2\int_D\frac{\d^n\xi}{(2\pi)^n}((|h_\kappa|^{1/4}g_\kappa)^{\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{H_{(2)}})^{(-\xi,\xi)}
@@ -598,9 +598,9 @@ $k\to2$ as terms of order higher than 2 go to zero at the limit $x'\to x$. Overa
 
 Now, although equation \ref{eq82} is giving us a bound, i.e. a quantum null inequality, it is still not as explicit as one would want. Thus, we ought to compute it. This was done in \cite{DSNEC} in the special case of $\Sigma=\mathcal{M}=\mathbb{M}_4$. But we want to compute it explicitly for any manifold.
 \subsubsection{Motivation for a special type of foliation}
-During our computation, we have assumed that, at all times $l^\mu l^\nu g_{\mu\nu}=0$, i.e. that $l^\mu$ was a null direction. But to be able to make use of this, to continue expliciting the bound in the null case, and for other more intricate mathematical and physical reason, we will require to make a \emph{foliation} of space-time with respect to such a direction\footnote{Although we will go deeply into the details of the particular foliation we will use, if the reader wishes to be introduced to the general ideas of foliations, they are presented in the appendix. Rigoroulsy on page \pageref{MatFoli} and with physical interpretation on page \pageref{PhyFoli}.}.
+During our computation, we have assumed that, at all times $l^\mu l^\nu g_{\mu\nu}=0$, i.e. that $l^\mu$ was a null direction. But to be able to make use of this, to continue expliciting the bound in the null case, and for other more intricate mathematical and physical reason, we will require to make a \emph{foliation} of space-time with respect to such a direction\footnote{Although we will go deeply into the details of the particular foliation we will use, if the reader wishes to be introduced to the general ideas of foliations, they are presented in the appendix. Rigorously on page \pageref{MatFoli} and with physical interpretation on page \pageref{PhyFoli}.}.
 
-Mathematically constructing this foliation assures the existence of this $l^\mu$ direction at any point on $\Sigma$, which ensures the well posed-ness of the inequality. Also, it will help making the inequality even more explicit, and thereby more practical to use.
+Mathematically constructing this foliation assures the existence of this $l^\mu$ direction at any point on $\Sigma$, which ensures the well-posed-ness of the inequality. Also, it will help making the inequality even more explicit, and thereby more practical to use.
 
 Physically, this will allow us to integrate over a surface of light-like geodesics, and thus truly encompass the idea of an integrated null energy inequality. Indeed, the foliation will lead us to probing space along the trajectories of light starting from a specific neighbourhood of space.
 
@@ -608,15 +608,15 @@ Physically, this will allow us to integrate over a surface of light-like geodesi
 
 \subsection{Double Null Foliation}
 \subsubsection{Step by step buildup of the foliation}
-This section and the folowing one are summarizing \cite{Chris} and \cite{Art} in which one can see the details of the contruction of the double null foliation. All pictures present in here also come from \cite{Art}, although we re-coloured them and tweaked some to, hopefully, convey even clearer information.
+This section and the following one are summarizing \cite{Chris} and \cite{Art} in which one can see the details of the construction of the double null foliation. All pictures present in here also come from \cite{Art}, although we re-coloured them and tweaked some to, hopefully, convey even clearer information.
 
-We start with a co-dimention 2 surface. Although it is not required by \cite{Chris} and \cite{Art}, we will assume this surface to be compact, and space-like for simplicity (so, in $\mathbb{M}_4$, one can simply take a 2D ball in spacetime, and in $\mathbb{M}_3$, which is where our illustrations will be, it will be a circle). This surface, is denoted $S_0$.
+We start with a co-dimension 2 surface. Although it is not required by \cite{Chris} and \cite{Art}, we will assume this surface to be compact, and space-like for simplicity (so, in $\mathbb{M}_4$, one can simply take a 2D ball in spacetime, and in $\mathbb{M}_3$, which is where our illustrations will be, it will be a circle). This surface, is denoted $S_0$.
 
-Because $S_0$ is space-like, (i.e. never tangent to the light-cone) the light cone on its 2D complementary plane is well define. This means that at every point, (because of the homology of the lightcone in 2D) their exists 2 different null directions. 
+Because $S_0$ is space-like, (i.e. never tangent to the light-cone) the light cone on its 2D complementary plane is well-defined. This means that at every point, (because of the homology of the lightcone in 2D) there exists 2 different null directions. 
 \begin{center}
     \includegraphics [width=0.75\linewidth] {Pictures/00_Start.png}
 \end{center}
-Those ligh derections spann 2 surfaces (respectively $C_0$ and $\underline{C}_0$).
+Those light directions span 2 surfaces (respectively $C_0$ and $\underline{C}_0$).
 \begin{center}
     \includegraphics [width=0.75\linewidth] {Pictures/01_Surface.png}
 \end{center}
@@ -624,18 +624,18 @@ Those ligh derections spann 2 surfaces (respectively $C_0$ and $\underline{C}_0$
 Let $\Omega: S_0 \to \mathbb{R}$ be a smooth function, and $L'$ a null vector field normal to $S_0$ and tangent to $C_0$ (i.e. a continuous choice of one of the null directions at every point). Let $\underline{L}'$ be the null vector field tangent to $\underline{C}_0$ normal to $S_0$ such that $g(L',\underline{L}')=-\Omega^{-2}$ (i.e. the other null direction, but whose norm is constrained by the two other objects).
 
 The steps that follow are going to be many successive extensions of all the previously defined objects.\\
-We extend $L'$ and $\underline{L}'$ on $C_0$ and $\underline{C}_0$ through the geodesic equation $\nabla_{L'}L'=0=\nabla_{\underline{L}'}\underline{L}'$ with $\nabla$ the manifold's Levi-Civita connection, with respect to the spacetime metric $g$. Then extend $\Omega$ on $C_0\cup\underline{C}_0$ too. We define $L:=\Omega^2L'$ and $\underline{L} :=\Omega^2 \underline{L}'$ the normalized vector fields.
+We extend $L'$ and $\underline{L}'$ on $C_0$ and $\underline{C}_0$ through the geodesic equation $\nabla_{L'}L'=0=\nabla_{\underline{L}'}\underline{L}'$ with $\nabla$ the manifold's Levi-Civita connection, with respect to the spacetime metric $g$. Then extend $\Omega$ on $C_0\cup\underline{C}_0$ too. We define $L:=\Omega^2L'$ and $\underline{L} :=\Omega^2 \underline{L}'$ the normalised vector fields.
 
 We now define $\underline{u}$ on $C_0$ to be the vector field such that $L \underline{u}=1$ and $\underline{u}_{|S_0}=0$. (And likewise, $u$ on $\underline{C}_0$.)
 \begin{center}
     \includegraphics [width=0.75\linewidth] {Pictures/02_VFields.png}
 \end{center}
 
-We now notice that there exists\footnote{the differential equations here are all expontantial equations, hence the implicit use of bijectivity everywhere here.} $S_\tau$ another embeded co-dimention 2 space-like surface defined by the sets of points on $C_0$ where $\underline{u}=\tau$ (and likewise $\underline{S}_\tau$). $\tau\mapsto S_\tau$ can be seen as a foliation of $C_0$...
+We now notice that there exists\footnote{the differential equations here are all exponential equations, hence the implicit use of bijectivity everywhere here.} $S_\tau$ another embedded co-dimension 2 space-like surface defined by the sets of points on $C_0$ where $\underline{u}=\tau$ (and likewise $\underline{S}_\tau$). $\tau\mapsto S_\tau$ can be seen as a foliation of $C_0$...
 
 We now use these $S_\tau$ as was used $S_0$ to extend the vector field $L$ and $\underline{L}$ on the $C_0$ where they were not yet defined, such that now, all our objects (except for $u$ and $\underline{u}$ at the moment) are defined on $C_0\cup\underline{C}_0$.
 \begin{comment}
-    Before finishing the construction of the foliation, both \cite{Chris} and \cite{Art} emphasize the fact that $\nabla \underline{u}=-\underline{L}'$ and $\nabla u=-u'$. So we too mention it here, as it probably helps to see $u$ as a potential whose gradiant is light-like. This will, of course, also hold on the fully foliated manifold.
+    Before finishing the construction of the foliation, both \cite{Chris} and \cite{Art} emphasize the fact that $\nabla \underline{u}=-\underline{L}'$ and $\nabla u=-u'$. So we too mention it here, as it probably helps to see $u$ as a potential whose gradient is light-like. This will, of course, also hold on the fully foliated manifold.
 \end{comment}
 
 To finish the foliation, we now span, from each $S_\tau$ a $C_\tau$ and a $\underline{C}_\tau$. This concludes the construction of the foliation. Note that this is a \emph{double} foliation, as we have both a foliation in terms of $C_\tau$ and $\underline{C}_\tau$.
@@ -643,8 +643,8 @@ To finish the foliation, we now span, from each $S_\tau$ a $C_\tau$ and a $\unde
     \includegraphics [width=0.75\linewidth] {Pictures/03_Foliation.png}
 \end{center}
 
-\subsubsection{Playing arround with coordinates}\label{TorsionWarning}
-For any point $p$ in the thereby foliated spacetime, there exists a null-path from $S_0$ to that path. In fact, there even exists a single path starting from a point $\theta^i$ of $S_0$ ($\theta^i$ being given with respect to some coordinate system of the co-dimention 2 manifold $S_0$) then folowing a the null ray from $\theta^i$ along $C_0$ up to the $\underline{u}$ value of $\underline{u}_0$ and then following the other null direction on $C_{\underline{u}_0}$ until $u_0$. This therefore allows us to have a coordinate system $p=(u_0, \underline{u}_0, \theta^i)$ on the manifold.
+\subsubsection{Playing around with coordinates}\label{TorsionWarning}
+For any point $p$ in thereby foliated spacetime, there exists a null path from $S_0$ to that path. In fact, there even exists a single path starting from a point $\theta^i$ of $S_0$ ($\theta^i$ being given with respect to some coordinate system of the co-dimension 2 manifold $S_0$) then following a the null ray from $\theta^i$ along $C_0$ up to the $\underline{u}$ value of $\underline{u}_0$ and then following the other null direction on $C_{\underline{u}_0}$ until $u_0$. This therefore allows us to have a coordinate system $p=(u_0, \underline{u}_0, \theta^i)$ on the manifold.
 \begin{center}
     \includegraphics [width=0.75\linewidth] {Pictures/04_Coordinates.png}
 \end{center}
@@ -654,11 +654,11 @@ Note however that there exists another path by going to $\underline{C}_0$ first 
     \includegraphics [width=0.75\linewidth] {Pictures/05_Torsion.png}
 \end{center}
 
-This is because the two null fields do not commute (in the Lie derivative sense\footnote{Using the vector commutator $[X,Y]:=x^\mu \partial_\mu (y^\nu) e_\nu - y^\mu \partial_\mu (x^\nu) e_\nu = X\circ Y - Y \circ X$ for two vector fields $X:=x^\mu e_\mu$ and $Y:=y^\mu e_\mu$}) unless our metric is somehow trivial. Thus, denoting by $e_i$ the coordinate system of the $C_{u_0}\cap\underline{C}_{\underline{u}_0}$ codimention 2 spacelike manifolds, the tuple $(e_i, L, \underline{L})$ is indeed a \emph{frame} but not a \emph{basis} in true and precise manifold vocabulary.
+This is because the two null fields do not commute (in the Lie derivative sense\footnote{Using the vector commutator $[X,Y]:=x^\mu \partial_\mu (y^\nu) e_\nu - y^\mu \partial_\mu (x^\nu) e_\nu = X\circ Y - Y \circ X$ for two vector fields $X:=x^\mu e_\mu$ and $Y:=y^\mu e_\mu$}) unless our metric is somehow trivial. Thus, denoting by $e_i$ the coordinate system of the $C_{u_0}\cap\underline{C}_{\underline{u}_0}$ codimension 2 spacelike manifolds, the tuple $(e_i, L, \underline{L})$ is indeed a \emph{frame} but not a \emph{basis} in true and precise manifold vocabulary.
 
-This does not pose any particularily deep problem when it comes to doing physics in a non-basis frame; but does require a lot of care as many of the formulae familiar to the physicists that are used to derive curvature tensors no longer apply. In particular, $\Gamma_{\mu\nu}^\rho\ne\Gamma_{\nu\mu}^\rho$ and $\Gamma_{\mu\nu}^\rho\ne g^{\rho\lambda}(g_{\lambda\mu,\nu}+g_{\lambda\nu,\mu}+g_{\mu\nu,\lambda})$. So basicaly, (instead of attempting to rederive different formulae) we will frequently go back to more formal math notations to ensure clarity.
+This does not pose any particularly deep problem when it comes to doing physics in a non-basis frame; but does require a lot of care as many of the formulae familiar to the physicists that are used to derive curvature tensors no longer apply. In particular, $\Gamma_{\mu\nu}^\rho\ne\Gamma_{\nu\mu}^\rho$ and $\Gamma_{\mu\nu}^\rho\ne g^{\rho\lambda}(g_{\lambda\mu,\nu}+g_{\lambda\nu,\mu}+g_{\mu\nu,\lambda})$. So basically, (instead of attempting to re-derive different formulae) we will frequently go back to more formal math notations to ensure clarity.
 
-For our computations, from now on, we chose a normalized frame: $(e_i,e_+,e_-)$ where $(e_i)$ is the coordinate system of the $S$ surfaces, and $e_\pm$ are two null directions normalized to $g(e_+,e_-)=-1$. These can simply be obtained by $e_+:=\Omega\underline{L}'$ and $e_-:=\Omega L'$.
+For our computations, from now on, we chose a normalised frame: $(e_i,e_+,e_-)$ where $(e_i)$ is the coordinate system of the $S$ surfaces, and $e_\pm$ are two null directions normalised to $g(e_+,e_-)=-1$. These can simply be obtained by $e_+:=\Omega\underline{L}'$ and $e_-:=\Omega L'$.
 
 We also inform the reader that in this convention (i.e. the one from \cite{Art}; \cite{Chris}'s only being different by a factor of 2) the metric will be of the following form (where $\cancel{g}$ denotes the metric of the sub-manifold $S$ at any point):
 \begin{equation} \label{gNullFoli}
@@ -672,24 +672,24 @@ g^{-1}=-e_+\otimes e_- - e_-\otimes e_+ + \cancel{g}^{-1} \quad ).
 \begin{comment}[\emph{Difference of notations in mathematics and physics}] \label{NotationWarning}
     In differential geometry, (always using Einstein summation convention of course) there are many types of objects (the zoology of which we will not go into). But it turns out that all of them have (at least) a vector space structure. This leads to every\footnote{We only consider finite dimensional spaces, no need to worry about equivalence classes or choice axiom.} single object being expressible in a basis.
     
-    The physicists take great use of this fact and basically only work with the coordinates in a given basis, almost (though not completely I am sure) forgeting the basis itself. This leads physicist to call $x^\mu$ a vector and $g_{\mu\nu}$ an order 2 tensor. This is very practicle to them, as it makes explicit computations much more easy.
+    The physicists take great use of this fact and basically only work with the coordinates in a given basis, almost (though not completely I am sure) forgetting the basis itself. This leads physicist to call $x^\mu$ a vector and $g_{\mu\nu}$ an order 2 tensor. This is very practical to them, as it makes explicit computations much easier.
 
-    The mathematicians, on the other hand, tend to have little care about the basis of their spaces, but a lot more about the type of objects they are manipulating. Thus, whenever they use a basis (say $(\partial_\mu)_{\mu \in [\![0,n]\!]}$ or $(\d x^\mu \otimes \d x^\nu)_{(\mu,\nu) \in [\![0,n]\!]^2}$) they really don't lose sight of the difference between coordinates and vectors. Thus, resuing the previous examples, they would call $x^\mu$ an $n$-tupple of scalars, $g_{\mu\nu}$ an $n^2$ one, $x^\mu \partial_\mu$ a vector and $g_{\mu\nu} \d x^\mu \otimes \d x^\nu$ an order 2 tensor.
+    The mathematicians, on the other hand, tend to have little care about the basis of their spaces, but a lot more about the type of objects they are manipulating. Thus, whenever they use a basis (say $(\partial_\mu)_{\mu \in [\![0,n]\!]}$ or $(\d x^\mu \otimes \d x^\nu)_{(\mu,\nu) \in [\![0,n]\!]^2}$) they really don't lose sight of the difference between coordinates and vectors. Thus, reusing the previous examples, they would call $x^\mu$ an $n$-tuple of scalars, $g_{\mu\nu}$ an $n^2$ one, $x^\mu \partial_\mu$ a vector and $g_{\mu\nu} \d x^\mu \otimes \d x^\nu$ an order 2 tensor.
 
-    Now, so far, this can seem a very pointless difference, not worth so many paragraphs, and to be fair, it almost always it. But it turns out, as our reader will soon see, that we are going to do a lot of explicit computations (thus, will use the physicist's approch) but not in a true vector manifold basis (which will require the mathematician's notation). And although they both look very similar, we will be constantly playing arround with the connection, wich treats differently objects of different type. Hence, dear reader, we encourage that you keep in mind what is what at all time.
+    Now, so far, this can seem a very pointless difference, not worth so many paragraphs, and to be fair, it almost always it. But it turns out, as our reader will soon see, that we are going to do a lot of explicit computations (thus, will use the physicist's approach) but not in a true vector manifold basis (which will require the mathematician's notation). And although they both look very similar, we will be constantly playing around with the connection, which treats differently objects of different type. Hence, dear reader, we encourage that you keep in mind what is what at all times.
     
-    For instance, if $\nabla_\mu$ denotes $\nabla_{e_\mu}$ (i.e. the covariante derivative of the vector $e_\mu$) and $x^\mu e_\mu$ is a vector (with $(e_\mu)$ a basis) then $\nabla_\mu x^\nu=\partial_\mu x^\nu$ and $\nabla_\mu e_\nu = \Gamma_{\mu\nu}^\rho e_\rho$. But if $\nabla_\mu$ denotes the coordinate of the covariant derivative, then $\nabla_\mu x^\mu = \partial_\mu x^\nu +\Gamma_{\mu\lambda}^\nu x^\lambda$ and $\nabla_\mu e_\nu$ is of course an undefined expression.
+    For instance, if $\nabla_\mu$ denotes $\nabla_{e_\mu}$ (i.e. the covariant derivative of the vector $e_\mu$) and $x^\mu e_\mu$ is a vector (with $(e_\mu)$ a basis) then $\nabla_\mu x^\nu=\partial_\mu x^\nu$ and $\nabla_\mu e_\nu = \Gamma_{\mu\nu}^\rho e_\rho$. But if $\nabla_\mu$ denotes the coordinate of the covariant derivative, then $\nabla_\mu x^\mu = \partial_\mu x^\nu +\Gamma_{\mu\lambda}^\nu x^\lambda$ and $\nabla_\mu e_\nu$ is of course an undefined expression.
 \end{comment}
 
 \subsubsection{Curvature in null coordinates}
 We will now compute the curvature tensor, from the connection. We will straight up reuse the result from \cite{Art} and \cite{Chris} that gives us all non-zero and identical components of the curvature, thus, these are the only things that a courageous reader would have to compute to apply our work to a given metric.
 
-It must be emphasized that we are resuing notations that are very common in the field (identical in every found article using this folliation method) but we will slightly twist it arround to fit our personnal needs. Indeed, as we (unlike the articles we found) do a lot of explicit computations, we chose a slightly more convoluted notation to make use of the $\pm\mapsto\mp$ symetry in all equations. If you are comparing with \cite{Art} and \cite{Chris}, apply the following redefinitions:
+It must be emphasized that we are reusing notations that are very common in the field (identical in every found article using this foliation method) but we will slightly twist it around to fit our personal needs. Indeed, as we (unlike the articles we found) do a lot of explicit computations, we chose a slightly more convoluted notation to make use of the $\pm\mapsto\mp$ symmetry in all equations. If you are comparing with \cite{Art} and \cite{Chris}, apply the following redefinitions:
 \begin{align}
     ``+":=3, && ``-":=4, && \underset{+}{\omega}:=\omega, && \underset{+}{\chi}:=\chi, && \underset{+}{\eta}:=\eta.
 \end{align}
 
-Note however that we do keep, in all this subsubsection, the mathematician's notation $\nabla_\mu:=\nabla_{e_\mu}$ as do both \cite{Art} and \cite{Chris}, in order to make it easier for the reader to compare our results with them (who do similar computations but with the extra assumption of the metric being a solution to Einstein's vaccum equations). This will mean that $\nabla_\mu e_\nu = \Gamma_{\mu\nu}^\rho e_\rho$ and $\nabla_\mu e_\nu \ne \partial_\mu e_\nu - \Gamma_{\mu\nu}^\rho e_\rho$. We apologies for potentially caused confusion.
+Note however that we do keep, in all this subsubsection, the mathematician's notation $\nabla_\mu:=\nabla_{e_\mu}$ as do both \cite{Art} and \cite{Chris}, in order to make it easier for the reader to compare our results with them (who do similar computations but with the extra assumption of the metric being a solution to Einstein's vacuum equations). This will mean that $\nabla_\mu e_\nu = \Gamma_{\mu\nu}^\rho e_\rho$ and $\nabla_\mu e_\nu \ne \partial_\mu e_\nu - \Gamma_{\mu\nu}^\rho e_\rho$. We apologies for potentially caused confusion.
 
 Now that those subtleties about notation have been dealt with, let us steal from \cite{Art} and \cite{Chris} the list of all non-zero Christoffel symbols.
 \begin{align}
@@ -700,9 +700,9 @@ Now that those subtleties about notation have been dealt with, let us steal from
     \Gamma_{\pm i}^j&\notag,\\
     \Gamma_{ij}^k&\notag,
 \end{align}
-where the ones on the left are the only degrees of freedom (so the only ones a courageous reader would have to compute to apply our work to a given spacetime\footnote{The minimal number of calculations to get them all is obtained by only skipping $\nabla_\pm e_\mp$ among all conceivable $\nabla_\mu e_\nu$; which is very disappointing. But if one can compute $\Gamma_{\mu\nu}^\rho$ separately, than the left column is what will be the fastest.}).
+where the ones on the left are the only degrees of freedom (so the only ones a courageous reader would have to compute to apply our work to a given spacetime\footnote{The minimal number of calculations to get them all is obtained by only skipping $\nabla_\pm e_\mp$ among all conceivable $\nabla_\mu e_\nu$; which is very disappointing. But if one can compute $\Gamma_{\mu\nu}^\rho$ separately, then the left column is what will be the fastest.}).
 
-Let us now compute commutators $[e_\mu,e_\nu]$ as they will be relevant later on. Although this might seem like something that would need to be computed back at the level of the foliation, we can make use of the fact that (although we do not have $\Gamma_{\mu\nu}^\rho=\Gamma_{\nu\mu}^\rho$) our connection is indeed the levi-cevita connection. It is defined as the (signle) connection with no torsion. Since torsion is formally the following tensor:
+Let us now compute commutators $[e_\mu,e_\nu]$ as they will be relevant later on. Although this might seem like something that would need to be computed back at the level of the foliation, we can make use of the fact that (although we do not have $\Gamma_{\mu\nu}^\rho=\Gamma_{\nu\mu}^\rho$) our connection is indeed the levi-cevita connection. It is defined as the (single) connection with no torsion. Since torsion is formally the following tensor:
 \begin{equation}
 \forall (X,Y) \in T\mathcal{M}^2 \quad\quad  \mathrm{Tor}_\nabla(X,Y):= \nabla_XY-\nabla_YX-[X,Y].
 \end{equation}
@@ -710,7 +710,7 @@ We can make use of the following equation, as in our case $\mathrm{Tor}_\nabla=0
 \begin{equation}
     [e_\mu,e_\nu]=\Gamma_{\mu\nu}^\rho e_\rho-\Gamma_{\nu\mu}^\rho e_\rho.
 \end{equation}
-Our computations yeild:
+Our computations yield:
 \begin{align}
     [e_\pm,e_\mp]&=\Gamma_{\pm\mp}^\mu e_\mu - \Gamma_{\mp\pm}^\mu e_\mu\notag\\
     &=\Gamma_{\pm\mp}^i e_i - \Gamma_{\mp\pm}^i e_i + \Gamma_{\pm\mp}^\pm e_\pm - \Gamma_{\mp\pm}^\pm e_\pm + \Gamma_{\pm\mp}^\mp e_\mp - \Gamma_{\mp\pm}^\mp e_\mp\notag\\
@@ -725,7 +725,7 @@ Our computations yeild:
 \end{align}
 and of course, since the $e_i$ vectors are proper space-like basis or the submanifold $S_{u\underline{u}}$, 
 \begin{equation}[e_i,e_j]=0 \label{[i,j]}.\end{equation}
-We can now attempt computing the Rieman tensor. As for the Christofels, since we are not in a proper coordinate system, we must go back to the original formula:
+We can now attempt computing the Rieman tensor. As for the Christoffels, since we are not in a proper coordinate system, we must go back to the original formula:
 \begin{equation}
     \forall (X,Y,Z)\in T\mathcal{M}^3 \quad \quad \mathrm{Riem}_\nabla (X,Y)Z:= \nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z.
 \end{equation}
@@ -738,14 +738,14 @@ Which gives us an expression (but is not as satisfying as in the coordinate case
     R^\rho_{\;\sigma\mu\nu} e_\rho = \nabla_\mu\nabla_\nu e_\rho-\nabla_\nu\nabla_\mu e_\rho-\nabla_{[e_\mu,e_\nu]}e_\rho.
 \end{equation}
 We notice that the famous property $R^\rho_{\;\sigma\mu\nu}=-R^\rho_{\;\sigma\nu\mu}$ trivially holds.\\
-Other symetries of the tensor require the lowering of $\rho$, so we will simply not use them. We do not detail here the derivation of the $R^\rho_{\;\sigma\mu\nu}$ as it is long, tedious, and frankly uninteresting. But one can find the detailed steps in the appendix on page \pageref{CompR}.
+Other symmetries of the tensor require the lowering of $\rho$, so we will simply not use them. We do not detail here the derivation of the $R^\rho_{\;\sigma\mu\nu}$ as it is long, tedious, and frankly uninteresting. But one can find the detailed steps in the appendix on page \pageref{CompR}.
 \subsection{Computation of the Inequality and future use}
 \subsubsection{Computing $C$}
 Recall our current state of the computation of our inequality:
 \begin{equation}\tag{\ref{eq82}}
     \boxed{\int_\Sigma \!\!\!\d_\mathrm{vol} g^2 \!\braket{l^\mu l^\nu T^\mathrm{ren}_{\mu\nu}}_{\!\psi} \!\!\geq\!\!\! \int_\Sigma \!\!\!\d_\mathrm{vol} g^2l^\mu l^\nu C_{\!\mu\nu}\!-\!2\!\!\!\int_D\!\!\frac{\d^n\xi}{(2\pi)^n}\!\left(\!\!(|h_\kappa|^{\!^1\!\!/_{\!4}}\!g_\kappa\!)^{\!\otimes 2}\vartheta_\kappa(l^\mu\nabla_\mu\!\otimes l^{\nu'}\nabla_{\nu'}\mathcal{FT}_{\!\!H_{(2)}}\!\!\right)^{(-\xi,\xi)}}\;.\!\!\!
 \end{equation}
-We will focus on the term $C_{\mu\nu}$'s computation. We mentionned previously (on page \pageref{T_ren}) that :
+We will focus on the term $C_{\mu\nu}$'s computation. We mentioned previously (on page \pageref{T_ren}) that :
 \begin{equation}\tag{\ref{T_ren}}
     \braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu} + C_{\mu\nu}.
     \end{equation}
@@ -759,15 +759,15 @@ where:
     ^{(2)}\mathcal{H}_{\mu\nu}:=& R_{;\mu;\nu} - \frac{1}{2}g_{\mu\nu}R-\square R_{\mu\nu} -\frac{1}{2} R^{\alpha\beta}R_{\alpha\beta}+2R^{\alpha\beta}R_{\alpha\beta\mu\nu};\\
     \mathcal{H}_{\mu\nu}:=& 2R_{\mu\alpha\beta\gamma}R_\nu^{\;\alpha\beta\gamma}-4\square R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R^{\alpha\beta\gamma\delta}R_{\alpha\beta\gamma\delta} + 2 R_{;\mu;\nu} - 4 R_{\mu\alpha}R^{\alpha}_{\;\nu}+4R^{\alpha\beta}R_{\alpha\mu\beta\nu}\notag.
 \end{align}
-This yeilds:
+This yields:
 \begin{align}
     C_{\mu\nu} &= 2\alpha R_{;\mu;\nu} + \beta R_{;\mu;\nu} - \beta\square R_{\mu\nu} +4\gamma \square R_{\mu\nu} + 2\gamma R_{;\mu;\nu} + \mathcal{O}(R^2)\notag\\
     &= (2\alpha + \beta + 2\gamma) R_{;\mu;\nu} +(4\gamma- \beta)\square R_{\mu\nu} + \mathcal{O}(R^2) \label{C=A+B}.
 \end{align}
 
-But as we saw in section \ref{TorsionWarning} (page \pageref{TorsionWarning}), we need to remember that these expressions hold for coordinates in a \emph{basis}, whereas we wish to express them in our non-basis frame. To known exaclty how this will end up looking, we will simply express the tensor $C$ without any reference to the basis $e_\mu$ and then, get its coefficients in the frame $(e_i,e_+,e_-)$.
+But as we saw in section \ref{TorsionWarning} (page \pageref{TorsionWarning}), we need to remember that these expressions hold for coordinates in a \emph{basis}, whereas we wish to express them in our non-basis frame. To know exactly how this will end up looking, we will simply express the tensor $C$ without any reference to the basis $e_\mu$ and then, get its coefficients in the frame $(e_i,e_+,e_-)$.
 
-Note that in this section, we will use the notation of $\nabla_\mu$ of the physicist, i.e. that of the coordinates. Thus $\nabla_\mu \ne \nabla_{e_\mu}$. This is because \cite{QFTCurv} uses this one, so when we write $R_{;\mu;\nu}$ it means $\nabla_\mu \nabla_\nu R$ only in the physicist sence, and likewise for $\square:=\nabla_\rho \nabla^\rho$ in the physicist's way. We apologies for potentially caused confusion. Feel free to refer to comment \ref{NotationWarning} (on page \pageref{NotationWarning}) for more details.
+Note that in this section, we will use the notation of $\nabla_\mu$ of the physicist, i.e. that of the coordinates. Thus $\nabla_\mu \ne \nabla_{e_\mu}$. This is because \cite{QFTCurv} uses this one, so when we write $R_{;\mu;\nu}$ it means $\nabla_\mu \nabla_\nu R$ only in the physicist sense, and likewise for $\square:=\nabla_\rho \nabla^\rho$ in the physicist's way. We apologies for potentially caused confusion. Feel free to refer to comment \ref{NotationWarning} (on page \pageref{NotationWarning}) for more details.
 
 Now, the here-above expression of $C_{\mu\nu}$ is in a proper basis, one where the coordinate fields commute. So, to be sure that we do not make any mistakes when changing to our non-commutative frame, we will compute the mathematical tensor:
 \begin{equation}
@@ -785,15 +785,15 @@ Leading to $l^\mu \partial_\mu = x_\pm e_\pm$ and the following integral:
 \end{equation}
 with $C_{\pm\pm}:= C(e_\pm,e_\pm)$ of course. Proof of the measure's decomposition $\d_\mathrm{vol}g = \d x_\pm \d x_\mp \d_\mathrm{vol} \cancel{g}$ can be found in \cite{Art}. This also implies that $l^\mu \nabla_\mu$ will be $x_\pm \partial\pm$ when applied on to $\mathcal{FT}_{H_{(2)}}$.
 
-Now this computation is quite lengthy, and although the part where we get $C$ is interesting, computing $C_{\pm\pm}$ is painfully long and interesting. So we do not write it here, but we let the interested reader find it in the comutation appendix. (Moreover, as we shall see later, we do not need its expression, but rather only a lower bound for it.)
+Now this computation is quite lengthy, and although the part where we get $C$ is interesting, computing $C_{\pm\pm}$ is painfully long and interesting. So we do not write it here, but we let the interested reader find it in the commutation appendix. (Moreover, as we shall see later, we do not need its expression, but rather only a lower bound for it.)
 
 
 \subsubsection{Computing $H$}
 In this section, each time we quote a formula, unless it is one we already saw before, it comes from \cite{HadRen}, where all computational details about Hadamard states can be found.
 
-We sadly didn't get to compute the $H$ part of the inequality in time. So this part is more of a guideline of what we will attempt to do next, in order to compute things. Computation steps are reasonably easy to understand, but like in the case of $C_{\pm\pm}$ or the curvature, the actual expressions get lengthy quite fast, which is why, in practice, it is easier said then done.
+We sadly didn't get to compute the $H$ part of the inequality in time. So this part is more of a guideline of what we will attempt to do next, in order to compute things. Computation steps are reasonably easy to understand, but like in the case of $C_{\pm\pm}$ or the curvature, the actual expressions get lengthy quite fast, which is why, in practice, it is easier said than done.
 
-We recall from section \ref{DefHad} that the Hadamard parametrix (i.e. the two point function, but made real), and thus its 3 component $U$, $V$, and $W$,  can be tailor expanded in the geodesic distance $\sigma$. Then, making that parametrix on shell (i.e. imposing the equations of motions) we get the following equations:\\
+We recall from section \ref{DefHad} that the Hadamard parametric (i.e. the two point function, but made real), and thus its 3 components $U$, $V$, and $W$,  can be tailor expanded in the geodesic distance $\sigma$. Then, making that parametric on shell (i.e. imposing the equations of motions) we get the following equations:\\
 $\forall n \in \mathbb{N}^*$
 \begin{equation}
     (2n+2-D) \left( n - \Delta^{-^1\!/_2} \Delta^{\!^1\!/_2}_{\;\;\; ;\mu} \sigma^{;\mu} + \sigma^{;\mu}\partial_\mu \right) U_n + \left(\Box_x -m^2 - \xi R\right) U_{n-1} = 0;
@@ -821,10 +821,10 @@ The first one is that, all indices-related objects are either of the form $f_{;\
 
 The second is that we do not need to compute all the $(U_n, V_n, W_n)$ terms, \color{red} as we only go up to $H_{(k)}$\color{black}. So we will just try to express everything using minimal amount of terms (to basically get everything in terms of ``initial conditions", i.e. properties of the states as local as can be).
 
-The result of that computation of \color{red}$H_{(k)}$\color{black} will be a scalar field itself. So the the integral, the $l^\mu \nabla_\mu$ will simply give us an $x_\pm \partial_\pm$.
-As for the Fourier transorm's computation, there is no problems with it, we need not worry about any curved space aspect, as $D\subset \mathbb{R}^n$ and, the power of distributions is that we can also ignore $D\ne \mathbb{R}$ by restricting the support of the test function and integrating over all $\mathbb{R}^n$.
+The result of that computation of \color{red}$H_{(k)}$\color{black} will be a scalar field itself. So the integral, the $l^\mu \nabla_\mu$ will simply give us an $x_\pm \partial_\pm$.
+As for the Fourier transform's computation, there is no problems with it, we need not worry about any curved space aspect, as $D\subset \mathbb{R}^n$ and, the power of distributions is that we can also ignore $D\ne \mathbb{R}$ by restricting the support of the test function and integrating over all $\mathbb{R}^n$.
 
-So, overall, although those are long and painful computations and we had too little time to perform them ourselves, their is no intrinsic difficulty in them. For an example of those calculations in a different case (time-like inequality) see \cite{TimeLikeCompute}.
+So, overall, although those are long and painful computations and we had too little time to perform them ourselves, there is no intrinsic difficulty in them. For an example of those calculations in a different case (time-like inequality) see \cite{TimeLikeCompute}.
 \subsubsection{Use}
 We will now impose a bound on the curvature. That is (in our frame):
 \begin{align}
@@ -839,9 +839,9 @@ We know these bounds to be in $\mathcal{O}(R)$ and we only work at first order i
 
 From these bound one can \color{red} although I have not managed to, yet \color{black} extract a bound on every single component of the connection. This allows, in turn, to confine $C_{\pm\pm}$ only with these bounds and $\alpha$, $\beta$ and $\gamma$, the renormalisation freedom. It also allows to confine and $\Delta$ only with the curvature bounds and from that, to also confine the $H$ part of the inequality in terms of those curvature bounds and the specificity of the state. \color{red} Provided I can get rid of the metric coefficients too. \color{black}
 
-Now, we must (if we are to begin computations) make $D$ explicit in some way. We must be careful for most choices of $D$ brake covariance. Thus, it is more likely we will try to look for a set $D$ that, altogether, ensure covariance, and then manually optimize the resulting bound; in the spirit of what was done in the flat case, in section \ref{FlatCase}, using boosts to have covariance and optimizing on them.
+Now, we must (if we are to begin computations) make $D$ explicit in some way. We must be careful, for most choices of $D$ brake covariance. Thus, it is more likely we will try to look for a set $D$ that, altogether, ensure covariance, and then manually optimize the resulting bound; in the spirit of what was done in the flat case, in section \ref{FlatCase}, using boosts to have covariance and optimizing on them.
 
-Once all this is explicitly written and computed, we are left with a lower bound on the QFT's energy density exclusively dependent on the curvature's extremas and the specificities of a given state. It is from that very bound that the making of singularity theorems can be started.
+Once all this is explicitly written and computed, we are left with a lower bound on the QFT's energy density exclusively dependent on the curvature's extrema and the specificities of a given state. It is from that very bound that the making of singularity theorems can be started.
 
 Although we do not go into the realm of singularity theorems in the present work, we can roughly explain the intuition from here: one can assume a particular topology or causal structure, integrate the inequality along it following Einstein's equations of motion, and get a contradiction; thereby formally excluding some spacetimes.
 
@@ -863,7 +863,7 @@ As we mentioned before such an inequality will certainly have applications in fi
     Category theory is the study of structures. Formally, a category is a collection of objects and the links between them (links which we call the \emph{morphisms} of the category).\\
     Examples of famous categories are:
     \begin{itemize}
-        \item Groups (known in physics as "symmetries"), whose morphisms are group-preserving functions (i.e. $f(a.b)=f(a).f(b)$)
+        \item Groups (known in physics as "symmetries"), whose morphisms are group-preserving functions (i.e. $f(a\cdot b)=f(a) \cdot f(b)$)
         \item *Algebras (known in physics as "observables"), whose morphisms are *Algebras preserving functions (i.e. $f(\lambda.a.b+c)=\lambda.f(a).f(b)+f(c)$ and $f(a^\dag)=f(a)^\dag$)
         \item Given a spacetime, the collection of all the charts on it forms a category whose morphism are all the switch to other nearby charts
         \item The category of Feynman diagrams where the morphism are relations between them (like a diagram being a sub-diagram of the other in the non-1PI case, or the replacement of a particular vertex with a different one).
@@ -894,7 +894,7 @@ As we mentioned before such an inequality will certainly have applications in fi
     We do not use them much in this project but they are still quite important. A natural transformation is a \emph{morphism between functors} from a category to another. They allow to study functors themselves as a category (and thus, sort of "close" category into itself).\\
     Famous physical natural transformations are:
     \begin{itemize}
-        \item The change of overall phase in quantum mechanics, whatever the categories (Hilbert Space, Obsevables...) and whatever the functor, one can slightly tweak it by a unitary transformation, without changing the physics.
+        \item The change of overall phase in quantum mechanics, whatever the categories (Hilbert Space, Observables...) and whatever the functor, one can slightly tweak it by a unitary transformation, without changing the physics.
         \item The affine re-parametrization of geodesics in space-time. Whatever functor one has in covariant physics that is based on a geodesic parameter, one can get a different one by re-parametrization of the geodesic parameter.
         \item Renormalization group flow which tweaks Feynman rules based on the renormalization parameters
     \end{itemize}
@@ -916,22 +916,22 @@ As we mentioned before such an inequality will certainly have applications in fi
 
     In physics, we tend to literally confuse functions and distributions, so we assume the existence of a function $\delta(y-x)$ (Dirac's delta function) such that $\delta_x=[\delta(y-x)]=(f\mapsto \int_{\mathbb{M}_4}\delta(y-x)f(y)\d y:=f(x)$ and likewise for any other distribution; which makes expressions more familiar.
 
-    Finlay, know that $\mathbb{M}_4$ can be replaced by any spacetime manifold, and even products of manifolds $\mathcal{M}\times\mathcal{M}'$ leading to bi-distributions; and also that $\mathbb{R}$ can also be swapped with $\mathbb{C}$. There is a lot of mathematical agility required to deal with the topology of distributions, but as physicist we can always assume things to be well defined and convergent, mostly thanks to the restrictions previously imposed on test functions.
+    Finlay, know that $\mathbb{M}_4$ can be replaced by any spacetime manifold, and even products of manifolds $\mathcal{M}\times\mathcal{M}'$ leading to bi-distributions; and also that $\mathbb{R}$ can also be swapped with $\mathbb{C}$. There is a lot of mathematical agility required to deal with the topology of distributions, but as physicist we can always assume things to be well-defined and convergent, mostly thanks to the restrictions previously imposed on test functions.
 
 \subsection{Foliation}\label{PhyFoli}
     \subsubsection{Generality on Foliation}
-    A foliation of a manifold is a splitting of the manifold into lower dimensionnal ones. Like spliting a volume into planes, or spacetime into volumes at every point in time.
+    A foliation of a manifold is a splitting of the manifold into lower dimensional ones. Like splitting a volume into planes, or spacetime into volumes at every point in time.
 
-    All the parts that it is split into are called leaves and they must always form an equivalence relation, that is to say not intersect (hence the names leaves, like paper leaves foliating a book). There are a vast diversity of foliations, but usualy, we require that they keep structural properties similar to the ones of the original manifold. For example, for a manifold that is (everywhere) of dimention $n$ we ususaly want all leaves to be of dimension $n-1$. On smooth manifolds, that the leaves are smooth and that one can smoothly go from one to another. In dinamical systems, (when using Hamiltonian flow) that they propagate together to the same leaves (i.e. can be time-indexed). Requirements will always depends on what we need the foliation for.
+    All the parts that it is split into are called leaves and they must always form an equivalence relation, that is to say not intersect (hence the name \textit{leaves}, like paper leaves foliating a book). There is a vast diversity of foliations, but usually, we require that they keep structural properties similar to the ones of the original manifold. For example, for a manifold that is (everywhere) of dimension $n$ we usually want all leaves to be of dimension $n-1$. On smooth manifolds, that the leaves are smooth and that one can smoothly go from one to another. In dynamical systems, (when using Hamiltonian flow) that they propagate together to the same leaves (i.e. can be time-indexed). Requirements will always depend on what we need the foliation for.
 
 \subsubsection{Cauchy Surfaces and Foliation}\label{CauchyPhy}
     A Cauchy surface is a surface which is intersected once and only once by every single geodesic. They are essential in the axioms of Algebraic Quantum Field Theory.
 
     An interesting theorem (which is easy to understand) is that if there exists a single Cauchy surface, by letting it propagate through the geodesic equation, we get a natural foliation of the manifold.
 
-    Thus, their existence is equivalent to having "well posed initial conditions" of a GR system, even if time is relative, and by indexing them along the cordinate of a particular geodesic we can a time evolution principle.
-    This also makes them very physical, as their existence also means that they allow any observer's time to be used to describe physics, which is something we want as although time is relative, any observer can "see"\footnote{Although, as one can see in the $\mathbb{M}_4$ case, by using the Cauchy surface $\{x^\mu : x^0= 0\}$ this surrounding would be space-like situated for an observer, so it cannot be "seen" in the "observed" sence, but only concepualized as \emph{also following the same laws of physics on their own}.} its surrounding evolve.
-    Lastly, from a purely mathematical point of view, they ensure differential equations have solutions given initial data, and that geodesics cannot be closed, so it makes the mathematics a lot more well defined.
+    Thus, their existence is equivalent to having "well posed initial conditions" of a GR system, even if time is relative, and by indexing them along the coordinate of a particular geodesic we can a time evolution principle.
+    This also makes them very physical, as their existence also means that they allow any observer's time to be used to describe physics, which is something we want as although time is relative, any observer can "see"\footnote{Although, as one can see in the $\mathbb{M}_4$ case, by using the Cauchy surface $\{x^\mu : x^0= 0\}$ this surrounding would be space-like situated for an observer, so it cannot be "seen" in the "observed" sense, but only conceptualised as \emph{also following the same laws of physics on their own}.} its surrounding evolve.
+    Lastly, from a purely mathematical point of view, they ensure differential equations have solutions given initial data, and that geodesics cannot be closed, so it makes the mathematics a lot more well-defined.
     
 \newpage
 \section{Mathematics Appendix}
@@ -958,13 +958,13 @@ As we mentioned before such an inequality will certainly have applications in fi
         \item $\forall A,B,C \in \mathrm{Obj}_\mathcal{C}, \forall f \in \mathrm{Hom}(A,B), \forall g \in \mathrm{Hom}(B,C)\quad \mathfrak{F}(f)\circ_\mathcal{D}\mathfrak{F}(g)=\mathfrak{F}(f\circ_\mathcal{C}g)$
     \end{itemize}
 \subsubsection{Natural Transformations}
-A natural transformation is an objects linking functors together so as to make functors joined with natural transformations a category of its own. Formal axiomatization on any single natural transformation follows from this requirement.
+A natural transformation is an object linking functors together so as to make functors joined with natural transformations a category of its own. Formal axiomatization on any single natural transformation follows from this requirement.
 
 
 
 \subsection{Distributions}\label{DistribMath}
 \subsubsection{Test functions}
-    Test function $\mathcal{D}(\mathcal{M},\mathbb{K})$ are all smooth compactly supported functions. There are interesting interpetation aspects reguarding them (which can be found in the physics appendix) but from a purely mathematical point of view, we will only care about their topological dual space.
+    Test function $\mathcal{D}(\mathcal{M},\mathbb{K})$ are all smooth compactly supported functions. There are interesting interpretation aspects regarding them (which can be found in the physics appendix) but from a purely mathematical point of view, we will only care about their topological dual space.
 \subsubsection{Distributions}
     Distributions $\mathcal{D}'(\mathcal{M},\mathbb{K})$ are the topological dual of $\mathcal{D}(\mathcal{M},\mathbb{K})$. By dual, we mean they are linear functional from $\mathcal{D}(\mathcal{M},\mathbb{K})$ to $\mathbb{K}$, and by topological, we mean they follow some continuity constraints: for any $F$ distribution, we require
     \begin{itemize}
@@ -979,15 +979,15 @@ A natural transformation is an objects linking functors together so as to make f
     It is in this very powerful differential calculus that physics has its objects. (Although, in QFT, we also have some non-commutativity which we have, here above, ignored, to avoid having this text be too long).
 \subsection{Foliation}\label{MatFoli}
 \subsubsection{Generality on Foliation}
-A foliation is an equivalence relation on a manifold. There are many types foliations based on what structural requirements one wishes to add to it. Usualy (for smoth manifolds) smothness and fixed dimension, but also a particular signature. Equivalence classes are called leaves.
+A foliation is an equivalence relation on a manifold. There are many types of foliations based on what structural requirements one wishes to add to it. Usually (for smooth manifolds) smoothness and fixed dimension, but also a particular signature. Equivalence classes are called leaves.
 
-For instance, in $\mathbb{M}_4$ one can get a foliation with $\mathbb{M}_4/\{x^0\}$ (splitting into equal time system) thus getting a Riemanian manifolds for leaves $\mathbb{R}_3$, or $\mathbb{M}_4/\{x^3\}$ thus getting Lorenzian ones $\mathbb{M}_3$. And of course $\mathbb{M}_4/\{|x^0|+|x^1|+|x^2|+|x^3|\}$ is an example where smoothness is broken and $\mathbb{M}_4/\{|x^0|^2+|x^1|^2+|x^2|^2+|x^3|^2\}$ where smothness is kept but the leaves are niether Lorenzian nor Riemanian.
+For instance, in $\mathbb{M}_4$ one can get a foliation with $\mathbb{M}_4/\{x^0\}$ (splitting into equal time system) thus getting a Riemannian manifolds for leaves $\mathbb{R}_3$, or $\mathbb{M}_4/\{x^3\}$ thus getting Lorentzian ones $\mathbb{M}_3$. And of course $\mathbb{M}_4/\{|x^0|+|x^1|+|x^2|+|x^3|\}$ is an example where smoothness is broken and $\mathbb{M}_4/\{|x^0|^2+|x^1|^2+|x^2|^2+|x^3|^2\}$ where smoothness is kept but the leaves are neither Lorentzian nor Riemannian.
 
 \subsubsection{Cauchy surfaces and Foliation}\label{CauchyMat}
 A Cauchy surface is a surface intersecting once and only once with every single geodesic. Its existence implies a foliation of spacetime, indeed\footnote{This is not a proof, only a rough explanation of the idea behind this theorem.}:
 Considering all points $x_0$ on that Cauchy surface $C_0$, we can let them evolve along the geodesic equation $x(t)$ setting the affine parameter such that $x_0=x(t)=0$ since geodesics that intersect are equal, none of the $x(t)$ intersect. By continuity, for any $\tau$ the set $C_\tau := \{x_\tau := x(\tau)\}$ is canonically also a Cauchy surface. Thus $\{C_\tau\}$ are a foliation of the complete spacetime. \color{red} Maybe ref to the actual proof.\color{black}
 
-These imortant propeties are what motivate there use in physics. In particular, they allow to generalize Cauchy's intial value theorem, thus allowing to ensure the existence of solutions to most of the differential equations the physicists enconter.
+These important properties are what motivate there use in physics. In particular, they allow to generalise Cauchy's initial value theorem, thus allowing to ensure the existence of solutions to most of the differential equations the physicists encounter.
 
 \newpage
 \section{Computation Appendix}
@@ -1013,7 +1013,7 @@ We know
     R^\rho_{\;\sigma\mu\nu} e_\rho = \nabla_\mu\nabla_\nu e_\rho-\nabla_\nu\nabla_\mu e_\rho-\nabla_{[e_\mu,e_\nu]}e_\rho
 \end{equation}
 We notice that the famous property $R^\rho_{\;\sigma\mu\nu}=-R^\rho_{\;\sigma\nu\mu}$ trivially holds.\\
-Other symetries of the tensor require the lowering of $\rho$, so we will simply not use them.\\
+Other symmetries of the tensor require the lowering of $\rho$, so we will simply not use them.\\
 Let us begin.
 
 \begin{align*}
@@ -1292,7 +1292,7 @@ Finishing with:
     A_{\mu\nu} :=& \nabla_\mu\nabla_\nu R&
     B_{\mu\nu} :=& \nabla_\rho\nabla^\rho R_{\mu\nu}.
 \end{align}
-And let us express their associated 2-tensors, using $X:=x^\mu e_\mu; Y:=y^\mu e_\mu;$ and $Z$ as dummy variables. We will use the notation $X\circ Y:= f \mapsto x^\mu \partial_\mu (y^\nu e_\nu f)$ for derivation along feilds.
+And let us express their associated 2-tensors, using $X:=x^\mu e_\mu; Y:=y^\mu e_\mu;$ and $Z$ as dummy variables. We will use the notation $X\circ Y:= f \mapsto x^\mu \partial_\mu (y^\nu e_\nu f)$ for derivation along fields.
 \begin{align}
     A(X,Y) :\!\!&= x^\mu y^\nu A_{\mu\nu}\notag\\
     :\!\!&= x^\mu y^\nu \nabla_\mu \nabla_\nu R\notag\\
@@ -1309,7 +1309,7 @@ Thus:
         (X,Y) & \mapsto & \frac{1}{2}\big(X\circ Y + Y\circ X - \nabla_X Y - \nabla_Y X\big) R
     \end{matrix}
 \end{equation}
-Now, although this derivation was rather easy to find, the case of $B$ is a lot more hard to get blindly. We will thus need to go a bit more subtly.
+Now, although this derivation was rather easy to find, the case of $B$ is a lot harder to get blindly. We will thus need to go a bit more subtly.
 \\
 First, let us acknowledge the fact that $B(X,Y)=\mathrm{tr}_g(Z\mapsto z^\rho z^\sigma x^\mu y^\mu \nabla_\rho \nabla_\sigma R_{\mu\nu})$. Which is already a bit scary. Next, we compute the tensorial (physics notation) expression
 \begin{align*}
@@ -1349,7 +1349,7 @@ From here, it seems still far too hard to factorize elements into nice mathemati
 
 A candid reader would probably think of $D(X,Y,Z,Z)=\nabla_Z \nabla_Z \R(X,Y)$ by a simple symbol-to-symbol identification. Although this guess is incorrect, it puts us on the right path: \emph{it fails because it is not a tensor}.
 
-Indeed recal that a tensor $D(X,Y,Z,...)$ must be linear in all its parameters. Or (as these expressions will be used for computations steps) \emph{addition morphism} and \emph{scaling morphism}. Although the guess $D(X,Y,Z,Z)=\nabla_Z \nabla_Z \R(X,Y)$ is an addition morphism, one can easily check it is no scale morphism:
+Indeed recall that a tensor $D(X,Y,Z,...)$ must be linear in all its parameters. Or (as these expressions will be used for computations steps) \emph{addition morphism} and \emph{scaling morphism}. Although the guess $D(X,Y,Z,Z)=\nabla_Z \nabla_Z \R(X,Y)$ is an addition morphism, one can easily check it is no scale morphism:
 \begin{align*}
 \nabla_Z \nabla_Z \R(\lambda X,Y)
     &=\nabla_Z \nabla_Z\big( \lambda \R(X,Y) \big)\\
@@ -1362,7 +1362,7 @@ Indeed recal that a tensor $D(X,Y,Z,...)$ must be linear in all its parameters. 
 \end{align*}
 Also, note that $R(X,Y)$ is a scalar, thus $\nabla_Z\R(X,Y)=Z\big(\R(X,Y)\big)$.\\
 
-We will thus attempt to compensate for it with other terms, as we know our true result must be a tensor anyway. To do so, we list all the addition morphism terms that use the same elements in a similar fashion\footnote{Note that we will use awkward self-made notations in order to shorten the formulae, without any explanation for their use. This is because, not only are they (to our mind) quite intuitive, they are also useless to understand as all of their uses is followed by the same expression without their use. They just happen to be infinietely more compact and thus a bit more readable.}. Here is the list of all such terms:
+We will thus attempt to compensate for it with other terms, as we know our true result must be a tensor anyway. To do so, we list all the addition morphism terms that use the same elements in a similar fashion\footnote{Note that we will use awkward self-made notations in order to shorten the formulae, without any explanation for their use. This is because, not only are they (to our mind) quite intuitive, they are also useless to understand as all of their uses is followed by the same expression without their use. They just happen to be infinitely more compact and thus a bit more readable.}. Here is the list of all such terms:
 
 \begin{align*}
     \langle\langle \quad:\quad&\quad
@@ -1378,7 +1378,7 @@ We will thus attempt to compensate for it with other terms, as we know our true 
     & \textcircled{$\circ$}\! \quad:\quad&\quad
     Z\big(Z\big(\R(X,Y)\big)\big)
 \end{align*}
-Before we start mixing them arround to get $X$ and $Y$ scaling, it is actually easier to add correcting terms to get the correct quadratic in $Z$ behavior as folows:
+Before we start mixing them around to get $X$ and $Y$ scaling, it is actually easier to add correcting terms to get the correct quadratic in $Z$ behaviour as follows:
 \begin{align*}
     \langle\langle \quad:\quad&\quad
     \R\big((\nabla_Z\nabla_Z-\nabla_{\nabla_Z Z}) X,\;Y\big)
@@ -1466,7 +1466,7 @@ One trivially finds (by starting from any of the guesses, compensating terms and
     -2 Z\big(\R(X, \nabla_Z Y)\big) \\
     & \quad + 2 \R(\nabla_Z X, \nabla_Z Y) 
 \end{align*}
-Let us compute each term seperately. Since we know the whole expression to be linear in $X$ and $Y$, and quadratic in $Z$ we can just evaluate them in $X=e_\mu,Y=e_\nu$, have one $Z$ be $e_\rho$ while the other is $e_\sigma$ and factorize the whole final expression with the scalar coordinate quantity $x^\mu y^\nu z^\rho z^\sigma$.
+Let us compute each term separately. Since we know the whole expression to be linear in $X$ and $Y$, and quadratic in $Z$ we can just evaluate them in $X=e_\mu,Y=e_\nu$, have one $Z$ be $e_\rho$ while the other is $e_\sigma$ and factorize the whole final expression with the scalar coordinate quantity $x^\mu y^\nu z^\rho z^\sigma$.
 \begin{align*}
     \langle\langle \quad:\;
     \R\big((\nabla_{e_\rho}\nabla_{e_\sigma} - \nabla_{\nabla_{e_\rho}e_\sigma})e_\mu,\;e_\nu\big)
@@ -1552,7 +1552,7 @@ However ugly this is; it gives a formulation of $C=(2\alpha + \beta + 2\gamma) A
 We can now split it back in our non-basis frame; and will, make extensive use of the properties we know about the connection to optimize our expressions as much as possible.
 
 Firstly, as we already know we will contract $C_{\mu\nu}$ with a single null direction $l^\mu$, we know we only need to compute $C_{\pm\pm}$ in our frame.
-This can be obtained by simply evaluating $C(X,Y)$ for $X=Y=\Sigma_i(0\cdot e_i) + 1 \cdot e_\pm + 0 \cdot e_\mp = e_\pm$ using bi-linearity of tensors. Indeed $C_{\pm\pm}:=C(e_\pm,e_\pm)$
+This can be obtained by simply evaluating $C(X,Y)$ for $X=Y=\Sigma_i(0\cdot e_i) + 1 \cdot e_\pm + 0 \cdot e_\mp = e_\pm$ using bilinearity of tensors. Indeed $C_{\pm\pm}:=C(e_\pm,e_\pm)$
 
 \begin{align*}
     A_{\pm\pm} &= \partial_\pm \partial_\pm R - (\nabla_{e_\pm}e_\pm) R\\
@@ -1570,7 +1570,7 @@ g^{-1} = -(e_\pm \otimes e_\mp) - (e_\mp \otimes e_\pm) + g^{ij}e_i\otimes e_j \
 \end{equation}
 From this, one derives that 
 $$B_{\pm\pm}=g^{ij}D(e_\pm,e_\pm, e_i, e_j) - D(e_\pm,e_\pm, e_\pm, e_\mp) - D(e_\pm,e_\pm, e_\mp, e_\pm) $$
-Now, this will require $D(X,Y,Z,Z')$ to be defined for $Z\ne Z'$, which it is not, at the moment. But one can check by hand that the following generalization works flawlessly (and any generalisation will eventualy work, no need to symetrize it, as $B$'s formula treats $Z$ and $Z'$ the same):
+Now, this will require $D(X,Y,Z,Z')$ to be defined for $Z\ne Z'$, which it is not, at the moment. But one can check by hand that the following generalisation works flawlessly (and any generalisation will eventually work, no need to symmetrise it, as $B$'s formula treats $Z$ and $Z'$ the same):
 \begin{align}
     D(X,Y,Z,Z') 
     &=\R(\nabla_Z\nabla_{Z'} X ,Y )
@@ -2020,7 +2020,7 @@ We apologies for not writing it explicitly, for it is far too big an expression,
     Fewster, C.; Smith, C.; \textit{Absolute quantum energy inequalities in curved spacetime} Annales Henri Poincare \href{https://arxiv.org/abs/gr-qc/0702056}{9 425-455} (2008)
 
     \bibitem{Art}
-    Aretakis, S.; \textit{Lecture Notes on General Relativity} Columbia University \href{https://web.math.princeton.edu/~aretakis/columbiaGR.pdf}{(Princeton University personal web-page)} (2013)
+    Aretakis, S.; \textit{Lecture Notes on General Relativity} Columbia University \href{https://web.math.princeton.edu/~aretakis/columbiaGR.pdf}{(Princeton University personal webpage)} (2013)
 
     \bibitem{Chris}
     Christodoulou, D.;\textit{The Formation of Black Holes in General Relativity} Ar$\chi$iv \href{http://arxiv.org/abs/0805.3880v1#}{DOI: 0805.3880} (2008)
