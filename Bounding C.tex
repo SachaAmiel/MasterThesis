@@ -112,7 +112,7 @@ with $C_{\pm\pm}:= C(e_\pm,e_\pm)$ of course. Proof of the measure's decompositi
 \end{align}
 So as to have 
 \begin{equation}
-    C_{\mu\nu} = (2\alpha + \beta + 2\gamma) A_{\mu\nu} +(4\gamma- \beta) B_{\mu\nu}.
+    C_{\mu\nu} = (2\alpha + \beta + 2\gamma) A_{\mu\nu} +(4\gamma- \beta) B_{\mu\nu} + \mathcal{O}(R^2).
 \end{equation}
 And let us express their associated 2-tensors, using $X:=x^\mu e_\mu; Y:=y^\mu e_\mu;$ and $Z$ as dummy variables. We will use the notation $X\circ Y:= f \mapsto x^\mu \partial_\mu (y^\nu e_\nu f)$ for derivation along fields.
 \begin{align}
@@ -283,19 +283,19 @@ $$|B_{\pm\pm}|  \leq \mathfrak{g} R_\mathrm{max}''$$
 But even better, we can do the whole bound in a row, using a bit of linear algebra and the fact that
 $$
 C_{\pm\pm} = (2\alpha + \beta + 2 \gamma) A_{\pm\pm} + (4\gamma - \beta) B_{\pm\pm}
-$$
++ \mathcal{O}(R^2)$$
 Let us consider the function:
 $$f_{\alpha\beta\gamma}: 
 \begin{matrix}
     [-1, 1]^2 & \to & \mathbb{R}\\
     (a,b) & \mapsto & (2\alpha + \beta + 2 \gamma) a + (4\gamma - \beta) b
 \end{matrix}$$
-It is easy to see that $|C_{\pm\pm}| \leq \mathfrak{g} R_\mathrm{max}'' \cdot \mathrm{sup} f_{\alpha\beta\gamma}$.
+It is easy to see that $|C_{\pm\pm}| \leq \mathfrak{g} R_\mathrm{max}'' \cdot \mathrm{sup} f_{\alpha\beta\gamma}+ \mathcal{O}(R^2)$.
 
 Now, noticing that $f_{\alpha\beta\gamma}$ is a linear function (so constant gradient) restricted to the unit square, it is really easy to see that $\mathrm{sup}f_{\alpha\beta\gamma} = \mathrm{max} \big( |2\alpha + 6 \gamma|, |2\alpha + 2\beta - 2 \gamma|\big)$.\\
 Leading to the bound:
 \begin{equation}
-    \boxed{\boxed{ |C_{\pm\pm}| \leq 2 \mathfrak{g} R_\mathrm{max}'' \cdot \mathrm{max}\Big( |\alpha + 3 \gamma|, |\alpha+\beta-\gamma|\Big)}}
+    \boxed{\boxed{ |C_{\pm\pm}| \leq 2 \mathfrak{g} R_\mathrm{max}'' \cdot \mathrm{max}\Big( |\alpha + 3 \gamma|, |\alpha+\beta-\gamma|\Big)+ \mathcal{O}(R^2)}}
 \end{equation}
 
 

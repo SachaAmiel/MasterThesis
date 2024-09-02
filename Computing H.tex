@@ -1,0 +1,189 @@
+\documentclass[a4paper,11pt]{article}
+%\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amsfonts, amsthm, bbm, amssymb}
+\usepackage{dsfont} % to do mathbb{1}
+\usepackage{graphicx} 
+\usepackage{bmpsize}
+\usepackage{tikz}
+\usepackage{braket}
+\usetikzlibrary{arrows,calc,patterns,decorations.markings,decorations.pathreplacing,plotmarks,shapes.arrows,decorations.pathmorphing,backgrounds}
+\tikzset{snake it/.style={decorate, decoration=snake}}
+\usepackage[all]{xy}
+
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{titling}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz-cd}
+\usepackage{cancel}
+
+\numberwithin{equation}{section}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{comment}{Comment}
+\renewcommand{\d}{{\mathrm{d}}}
+\newcommand{\e}{{\mathrm{e}}}
+\newcommand{\R}{{\mathrm{Ric}}}
+\newcommand{\dd}{{^d\!/\!_2}}
+
+\newcommand{\EAK}[1]{\textcolor{red}{EAK: #1}}
+\newcommand{\SA}[1]{\textcolor{red}{SA: #1}}
+
+\setcounter{tocdepth}{2}
+\setlength{\parskip}{3pt}
+
+\title{Quantum energy inequalities with curvature}
+\author{Author: Sacha AMIEL \\
+Student number: 23126576\\
+\\ Supervisor: Dr. Eleni-Alexandra Kontou \\ Module Code: 7CCMTP50}
+\date{2024/09}
+
+\usepackage{geometry}
+\geometry{a4paper, left=25mm, right=25mm, top=30mm, bottom=25mm}
+
+\renewcommand{\baselinestretch}{1.2}
+
+
+\begin{document}
+Let $d$ be the dimension, regardless of parity.
+
+\begin{equation}
+    H=\frac{\Gamma\left(\dd -1\right)}{2 (2\pi)^\dd} \left(
+    \frac{U}{(\sigma+i\epsilon)^{\dd-1}}
+    +V\mathrm{ln}(\sigma+i\epsilon)
+    +W\right)
+\end{equation}
+Let us use $\nabla_\mu$ to denote $\nabla_\mu\otimes\mathds{1}$ and $\nabla_{\mu'}$ for $\mathds{1}\otimes\nabla_{\mu'}$. Notice that $[\nabla_\mu, \nabla_{\mu'}]=0$ leading to the symetric computation:
+\begin{align*}
+    \nabla_\mu\nabla_{\mu'} H = \frac{\Gamma\left(\dd -1\right)}{4 (2\pi)^\dd} &\Bigg(
+    \frac{\nabla_\mu \nabla_{\mu'} U}{(\sigma+i\epsilon)^{\dd-1}}
+    + \frac{2 \nabla_\mu \sigma \nabla_{\mu'} U}{(\sigma+i\epsilon)^{\dd}}
+    + \frac{\nabla_\mu \nabla_{\mu'} \sigma U}{(\sigma+i\epsilon)^{\dd}}
+    + \frac{\nabla_\mu \sigma \nabla_{\mu'} \sigma U}{(\sigma+i\epsilon)^{\dd+1}}\\
+    &+ \nabla_\mu\nabla_{\mu'} V \mathrm{ln}(\sigma+i\epsilon)
+    + 2\frac{\nabla_\mu \sigma \nabla_{\mu'} V}{\sigma+i\epsilon}
+    + \frac{\nabla_\mu\nabla_{\mu'}\sigma V}{\sigma + i\epsilon}
+    + \frac{\nabla_{\mu'} \sigma \nabla_{\mu'} \sigma V}{(\sigma+i\epsilon)^2}\\
+    &+ \nabla_\mu \nabla_{\mu'} W + \mu \rightleftarrows {\mu'}
+    \Bigg)\\
+    = \frac{\Gamma\left(\dd -1\right)}{4 (2\pi)^\dd} &\Bigg(
+    \frac{\nabla_\mu \nabla_{\mu'} U}{(i\epsilon)^{\dd-1}}
+    + \frac{2 \nabla_\mu \sigma \nabla_{\mu'} U}{(i\epsilon)^{\dd}}
+    + \frac{\nabla_\mu \nabla_{\mu'} \sigma U_0}{(i\epsilon)^{\dd}}
+    + \frac{\nabla_\mu \sigma \nabla_{\mu'} \sigma U_0}{(i\epsilon)^{\dd+1}}\\
+    &+ \nabla_\mu\nabla_{\mu'} V \mathrm{ln}(i\epsilon)
+    + 2\frac{\nabla_\mu \sigma \nabla_{\mu'} V}{i\epsilon}
+    + \frac{\nabla_\mu\nabla_{\mu'}\sigma V_0}{i\epsilon}
+    + \frac{\nabla_\mu \sigma \nabla_{\mu'} \sigma V_0}{(i\epsilon)^2}\\
+    &+ \nabla_\mu \nabla_{\mu'} W + \mu \rightleftarrows {\mu'}
+    \Bigg) + \mathcal{O}(\sigma)\\
+    = \frac{\Gamma\left(\dd -1\right)}{4 (2\pi)^\dd} &\Bigg(\frac{1}{(i\epsilon)^{\dd+1}}\big(
+    + U_0 \nabla_\mu \sigma \nabla_{\mu'} \sigma
+    -\epsilon^2 \nabla_\mu \nabla_{\mu'} U
+    + 2 i\epsilon  \nabla_\mu \sigma \nabla_{\mu'} U
+    + i \epsilon U_0 \nabla_\mu \nabla_{\mu'} \sigma\big)\\
+    &+ \mathrm{ln}(i\epsilon) \nabla_\mu\nabla_{\mu'} V 
+    - \frac{2i}{\epsilon}\nabla_\mu \sigma \nabla_{\mu'} V
+    - \frac{iV_0}{\epsilon} \nabla_\mu\nabla_{\mu'}\sigma
+    - \frac{V_0}{\epsilon^2}\nabla_\mu \sigma \nabla_{\mu'} \sigma\\
+    &+ \nabla_\mu \nabla_{\mu'} W + \mu \rightleftarrows {\mu'}
+    \Bigg) + \mathcal{O}(\sigma)
+\end{align*}
+Let $X \in \{U,V,W\}$:
+\begin{align*}
+    X &= \sum_{n \in \mathbb{N}} X_n \sigma^n\\
+    \nabla_\mu X &= \sum_{n \in \mathbb{N}} \nabla_\mu X_n \sigma^n + (n-1)(1-\delta_{0,n}) X_n \sigma^{n-1} \nabla_\mu \sigma \\
+    &= \nabla_\mu X_0 + X_1 \nabla_\mu \sigma + \mathcal{O}(\sigma)\\
+    \nabla_\mu \nabla_{\mu'} X &= \sum_{n \in \mathbb{N}} \nabla_\mu \nabla_{\mu'} X_n \sigma^n + (n-1) (1-\delta_{0,n}) \sigma^{n-1} \big(  \nabla \mu X_n  \nabla_{\mu'} \sigma + \nabla {\mu'} X_n \nabla_\mu \sigma \big)\\
+    &\quad \quad \quad + (n-1)(1-\delta_{0,n}) (n-2)(1-\delta_{1,n}) \sigma^{n-2} \nabla_\mu\nabla_{\mu'} \sigma\\
+    &= \nabla_\mu\nabla_{\mu'} X_0 + \nabla_\mu X_1 \nabla_{\mu'} \sigma + \nabla_{\mu'} X_1 \nabla_\mu \sigma + X_1 \nabla_\mu\nabla_{\mu'} \sigma + 2 X_2 \nabla_\mu \sigma \nabla_{\mu'} \sigma+ \mathcal{O}(\sigma)
+\end{align*}
+From which one can deduce:
+\begin{align*}
+    \nabla_\mu\nabla_{\mu'} H
+    = \frac{\Gamma\left(\dd -1\right)}{4 (2\pi)^\dd} &\Bigg(\frac{1}{(i\epsilon)^{\dd+1}}\big(
+    U_0 \nabla_\mu \sigma \nabla_{\mu'} \sigma
+    -\epsilon^2 \nabla_\mu \nabla_{\mu'} U_0
+    -2 \epsilon^2 \nabla_\mu \sigma \nabla_{\mu'} U_1
+    -\epsilon^2 U_1 \nabla_\mu \nabla_{\mu'} \sigma\\
+    &-2\epsilon^2 U_2 \nabla_\mu \sigma \nabla_{\mu'} \sigma
+    + 2 i\epsilon  \nabla_\mu \sigma \nabla_{\mu'} U_0
+    + 2 i\epsilon  U_1 \nabla_\mu \sigma \nabla_{\mu'} \sigma
+    + i \epsilon U_0 \nabla_\mu \nabla_{\mu'} \sigma\big)\\
+    &+ \mathrm{ln}(i\epsilon) \big(
+    \nabla_\mu\nabla_{\mu'} V_0
+    + 2 \nabla_\mu \sigma\nabla_{\mu'} V_1 
+    + V_1 \nabla_\mu\nabla_{\mu'} \sigma
+    +2 V_2 \nabla_\mu \sigma \nabla_{\mu'} \sigma\big) 
+    - \frac{2i}{\epsilon}\nabla_\mu \sigma \nabla_{\mu'} V_0\\
+    &- \frac{2iV_1}{\epsilon}\nabla_\mu \sigma \nabla_{\mu'} \sigma
+    - \frac{iV_0}{\epsilon} \nabla_\mu\nabla_{\mu'}\sigma
+    - \frac{V_0}{\epsilon^2}\nabla_\mu \sigma \nabla_{\mu'} \sigma
+    + \nabla_\mu\nabla_{\mu'} W_0
+    + 2 \nabla_\mu \sigma \nabla_{\mu'} W_1\\
+    &+ W_1 \nabla_\mu\nabla_{\mu'} \sigma
+    + 2 W_2 \nabla_\mu \sigma \nabla_{\mu'} \sigma
+    + \mu \rightleftarrows {\mu'}
+    \Bigg) + \mathcal{O}(\sigma)
+    \\
+    = \frac{\Gamma\left(\dd -1\right)}{4 (2\pi)^\dd} &\Bigg(
+    \nabla_\mu\sigma\nabla_{\mu'}\sigma \left(
+      \frac{U_0}{(i\epsilon)^{\dd+1}} 
+    + \frac{2U_2}{(i\epsilon)^{\dd-1}}
+    + 2 W_2
+    - \frac{V_0}{\epsilon^2}
+    - \frac{2iV_1}{\epsilon}
+    +2 V_2 \mathrm{ln}(i\epsilon)
+    + \frac{2U_1}{(i\epsilon)^{\dd}}
+    \right)\\
+    &+ \left(2 \nabla_\mu \sigma \nabla_{\mu'} + \nabla_\mu \nabla_{\mu'} \sigma\right) \left(
+      \frac{U_0}{(i\epsilon)^{\dd}}  
+    + \frac{U_1}{(i\epsilon)^{\dd-1}} 
+    - \frac{iV_0}{\epsilon}
+    + \mathrm{ln}(i\epsilon) V_1 
+    + W_1
+    \right)\\% nns & ns n
+    &+ \nabla_\mu \nabla_{\mu'} \left(
+    \frac{U_0}{(i\epsilon)^{\dd-1}} 
+    + \mathrm{ln}(i\epsilon) V_0
+    + W_0\right)
+    + \mu \rightleftarrows {\mu'}
+    \Bigg) + \mathcal{O}(\sigma)
+\end{align*}
+
+Now, we can get rid of our $\mu \rightleftarrows {\mu'}$ contraction, to make things more explicit. Last but not least, we will also use the fact that $d\ne2$ to already use the initial condition $U_0=\Delta^{\!^1\!/\!_2}$, so as to get to the interesting stuff quicker.
+\begin{align}
+    \nabla_\mu\nabla_{\mu'} H
+    = \frac{\Gamma\left(\dd -1\right)}{2 (2\pi)^\dd} &\Bigg(\nabla_\mu\sigma \nabla_{\mu'} \sigma
+    \left(
+      \frac{\Delta^{\!^1\!/\!_2}}{(i\epsilon)^{\dd+1}} 
+    + \frac{2U_2}{(i\epsilon)^{\dd-1}}
+    + 2 W_2
+    - \frac{V_0}{\epsilon^2}
+    - \frac{2iV_1}{\epsilon}
+    +2 V_2 \mathrm{ln}(i\epsilon)
+    + \frac{2U_1}{(i\epsilon)^{\dd}}
+    \right)\notag \\
+    &+ \left(\nabla_\mu \sigma \nabla_{\mu'} + \nabla_{\mu'} \sigma \nabla_\mu + \nabla_\mu \nabla_{\mu'} \sigma\right) \left(
+      \frac{\Delta^{\!^1\!/\!_2}}{(i\epsilon)^{\dd}}  
+    + \frac{U_1}{(i\epsilon)^{\dd-1}} 
+    - \frac{iV_0}{\epsilon}
+    + \mathrm{ln}(i\epsilon) V_1 
+    + W_1
+    \right)\notag \\% nns & ns n
+    &+ \nabla_\mu \nabla_{\mu'} \left(
+    \frac{\Delta^{\!^1\!/\!_2}}{(i\epsilon)^{\dd-1}} 
+    + \mathrm{ln}(i\epsilon) V_0
+    + W_0\right)
+    \quad \Bigg) + \mathcal{O}(\sigma)
+\end{align}
+
+Notice, of course, that $\nabla_\mu\otimes\nabla_{\mu'} H = \nabla_\mu\otimes\nabla_{\mu'} H_{(2)} +\mathcal{O}(\sigma)$ so we actually computed precisely what we wanted.
+
+\end{document}
