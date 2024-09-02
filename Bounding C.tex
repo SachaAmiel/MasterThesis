@@ -1,0 +1,306 @@
+\documentclass[a4paper,11pt]{article}
+%\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amsfonts, amsthm, bbm}
+\usepackage{dsfont} % to do mathbb{1}
+\usepackage{graphicx} 
+\usepackage{bmpsize}
+\usepackage{tikz}
+\usepackage{braket}
+\usetikzlibrary{arrows,calc,patterns,decorations.markings,decorations.pathreplacing,plotmarks,shapes.arrows,decorations.pathmorphing,backgrounds}
+\tikzset{snake it/.style={decorate, decoration=snake}}
+\usepackage[all]{xy}
+
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{titling}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz-cd}
+\usepackage{cancel}
+
+\numberwithin{equation}{section}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{comment}{Comment}
+\renewcommand{\d}{{\mathrm{d}}}
+\newcommand{\e}{{\mathrm{e}}}
+\newcommand{\R}{{\mathrm{Ric}}}
+
+\newcommand{\EAK}[1]{\textcolor{red}{EAK: #1}}
+\newcommand{\SA}[1]{\textcolor{red}{SA: #1}}
+
+\setcounter{tocdepth}{2}
+\setlength{\parskip}{3pt}
+
+\title{Quantum energy inequalities with curvature}
+\author{Author: Sacha AMIEL \\
+Student number: 23126576\\
+\\ Supervisor: Dr. Eleni-Alexandra Kontou \\ Module Code: 7CCMTP50}
+\date{2024/09}
+
+\usepackage{geometry}
+\geometry{a4paper, left=25mm, right=25mm, top=30mm, bottom=25mm}
+
+\renewcommand{\baselinestretch}{1.2}
+
+\begin{document}
+\SA{Okay, so I think I got it. All this time I though you needed a bound in terms of
+\begin{align}
+    |R^\rho_{\;\;\sigma\mu\nu}| &\leq R_\mathrm{max}&
+    |\partial_\alpha R^\rho_{\;\;\sigma\mu\nu}| &\leq
+    R_\mathrm{max}'&
+    |\partial_\alpha\partial_\beta
+    R^\rho_{\;\;\sigma\mu\nu}| & \leq R_\mathrm{max}''&
+    \mathrm{ect}...
+\end{align}
+Because that is what was popping up in your articles all the time.
+\\
+But from the discussion we had last time, I guess these were circumstancial to the fact that your basis was ``physically relevant", leading to $X_{,\mu}=X_{;\mu}$...
+\\
+Thus, one can easily recycle my calculations to something in terms of covariant derivatives instead. Leading to:
+}
+
+\noindent
+We will focus on the term $C_{\mu\nu}$'s computation. We mentioned previously (in section \ref{T_ren}) that :
+\begin{equation}\tag{\ref{T_ren}}
+    \braket{T^\mathrm{ren}_{\mu\nu}}:=\braket{T^\mathrm{fin}_{\mu\nu}}-Qg_{\mu\nu} + C_{\mu\nu}.
+    \end{equation}
+Let us be more precise. In \cite{QFTCurv}, we find that the coefficient is:
+\begin{equation}
+    -Qg_{\mu\nu}+C_{\mu\nu}=\alpha^{(1)}\mathcal{H}_{\mu\nu}+\beta^{(2)}\mathcal{H}_{\mu\nu}+\gamma\mathcal{H}_{\mu\nu},
+\end{equation}
+where:
+\begin{align}
+    ^{(1)}\mathcal{H}_{\mu\nu}:=& 2R_{;\mu;\nu}+ 2g_{\mu\nu}\square R - \frac{1}{2}g_{\mu\nu} R^2 + 2 R\cdot R_{\mu\nu}\notag;\\
+    ^{(2)}\mathcal{H}_{\mu\nu}:=& R_{;\mu;\nu} - \frac{1}{2}g_{\mu\nu}R-\square R_{\mu\nu} -\frac{1}{2} R^{\alpha\beta}R_{\alpha\beta}+2R^{\alpha\beta}R_{\alpha\beta\mu\nu};\\
+    \mathcal{H}_{\mu\nu}:=& 2R_{\mu\alpha\beta\gamma}R_\nu^{\;\alpha\beta\gamma}-4\square R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R^{\alpha\beta\gamma\delta}R_{\alpha\beta\gamma\delta} + 2 R_{;\mu;\nu} - 4 R_{\mu\alpha}R^{\alpha}_{\;\nu}+4R^{\alpha\beta}R_{\alpha\mu\beta\nu}\notag.
+\end{align}
+This yields:
+\begin{align}
+    C_{\mu\nu} &= 2\alpha R_{;\mu;\nu} + \beta R_{;\mu;\nu} - \beta\square R_{\mu\nu} +4\gamma \square R_{\mu\nu} + 2\gamma R_{;\mu;\nu} + \mathcal{O}(R^2)\notag\\
+    &= (2\alpha + \beta + 2\gamma) R_{;\mu;\nu} +(4\gamma- \beta)\square R_{\mu\nu} + \mathcal{O}(R^2) \label{C=A+B}.
+\end{align}
+
+But as we saw in section \ref{TorsionWarning} (section \ref{TorsionWarning}), we need to remember that these expressions hold for coordinates in a \emph{basis}, whereas we wish to express them in our non-basis frame. To know exactly how this will end up looking, we will simply express the tensor $C$ without any reference to the basis $e_\mu$ and then, get its coefficients in the frame $(e_i,e_+,e_-)$.
+
+Note that in this section, we will use the notation of $\nabla_\mu$ of the physicist, i.e. that of the coordinates. This is because \cite{QFTCurv} uses this one, so when we write $R_{;\mu;\nu}$ it means $\nabla_\mu \nabla_\nu R$ only in the physicist sense, and likewise for $\square:=\nabla_\rho \nabla^\rho$ in the physicist's way. We apologies for potentially caused confusion. Feel free to refer to comment \ref{NotationWarning} (in section \ref{NotationWarning}) for more details.
+
+Now, the here-above expression of $C_{\mu\nu}$ is in a proper basis, one where the coordinate fields commute. So, to be sure that we do not make any mistakes when changing to our non-commutative frame, we will compute the mathematical tensor:
+\begin{equation}
+C : \Bigg\{\begin{matrix}
+    T\mathcal{M}^{\otimes2} & \to & \mathbb{R}\\
+    (x^\mu e_\mu, y^\nu e_\nu) & \mapsto & x^\mu y^\nu C_{\mu\nu}
+\end{matrix}
+\end{equation}
+in a form that doesn't use any coordinate representation, then we will be able to evaluate it back in our frame, without any worries of what having non-commutative coordinate fields could cause being slightly different.\\
+Then, we choose $l^\mu \partial_\mu$ to be along one of our null foliation coordinate $e_\pm$. \\
+Leading to $l^\mu \partial_\mu = x_\pm e_\pm$ and the following integral:
+\begin{equation}
+    \int_\Sigma \d_\mathrm{vol}g^2 l^\mu l^\nu C_{\mu\nu} = \int_{\mathbb{R}\times \mathbb{R}\times S} \!\!\!\!\!\!\!\!\!\!\!\!\!\!\! \d_\mathrm{vol} \cancel{g}^2 \d x_\mp \d x_\mp' \d x_\pm \d x_\pm ' \;\cdot \; x_\pm x_\pm ' C_{\pm\pm}(x_i,x_\pm, x_\mp)\; ,
+\end{equation}
+with $C_{\pm\pm}:= C(e_\pm,e_\pm)$ of course. Proof of the measure's decomposition $\d_\mathrm{vol}g = \d x_\pm \d x_\mp \d_\mathrm{vol} \cancel{g}$ can be found in \cite{Art}. This also implies that $l^\mu \nabla_\mu$ will be $x_\pm \partial\pm$ when applied on to $\mathcal{FT}_{H_{(2)}}$.
+
+\noindent So let us define (in a proper basis)
+\begin{align}
+    A_{\mu\nu} :=& \nabla_\mu\nabla_\nu R&
+    B_{\mu\nu} :=& \nabla_\rho\nabla^\rho R_{\mu\nu}.
+\end{align}
+So as to have 
+\begin{equation}
+    C_{\mu\nu} = (2\alpha + \beta + 2\gamma) A_{\mu\nu} +(4\gamma- \beta) B_{\mu\nu}.
+\end{equation}
+And let us express their associated 2-tensors, using $X:=x^\mu e_\mu; Y:=y^\mu e_\mu;$ and $Z$ as dummy variables. We will use the notation $X\circ Y:= f \mapsto x^\mu \partial_\mu (y^\nu e_\nu f)$ for derivation along fields.
+\begin{align}
+    A(X,Y) :\!\!&= x^\mu y^\nu A_{\mu\nu}\notag\\
+    :\!\!&= x^\mu y^\nu \nabla_\mu \nabla_\nu R\notag\\
+    &= x^\mu y^\nu \nabla_\mu \partial_\nu R\notag\\
+    &= x^\mu y^\nu \partial_\mu \partial_\nu R - x^\mu y^\nu \Gamma_{\mu\nu}^\lambda \partial_\lambda R\notag\\
+    &= x^\mu \partial_\mu \left(y^\nu \partial_\nu R \right) - x^\mu \cdot(\partial_\mu y^\nu) \cdot (\partial_\nu R) - x^\mu y^\nu (\nabla_{e_\mu} \partial_\nu)R\notag\\
+    &= x^\mu \partial_\mu \left(y^\nu \partial_\nu R \right) - \cancel{x^\mu \cdot(\partial_\mu y^\nu) \cdot (\partial_\nu R)} - x^\mu \big(\nabla_{e_\mu} (y^\nu \partial_\nu)\big)R + \cancel{x^\mu \cdot (\partial_\mu y^\nu) \cdot (\partial_\nu R)}\notag\\
+    &= (X\circ Y - \nabla_X Y) R
+\end{align}
+Thus:
+\begin{equation}
+    A : \Bigg\{\begin{matrix}
+        T\mathcal{M}^{\otimes 2} & \to & \mathbb{R}\\
+        (X,Y) & \mapsto & \frac{1}{2}\big(X\circ Y + Y\circ X - \nabla_X Y - \nabla_Y X\big) R
+    \end{matrix}
+\end{equation}
+\SA{I verified it, it turns out that having torsion (or non-commutative indices) doesn't change the $\nabla_\mu X_\nu$ formula. We only need to be very careful with indices and use:
+$$\nabla_\mu X_\nu := \partial_\mu X_\nu - \Gamma_{\mu\nu}^\rho X_\rho \ne \partial_\mu X_\nu - \Gamma_{\nu\mu}^\rho X_\rho$$
+The proof is identical to the normal case.}
+\begin{align*}
+    A_{\pm\pm} &\!\!:= A(e_\pm,e_\pm)
+    \\&= \partial_\pm \partial_\pm R - (\nabla_{e_\pm}e_\pm) R\\
+    &= \partial_\pm \nabla_\pm R- \Gamma_{\pm\pm}^\mu \partial_\mu R\\
+    &= \partial_\pm R \nabla_\pm- \Gamma_{\pm\pm}^\mu \nabla_\mu R\\
+    &= \nabla_\pm \nabla_\pm R
+\end{align*}
+\begin{equation}
+    \boxed{A_{\pm\pm} = R_{;\pm;\pm}}
+\end{equation}
+So defining $\mathfrak{g}:= \sum_{\mu\nu} |g^{\mu\nu}|= 2 + \sum_{ij} |g^{ii}|$ we get:
+\begin{equation}
+    |A_{\pm\pm}| \leq \mathfrak{g} R_\mathrm{max}''
+\end{equation}
+\SA{Now, we could (like you suggested) just assume that all equations hold identically replacing $\mu$ by $\pm$, but we must not forget that $\partial_\mu\partial_\nu=\partial_\nu\partial_\mu$ in a normal basis, whereas, in our case, $\partial_\pm$ and stands for the vector field $e_\pm$ that doesn't commute with its opposite (index-wise) nor with the basis of the sub-manifold. So let me still do the painful computation.}
+\\
+First, let us acknowledge the fact that $B(X,Y)=\mathrm{tr}_g(Z\mapsto z^\rho z^\sigma x^\mu y^\mu \nabla_\rho \nabla_\sigma R_{\mu\nu})$. Which is already a bit scary. Next, we compute the tensorial (physics notation) expression
+\SA{Let us skip the previously done work and just try to compute the mathematically abstract tensor $D$ that is in the thesis, only with great caution with respect to commutativity.}
+
+\begin{equation}
+    B:\bigg\{ \begin{matrix}
+        T\mathcal{M}^{\otimes 2} & \to & \mathbb{R}\\
+        (X,Y) & \mapsto & \mathrm{tr}_g \big(Z \mapsto D(X,Y,Z,Z)\big)
+    \end{matrix}
+\end{equation}
+
+\begin{align}
+    D(X,Y,Z,Z') 
+    &=\R(\nabla_Z\nabla_{Z'} X ,Y )
+    + \R( X ,\nabla_Z\nabla_{Z'} Y )
+    + \R(\nabla_{\nabla_ZZ'} X , Y )
+    + \R( X ,\nabla_{\nabla_ZZ'}Y )\notag\\
+    & \quad + Z\big(Z'\big(\R(X ,Y )\big)\big)-(\nabla_Z Z')\R(X ,Y )
+    -2 Z\big(\R(\nabla_{Z'} X , Y )\big)
+    -2 Z\big(\R(X , \nabla_{Z'} Y )\big) \notag\\
+    & \quad + 2 \R(\nabla_Z X , \nabla_{Z'} Y ) 
+\end{align} 
+This is a well defined tensor, let us evaluate it in \textit{some} basis $(e_\mu)$ not assuming commutativity (and denoting $\partial_\mu := e_\mu$ even when that might be confusing...)
+\begin{align*}
+    D_{\mu\nu\rho\sigma} 
+    &=\R(\nabla_{e_\rho}\nabla_{e_\sigma} e_\mu ,e_\nu )
+    + \R( e_\mu ,\nabla_{e_\rho}\nabla_{e_\sigma} e_\nu )
+    + \R(\nabla_{\nabla_{e_\rho}e_\sigma} e_\mu , e_\nu )
+    + \R( e_\mu ,\nabla_{\nabla_{e_\rho}e_\sigma}e_\nu ) \\
+    & \quad + {e_\rho}\big(e_\sigma\big(\R(e_\mu ,e_\nu )\big)\big)-(\nabla_{e_\rho} e_\sigma)\R(e_\mu ,e_\nu )
+    -2 {e_\rho}\big(\R(\nabla_{e_\sigma} e_\mu , e_\nu )\big)
+    -2 {e_\rho}\big(\R(e_\mu , \nabla_{e_\sigma} e_\nu )\big)  \\
+    & \quad + 2 \R(\nabla_{e_\rho} e_\mu , \nabla_{e_\sigma} e_\nu ) \\
+    &=\R(\nabla_{e_\rho}\left(\Gamma_{\sigma\mu}^\alpha e_\alpha \right),e_\nu )
+    + \R( e_\mu ,\nabla_{e_\rho}\left(\Gamma_{\sigma\nu}^\alpha e_\alpha \right) )
+    + \Gamma_{\rho\sigma}^\alpha \Big(
+    \R(\nabla_{e_\alpha} e_\mu , e_\nu )
+    + \R( e_\mu ,\nabla_{e_\alpha}e_\nu )\Big) \\
+    & \quad + \partial_\rho \partial_\sigma R_{\mu\nu} -(\nabla_{e_\rho} e_\sigma) R_{\mu\nu}
+    -2 \partial_\rho \big(\R(\nabla_{e_\sigma} e_\mu , e_\nu )\big)
+    -2 \partial_\rho\big(\R(e_\mu , \nabla_{e_\sigma} e_\nu )\big)  \\
+    & \quad + 2 \Gamma_{\rho\mu}^\alpha \Gamma_{\sigma\nu}^\beta R_{\alpha\beta}\\
+    &=\Gamma_{\sigma\mu}^\alpha\R(\nabla_{e_\rho}e_\alpha ,e_\nu )
+    + \Gamma_{\sigma\nu}^\alpha\R( e_\mu ,\nabla_{e_\rho}e_\alpha )
+    + \partial_\rho \Gamma_{\sigma\mu}^\alpha R_{\alpha\nu}
+    + \partial_\rho\Gamma_{\sigma\nu}^\alpha R_{\mu\alpha} \\
+    &\quad 
+    + \Gamma_{\rho\sigma}^\alpha \Big(
+    \R(\nabla_{e_\alpha} e_\mu , e_\nu )
+    + \R( e_\mu ,\nabla_{e_\alpha}e_\nu )\Big)
+    - \partial_\rho \big(\R(\nabla_{e_\sigma} e_\mu , e_\nu )\big)
+    - \partial_\rho\big(\R(e_\mu , \nabla_{e_\sigma} e_\nu )\big)  \\
+    & \quad + \partial_\rho \Big( \partial_\sigma R_{\mu\nu} 
+    - \R(\nabla_{e_\sigma} e_\mu , e_\nu ) 
+    - \R(e_\mu , \nabla_{e_\sigma} e_\nu )\Big)
+    -(\nabla_{e_\rho} e_\sigma) R_{\mu\nu}  
+    + 2 \Gamma_{\rho\mu}^\alpha \Gamma_{\sigma\nu}^\beta R_{\alpha\beta}\\
+    &=\Gamma_{\sigma\mu}^\alpha\Gamma_{\rho\alpha}^\beta R_{\beta\nu}
+    + \Gamma_{\sigma\nu}^\alpha\Gamma_{\rho\alpha}^\beta R_{\mu\beta}
+    + \partial_\rho \Gamma_{\sigma\mu}^\alpha R_{\alpha\nu}
+    + \partial_\rho\Gamma_{\sigma\nu}^\alpha R_{\mu\alpha} \\
+    &\quad 
+    + \Gamma_{\rho\sigma}^\alpha \Big(
+    \Gamma_{\alpha\mu}^\beta R_{\beta\nu}
+    + \Gamma_{\alpha\nu}^\beta R_{\mu\beta}\Big)
+    - \partial_\rho \big(\Gamma_{\sigma\mu}^\alpha R_{\alpha\nu}\big)
+    - \partial_\rho\big(\Gamma_{\sigma\nu}^\alpha R_{\mu\alpha}\big)  \\
+    & \quad + \partial_\rho \Big( \partial_\sigma R_{\mu\nu} 
+    - \Gamma_{\sigma\mu}^\alpha R_{\alpha\nu}
+    - \Gamma_{\sigma\nu}^\alpha R_{\mu\alpha} \Big)
+    -\Gamma_{\rho\sigma}^\alpha \partial_\alpha R_{\mu\nu}  
+    + 2 \Gamma_{\rho\mu}^\alpha \Gamma_{\sigma\nu}^\beta R_{\alpha\beta}\\
+    &=\Gamma_{\sigma\mu}^\alpha\Gamma_{\rho\alpha}^\beta R_{\beta\nu}
+    + \Gamma_{\sigma\nu}^\alpha\Gamma_{\rho\alpha}^\beta R_{\mu\beta}
+    + \cancel{\partial_\rho \Gamma_{\sigma\mu}^\alpha R_{\alpha\nu}}
+    + \cancel{\partial_\rho\Gamma_{\sigma\nu}^\alpha R_{\mu\alpha}}
+    + \Gamma_{\rho\sigma}^\alpha \Big(- \partial_\alpha R_{\mu\nu}
+    + \Gamma_{\alpha\mu}^\beta R_{\beta\nu}
+    + \Gamma_{\alpha\nu}^\beta R_{\mu\beta}\Big) \\
+    &\quad 
+    - \Gamma_{\sigma\mu}^\alpha \partial_\rho R_{\alpha\nu}
+    - \cancel{\partial_\rho \Gamma_{\sigma\mu}^\alpha R_{\alpha\nu}}
+    - \Gamma_{\sigma\nu}^\alpha \partial_\rho R_{\mu\alpha}
+    - \cancel{\partial_\rho \Gamma_{\sigma\nu}^\alpha R_{\mu\alpha}}
+    + \partial_\rho \nabla_\sigma R_{\mu\nu} 
+    + 2 \Gamma_{\rho\mu}^\alpha \Gamma_{\sigma\nu}^\beta R_{\alpha\beta}\\
+    &=\partial_\rho \nabla_\sigma R_{\mu\nu}
+    - \Gamma_{\rho\sigma}^\alpha \nabla_\alpha R_{\mu\nu}
+    + \Gamma_{\rho\alpha}^\beta \Gamma_{\sigma\mu}^\alpha R_{\beta\nu}
+    + \Gamma_{\rho\alpha}^\beta \Gamma_{\sigma\nu}^\alpha R_{\mu\beta}
+    - \Gamma_{\sigma\mu}^\alpha \partial_\rho R_{\alpha\nu}
+    - \Gamma_{\sigma\nu}^\alpha \partial_\rho R_{\mu\alpha}
+    + 2 \Gamma_{\rho\mu}^\alpha \Gamma_{\sigma\nu}^\beta R_{\alpha\beta}
+\end{align*}
+Now, since we will compute $g^{\rho\sigma}D_{\mu\nu\rho\sigma}$ we can (although is is incorrect before contraction, hence the ``$\approx$"\footnote{Here ``$\approx$" is thus the equivalence relation \textit{have equal symmetric parts}. So everything is rigorous, and in particular $X_{\rho\sigma} \approx Y_{\rho\sigma} \implies g^{\mu\nu}X_{\mu\nu}=g^{\mu\nu}Y_{\mu\nu}$ for $X_{\mu\nu}$ coefficients in any ring, including the enveloping algebra of $\mathbb{R}$, which is our case.})  rename $\rho \leftrightarrow \sigma$ in some contractions of $D$ and not others. Leading to:
+\begin{align*}
+    D_{\mu\nu\rho\sigma} 
+    &\approx\partial_\rho \nabla_\sigma R_{\mu\nu}
+    - \Gamma_{\rho\sigma}^\alpha \nabla_\alpha R_{\mu\nu}
+    + \Gamma_{\sigma\alpha}^\beta \Gamma_{\rho\mu}^\alpha R_{\beta\nu}
+    + \Gamma_{\sigma\beta}^\alpha \Gamma_{\rho\nu}^\beta R_{\mu\alpha}
+    - \Gamma_{\rho\mu}^\alpha \partial_\sigma R_{\alpha\nu}
+    - \Gamma_{\rho\nu}^\alpha \partial_\sigma R_{\mu\alpha}
+    + 2 \Gamma_{\rho\mu}^\alpha \Gamma_{\sigma\nu}^\beta R_{\alpha\beta}\\
+    &\approx\partial_\rho \nabla_\sigma R_{\mu\nu}
+    - \Gamma_{\rho\sigma}^\alpha \nabla_\alpha R_{\mu\nu}
+    + \Gamma_{\rho\mu}^\alpha \Big(
+      \Gamma_{\sigma\alpha}^\beta  R_{\beta\nu}
+    - \partial_\sigma R_{\alpha\nu}
+    + \Gamma_{\sigma\nu}^\beta R_{\alpha\beta}
+    \Big)
+    + \Gamma_{\sigma\alpha}^\beta \Gamma_{\rho\nu}^\alpha R_{\mu\beta}
+    - \Gamma_{\rho\nu}^\alpha \partial_\sigma R_{\mu\alpha}
+    + \Gamma_{\sigma\mu}^\beta \Gamma_{\rho\nu}^\alpha R_{\beta\alpha}\\
+    &\approx\partial_\rho \nabla_\sigma R_{\mu\nu}
+    - \Gamma_{\rho\sigma}^\alpha \nabla_\alpha R_{\mu\nu}
+    - \Gamma_{\rho\mu}^\alpha \nabla_\sigma R_{\alpha \nu}
+    + \Gamma_{\rho\nu}^\alpha \Big( \Gamma_{\sigma\alpha}^\beta  R_{\mu\beta}
+    - \partial_\sigma R_{\mu\alpha}
+    + \Gamma_{\sigma\mu}^\beta R_{\beta\alpha} \Big)\\
+    &\approx\partial_\rho \nabla_\sigma R_{\mu\nu}
+    - \Gamma_{\rho\sigma}^\alpha \nabla_\alpha R_{\mu\nu}
+    - \Gamma_{\rho\mu}^\alpha \nabla_\sigma R_{\alpha \nu}
+    + \Gamma_{\rho\nu}^\alpha \nabla_\sigma R_{\mu\alpha}\\
+    &\approx \nabla_\rho \nabla_\sigma R_{\mu\nu} = R_{\mu\nu;\rho;\sigma}
+\end{align*}
+So indeed the expressions stay the same.
+
+Giving us:
+$$|B_{\pm\pm}|  \leq \mathfrak{g} R_\mathrm{max}''$$
+
+But even better, we can do the whole bound in a row, using a bit of linear algebra and the fact that
+$$
+C_{\pm\pm} = (2\alpha + \beta + 2 \gamma) A_{\pm\pm} + (4\gamma - \beta) B_{\pm\pm}
+$$
+Let us consider the function:
+$$f_{\alpha\beta\gamma}: 
+\begin{matrix}
+    [-1, 1]^2 & \to & \mathbb{R}\\
+    (a,b) & \mapsto & (2\alpha + \beta + 2 \gamma) a + (4\gamma - \beta) b
+\end{matrix}$$
+It is easy to see that $|C_{\pm\pm}| \leq \mathfrak{g} R_\mathrm{max}'' \cdot \mathrm{sup} f_{\alpha\beta\gamma}$.
+
+Now, noticing that $f_{\alpha\beta\gamma}$ is a linear function (so constant gradient) restricted to the unit square, it is really easy to see that $\mathrm{sup}f_{\alpha\beta\gamma} = \mathrm{max} \big( |2\alpha + 6 \gamma|, |2\alpha + 2\beta - 2 \gamma|\big)$.\\
+Leading to the bound:
+\begin{equation}
+    \boxed{\boxed{ |C_{\pm\pm}| \leq 2 \mathfrak{g} R_\mathrm{max}'' \cdot \mathrm{max}\Big( |\alpha + 3 \gamma|, |\alpha+\beta-\gamma|\Big)}}
+\end{equation}
+
+
+
+
+
+
+\end{document}
